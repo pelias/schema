@@ -1,6 +1,4 @@
-Pelias schema files and tooling
-
-# Installation
+## Installation
 
 ```bash
 $ npm install pelias-schema
@@ -8,9 +6,7 @@ $ npm install pelias-schema
 
 [![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
 
----
-
-# Usage
+## Usage
 
 You can pull down a versioned copy of the pelias schema from npm:
 
@@ -22,19 +18,19 @@ console.log( JSON.stringify( schema, null, 2 ) );
 
 ## Scripts
 
-### Creating the required pelias mappings in elasticsearch:
+#### create index
 
 ```bash
 node scripts/create_index.js;               # quick start
 ```
 
-### Drop all pelias mappings in elasticsearch:
+#### drop index
 
 ```bash
 node scripts/drop_index.js;                 # drop everything
 ```
 
-### Reset a single type:
+#### reset a single type
 
 This is useful when you want to reset a single `type` without wiping the rest of your `index`.
 
@@ -42,13 +38,13 @@ This is useful when you want to reset a single `type` without wiping the rest of
 node scripts/reset_type.js mytype;          # reset a single type
 ```
 
-### Output schema file:
+#### output schema file
 
 Use this script to pretty-print the whole schema file or a single mapping to stdout.
 
 ```bash
-node scripts/reset_type.js mytype;          # single type mapping
-node scripts/reset_type.js;                 # whole schema file
+node scripts/output_mapping.js mytype;          # single type mapping
+node scripts/output_mapping.js;                 # whole schema file
 ```
 
 ## NPM Module
