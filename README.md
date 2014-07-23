@@ -1,6 +1,4 @@
-# pelias schema files and tooling
-
-An Elasticsearch Backend with support for Streaming Bulk Indexing
+Pelias schema files and tooling
 
 # Installation
 
