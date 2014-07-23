@@ -1,0 +1,36 @@
+{
+  "name": "pelias-schema",
+  "author": "mapzen",
+  "version": "0.0.0",
+  "description": "Elasticsearch schema files and tooling for Pelias",
+  "homepage": "https://github.com/pelias/schema",
+  "license": "MIT",
+  "main": "schema.js",
+  "scripts": {
+    "test": "node test/run.js | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pelias/schema.git"
+  },
+  "keywords": [
+    "pelias",
+    "schema"
+  ],
+  "bugs": {
+    "url": "https://github.com/pelias/schema/issues"
+  },
+  "engines": {
+    "node": ">=0.10.26",
+    "npm": ">=1.4.3",
+    "elasticsearch": ">=1.1.1"
+  },
+  "dependencies": {
+    "merge": "^1.1.3"
+  },
+  "devDependencies": {
+    "tape": "^2.13.4",
+    "tap-spec": "^0.2.0",
+    "pelias-esclient": "0.0.20"
+  }
+}

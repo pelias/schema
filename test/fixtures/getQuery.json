@@ -1,0 +1,20 @@
+{
+  "_index": "pelias",
+  "_type": "osmnode",
+  "_id": "551215562",
+  "_version": 2,
+  "found": true,
+  "_source": {
+    "center_point": {
+      "lat": 33.5169579,
+      "lon": 36.2217176
+    },
+    "name": {
+      
+    },
+    "type": "node",
+    "tags": {
+      
+    }
+  }
+}

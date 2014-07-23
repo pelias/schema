@@ -1,0 +1,35 @@
+{
+  "took": 4,
+  "timed_out": false,
+  "_shards": {
+    "total": 8,
+    "successful": 8,
+    "failed": 0
+  },
+  "hits": {
+    "total": 3589,
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "pelias",
+        "_type": "geoname",
+        "_id": "6289144",
+        "_score": null,
+        "fields": {
+          "admin2": [
+            "Greater London"
+          ],
+          "admin1": [
+            "England"
+          ],
+          "admin0": [
+            "United Kingdom"
+          ]
+        },
+        "sort": [
+          0.05638587293312542
+        ]
+      }
+    ]
+  }
+}

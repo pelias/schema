@@ -1,0 +1,308 @@
+{
+  "docs": [
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034714",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5060419,
+          "lon": 36.2884532
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034715",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5061779,
+          "lon": 36.2885991
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034717",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5063353,
+          "lon": 36.2889081
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034719",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5063353,
+          "lon": 36.2892429
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034721",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5062566,
+          "lon": 36.2895433
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034723",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5060491,
+          "lon": 36.2898093
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034724",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5058773,
+          "lon": 36.2899123
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034728",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5052332,
+          "lon": 36.2900497
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034729",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5050757,
+          "lon": 36.2900325
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034731",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5047537,
+          "lon": 36.2898866
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034733",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5045676,
+          "lon": 36.2897064
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034734",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5044746,
+          "lon": 36.2894489
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034736",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5044746,
+          "lon": 36.2890197
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034737",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5045175,
+          "lon": 36.2888395
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034739",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5047608,
+          "lon": 36.2884876
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034741",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.505133,
+          "lon": 36.2883245
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034743",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5056197,
+          "lon": 36.2882644
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034745",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5059417,
+          "lon": 36.2883588
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    },
+    {
+      "_index": "pelias",
+      "_type": "osmnode",
+      "_id": "34034714",
+      "_version": 2,
+      "found": true,
+      "_source": {
+        "center_point": {
+          "lat": 33.5060419,
+          "lon": 36.2884532
+        },
+        "name": {},
+        "type": "node",
+        "tags": {}
+      }
+    }
+  ]
+}

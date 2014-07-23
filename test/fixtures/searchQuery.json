@@ -1,0 +1,205 @@
+{
+  "took": 8,
+  "timed_out": false,
+  "_shards": {
+    "total": 8,
+    "successful": 8,
+    "failed": 0
+  },
+  "hits": {
+    "total": 226731,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551215562",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5169579,
+            "lon": 36.2217176
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551215571",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5155249,
+            "lon": 36.2220749
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551219962",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5174051,
+            "lon": 36.2289732
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551219971",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5193873,
+            "lon": 36.2309473
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551219988",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5150508,
+            "lon": 36.2278144
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551220054",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5112509,
+            "lon": 36.226115
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551220089",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5150866,
+            "lon": 36.23087
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551220117",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5143996,
+            "lon": 36.2263124
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551220126",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5165107,
+            "lon": 36.2274969
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      },
+      {
+        "_index": "pelias",
+        "_type": "osmnode",
+        "_id": "551220171",
+        "_score": 1,
+        "_source": {
+          "center_point": {
+            "lat": 33.5122513,
+            "lon": 36.2254455
+          },
+          "name": {
+            
+          },
+          "type": "node",
+          "tags": {
+            
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "completion",
+  "preserve_position_increments": false,
+  "preserve_separators": false,
+  "index_analyzer": "suggestions",
+  "search_analyzer": "suggestions",
+  "payloads": true,
+  "context": {
+    "location": {
+      "type": "geo",
+      "precision": ["1km","100km","1500km","8000km","20040km"],
+      "neighbors": true,
+      "path": "center_point"
+    },
+    "dataset": {
+      "type": "category",
+      "path": "_type"
+    }
+  }
+}

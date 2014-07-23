@@ -1,0 +1,4 @@
+{
+  "error": "MapperParsingException[failed to parse]; nested: JsonParseException[Unexpected character ('}' (code 125)): was expecting either valid name character (for unquoted name) or double-quote (for quoted) to start field name\n at [Source: [B@38d0af53; line: 4, column: 2]]; ",
+  "status": 400
+}
