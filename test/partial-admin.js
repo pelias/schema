@@ -26,6 +26,7 @@ module.exports.tests.store = function(test, common) {
   });
 }
 
+// this should be enabled to allow 'exists' filters to work
 module.exports.tests.index = function(test, common) {
   test('index enabled', function(t) {
     t.notEqual(schema.index, 'no', 'should not be disabled');
