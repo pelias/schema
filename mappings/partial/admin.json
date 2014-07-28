@@ -1,5 +1,4 @@
 {
   "type": "string",
-  "store": "yes",
-  "index": "no"
+  "store": "yes"
 }
