@@ -28,6 +28,7 @@ node scripts/create_index.js;               # quick start
 
 ```bash
 node scripts/drop_index.js;                 # drop everything
+node scripts/drop_index.js --force-yes;     # skip warning prompt
 ```
 
 #### reset a single type
