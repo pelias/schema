@@ -65,7 +65,7 @@ module.exports.tests.context_location = function(test, common) {
 }
 
 // precisions should be set as geohash integers not in meters
-module.exports.tests.context_location = function(test, common) {
+module.exports.tests.context_location_precisions = function(test, common) {
   test('location precision', function(t) {
     var context = schema.context;
     var location = context.location;
