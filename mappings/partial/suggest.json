@@ -8,7 +8,7 @@
   "context": {
     "location": {
       "type": "geo",
-      "precision": ["1km","100km","1500km","8000km","20040km"],
+      "precision": [1,2,3,4,6,8,10,12,14,16],
       "neighbors": true,
       "path": "center_point"
     },
