@@ -64,6 +64,20 @@ module.exports.tests.context_location = function(test, common) {
   });
 }
 
+// precisions should be set as geohash integers not in meters
+module.exports.tests.context_location_precisions = function(test, common) {
+  test('location precision', function(t) {
+    var context = schema.context;
+    var location = context.location;
+    t.equal(Array.isArray(location.precision), true, 'precisions set');
+    t.equal(location.precision.length>0, true, 'precisions set');
+    location.precision.forEach( function( precision ){
+      t.equal(typeof precision, 'number', 'precision value is an integer');
+    });
+    t.end();
+  });
+}
+
 // the dataset context
 module.exports.tests.context_dataset = function(test, common) {
   test('dataset context', function(t) {
