@@ -31,6 +31,6 @@
   "devDependencies": {
     "tape": "^2.13.4",
     "tap-spec": "^0.2.0",
-    "pelias-esclient": "*"
+    "pelias-esclient": "latest"
   }
 }
