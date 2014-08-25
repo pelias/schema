@@ -1,5 +1,5 @@
 
-var schema = require('../mappings/poi');
+var schema = require('../mappings/quattroshapes');
 
 module.exports.tests = {};
 
@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['name','address','type','admin0','admin1','admin2','center_point','suggest','tags'];
+  var fields = ['name','admin0','admin1','admin2','gn_id','woe_id','boundaries','center_point','suggest',];
   test('fields specified', function(t) {
     fields.forEach( function( field ){
       t.equal(schema.properties.hasOwnProperty(field), true, field + ' field specified');
@@ -53,7 +53,7 @@ module.exports.tests.dynamic_disabled = function(test, common) {
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('poi: ' + name, testFunction);
+    return tape('quattroshapes: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
