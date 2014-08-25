@@ -1,4 +1,5 @@
-{
+
+var settings = {
   "analysis": {
     "analyzer": {
       "suggestions": {
@@ -13,4 +14,6 @@
     "number_of_shards": "8",
     "index.index_concurrency": "32"
   }
-}
+};
+
+module.exports = settings;
