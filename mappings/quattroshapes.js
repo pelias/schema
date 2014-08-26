@@ -14,7 +14,7 @@ var schema = {
   '_all': {
     'enabled':          false
   },
-  'dynamic':            false
+  'dynamic':            'strict'
 }
 
 module.exports = schema;

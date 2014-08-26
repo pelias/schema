@@ -42,10 +42,11 @@ module.exports.tests.all_disabled = function(test, common) {
   });
 };
 
-// dynamic should be disabled
+// dynamic should be strict
+// @see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-dynamic-mapping.html
 module.exports.tests.dynamic_disabled = function(test, common) {
-  test('dynamic disabled', function(t) {
-    t.equal(schema.dynamic, false, 'dynamic disabled');
+  test('dynamic strict', function(t) {
+    t.equal(schema.dynamic, 'strict', 'dynamic strict');
     t.end();
   });
 };
