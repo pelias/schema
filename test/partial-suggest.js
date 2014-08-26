@@ -65,6 +65,7 @@ module.exports.tests.context_location = function(test, common) {
 }
 
 // precisions should be set as geohash integers not in meters
+var maxSanePrecision = 9;
 module.exports.tests.context_location_precisions = function(test, common) {
   test('location precision', function(t) {
     var context = schema.context;
@@ -73,6 +74,8 @@ module.exports.tests.context_location_precisions = function(test, common) {
     t.equal(location.precision.length>0, true, 'precisions set');
     location.precision.forEach( function( precision ){
       t.equal(typeof precision, 'number', 'precision value is an integer');
+      t.ok(precision > 0, 'precision value valid integer');
+      t.ok(precision <= maxSanePrecision, 'precision value not insanely precise');
     });
     t.end();
   });
