@@ -12,7 +12,11 @@ var schema = {
     'center_point':     require('./partial/centroid'),
     'suggest':          require('./partial/suggest'),
     'tags':             merge( {}, require('./partial/hash'), { 'index': 'no' } )
-  }
-}
+  },
+  '_all': {
+    'enabled':          false
+  },
+  'dynamic':            'strict'
+};
 
 module.exports = schema;
