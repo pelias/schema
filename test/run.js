@@ -8,7 +8,8 @@ var tests = [
   require('./quattroshapes.js'),
   require('./partial-suggest.js'),
   require('./partial-centroid.js'),
-  require('./partial-admin.js')
+  require('./partial-admin.js'),
+  require('./settings.js')
 ];
 
 tests.map(function(t) {

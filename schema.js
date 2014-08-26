@@ -1,6 +1,6 @@
 
 var schema = {
-  'settings':           require('./settings'),
+  'settings':           require('./settings')(),
   'mappings': {
 
     // osm
