@@ -6,7 +6,6 @@ var schema = {
     // osm
     'osmnode':          require('./mappings/poi'),
     'osmway':           require('./mappings/poi'),
-    'osmpoint':         require('./mappings/poi-noop'),
 
     // geoname
     'geoname':          require('./mappings/poi'),
@@ -19,6 +18,6 @@ var schema = {
     'locality':         require('./mappings/quattroshapes'),
     'neighborhood':     require('./mappings/quattroshapes')
   }
-}
+};
 
 module.exports = schema;
