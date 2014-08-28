@@ -51,6 +51,15 @@ module.exports.tests.dynamic_disabled = function(test, common) {
   });
 };
 
+// boundaries field should be exluded from _source because it's massive
+module.exports.tests._source = function(test, common) {
+  test('_source', function(t) {
+    t.ok(Array.isArray(schema._source.excludes), 'exclusions specified');
+    t.equal(schema._source.excludes[0], 'boundaries', 'exclude boundaries');
+    t.end();
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
