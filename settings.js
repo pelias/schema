@@ -13,6 +13,17 @@ function generate(){
           "type": "custom",
           "tokenizer": "whitespace",
           "filter": "lowercase"
+        },
+        "pelias": {
+          "type": "custom",
+          "tokenizer": "lowercase",
+          "filter": ["unique", "synonym"]
+        }
+      },
+      "filter" : {
+        "synonym" : {
+          "type" : "synonym",
+          "synonyms_path" : "analysis/synonyms.txt"
         }
       }
     },
