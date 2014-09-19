@@ -16,14 +16,19 @@ function generate(){
         },
         "pelias": {
           "type": "custom",
-          "tokenizer": "lowercase",
-          "filter": ["unique", "synonym"]
+          "tokenizer": "whitespace",
+          "filter": ["lowercase","ampersand", "unique", "synonym"]
         }
       },
       "filter" : {
         "synonym" : {
           "type" : "synonym",
           "synonyms_path" : "analysis/synonyms.txt"
+        },
+        "ampersand" :{
+          "type" : "pattern_replace",
+          "pattern" : "[&]",
+          "replacement" : "and"
         }
       }
     },
