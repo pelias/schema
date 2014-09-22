@@ -29,6 +29,17 @@ module.exports.tests.analysis = function(test, common) {
   });
 };
 
+module.exports.tests.peliasAnalyzer = function(test, common) {
+  test('has custom analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.pelias, 'object', 'there is a pelias analyzer');
+    t.equal(typeof s.analysis.filter, 'object', 'there are custom filters');
+    t.end();
+  });
+};
+
+// 
+
 // index should always be set
 module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {
