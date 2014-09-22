@@ -11,10 +11,13 @@ var schema = {
     'center_point':     require('./partial/centroid'),
     'suggest':          require('./partial/suggest')
   },
+  '_source' : {
+    'excludes' : ['boundaries']
+  },
   '_all': {
     'enabled':          false
   },
   'dynamic':            'strict'
-}
+};
 
 module.exports = schema;
