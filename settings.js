@@ -17,7 +17,7 @@ function generate(){
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": ["lowercase","ampersand", "unique", "synonym"]
+          "filter": ["lowercase","ampersand", "word_delimiter", "unique", "synonym"]
         }
       },
       "filter" : {
@@ -28,7 +28,7 @@ function generate(){
         "ampersand" :{
           "type" : "pattern_replace",
           "pattern" : "[&]",
-          "replacement" : "and"
+          "replacement" : " and "
         }
       }
     },
