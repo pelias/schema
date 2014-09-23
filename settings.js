@@ -2,8 +2,7 @@
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 
-var path = require("path");
-var moduleDir = path.dirname(process.mainModule.filename)
+var moduleDir = require('path').dirname("../")
 
 function generate(){
   var config = peliasConfig.generate().export();
