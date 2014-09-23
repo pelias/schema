@@ -2,6 +2,9 @@
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 
+var path = require("path");
+var moduleDir = path.dirname(process.mainModule.filename)
+
 function generate(){
   var config = peliasConfig.generate().export();
 
@@ -23,7 +26,7 @@ function generate(){
       "filter" : {
         "synonym" : {
           "type" : "synonym",
-          "synonyms_path" : "analysis/synonyms.txt"
+          "synonyms_path" : moduleDir + "/analysis/synonyms.txt"
         },
         "ampersand" :{
           "type" : "pattern_replace",
