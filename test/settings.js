@@ -38,6 +38,16 @@ module.exports.tests.peliasAnalyzer = function(test, common) {
   });
 };
 
+module.exports.tests.synonyms = function(test, common){
+  test('synonyms.txt exists', function(t) {
+    var s = settings();
+    var fs = require('fs');
+    var synonymsPath = s.analysis.filter.synonym.synonyms_path;
+    t.equal(fs.existsSync(synonymsPath), true, "synonyms mapping detected");
+    t.end
+  })
+}
+
 // 
 
 // index should always be set
