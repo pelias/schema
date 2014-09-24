@@ -2,6 +2,8 @@
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 
+var moduleDir = require('path').dirname("../");
+
 function generate(){
   var config = peliasConfig.generate().export();
 
@@ -13,6 +15,22 @@ function generate(){
           "type": "custom",
           "tokenizer": "whitespace",
           "filter": "lowercase"
+        },
+        "pelias": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "filter": ["lowercase","ampersand", "word_delimiter", "synonym"]
+        }
+      },
+      "filter" : {
+        "synonym" : {
+          "type" : "synonym",
+          "synonyms_path" : moduleDir + "/analysis/synonyms.txt"
+        },
+        "ampersand" :{
+          "type" : "pattern_replace",
+          "pattern" : "[&]",
+          "replacement" : " and "
         }
       }
     },

@@ -1,6 +1,7 @@
 
 var path = require('path'),
-    settings = require('../settings');
+    settings = require('../settings'),
+    fs = require('fs');
 
 module.exports.tests = {};
 
@@ -28,6 +29,26 @@ module.exports.tests.analysis = function(test, common) {
     t.end();
   });
 };
+
+module.exports.tests.peliasAnalyzer = function(test, common) {
+  test('has custom analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.pelias, 'object', 'there is a pelias analyzer');
+    t.equal(typeof s.analysis.filter, 'object', 'there are custom filters');
+    t.end();
+  });
+};
+
+module.exports.tests.synonyms = function(test, common){
+  test('synonyms.txt exists', function(t) {
+    var s = settings();
+    var synonymsPath = s.analysis.filter.synonym.synonyms_path;
+    t.true(fs.existsSync(synonymsPath), "synonyms mapping detected");
+    t.end();
+  })
+}
+
+// 
 
 // index should always be set
 module.exports.tests.index = function(test, common) {
