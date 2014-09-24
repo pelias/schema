@@ -2,7 +2,7 @@
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 
-var moduleDir = require('path').dirname("../")
+var moduleDir = require('path').dirname("../");
 
 function generate(){
   var config = peliasConfig.generate().export();
@@ -19,7 +19,7 @@ function generate(){
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": ["lowercase","ampersand", "word_delimiter", "unique", "synonym"]
+          "filter": ["lowercase","ampersand", "word_delimiter", "synonym"]
         }
       },
       "filter" : {
