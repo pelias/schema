@@ -8,7 +8,7 @@
   "context": {
     "location": {
       "type": "geo",
-      "precision": [1,2,3,4,5,6,7,8,9],
+      "precision": [1,2,3,4,5],
       "neighbors": true,
       "path": "center_point"
     },
