@@ -39,17 +39,6 @@ module.exports.tests.peliasAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.synonyms = function(test, common){
-  test('synonyms.txt exists', function(t) {
-    var s = settings();
-    var synonymsPath = s.analysis.filter.synonym.synonyms_path;
-    t.true(fs.existsSync(synonymsPath), "synonyms mapping detected");
-    t.end();
-  })
-}
-
-// 
-
 // index should always be set
 module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {

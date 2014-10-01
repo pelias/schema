@@ -19,14 +19,10 @@ function generate(){
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": ["lowercase","ampersand", "word_delimiter", "synonym"]
+          "filter": ["lowercase","ampersand","word_delimiter"]
         }
       },
       "filter" : {
-        "synonym" : {
-          "type" : "synonym",
-          "synonyms_path" : moduleDir + "/analysis/synonyms.txt"
-        },
         "ampersand" :{
           "type" : "pattern_replace",
           "pattern" : "[&]",
