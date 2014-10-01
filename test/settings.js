@@ -39,8 +39,6 @@ module.exports.tests.peliasAnalyzer = function(test, common) {
   });
 };
 
-//
-
 // index should always be set
 module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {
