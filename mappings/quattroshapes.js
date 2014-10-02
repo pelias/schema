@@ -2,6 +2,7 @@
 var schema = {
   'properties': {
     'name':             require('./partial/hash'),
+    'alpha3':           require('./partial/admin'),
     'admin0':           require('./partial/admin'),
     'admin1':           require('./partial/admin'),
     'admin2':           require('./partial/admin'),
