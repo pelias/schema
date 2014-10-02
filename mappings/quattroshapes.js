@@ -5,6 +5,7 @@ var schema = {
     'alpha3':           require('./partial/admin'),
     'admin0':           require('./partial/admin'),
     'admin1':           require('./partial/admin'),
+    'admin1_abbr':      require('./partial/admin'),
     'admin2':           require('./partial/admin'),
     'gn_id':            require('./partial/foreignkey'),
     'woe_id':           require('./partial/foreignkey'),
