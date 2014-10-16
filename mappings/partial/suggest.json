@@ -2,8 +2,8 @@
   "type": "completion",
   "preserve_position_increments": false,
   "preserve_separators": false,
-  "index_analyzer": "suggestions",
-  "search_analyzer": "suggestions",
+  "index_analyzer": "plugin",
+  "search_analyzer": "plugin",
   "payloads": true,
   "context": {
     "location": {
