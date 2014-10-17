@@ -14,12 +14,15 @@ function generate(){
         "suggestions": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": "lowercase"
+          "filter": ["lowercase", "asciifolding"]
         },
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": ["lowercase","ampersand","word_delimiter"]
+          "filter": ["lowercase", "asciifolding","ampersand","word_delimiter"]
+        },
+        "plugin": {
+          "type": "pelias-analysis"
         }
       },
       "filter" : {
