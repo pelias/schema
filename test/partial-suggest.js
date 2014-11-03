@@ -19,11 +19,10 @@ module.exports.tests.type = function(test, common) {
   });
 }
 
-// this should always be enabled or payloads
-// will not be stored and returned
+// this should always be disabled as they consume vast amounts of memory
 module.exports.tests.payloads = function(test, common) {
-  test('payloads enabled', function(t) {
-    t.equal(schema.payloads, true, 'correct value');
+  test('payloads disabled', function(t) {
+    t.equal(schema.payloads, false, 'correct value');
     t.end();
   });
 }
