@@ -1,7 +1,7 @@
 {
   "name": "pelias-schema",
   "author": "mapzen",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Elasticsearch schema files and tooling for Pelias",
   "homepage": "https://github.com/pelias/schema",
   "license": "MIT",
