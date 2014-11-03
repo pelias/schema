@@ -4,7 +4,7 @@
   "preserve_separators": false,
   "index_analyzer": "plugin",
   "search_analyzer": "plugin",
-  "payloads": true,
+  "payloads": false,
   "context": {
     "location": {
       "type": "geo",
