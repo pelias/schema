@@ -15,8 +15,7 @@ var schema = {
     'locality':         require('./partial/admin'),
     'neighborhood':     require('./partial/admin'),
     'center_point':     require('./partial/centroid'),
-    'suggest':          require('./partial/suggest'),
-    'tags':             merge( {}, require('./partial/hash'), { 'index': 'no' } )
+    'suggest':          require('./partial/suggest')
   },
   '_all': {
     'enabled':          false
