@@ -44,6 +44,9 @@ module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {
     var s = settings();
     t.equal(typeof s.index, 'object', 'index specified');
+    t.equal(s.index.number_of_replicas, "0", 'replicas will increase index time');
+    t.equal(s.index.number_of_shards, "1", 'sharding is only required in a distributed env');
+    t.equal(s.index.index_concurrency, "10", 'number of concurrent threads that are allowed to perform indexing at the same time');
     t.end();
   });
 };
