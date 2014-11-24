@@ -18,7 +18,8 @@
     },
     "alpha3": {
       "type": "category",
-      "path": "alpha3"
+      "path": "alpha3",
+      "default": "XXX"
     }
   }
 }
