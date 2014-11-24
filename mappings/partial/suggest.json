@@ -15,6 +15,10 @@
     "dataset": {
       "type": "category",
       "path": "_type"
+    },
+    "alpha3": {
+      "type": "category",
+      "path": "alpha3"
     }
   }
 }

@@ -93,6 +93,19 @@ module.exports.tests.context_dataset = function(test, common) {
   });
 };
 
+// the alpha3 context
+module.exports.tests.context_dataset = function(test, common) {
+  test('alpha3 context', function(t) {
+    var context = schema.context;
+    t.equal(typeof context.alpha3, 'object', 'alpha3 context specified');
+    var alpha3 = context.alpha3;
+    t.equal(alpha3.type, 'category', 'correct value'); // this should not change
+    t.equal(typeof alpha3.path, 'string', 'path specified'); // this should be set
+    t.equal(alpha3.path.length>0, true, 'path specified'); // this should be set
+    t.end();
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
