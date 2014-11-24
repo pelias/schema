@@ -94,7 +94,7 @@ module.exports.tests.context_dataset = function(test, common) {
 };
 
 // the alpha3 context
-module.exports.tests.context_dataset = function(test, common) {
+module.exports.tests.context_alpha3 = function(test, common) {
   test('alpha3 context', function(t) {
     var context = schema.context;
     t.equal(typeof context.alpha3, 'object', 'alpha3 context specified');
