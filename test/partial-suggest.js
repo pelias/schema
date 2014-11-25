@@ -9,7 +9,7 @@ module.exports.tests.compile = function(test, common) {
     t.equal(Object.keys(schema).length>0, true, 'schema has body');
     t.end();
   });
-}
+};
 
 // this should never need to change
 module.exports.tests.type = function(test, common) {
@@ -17,7 +17,7 @@ module.exports.tests.type = function(test, common) {
     t.equal(schema.type, 'completion', 'correct value');
     t.end();
   });
-}
+};
 
 // this should always be disabled as they consume vast amounts of memory
 module.exports.tests.payloads = function(test, common) {
@@ -25,7 +25,7 @@ module.exports.tests.payloads = function(test, common) {
     t.equal(schema.payloads, false, 'correct value');
     t.end();
   });
-}
+};
 
 // these should always be the same or there may
 // be a mismatch beweeen the search and indexing
@@ -37,7 +37,7 @@ module.exports.tests.analyzers = function(test, common) {
     t.equal(schema.index_analyzer, schema.search_analyzer, 'same analyzer');
     t.end();
   });
-}
+};
 
 // the context section
 module.exports.tests.context = function(test, common) {
@@ -45,7 +45,7 @@ module.exports.tests.context = function(test, common) {
     t.equal(typeof schema.context, 'object', 'context specified');
     t.end();
   });
-}
+};
 
 // the location context
 module.exports.tests.context_location = function(test, common) {
@@ -61,7 +61,7 @@ module.exports.tests.context_location = function(test, common) {
     t.equal(location.path.length>0, true, 'path specified'); // this should be set
     t.end();
   });
-}
+};
 
 // precisions should be set as geohash integers not in meters
 var maxSanePrecision = 9;
@@ -78,7 +78,7 @@ module.exports.tests.context_location_precisions = function(test, common) {
     });
     t.end();
   });
-}
+};
 
 // the dataset context
 module.exports.tests.context_dataset = function(test, common) {
@@ -91,15 +91,32 @@ module.exports.tests.context_dataset = function(test, common) {
     t.equal(dataset.path.length>0, true, 'path specified'); // this should be set
     t.end();
   });
-}
+};
+
+// the alpha3 context
+module.exports.tests.context_alpha3 = function(test, common) {
+  test('alpha3 context', function(t) {
+    var context = schema.context;
+    t.equal(typeof context.alpha3, 'object', 'alpha3 context specified');
+    var alpha3 = context.alpha3;
+    t.equal(alpha3.type, 'category', 'correct value'); // this should not change
+    t.equal(typeof alpha3.path, 'string', 'path specified'); // this should be set
+    t.equal(alpha3.path.length>0, true, 'path specified'); // this should be set
+
+    // this should be set for imports which do not specify an alpha3 value or ES will error with:
+    // ElasticsearchIllegalArgumentException[one or more prefixes needed]
+    t.equal(alpha3.default, 'XXX', 'default alpha3 value set');
+    t.end();
+  });
+};
 
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('suggest: ' + name, testFunction)
+    return tape('suggest: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
-}
+};
