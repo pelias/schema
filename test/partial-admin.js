@@ -34,6 +34,15 @@ module.exports.tests.index = function(test, common) {
   });
 }
 
+// keyword analysis ensures that we get ['Great Britain'] instead of ['Great','Britain']
+module.exports.tests.analysis = function(test, common) {
+  test('index analysis', function(t) {
+    t.equal(schema.index_analyzer, 'keyword', 'should be keyword');
+    t.equal(schema.search_analyzer, 'keyword', 'should be keyword');
+    t.end();
+  });
+}
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
