@@ -9,7 +9,7 @@ module.exports.tests.compile = function(test, common) {
     t.equal(Object.keys(schema).length>0, true, 'schema has body');
     t.end();
   });
-}
+};
 
 // this should never need to change
 module.exports.tests.type = function(test, common) {
@@ -17,14 +17,14 @@ module.exports.tests.type = function(test, common) {
     t.equal(schema.type, 'string', 'correct value');
     t.end();
   });
-}
+};
 
 module.exports.tests.store = function(test, common) {
   test('store enabled', function(t) {
     t.equal(schema.store, 'yes', 'correct value');
     t.end();
   });
-}
+};
 
 // this should be enabled to allow 'exists' filters to work
 module.exports.tests.index = function(test, common) {
@@ -32,15 +32,24 @@ module.exports.tests.index = function(test, common) {
     t.notEqual(schema.index, 'no', 'should not be disabled');
     t.end();
   });
-}
+};
+
+// keyword analysis ensures that we get ['Great Britain'] instead of ['Great','Britain']
+module.exports.tests.analysis = function(test, common) {
+  test('index analysis', function(t) {
+    t.equal(schema.index_analyzer, 'keyword', 'should be keyword');
+    t.equal(schema.search_analyzer, 'keyword', 'should be keyword');
+    t.end();
+  });
+};
 
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('admin: ' + name, testFunction)
+    return tape('admin: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
-}
+};
