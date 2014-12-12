@@ -39,6 +39,16 @@ This is useful when you want to reset a single `type` without wiping the rest of
 node scripts/reset_type.js mytype;          # reset a single type
 ```
 
+#### update settings on an existing index
+
+This is useful when you want to add a new analyser or filter on an existing index.
+
+**note:** if you need to change the shard count you will need to drop the data and start again.
+
+```bash
+node scripts/update_settings.js;          # update index settings
+```
+
 #### output schema file
 
 Use this script to pretty-print the whole schema file or a single mapping to stdout.
