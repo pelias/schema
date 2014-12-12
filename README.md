@@ -43,7 +43,7 @@ node scripts/reset_type.js mytype;          # reset a single type
 
 This is useful when you want to add a new analyser or filter on an existing index.
 
-**note:** if you need to change the shard count you will need to drop the data and start again.
+**note:** it is impossible to change the `number_of_shards` for an existing index.
 
 ```bash
 node scripts/update_settings.js;          # update index settings
