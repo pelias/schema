@@ -16,6 +16,14 @@ var schema = require('pelias-schema');
 console.log( JSON.stringify( schema, null, 2 ) );
 ```
 
+## Dependencies
+
+The settings reference a custom elasticsearch plugin which provides a powerful interface for custom analysis of text.
+
+You **must** install the `pelias-analysis` plugin from: https://github.com/pelias/elasticsearch-plugin before running the scripts below.
+
+Failing to do so will result in the following error: ```ElasticsearchIllegalArgumentException[failed to find analyzer type [pelias-analysis]```
+
 ## Scripts
 
 #### create index
