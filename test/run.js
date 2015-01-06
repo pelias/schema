@@ -5,7 +5,7 @@ var common = {};
 var tests = [
   require('./compile.js'),
   require('./poi.js'),
-  require('./quattroshapes.js'),
+  require('./boundary.js'),
   require('./partial-suggest.js'),
   require('./partial-centroid.js'),
   require('./partial-admin.js'),
