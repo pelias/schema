@@ -1,5 +1,5 @@
 
-var schema = require('../mappings/quattroshapes');
+var schema = require('../mappings/boundary');
 
 module.exports.tests = {};
 
@@ -63,7 +63,7 @@ module.exports.tests._source = function(test, common) {
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('quattroshapes: ' + name, testFunction);
+    return tape('boundary: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

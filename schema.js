@@ -13,13 +13,13 @@ var schema = {
     // addresses
     'openaddresses':    require('./mappings/poi'),
 
-    // quattroshapes
-    'admin0':           require('./mappings/quattroshapes'),
-    'admin1':           require('./mappings/quattroshapes'),
-    'admin2':           require('./mappings/quattroshapes'),
-    'local_admin':      require('./mappings/quattroshapes'),
-    'locality':         require('./mappings/quattroshapes'),
-    'neighborhood':     require('./mappings/quattroshapes')
+    // admin boundaries
+    'admin0':           require('./mappings/boundary'),
+    'admin1':           require('./mappings/boundary'),
+    'admin2':           require('./mappings/boundary'),
+    'local_admin':      require('./mappings/boundary'),
+    'locality':         require('./mappings/boundary'),
+    'neighborhood':     require('./mappings/boundary')
   }
 };
 
