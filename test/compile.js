@@ -15,7 +15,7 @@ var mandatory_indeces = ['osmnode','osmway','geoname','openaddresses','admin0','
 module.exports.tests.indeces = function(test, common) {
   test('contains mandatory indeces', function(t) {
     t.plan( mandatory_indeces.length +1 );
-    t.equal(typeof schema.mappings, 'object', 'mappings prsent');
+    t.equal(typeof schema.mappings, 'object', 'mappings present');
     mandatory_indeces.forEach( function( index_name ){
       t.equal( schema.mappings.hasOwnProperty(index_name), true, 'mandatory mapping defined' );
     });
