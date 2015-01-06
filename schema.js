@@ -10,6 +10,9 @@ var schema = {
     // geoname
     'geoname':          require('./mappings/poi'),
 
+    // addresses
+    'openaddresses':    require('./mappings/poi'),
+
     // quattroshapes
     'admin0':           require('./mappings/quattroshapes'),
     'admin1':           require('./mappings/quattroshapes'),
