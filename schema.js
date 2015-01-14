@@ -3,14 +3,15 @@ var schema = {
   'settings':           require('./settings')(),
   'mappings': {
 
-    // osm
+    // openstreetmap points-of-interest
     'osmnode':          require('./mappings/poi'),
     'osmway':           require('./mappings/poi'),
 
-    // geoname
+    // geonames
     'geoname':          require('./mappings/poi'),
 
     // addresses
+    'osmaddress':       require('./mappings/poi'),
     'openaddresses':    require('./mappings/poi'),
 
     // admin boundaries
