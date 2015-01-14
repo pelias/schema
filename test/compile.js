@@ -11,7 +11,7 @@ module.exports.tests.compile = function(test, common) {
   });
 };
 
-var mandatory_indeces = ['osmnode','osmway','geoname','openaddresses','admin0','admin1','admin2','local_admin','locality','neighborhood'];
+var mandatory_indeces = ['osmnode','osmway','geoname','osmaddress','openaddresses','admin0','admin1','admin2','local_admin','locality','neighborhood'];
 module.exports.tests.indeces = function(test, common) {
   test('contains mandatory indeces', function(t) {
     t.plan( mandatory_indeces.length +1 );
