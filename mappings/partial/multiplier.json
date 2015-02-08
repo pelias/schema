@@ -1,4 +1,4 @@
 {
-  "type" : "integer",
-  "dynamic" : true
+  "type" : "long",
+  "null_value": 0
 }
