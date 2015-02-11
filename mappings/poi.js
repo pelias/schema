@@ -15,6 +15,7 @@ var schema = {
     'locality':         require('./partial/admin'),
     'neighborhood':     require('./partial/admin'),
     'center_point':     require('./partial/centroid'),
+    'population':       require('./partial/multiplier'),
     'suggest':          require('./partial/suggest')
   },
   '_all': {
