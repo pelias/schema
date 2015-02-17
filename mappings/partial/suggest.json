@@ -6,12 +6,6 @@
   "search_analyzer": "plugin",
   "payloads": false,
   "context": {
-    "location": {
-      "type": "geo",
-      "precision": [1,2,3,4,5],
-      "neighbors": true,
-      "path": "center_point"
-    },
     "dataset": {
       "type": "category",
       "path": "_type"
