@@ -16,6 +16,11 @@ function generate(){
           "tokenizer": "whitespace",
           "filter": ["lowercase", "asciifolding"]
         },
+        "suggestions_ngram": {
+          "type":"custom",
+          "tokenizer":"standard",
+          "filter":[ "standard", "lowercase", "nGram" ] 
+        },
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
