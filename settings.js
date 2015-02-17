@@ -18,8 +18,8 @@ function generate(){
         },
         "suggestions_ngram": {
           "type":"custom",
-          "tokenizer":"standard",
-          "filter":[ "standard", "lowercase", "nGram" ] 
+          "tokenizer":"ngram",
+          "filter":[ "lowercase", "asciifolding", "ampersand", "word_delimiter" ] 
         },
         "pelias": {
           "type": "custom",
