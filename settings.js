@@ -19,7 +19,7 @@ function generate(){
         "suggestions_ngram": {
           "type":"custom",
           "tokenizer":"ngram",
-          "filter":[ "lowercase", "asciifolding", "ampersand", "word_delimiter" ] 
+          "filter":[ "lowercase", "asciifolding", "ampersand", "word_delimiter", "ngram_filter" ] 
         },
         "pelias": {
           "type": "custom",
@@ -30,11 +30,23 @@ function generate(){
           "type": "pelias-analysis"
         }
       },
+      // "tokenizer": {
+      //   "ngram_tokenizer": {
+      //     "type": "nGram",
+      //     "min_gram": 2,
+      //     "max_gram": 10
+      //   }
+      // },
       "filter" : {
         "ampersand" :{
           "type" : "pattern_replace",
           "pattern" : "[&]",
           "replacement" : " and "
+        },
+        "ngram_filter": { 
+            "type":     "ngram",
+            "min_gram": 2,
+            "max_gram": 10
         }
       }
     },
