@@ -2,8 +2,8 @@
   "type": "completion",
   "preserve_position_increments": false,
   "preserve_separators": false,
-  "index_analyzer": "plugin",
-  "search_analyzer": "plugin",
+  "index_analyzer": "suggestions_ngram",
+  "search_analyzer": "suggestions_ngram",
   "payloads": false,
   "context": {
     "dataset": {
