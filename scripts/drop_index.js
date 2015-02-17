@@ -9,7 +9,7 @@ if( isForced() ) drop();
 else prompt( drop, fail );
 
 function drop(){
-  client.indices.delete( { index: 'pelias' }, function( err, res ){
+  client.indices.delete( { index: 'pelias_ngram' }, function( err, res ){
     console.log( '\n[delete mapping]', '\t', 'pelias', err || '\t', res );
     process.exit( !!err );
   });
