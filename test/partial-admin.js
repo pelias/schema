@@ -34,11 +34,12 @@ module.exports.tests.index = function(test, common) {
   });
 };
 
-// keyword analysis ensures that we get ['Great Britain'] instead of ['Great','Britain']
+// pelias analysis does not ensure that we get ['Great Britain'] instead of ['Great','Britain']
+// TODO this needs to be addressed 
 module.exports.tests.analysis = function(test, common) {
   test('index analysis', function(t) {
-    t.equal(schema.index_analyzer, 'keyword', 'should be keyword');
-    t.equal(schema.search_analyzer, 'keyword', 'should be keyword');
+    t.equal(schema.index_analyzer, 'pelias', 'should be pelias');
+    t.equal(schema.search_analyzer, 'pelias', 'should be pelias');
     t.end();
   });
 };
