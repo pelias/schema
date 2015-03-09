@@ -1,6 +1,6 @@
 {
   "type": "string",
-  "index_analyzer": "keyword",
-  "search_analyzer": "keyword",
+  "index_analyzer": "pelias",
+  "search_analyzer": "pelias",
   "store": "yes"
 }
