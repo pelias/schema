@@ -1,3 +1,7 @@
+0.0.15
+  - Changed the way we analyze admin fields ('keyword' to 'pelias' analyzer)
+  - Allows flexible even fuzzy searches on admin fields
+
 0.0.14
   - Added population property to the poi mapping
   - Added a multiplier type
