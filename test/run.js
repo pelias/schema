@@ -9,6 +9,7 @@ var tests = [
   require('./partial-suggest.js'),
   require('./partial-centroid.js'),
   require('./partial-admin.js'),
+  require('./partial-category.js'),
   require('./partial-hash.js'),
   require('./settings.js')
 ];
