@@ -11,6 +11,7 @@ var schema = {
     'woe_id':           require('./partial/foreignkey'),
     'boundaries':       require('./partial/shape'),
     'center_point':     require('./partial/centroid'),
+    'category':         require('./partial/category'),
     'suggest':          require('./partial/suggest')
   },
   '_source' : {
