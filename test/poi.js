@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['name','address','type','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','population','popularity','suggest'];
+  var fields = ['name','address','type','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','category','population','popularity','suggest'];
   test('fields specified', function(t) {
     fields.forEach( function( field ){
       t.equal(schema.properties.hasOwnProperty(field), true, field + ' field specified');
