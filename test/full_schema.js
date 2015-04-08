@@ -15,7 +15,7 @@ module.exports = {
   all: function( tape ){
     tape( 'Scheme matches expected.', function ( test ){
       test.deepEqual(
-        schema, fullSchema,
+        schema.mappings, fullSchema.mappings,
         'If this fails, you might have to ' +
         'regenerate the schema fixture via `npm run regenerate-schema-fixture`!'
       );
