@@ -11,7 +11,8 @@
     "create_index": "node scripts/create_index",
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
-    "update_settings": "node scripts/update_settings"
+    "update_settings": "node scripts/update_settings",
+    "regenerate-schema-fixture": "node test/regenerate_schema_fixture"
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,8 @@
   "dependencies": {
     "merge": "^1.1.3",
     "mergeable": "latest",
-    "pelias-config": "latest"
+    "pelias-config": "latest",
+    "keypress": "0.2.1"
   },
   "devDependencies": {
     "tape": "^2.13.4",

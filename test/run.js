@@ -11,7 +11,8 @@ var tests = [
   require('./partial-admin.js'),
   require('./partial-category.js'),
   require('./partial-hash.js'),
-  require('./settings.js')
+  require('./settings.js'),
+  require('./full_schema.js')
 ];
 
 tests.map(function(t) {
