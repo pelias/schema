@@ -1,29 +1,31 @@
-
 var merge = require('merge');
+var admin = require('./partial/admin');
+var hash = require('./partial/hash');
+var multiplier = require('./partial/multiplier');
 
 var schema = {
-  'properties': {
-    'name':             require('./partial/hash'),
-    'address':          merge( {}, require('./partial/hash'), { 'index': 'no' } ),
-    'type':             merge( {}, require('./partial/admin'), { 'store': 'no' } ),
-    'alpha3':           require('./partial/admin'),
-    'admin0':           require('./partial/admin'),
-    'admin1':           require('./partial/admin'),
-    'admin1_abbr':      require('./partial/admin'),
-    'admin2':           require('./partial/admin'),
-    'local_admin':      require('./partial/admin'),
-    'locality':         require('./partial/admin'),
-    'neighborhood':     require('./partial/admin'),
-    'center_point':     require('./partial/centroid'),
-    'category':         require('./partial/category'),
-    'population':       require('./partial/multiplier'),
-    'popularity':       require('./partial/multiplier'),
-    'suggest':          require('./partial/suggest')
+  properties: {
+    name: hash,
+    address: merge( {}, hash, { 'index': 'no' } ),
+    type: merge( {}, admin, { 'store': 'no' } ),
+    alpha3: admin,
+    admin0: admin,
+    admin1: admin,
+    admin1_abbr: admin,
+    admin2: admin,
+    local_admin: admin,
+    locality: admin,
+    neighborhood: admin,
+    center_point: require('./partial/centroid'),
+    category: require('./partial/category'),
+    population: multiplier,
+    popularity: multiplier,
+    suggest: require('./partial/suggest')
   },
-  '_all': {
-    'enabled':          false
+  _all: {
+    enabled: false
   },
-  'dynamic':            'strict'
+  dynamic: 'strict'
 };
 
 module.exports = schema;
