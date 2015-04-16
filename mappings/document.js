@@ -16,14 +16,14 @@ var schema = {
     locality: admin,
     neighborhood: admin,
     center_point: require('./partial/centroid'),
-    boundaries: require('./partial/shape'),
+    shape: require('./partial/shape'),
     category: require('./partial/category'),
     population: multiplier,
     popularity: multiplier,
     suggest: require('./partial/suggest')
   },
   _source : {
-    excludes : ['boundaries']
+    excludes : ['shape']
   },
   _all: {
     enabled: false

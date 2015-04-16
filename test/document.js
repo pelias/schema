@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['name','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','boundaries','category','population','popularity','suggest'];
+  var fields = ['name','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','shape','category','population','popularity','suggest'];
   test('fields specified', function(t) {
     fields.forEach( function( field ){
       t.equal(schema.properties.hasOwnProperty(field), true, field + ' field specified');
@@ -51,11 +51,11 @@ module.exports.tests.dynamic_disabled = function(test, common) {
   });
 };
 
-// boundaries field should be exluded from _source because it's massive
+// shape field should be exluded from _source because it's massive
 module.exports.tests._source = function(test, common) {
   test('_source', function(t) {
     t.ok(Array.isArray(schema._source.excludes), 'exclusions specified');
-    t.equal(schema._source.excludes[0], 'boundaries', 'exclude boundaries');
+    t.equal(schema._source.excludes[0], 'shape', 'exclude shape');
     t.end();
   });
 };
