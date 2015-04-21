@@ -1,28 +1,27 @@
-var poi = require('./mappings/poi');
-var boundary = require('./mappings/boundary');
+var doc = require('./mappings/document');
 
 var schema = {
   settings: require('./settings')(),
   mappings: {
 
     // openstreetmap points-of-interest
-    osmnode: poi,
-    osmway: poi,
+    osmnode: doc,
+    osmway: doc,
 
     // geonames
-    geoname: poi,
+    geoname: doc,
 
     // addresses
-    osmaddress: poi,
-    openaddresses: poi,
+    osmaddress: doc,
+    openaddresses: doc,
 
     // admin boundaries
-    admin0: boundary,
-    admin1: boundary,
-    admin2: boundary,
-    local_admin: boundary,
-    locality: boundary,
-    neighborhood: boundary
+    admin0: doc,
+    admin1: doc,
+    admin2: doc,
+    local_admin: doc,
+    locality: doc,
+    neighborhood: doc
   }
 };
 

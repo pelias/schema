@@ -1,5 +1,5 @@
 
-var schema = require('../mappings/poi');
+var schema = require('../mappings/document');
 
 module.exports.tests = {};
 
@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['name','address','type','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','category','population','popularity','suggest'];
+  var fields = ['name','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','shape','category','population','popularity','suggest'];
   test('fields specified', function(t) {
     fields.forEach( function( field ){
       t.equal(schema.properties.hasOwnProperty(field), true, field + ' field specified');
@@ -51,10 +51,19 @@ module.exports.tests.dynamic_disabled = function(test, common) {
   });
 };
 
+// shape field should be exluded from _source because it's massive
+module.exports.tests._source = function(test, common) {
+  test('_source', function(t) {
+    t.ok(Array.isArray(schema._source.excludes), 'exclusions specified');
+    t.equal(schema._source.excludes[0], 'shape', 'exclude shape');
+    t.end();
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('poi: ' + name, testFunction);
+    return tape('document: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

@@ -7,7 +7,6 @@ var schema = {
   properties: {
     name: hash,
     address: merge( {}, hash, { 'index': 'no' } ),
-    type: merge( {}, admin, { 'store': 'no' } ),
     alpha3: admin,
     admin0: admin,
     admin1: admin,
@@ -17,10 +16,14 @@ var schema = {
     locality: admin,
     neighborhood: admin,
     center_point: require('./partial/centroid'),
+    shape: require('./partial/shape'),
     category: require('./partial/category'),
     population: multiplier,
     popularity: multiplier,
     suggest: require('./partial/suggest')
+  },
+  _source : {
+    excludes : ['shape']
   },
   _all: {
     enabled: false
