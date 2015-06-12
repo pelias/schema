@@ -5,6 +5,7 @@
   "index_analyzer": "plugin",
   "search_analyzer": "plugin",
   "payloads": false,
+  "max_input_length": 50,
   "context": {
     "location": {
       "type": "geo",
