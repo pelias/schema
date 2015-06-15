@@ -110,6 +110,14 @@ module.exports.tests.context_dataset = function(test, common) {
 //   });
 // };
 
+// Verify https://github.com/pelias/schema/issues/21
+module.exports.tests.max_input_length = function(test, common) {
+  test('maximum input length', function(t) {
+    t.equal(schema.max_input_length, 50, 'correct value');
+    t.end();
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
