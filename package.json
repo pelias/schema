@@ -8,6 +8,7 @@
   "main": "schema.js",
   "scripts": {
     "test": "node test/run.js | tap-spec",
+    "integration": "node integration/run.js | tap-spec",
     "create_index": "node scripts/create_index",
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
@@ -35,8 +36,9 @@
     "pelias-config": "latest"
   },
   "devDependencies": {
-    "tape": "^2.13.4",
+    "elastictest": "^0.1.0",
+    "pelias-esclient": "latest",
     "tap-spec": "^0.2.0",
-    "pelias-esclient": "latest"
+    "tape": "^2.13.4"
   }
 }
