@@ -40,6 +40,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'stem street suffixes', 'streets avenue', ['st ave'] );
     assertAnalysis( 'stem street suffixes', 'boulevard roads', ['blvd rd'] );
 
+    assertAnalysis( 'stem direction synonyms', 'south by southwest', ['s by', 'by sw'] );
+    assertAnalysis( 'stem direction synonyms', '20 bear road northeast', ['20 bear', 'bear rd', 'rd ne'] );
+
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), [] );
 
@@ -80,6 +83,11 @@ module.exports.tests.functional = function(test, common){
     var expected3 = [ '100 s', 's lake', 'lake dr' ];
     assertAnalysis( 'address', '100 S Lake Dr', expected3 );
     assertAnalysis( 'address', '100 South Lake Drive', expected3 );
+
+    // both terms should map to same tokens
+    var expected4 = [ '100 nw', 'nw hwy' ];
+    assertAnalysis( 'address', '100 northwest highway', expected4 );
+    assertAnalysis( 'address', '100 nw hwy', expected4 );
 
     suite.run( t.end );
   });

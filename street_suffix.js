@@ -31,5 +31,9 @@ module.exports.direction_synonyms = [
   "north => n",
   "south => s",
   "east => e",
-  "west => w"
+  "west => w",
+  "southwest => sw",
+  "southeast => se",
+  "northwest => nw",
+  "northeast => ne"
 ];

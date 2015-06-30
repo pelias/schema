@@ -263,7 +263,7 @@ module.exports.tests.directionSynonymFilter = function(test, common) {
     var filter = s.analysis.filter.direction_synonym;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 4);
+    t.equal(filter.synonyms.length, 8);
     t.end();
   });
 };
