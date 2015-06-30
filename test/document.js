@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['name','shingle','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','shape','category','population','popularity','suggest'];
+  var fields = ['name','phrase','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','shape','category','population','popularity','suggest'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
@@ -44,14 +44,14 @@ module.exports.tests.dynamic_templates = function(test, common) {
     });
     t.end();
   });
-  test('dynamic_templates: shingle', function(t) {
-    t.equal(typeof schema.dynamic_templates[1].shingle, 'object', 'shingle template specified');
-    var template = schema.dynamic_templates[1].shingle;
-    t.equal(template.path_match, 'shingle.*');
+  test('dynamic_templates: phrase', function(t) {
+    t.equal(typeof schema.dynamic_templates[1].phrase, 'object', 'phrase template specified');
+    var template = schema.dynamic_templates[1].phrase;
+    t.equal(template.path_match, 'phrase.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
       type: 'string',
-      analyzer: 'peliasShingles',
+      analyzer: 'peliasPhrase',
       fielddata: {
         loading: 'eager_global_ordinals'
       }
@@ -82,7 +82,7 @@ module.exports.tests._source = function(test, common) {
   test('_source', function(t) {
     t.ok(Array.isArray(schema._source.excludes), 'exclusions specified');
     t.equal(schema._source.excludes[0], 'shape', 'exclude shape');
-    t.equal(schema._source.excludes[1], 'shingle', 'exclude shingle');
+    t.equal(schema._source.excludes[1], 'phrase', 'exclude phrase');
     t.end();
   });
 };

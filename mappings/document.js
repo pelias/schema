@@ -6,7 +6,7 @@ var multiplier = require('./partial/multiplier');
 var schema = {
   properties: {
     name: hash,
-    shingle: hash,
+    phrase: hash,
     address: merge( {}, hash, { 'index': 'no' } ),
     alpha3: admin,
     admin0: admin,
@@ -37,12 +37,12 @@ var schema = {
       }
     },
   },{
-    shingle: {
-      path_match: 'shingle.*',
+    phrase: {
+      path_match: 'phrase.*',
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasShingles',
+        analyzer: 'peliasPhrase',
         fielddata : {
           loading: 'eager_global_ordinals'
         }
@@ -50,7 +50,7 @@ var schema = {
     }
   }],
   _source: {
-    excludes : ['shape','shingle']
+    excludes : ['shape','phrase']
   },
   _all: {
     enabled: false

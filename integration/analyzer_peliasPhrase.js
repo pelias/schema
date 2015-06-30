@@ -12,7 +12,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasShingles' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F f', ['f f']);
@@ -33,7 +33,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'kstem', 'McDonald\'s Restaurant', ['mcdonald restaurant'] );
     assertAnalysis( 'kstem', 'walking peoples', ['walking people'] );
     
-    assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1 a', 'a ab', 'ab abc', 'abc abcdefghijk'] );
+    assertAnalysis( 'peliasShingleFilter', '1 a ab abc abcdefghijk', ['1 a', 'a ab', 'ab abc', 'abc abcdefghijk'] );
     assertAnalysis( 'unique', '1 1 1', ['1 1'] );
     assertAnalysis( 'notnull', ' a ', [] );
 
@@ -51,7 +51,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasShingles' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -88,7 +88,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasShingles: ' + name, testFunction);
+    return tape('peliasPhrase: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

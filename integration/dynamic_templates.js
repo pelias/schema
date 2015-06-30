@@ -13,10 +13,10 @@ module.exports.tests.dynamic_templates_name = function(test, common){
   test( 'document->name', nameAssertion( 'myType', 'peliasTwoEdgeGram' ) );
 };
 
-// all types share the same shingle mapping
-module.exports.tests.dynamic_templates_shingle = function(test, common){
-  test( 'admin->shingle', shingleAssertion( 'admin0', 'peliasShingles' ) );
-  test( 'document->shingle', shingleAssertion( 'myType', 'peliasShingles' ) );
+// all types share the same phrase mapping
+module.exports.tests.dynamic_templates_phrase = function(test, common){
+  test( 'admin->phrase', phraseAssertion( 'admin0', 'peliasPhrase' ) );
+  test( 'document->phrase', phraseAssertion( 'myType', 'peliasPhrase' ) );
 };
 
 module.exports.all = function (tape, common) {
@@ -64,7 +64,7 @@ function nameAssertion( type, analyzer ){
   };
 }
 
-function shingleAssertion( type, analyzer ){
+function phraseAssertion( type, analyzer ){
   return function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
@@ -75,7 +75,7 @@ function shingleAssertion( type, analyzer ){
         index: suite.props.index,
         type: type,
         id: '1',
-        body: { shingle: { default: 'foo', alt: 'bar' } }
+        body: { phrase: { default: 'foo', alt: 'bar' } }
       }, done );
     });
 
@@ -85,11 +85,11 @@ function shingleAssertion( type, analyzer ){
       suite.client.indices.getMapping({ index: suite.props.index, type: type }, function( err, res ){
 
         var properties = res[suite.props.index].mappings[type].properties;
-        t.equal( properties.shingle.dynamic, 'true' );
+        t.equal( properties.phrase.dynamic, 'true' );
 
-        var shingleProperties = properties.shingle.properties;
-        t.equal( shingleProperties.default.analyzer, analyzer );
-        t.equal( shingleProperties.alt.analyzer, analyzer );
+        var phraseProperties = properties.phrase.properties;
+        t.equal( phraseProperties.default.analyzer, analyzer );
+        t.equal( phraseProperties.alt.analyzer, analyzer );
         done();
       });
     });

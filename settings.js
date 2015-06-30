@@ -55,7 +55,7 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasShingles": {
+        "peliasPhrase": {
           "type": "custom",
           "tokenizer":"whitespace",
           "char_filter" : ["punctuation"],

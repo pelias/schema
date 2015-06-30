@@ -110,19 +110,19 @@ module.exports.tests.peliasTwoEdgeGramAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasShinglesAnalyzer = function(test, common) {
-  test('has peliasShingles analyzer', function(t) {
+module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
+  test('has peliasPhrase analyzer', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasShingles, 'object', 'there is a peliasShingles analyzer');
-    var analyzer = s.analysis.analyzer.peliasShingles;
+    t.equal(typeof s.analysis.analyzer.peliasPhrase, 'object', 'there is a peliasPhrase analyzer');
+    var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasShingles token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasShingles;
+  test('peliasPhrase token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "asciifolding",
@@ -196,9 +196,9 @@ module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
 
 // this filter creates shingles
 module.exports.tests.peliasShinglesFilter = function(test, common) {
-  test('has peliasShingles filter', function(t) {
+  test('has peliasShinglesFilter filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.peliasShinglesFilter, 'object', 'there is a peliasShingles filter');
+    t.equal(typeof s.analysis.filter.peliasShinglesFilter, 'object', 'there is a peliasShinglesFilter filter');
     var filter = s.analysis.filter.peliasShinglesFilter;
     t.equal(filter.type, 'shingle');
     t.equal(filter.min_shingle_size, 2);

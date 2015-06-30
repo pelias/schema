@@ -7,7 +7,7 @@ var tests = [
   require('./dynamic_templates.js'),
   require('./analyzer_peliasOneEdgeGram.js'),
   require('./analyzer_peliasTwoEdgeGram.js'),
-  require('./analyzer_peliasShingles.js')
+  require('./analyzer_peliasPhrase.js')
 ];
 
 tests.map(function(t) {
