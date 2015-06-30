@@ -33,7 +33,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'kstem', 'McDonald\'s Restaurant', ['mcdonald restaurant'] );
     assertAnalysis( 'kstem', 'walking peoples', ['walking people'] );
     
-    assertAnalysis( 'peliasShingleFilter', '1 a ab abc abcdefghijk', ['1 a', 'a ab', 'ab abc', 'abc abcdefghijk'] );
+    assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1 a', 'a ab', 'ab abc', 'abc abcdefghijk'] );
     assertAnalysis( 'unique', '1 1 1', ['1 1'] );
     assertAnalysis( 'notnull', ' a ', [] );
 
