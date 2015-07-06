@@ -6,6 +6,7 @@ var multiplier = require('./partial/multiplier');
 var schema = {
   properties: {
     name: hash,
+    phrase: hash,
     address: merge( {}, hash, { 'index': 'no' } ),
     alpha3: admin,
     admin0: admin,
@@ -22,13 +23,39 @@ var schema = {
     popularity: multiplier,
     suggest: require('./partial/suggest')
   },
-  _source : {
-    excludes : ['shape']
+  dynamic_templates: [{
+    nameGram: {
+      path_match: 'name.*',
+      match_mapping_type: 'string',
+      mapping: {
+        type: 'string',
+        analyzer: 'peliasTwoEdgeGram',
+        fielddata : {
+          format : 'fst',
+          loading: 'eager_global_ordinals'
+        }
+      }
+    },
+  },{
+    phrase: {
+      path_match: 'phrase.*',
+      match_mapping_type: 'string',
+      mapping: {
+        type: 'string',
+        analyzer: 'peliasPhrase',
+        fielddata : {
+          loading: 'eager_global_ordinals'
+        }
+      }
+    }
+  }],
+  _source: {
+    excludes : ['shape','phrase']
   },
   _all: {
     enabled: false
   },
-  dynamic: 'strict'
+  dynamic: 'true'
 };
 
 module.exports = schema;

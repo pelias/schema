@@ -1,6 +1,8 @@
 
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
+var punctuation = require('./punctuation');
+var street_suffix = require('./street_suffix');
 
 var moduleDir = require('path').dirname("../");
 
@@ -11,25 +13,126 @@ function generate(){
   var settings = {
     "analysis": {
       "analyzer": {
-        "suggestions": {
-          "type": "custom",
-          "tokenizer": "whitespace",
-          "filter": ["lowercase", "asciifolding"]
+        "plugin": {
+          "type": "pelias-analysis"
         },
         "pelias": {
           "type": "custom",
           "tokenizer": "whitespace",
           "filter": ["lowercase", "asciifolding","ampersand","word_delimiter"]
         },
-        "plugin": {
-          "type": "pelias-analysis"
+        "peliasOneEdgeGram" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "address_stop",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasOneEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasTwoEdgeGram" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "address_stop",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasTwoEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasPhrase": {
+          "type": "custom",
+          "tokenizer":"whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "ampersand",
+            "kstem",
+            "street_synonym",
+            "direction_synonym",
+            "peliasShinglesFilter",
+            "unique",
+            "notnull"
+          ]
         }
       },
       "filter" : {
         "ampersand" :{
           "type" : "pattern_replace",
-          "pattern" : "[&]",
-          "replacement" : " and "
+          "pattern" : "and",
+          "replacement" : "&"
+        },
+        "notnull" :{
+          "type" : "length",
+          "min" : 1
+        },
+        "peliasOneEdgeGramFilter": {
+          "type" : "edgeNGram",
+          "min_gram" : 1,
+          "max_gram" : 10
+        },
+        "peliasTwoEdgeGramFilter": {
+          "type" : "edgeNGram",
+          "min_gram" : 2,
+          "max_gram" : 10
+        },
+        // "prefixOneDigitNumbers" :{
+        //   "type" : "pattern_replace",
+        //   "pattern" : "^([1-9]{1})(.*)$",
+        //   "replacement" : "00$1$2"
+        // },
+        // "prefixTwoDigitNumbers" :{
+        //   "type" : "pattern_replace",
+        //   "pattern" : "^([1-9]{2})(.*)$",
+        //   "replacement" : "0$1$2"
+        // },
+        "removeAllZeroNumericPrefix" :{
+          "type" : "pattern_replace",
+          "pattern" : "^(0*)",
+          "replacement" : ""
+        },
+        "peliasShinglesFilter": {
+          "type": "shingle",
+          "min_shingle_size": 2,
+          "max_shingle_size": 2,
+          "output_unigrams": false
+        },
+        "address_stop": {
+          "type": "stop",
+          "stopwords": street_suffix.terms
+        },
+        "street_synonym": {
+          "type": "synonym",
+          "synonyms": street_suffix.synonyms
+        },
+        "direction_synonym": {
+          "type": "synonym",
+          "synonyms": street_suffix.direction_synonyms
+        }
+      },
+      "char_filter": {
+        "punctuation" : {
+          "type" : "mapping",
+          "mappings" : punctuation.blacklist.map(function(c){
+            return c + '=>';
+          })
         }
       }
     },

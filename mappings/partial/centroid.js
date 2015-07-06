@@ -6,15 +6,15 @@ var schema = {
   /* `lat_lon` enabled since both the geo distance and bounding box filters can either be executed using in memory checks, or using the indexed lat lon values */
   'lat_lon': true,
 
-  // 'geohash': true,
-  // 'geohash_prefix': true,
-  // 'geohash_precision': 20,
+  /* store geohashes (with prefixes) in order to facilitate the geohash_cell filter */
+  'geohash': true,
+  'geohash_prefix': true,
+  'geohash_precision': 18,
 
-  /* `precision: 3m` option allows us to trade precision for memory. */
+  /* eager loading should be enabled to prevent cold starts */
   'fielddata' : {
-    'format' : 'compressed',
-    'precision' : '3m'
+    'loading': 'eager_global_ordinals'
   }
-}
+};
 
 module.exports = schema;

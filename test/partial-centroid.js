@@ -9,7 +9,7 @@ module.exports.tests.compile = function(test, common) {
     t.equal(Object.keys(schema).length>0, true, 'schema has body');
     t.end();
   });
-}
+};
 
 // this should never need to change
 module.exports.tests.type = function(test, common) {
@@ -17,7 +17,7 @@ module.exports.tests.type = function(test, common) {
     t.equal(schema.type, 'geo_point', 'correct value');
     t.end();
   });
-}
+};
 
 // this should always be enabled for geo_distance filter
 // queries to execute correctly
@@ -26,15 +26,35 @@ module.exports.tests.latlon = function(test, common) {
     t.equal(schema.lat_lon, true, 'correct value');
     t.end();
   });
-}
+};
+
+// this should always be enabled for geohash_cell filter
+// queries to execute correctly
+module.exports.tests.geohash = function(test, common) {
+  test('geohash enabled', function(t) {
+    t.equal(schema.geohash, true, 'correct value');
+    t.equal(schema.geohash_prefix, true, 'correct value');
+    t.equal(schema.geohash_precision, 18, 'correct value');
+    t.end();
+  });
+};
+
+// this should be set to 'eager_global_ordinals' in order
+// to build caches at index time rather than query time
+module.exports.tests.fielddata = function(test, common) {
+  test('fielddata configured', function(t) {
+    t.equal(schema.fielddata.loading, 'eager_global_ordinals', 'correct value');
+    t.end();
+  });
+};
 
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('centroid: ' + name, testFunction)
+    return tape('centroid: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
-}
+};
