@@ -12,7 +12,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasSimple' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
@@ -36,7 +36,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasSimple' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -77,7 +77,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasSimple: ' + name, testFunction);
+    return tape('peliasAdmin: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

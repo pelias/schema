@@ -8,7 +8,7 @@ var tests = [
   require('./analyzer_peliasOneEdgeGram.js'),
   require('./analyzer_peliasTwoEdgeGram.js'),
   require('./analyzer_peliasPhrase.js'),
-  require('./analyzer_peliasSimple.js')
+  require('./analyzer_peliasAdmin.js')
 ];
 
 tests.map(function(t) {

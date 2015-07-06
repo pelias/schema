@@ -13,7 +13,7 @@ function generate(){
   var settings = {
     "analysis": {
       "analyzer": {
-        "peliasSimple": {
+        "peliasAdmin": {
           "type": "custom",
           "tokenizer": "whitespace",
           "char_filter" : ["punctuation"],

@@ -38,7 +38,7 @@ module.exports.tests.index = function(test, common) {
 // TODO this needs to be addressed 
 module.exports.tests.analysis = function(test, common) {
   test('index analysis', function(t) {
-    t.equal(schema.analyzer, 'peliasSimple', 'should be peliasSimple');
+    t.equal(schema.analyzer, 'peliasAdmin', 'should be peliasAdmin');
     t.end();
   });
 };
