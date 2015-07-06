@@ -84,6 +84,14 @@ Pretty please; provide unit tests and script fixtures in the `test` directory.
 $ npm test
 ```
 
+### Running Integration Tests
+
+Requires a running elasticsearch server (no other setup required)
+
+```bash
+$ npm run integration
+```
+
 ### Continuous Integration
 
 Travis tests every release against node version `0.10`
