@@ -20,8 +20,7 @@ var schema = {
     shape: require('./partial/shape'),
     category: require('./partial/category'),
     population: multiplier,
-    popularity: multiplier,
-    suggest: require('./partial/suggest')
+    popularity: multiplier
   },
   dynamic_templates: [{
     nameGram: {

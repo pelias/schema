@@ -32,19 +32,11 @@ module.exports.tests.analysis = function(test, common) {
 
 // -- analyzers --
 
-module.exports.tests.pluginAnalyzer = function(test, common) {
-  test('has plugin analyzer', function(t) {
+module.exports.tests.peliasAdminAnalyzer = function(test, common) {
+  test('has pelias admin analyzer', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.analyzer.plugin, 'object', 'there is a plugin analyzer');
-    t.end();
-  });
-};
-
-module.exports.tests.peliasAnalyzer = function(test, common) {
-  test('has pelias analyzer', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.analyzer.pelias, 'object', 'there is a pelias analyzer');
-    var analyzer = s.analysis.analyzer.pelias;
+    t.equal(typeof s.analysis.analyzer.peliasAdmin, 'object', 'there is a pelias admin analyzer');
+    var analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');

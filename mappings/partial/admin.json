@@ -1,6 +1,5 @@
 {
   "type": "string",
-  "index_analyzer": "pelias",
-  "search_analyzer": "pelias",
+  "analyzer": "peliasAdmin",
   "store": "yes"
 }
