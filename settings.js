@@ -13,13 +13,17 @@ function generate(){
   var settings = {
     "analysis": {
       "analyzer": {
-        "plugin": {
-          "type": "pelias-analysis"
-        },
-        "pelias": {
+        "peliasSimple": {
           "type": "custom",
           "tokenizer": "whitespace",
-          "filter": ["lowercase", "asciifolding","ampersand","word_delimiter"]
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "word_delimiter",
+            "notnull"
+          ]
         },
         "peliasOneEdgeGram" : {
           "type": "custom",
@@ -93,16 +97,6 @@ function generate(){
           "min_gram" : 2,
           "max_gram" : 10
         },
-        // "prefixOneDigitNumbers" :{
-        //   "type" : "pattern_replace",
-        //   "pattern" : "^([1-9]{1})(.*)$",
-        //   "replacement" : "00$1$2"
-        // },
-        // "prefixTwoDigitNumbers" :{
-        //   "type" : "pattern_replace",
-        //   "pattern" : "^([1-9]{2})(.*)$",
-        //   "replacement" : "0$1$2"
-        // },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
           "pattern" : "^(0*)",
