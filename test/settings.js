@@ -123,7 +123,6 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "kstem",
       "street_synonym",
       "direction_synonym",
-      "peliasShinglesFilter",
       "unique",
       "notnull"
     ]);
@@ -182,20 +181,6 @@ module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 2);
     t.equal(filter.max_gram, 10);
-    t.end();
-  });
-};
-
-// this filter creates shingles
-module.exports.tests.peliasShinglesFilter = function(test, common) {
-  test('has peliasShinglesFilter filter', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.peliasShinglesFilter, 'object', 'there is a peliasShinglesFilter filter');
-    var filter = s.analysis.filter.peliasShinglesFilter;
-    t.equal(filter.type, 'shingle');
-    t.equal(filter.min_shingle_size, 2);
-    t.equal(filter.max_shingle_size, 2);
-    t.equal(filter.output_unigrams, false); // this should be disabled to reduce index size
     t.end();
   });
 };
