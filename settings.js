@@ -71,7 +71,6 @@ function generate(){
             "kstem",
             "street_synonym",
             "direction_synonym",
-            "peliasShinglesFilter",
             "unique",
             "notnull"
           ]
@@ -101,12 +100,6 @@ function generate(){
           "type" : "pattern_replace",
           "pattern" : "^(0*)",
           "replacement" : ""
-        },
-        "peliasShinglesFilter": {
-          "type": "shingle",
-          "min_shingle_size": 2,
-          "max_shingle_size": 2,
-          "output_unigrams": false
         },
         "address_stop": {
           "type": "stop",
