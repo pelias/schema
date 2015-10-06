@@ -5,10 +5,20 @@ var multiplier = require('./partial/multiplier');
 
 var schema = {
   properties: {
+
+    // place name (ngram analysis)
     name: hash,
+
+    // place name (phrase analysis)
     phrase: hash,
+
+    // address data
     address: merge( {}, hash, { 'index': 'no' } ),
+
+    // generic topology
     alpha3: admin,
+
+    // quattroshapes topology
     admin0: admin,
     admin1: admin,
     admin1_abbr: admin,
@@ -16,8 +26,12 @@ var schema = {
     local_admin: admin,
     locality: admin,
     neighborhood: admin,
+
+    // geography
     center_point: require('./partial/centroid'),
     shape: require('./partial/shape'),
+
+    // meta info
     category: require('./partial/category'),
     population: multiplier,
     popularity: multiplier
