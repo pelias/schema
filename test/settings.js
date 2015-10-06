@@ -177,7 +177,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 29, 'lots of filters' );
+    t.equal( analyzer.filter.length, 30, 'lots of filters' );
     t.end();
   });
 };
@@ -337,6 +337,20 @@ module.exports.tests.directionSynonymFilter = function(test, common) {
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 8);
+    t.end();
+  });
+};
+
+// this filter removes number ordinals
+// eg. 26th => 26, 1st => 1
+module.exports.tests.removeOrdinalsFilter = function(test, common) {
+  test('has remove_ordinals filter', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.remove_ordinals, 'object', 'there is an remove_ordinals filter');
+    var filter = s.analysis.filter.remove_ordinals;
+    t.equal(filter.type, 'pattern_replace');
+    t.equal(filter.pattern, '(([0-9])(st|nd|rd|th))');
+    t.equal(filter.replacement, '$2');
     t.end();
   });
 };

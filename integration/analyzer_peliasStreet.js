@@ -34,11 +34,11 @@ module.exports.tests.functional = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'USA address', 'west 26th street', [ 'w 26th st' ]);
-    assertAnalysis( 'USA address', 'West 26th Street', [ 'w 26th st' ]);
-    assertAnalysis( 'USA address', 'w 26th st', [ 'w 26th st' ]);
-    assertAnalysis( 'USA address', 'WEST 26th STREET', [ 'w 26th st' ]);
-    assertAnalysis( 'USA address', 'WEST 26th ST', [ 'w 26th st' ]);
+    assertAnalysis( 'USA address', 'west 26th street', [ 'w 26 st' ]);
+    assertAnalysis( 'USA address', 'West 26th Street', [ 'w 26 st' ]);
+    assertAnalysis( 'USA address', 'w 26th st', [ 'w 26 st' ]);
+    assertAnalysis( 'USA address', 'WEST 26th STREET', [ 'w 26 st' ]);
+    assertAnalysis( 'USA address', 'WEST 26th ST', [ 'w 26 st' ]);
 
     suite.run( t.end );
   });

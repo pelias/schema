@@ -122,6 +122,7 @@ function generate(){
             "keyword_compass_south",
             "keyword_compass_east",
             "keyword_compass_west",
+            "remove_ordinals",
             "trim"
           ]
         },
@@ -162,6 +163,11 @@ function generate(){
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
+        },
+        "remove_ordinals" : {
+          "type" : "pattern_replace",
+          "pattern": "(([0-9])(st|nd|rd|th))",
+          "replacement": "$2"
         },
 
         // street suffixes (replace text inside tokens)
