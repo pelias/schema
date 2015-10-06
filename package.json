@@ -35,7 +35,7 @@
     "pelias-config": "latest"
   },
   "devDependencies": {
-    "elastictest": "^0.1.0",
+    "elastictest": "^1.0.0",
     "pelias-esclient": "latest",
     "tap-spec": "^0.2.0",
     "tape": "^2.13.4"
