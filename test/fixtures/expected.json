@@ -1,0 +1,434 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "peliasAdmin": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "char_filter": [
+            "punctuation"
+          ],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "word_delimiter",
+            "notnull"
+          ]
+        },
+        "peliasOneEdgeGram": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "char_filter": [
+            "punctuation"
+          ],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "address_stop",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasOneEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasTwoEdgeGram": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "char_filter": [
+            "punctuation"
+          ],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "address_stop",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasTwoEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasPhrase": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "char_filter": [
+            "punctuation"
+          ],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "ampersand",
+            "kstem",
+            "street_synonym",
+            "direction_synonym",
+            "unique",
+            "notnull"
+          ]
+        }
+      },
+      "filter": {
+        "ampersand": {
+          "type": "pattern_replace",
+          "pattern": "and",
+          "replacement": "&"
+        },
+        "notnull": {
+          "type": "length",
+          "min": 1
+        },
+        "peliasOneEdgeGramFilter": {
+          "type": "edgeNGram",
+          "min_gram": 1,
+          "max_gram": 10
+        },
+        "peliasTwoEdgeGramFilter": {
+          "type": "edgeNGram",
+          "min_gram": 2,
+          "max_gram": 10
+        },
+        "removeAllZeroNumericPrefix": {
+          "type": "pattern_replace",
+          "pattern": "^(0*)",
+          "replacement": ""
+        },
+        "address_stop": {
+          "type": "stop",
+          "stopwords": [
+            "alley",
+            "avenue",
+            "boulevard",
+            "bypass",
+            "crescent",
+            "drive",
+            "esplanade",
+            "expressway",
+            "field",
+            "freeway",
+            "garden",
+            "green",
+            "grove",
+            "heights",
+            "highway",
+            "lane",
+            "mews",
+            "parade",
+            "pike",
+            "place",
+            "promenade",
+            "road",
+            "row",
+            "street",
+            "terrace",
+            "turnpike",
+            "viaduct",
+            "way"
+          ]
+        },
+        "street_synonym": {
+          "type": "synonym",
+          "synonyms": [
+            "avenue => ave",
+            "boulevard => blvd",
+            "circle => cir",
+            "close => cl",
+            "court => ct",
+            "crescent => cres",
+            "drive => dr",
+            "esplanade => esp",
+            "highway => hwy",
+            "lane => ln",
+            "parkway => pkwy",
+            "place => pl",
+            "road => rd",
+            "street => st",
+            "suite => ste",
+            "terrace => terr",
+            "trail => tr",
+            "way => wy"
+          ]
+        },
+        "direction_synonym": {
+          "type": "synonym",
+          "synonyms": [
+            "north => n",
+            "south => s",
+            "east => e",
+            "west => w",
+            "southwest => sw",
+            "southeast => se",
+            "northwest => nw",
+            "northeast => ne"
+          ]
+        }
+      },
+      "char_filter": {
+        "punctuation": {
+          "type": "mapping",
+          "mappings": [
+            ",=>",
+            ".=>",
+            "`=>",
+            "_=>",
+            "==>",
+            "?=>",
+            "'=>",
+            "|=>",
+            "\"=>",
+            "(=>",
+            ")=>",
+            "{=>",
+            "}=>",
+            "[=>",
+            "]=>",
+            "<=>",
+            ">=>",
+            "*=>",
+            "#=>",
+            "^=>",
+            "$=>",
+            "@=>",
+            "!=>",
+            "~=>",
+            ":=>",
+            ";=>",
+            "+=>",
+            "/=>",
+            "\\\\=>",
+            "《=>",
+            "》=>",
+            "—=>",
+            "－=>",
+            "，=>",
+            "。=>",
+            "、=>",
+            "：=>",
+            "；=>",
+            "！=>",
+            "·=>",
+            "？=>",
+            "“=>",
+            "”=>",
+            "）=>",
+            "（=>",
+            "【=>",
+            "】=>",
+            "［=>",
+            "］=>",
+            "●=>"
+          ]
+        }
+      }
+    },
+    "index": {
+      "number_of_replicas": "999",
+      "number_of_shards": "1",
+      "index_concurrency": "10"
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "properties": {
+        "source": {
+          "type": "string",
+          "index_analyzer": "keyword",
+          "search_analyzer": "keyword",
+          "store": "yes"
+        },
+        "layer": {
+          "type": "string",
+          "index_analyzer": "keyword",
+          "search_analyzer": "keyword",
+          "store": "yes"
+        },
+        "name": {
+          "type": "object",
+          "dynamic": true
+        },
+        "phrase": {
+          "type": "object",
+          "dynamic": true
+        },
+        "address": {
+          "type": "object",
+          "dynamic": true,
+          "index": "no"
+        },
+        "alpha3": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "admin0": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "admin1": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "admin1_abbr": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "admin2": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "local_admin": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "locality": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "neighborhood": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "center_point": {
+          "type": "geo_point",
+          "lat_lon": true,
+          "geohash": true,
+          "geohash_prefix": true,
+          "geohash_precision": 18,
+          "fielddata": {
+            "loading": "eager_global_ordinals"
+          }
+        },
+        "shape": {
+          "type": "geo_shape",
+          "tree": "quadtree",
+          "tree_levels": "20"
+        },
+        "kind": {
+          "type": "string",
+          "index_analyzer": "keyword",
+          "search_analyzer": "keyword",
+          "store": "yes"
+        },
+        "category": {
+          "type": "string",
+          "index_analyzer": "keyword",
+          "search_analyzer": "keyword",
+          "store": "yes"
+        },
+        "population": {
+          "type": "long",
+          "null_value": 0
+        },
+        "popularity": {
+          "type": "long",
+          "null_value": 0
+        }
+      },
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasTwoEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        },
+        {
+          "phrase": {
+            "path_match": "phrase.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasPhrase",
+              "fielddata": {
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ],
+      "_source": {
+        "excludes": [
+          "shape",
+          "phrase"
+        ]
+      },
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "true"
+    },
+    "admin0": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "admin1": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "admin2": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

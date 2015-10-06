@@ -1,5 +1,5 @@
 
-var schema = require('../mappings/partial/category');
+var schema = require('../mappings/partial/literal');
 
 module.exports.tests = {};
 
@@ -38,7 +38,7 @@ module.exports.tests.analysis = function(test, common) {
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('category: ' + name, testFunction);
+    return tape('literal: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
