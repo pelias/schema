@@ -16,12 +16,15 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
+    assertAnalysis( 'asciifolding', 'Max-Beer-Straße', ['max-beer-strasse']);
     assertAnalysis( 'trim', ' f ', ['f'] );
     assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo st'] );
     assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo rd'] );
     assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo cres'] );
     assertAnalysis( 'keyword_compass', 'north foo', ['n foo'] );
     assertAnalysis( 'keyword_compass', 'SouthWest foo', ['sw foo'] );
+    assertAnalysis( 'remove_ordinals', '1st 2nd 3rd 4th 5th', ['1 2 3 4 5'] );
+    assertAnalysis( 'remove_ordinals', 'Ast th 101st', ['ast th 101'] );
 
     suite.run( t.end );
   });

@@ -177,7 +177,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 30, 'lots of filters' );
+    t.equal( analyzer.filter.length, 132, 'lots of filters' );
     t.end();
   });
 };
@@ -197,7 +197,7 @@ module.exports.tests.allTokenFiltersPresent = function(test, common) {
           if( !filterExists && -1 < ES_INBUILT_FILTERS.indexOf( tokenFilterName ) ){
             filterExists = true;
           }
-          t.true( filterExists, 'missing token filter: ' + tokenFilterName );
+          t.true( filterExists, 'token filter exists: ' + tokenFilterName );
         });
       }
     }

@@ -95,37 +95,16 @@ function generate(){
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
-            "asciifolding",
-            "keyword_street_suffix_avenue",
-            "keyword_street_suffix_boulevard",
-            "keyword_street_suffix_circle",
-            "keyword_street_suffix_close",
-            "keyword_street_suffix_court",
-            "keyword_street_suffix_crescent",
-            "keyword_street_suffix_drive",
-            "keyword_street_suffix_esplanade",
-            "keyword_street_suffix_highway",
-            "keyword_street_suffix_lane",
-            "keyword_street_suffix_parkway",
-            "keyword_street_suffix_place",
-            "keyword_street_suffix_road",
-            "keyword_street_suffix_street",
-            "keyword_street_suffix_suite",
-            "keyword_street_suffix_terrace",
-            "keyword_street_suffix_trail",
-            "keyword_street_suffix_way",
-            "keyword_compass_northwest",
-            "keyword_compass_northeast",
-            "keyword_compass_southwest",
-            "keyword_compass_southeast",
-            "keyword_compass_north",
-            "keyword_compass_south",
-            "keyword_compass_east",
-            "keyword_compass_west",
+            "asciifolding"
+          ].concat( street_suffix.synonyms.map( function( synonym ){
+            return "keyword_street_suffix_" + synonym.split(' ')[0];
+          })).concat( street_suffix.direction_synonyms.map( function( synonym ){
+            return "keyword_compass_" + synonym.split(' ')[0];
+          })).concat([
             "remove_ordinals",
             "trim"
-          ]
-        },
+          ])
+        }
       },
       "filter" : {
         "ampersand" :{
@@ -168,142 +147,8 @@ function generate(){
           "type" : "pattern_replace",
           "pattern": "(([0-9])(st|nd|rd|th))",
           "replacement": "$2"
-        },
-
-        // street suffixes (replace text inside tokens)
-        "keyword_street_suffix_avenue": {
-          "type": "pattern_replace",
-          "pattern": " avenue",
-          "replacement": " ave"
-        },
-        "keyword_street_suffix_boulevard": {
-          "type": "pattern_replace",
-          "pattern": " boulevard",
-          "replacement": " blvd"
-        },
-        "keyword_street_suffix_circle": {
-          "type": "pattern_replace",
-          "pattern": " circle",
-          "replacement": " cir"
-        },
-        "keyword_street_suffix_close": {
-          "type": "pattern_replace",
-          "pattern": " close",
-          "replacement": " cl"
-        },
-        "keyword_street_suffix_court": {
-          "type": "pattern_replace",
-          "pattern": " court",
-          "replacement": " ct"
-        },
-        "keyword_street_suffix_crescent": {
-          "type": "pattern_replace",
-          "pattern": " crescent",
-          "replacement": " cres"
-        },
-        "keyword_street_suffix_drive": {
-          "type": "pattern_replace",
-          "pattern": " drive",
-          "replacement": " dr"
-        },
-        "keyword_street_suffix_esplanade": {
-          "type": "pattern_replace",
-          "pattern": " esplanade",
-          "replacement": " esp"
-        },
-        "keyword_street_suffix_highway": {
-          "type": "pattern_replace",
-          "pattern": " highway",
-          "replacement": " hwy"
-        },
-        "keyword_street_suffix_lane": {
-          "type": "pattern_replace",
-          "pattern": " lane",
-          "replacement": " ln"
-        },
-        "keyword_street_suffix_parkway": {
-          "type": "pattern_replace",
-          "pattern": " parkway",
-          "replacement": " pkwy"
-        },
-        "keyword_street_suffix_place": {
-          "type": "pattern_replace",
-          "pattern": " place",
-          "replacement": " pl"
-        },
-        "keyword_street_suffix_road": {
-          "type": "pattern_replace",
-          "pattern": " road",
-          "replacement": " rd"
-        },
-        "keyword_street_suffix_street": {
-          "type": "pattern_replace",
-          "pattern": " street",
-          "replacement": " st"
-        },
-        "keyword_street_suffix_suite": {
-          "type": "pattern_replace",
-          "pattern": " suite",
-          "replacement": " ste"
-        },
-        "keyword_street_suffix_terrace": {
-          "type": "pattern_replace",
-          "pattern": " terrace",
-          "replacement": " terr"
-        },
-        "keyword_street_suffix_trail": {
-          "type": "pattern_replace",
-          "pattern": " trail",
-          "replacement": " tr"
-        },
-        "keyword_street_suffix_way": {
-          "type": "pattern_replace",
-          "pattern": " way",
-          "replacement": " wy"
-        },
-
-        // compass prefix (replace text inside tokens)
-        "keyword_compass_north": {
-          "type": "pattern_replace",
-          "pattern": "north ",
-          "replacement": "n "
-        },
-        "keyword_compass_south": {
-          "type": "pattern_replace",
-          "pattern": "south ",
-          "replacement": "s "
-        },
-        "keyword_compass_east": {
-          "type": "pattern_replace",
-          "pattern": "east ",
-          "replacement": "e "
-        },
-        "keyword_compass_west": {
-          "type": "pattern_replace",
-          "pattern": "west ",
-          "replacement": "w "
-        },
-        "keyword_compass_northwest": {
-          "type": "pattern_replace",
-          "pattern": "northwest ",
-          "replacement": "nw "
-        },
-        "keyword_compass_northeast": {
-          "type": "pattern_replace",
-          "pattern": "northeast ",
-          "replacement": "ne "
-        },
-        "keyword_compass_southwest": {
-          "type": "pattern_replace",
-          "pattern": "southwest ",
-          "replacement": "sw "
-        },
-        "keyword_compass_southeast": {
-          "type": "pattern_replace",
-          "pattern": "southeast ",
-          "replacement": "se "
         }
-
+        // more generated below
       },
       "char_filter": {
         "punctuation" : {
@@ -332,6 +177,34 @@ function generate(){
       "index_concurrency": "10"
     }
   };
+
+  // dynamically create filters which can replace text *inside* a token.
+  // we are not able to re-use the synonym functionality in elasticsearch
+  // because it only matches whole tokens, not strings *within* tokens.
+  // eg. synonyms are capable of ['street'] => ['st'] but not
+  // ['sesame street'] => ['sesame st']
+
+  // street suffix filters (replace text inside tokens)
+  // based off synonym list
+  street_suffix.synonyms.forEach( function( synonym ){
+    var split = synonym.split(' ');
+    settings.analysis.filter[ "keyword_street_suffix_" + split[0] ] = {
+      "type": "pattern_replace",
+      "pattern": " " + split[0],
+      "replacement": " " + split[2]
+    }
+  });
+
+  // compass prefix filters (replace text inside tokens)
+  // based off direction_synonyms list
+  street_suffix.direction_synonyms.forEach( function( synonym ){
+    var split = synonym.split(' ');
+    settings.analysis.filter[ "keyword_compass_" + split[0] ] = {
+      "type": "pattern_replace",
+      "pattern": split[0] + " ",
+      "replacement": split[2] + " "
+    }
+  });
 
   // Merge settings from pelias/config
   if( 'object' == typeof config &&
