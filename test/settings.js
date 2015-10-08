@@ -304,10 +304,28 @@ module.exports.tests.addressStopFilter = function(test, common) {
     var filter = s.analysis.filter.address_stop;
     t.equal(filter.type, 'stop');
     t.deepEqual(filter.stopwords, [
-      "alley", "avenue", "boulevard", "bypass", "crescent", "drive", "esplanade",
-      "expressway", "field", "freeway", "garden", "green", "grove", "heights",
-      "highway", "lane", "mews", "parade", "pike", "place", "promenade", "road",
-      "row", "street", "terrace", "turnpike", "viaduct", "way"
+      "alley", "annex", "avenue",
+      "bay", "bayou", "beach", "beltway", "bend", "bluff", "bluffs", "boulevard", "bottom", "branch", "bridge", "brook", "bypass",
+      "canyon", "cape", "causeway", "center", "channel", "circle", "cliff", "club", "common", "commons", "connector", "corridor",
+      "course", "cove", "creek", "crescent", "crest", "crossing", "crossroad", "crossroads", "curve",
+      "dale", "dam", "drive",
+      "esplanade", "expressway", "extended",
+      "falls", "ferry", "field", "fields", "flat", "flats", "ford", "forest", "forge", "fork", "forks", "freeway",
+      "garden", "gardens", "gateway", "glen", "glenn", "green", "grove",
+      "harbor", "haven", "heights", "highway", "hill", "hills", "hollow",
+      "isle",
+      "junction",
+      "key", "keys", "knoll", "knolls",
+      "landing", "lane", "light", "lights", "lock", "locks",
+      "manor", "meadow", "meadows", "mews", "mill", "mills", "mountain", "motorway",
+      "neck",
+      "orchard",
+      "parade", "parkway", "passage", "pier", "pike", "pine", "pines", "place", "plaza", "promenade",
+      "ranch", "ridge", "ridges", "river", "road", "route", "row",
+      "shore", "shores", "skyway", "spring", "springs", "square", "street",
+      "terrace", "trail", "trafficway", "tunnel", "turnpike",
+      "valley", "vista", "village", "viaduct",
+      "way"
     ]);
     t.end();
   });
@@ -322,7 +340,7 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
     var filter = s.analysis.filter.street_synonym;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 18);
+    t.equal(filter.synonyms.length, 120);
     t.end();
   });
 };
