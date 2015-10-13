@@ -22,7 +22,7 @@ var schema = {
           search_analyzer: 'keyword'
         },
         number: {
-          type: 'integer',
+          type: 'string',
           index_analyzer: 'peliasHousenumber',
           search_analyzer: 'peliasHousenumber',
         },
