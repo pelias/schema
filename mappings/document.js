@@ -37,7 +37,7 @@ var schema = {
     shape: require('./partial/shape'),
 
     // meta info
-    kind: literal,
+    source_id: literal,
     category: literal,
     population: multiplier,
     popularity: multiplier

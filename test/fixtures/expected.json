@@ -315,7 +315,7 @@
           "tree": "quadtree",
           "tree_levels": "20"
         },
-        "kind": {
+        "source_id": {
           "type": "string",
           "index_analyzer": "keyword",
           "search_analyzer": "keyword",

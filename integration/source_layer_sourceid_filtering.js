@@ -18,21 +18,21 @@ module.exports.tests.source_filter = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '1', body: { source: 'osm', layer: 'node', kind: 'shop' }
+        id: '1', body: { source: 'osm', layer: 'node', source_id: 'dataset/1' }
       }, done );
     });
 
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '2', body: { source: 'osm', layer: 'address', kind: 'bank' }
+        id: '2', body: { source: 'osm', layer: 'address', source_id: 'dataset/2' }
       }, done );
     });
 
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '3', body: { source: 'geonames', layer: 'address', kind: 'shop' }
+        id: '3', body: { source: 'geonames', layer: 'address', source_id: 'dataset/1' }
       }, done );
     });
 
@@ -71,13 +71,13 @@ module.exports.tests.source_filter = function(test, common){
       });
     });
 
-    // find all 'shop' kinds
+    // find all 'shop' source_ids
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
         body: { filter: { bool: { must: [
-          { term: { kind: 'shop' } }
+          { term: { source_id: 'dataset/1' } }
         ]}}}
       }, function( err, res ){
         t.equal( res.hits.total, 2 );
@@ -85,14 +85,14 @@ module.exports.tests.source_filter = function(test, common){
       });
     });
 
-    // find all 'shop' kinds from 'osm' source
+    // find all 'shop' source_ids from 'osm' source
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
         body: { filter: { bool: { must: [
           { term: { source: 'osm' } },
-          { term: { kind: 'shop' } }
+          { term: { source_id: 'dataset/1' } }
         ]}}}
       }, function( err, res ){
         t.equal( res.hits.total, 1 );

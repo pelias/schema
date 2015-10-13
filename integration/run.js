@@ -9,7 +9,7 @@ var tests = [
   require('./analyzer_peliasTwoEdgeGram.js'),
   require('./analyzer_peliasPhrase.js'),
   require('./analyzer_peliasAdmin.js'),
-  require('./source_layer_kind_filtering.js')
+  require('./source_layer_sourceid_filtering.js')
 ];
 
 tests.map(function(t) {
