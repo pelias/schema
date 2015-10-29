@@ -1,5 +1,7 @@
 
-var schema = require('../');
+var path = require('path'),
+    schema = require('../')
+    fixture = require('./fixtures/expected.json');
 
 module.exports.tests = {};
 
@@ -46,6 +48,24 @@ module.exports.tests.dynamic_templates = function(test, common) {
         loading: 'eager_global_ordinals'
       }
     });
+    t.end();
+  });
+};
+
+// current schema (compiled) - requires schema to be copied and settings to
+// be regenerated from a fixture in order to pass in CI environments.
+module.exports.tests.current_schema = function(test, common) {
+  test('current schema vs. fixture', function(t) {
+
+    // copy schema
+    var schemaCopy = JSON.parse( JSON.stringify( schema ) );
+
+    // use the pelias config fixture instead of the local config
+    process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/config.json' );
+    schemaCopy.settings = require('../settings')()
+    delete process.env['PELIAS_CONFIG'];
+
+    t.deepEqual(schemaCopy, fixture);
     t.end();
   });
 };
