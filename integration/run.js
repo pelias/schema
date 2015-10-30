@@ -12,7 +12,8 @@ var tests = [
   require('./analyzer_peliasHousenumber.js'),
   require('./analyzer_peliasZip.js'),
   require('./analyzer_peliasStreet.js'),
-  require('./address_matching.js')
+  require('./address_matching.js'),
+  require('./source_layer_sourceid_filtering.js')
 ];
 
 tests.map(function(t) {

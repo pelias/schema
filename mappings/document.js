@@ -1,9 +1,14 @@
 var admin = require('./partial/admin');
 var hash = require('./partial/hash');
 var multiplier = require('./partial/multiplier');
+var literal = require('./partial/literal');
 
 var schema = {
   properties: {
+
+    // data partitioning
+    source: literal,
+    layer: literal,
 
     // place name (ngram analysis)
     name: hash,
@@ -56,7 +61,8 @@ var schema = {
     shape: require('./partial/shape'),
 
     // meta info
-    category: require('./partial/category'),
+    source_id: literal,
+    category: literal,
     population: multiplier,
     popularity: multiplier
   },
