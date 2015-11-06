@@ -147,13 +147,15 @@ module.exports.synonyms = [
   "way => wy"
 ];
 
+// note: more descriptive tokens must come before less descriptive ones
+// eg: 'southwest' must come before 'west' else 'southwest foo' -> 'southw foo'
 module.exports.direction_synonyms = [
-  "north => n",
-  "south => s",
-  "east => e",
-  "west => w",
   "southwest => sw",
   "southeast => se",
   "northwest => nw",
-  "northeast => ne"
+  "northeast => ne",
+  "north => n",
+  "south => s",
+  "east => e",
+  "west => w"
 ];

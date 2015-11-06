@@ -65,6 +65,9 @@ module.exports.tests.current_schema = function(test, common) {
     schemaCopy.settings = require('../settings')()
     delete process.env['PELIAS_CONFIG'];
 
+    // code intentionally commented to allow quick debugging of expected.json
+    // console.log( JSON.stringify( schemaCopy, null, 2 ) );
+
     t.deepEqual(schemaCopy, fixture);
     t.end();
   });

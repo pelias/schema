@@ -1,4 +1,3 @@
-var merge = require('merge');
 var admin = require('./partial/admin');
 var hash = require('./partial/hash');
 var multiplier = require('./partial/multiplier');
@@ -18,7 +17,32 @@ var schema = {
     phrase: hash,
 
     // address data
-    address: merge( {}, hash, { 'index': 'no' } ),
+    address: {
+      type: 'object',
+      dynamic: true,
+      properties: {
+        name: {
+          type: 'string',
+          index_analyzer: 'keyword',
+          search_analyzer: 'keyword'
+        },
+        number: {
+          type: 'string',
+          index_analyzer: 'peliasHousenumber',
+          search_analyzer: 'peliasHousenumber',
+        },
+        street: {
+          type: 'string',
+          index_analyzer: 'peliasStreet',
+          search_analyzer: 'peliasStreet'
+        },
+        zip: {
+          type: 'string',
+          index_analyzer: 'peliasZip',
+          search_analyzer: 'peliasZip'
+        }
+      }
+    },
 
     // generic topology
     alpha3: admin,
