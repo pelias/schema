@@ -130,6 +130,102 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
   });
 };
 
+module.exports.tests.peliasZipAnalyzer = function(test, common) {
+  test('has peliasZip analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasZip, 'object', 'there is a peliasZip analyzer');
+    var analyzer = s.analysis.analyzer.peliasZip;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["alphanumeric"], 'alphanumeric filter specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasZip token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasZip;
+    t.deepEqual( analyzer.filter, [
+      "lowercase",
+      "trim"
+    ]);
+    t.end();
+  });
+};
+
+module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
+  test('has peliasHousenumber analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasHousenumber, 'object', 'there is a peliasHousenumber analyzer');
+    var analyzer = s.analysis.analyzer.peliasHousenumber;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["numeric"], 'numeric filter specified');
+    t.false(Array.isArray(analyzer.filter), 'no filters specified');
+    t.end();
+  });
+};
+
+module.exports.tests.peliasStreetAnalyzer = function(test, common) {
+  test('has peliasStreet analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasStreet, 'object', 'there is a peliasStreet analyzer');
+    var analyzer = s.analysis.analyzer.peliasStreet;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasStreet token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasStreet;
+    t.equal( analyzer.filter.length, 133, 'lots of filters' );
+    t.end();
+  });
+};
+
+// cycle through all analyzers and ensure the corrsponding token filters are defined
+module.exports.tests.allTokenFiltersPresent = function(test, common) {
+  var ES_INBUILT_FILTERS = [
+    'lowercase', 'asciifolding', 'trim', 'word_delimiter', 'kstem', 'unique'
+  ];
+  test('all token filters present', function(t) {
+    var s = settings();
+    for( var analyzerName in s.analysis.analyzer ){
+      var analyzer = s.analysis.analyzer[analyzerName];
+      if( Array.isArray( analyzer.filter ) ){
+        analyzer.filter.forEach( function( tokenFilterName ){
+          var filterExists = s.analysis.filter.hasOwnProperty( tokenFilterName );
+          if( !filterExists && -1 < ES_INBUILT_FILTERS.indexOf( tokenFilterName ) ){
+            filterExists = true;
+          }
+          t.true( filterExists, 'token filter exists: ' + tokenFilterName );
+        });
+      }
+    }
+    t.end();
+  });
+};
+
+// cycle through all analyzers and ensure the corrsponding character filters are defined
+module.exports.tests.allCharacterFiltersPresent = function(test, common) {
+  var ES_INBUILT_FILTERS = [];
+  test('all character filters present', function(t) {
+    var s = settings();
+    for( var analyzerName in s.analysis.analyzer ){
+      var analyzer = s.analysis.analyzer[analyzerName];
+      if( Array.isArray( analyzer.char_filter ) ){
+        analyzer.char_filter.forEach( function( charFilterName ){
+          var filterExists = s.analysis.char_filter.hasOwnProperty( charFilterName );
+          if( !filterExists && -1 < ES_INBUILT_FILTERS.indexOf( charFilterName ) ){
+            filterExists = true;
+          }
+          t.true( filterExists, 'missing character filter: ' + charFilterName );
+        });
+      }
+    }
+    t.end();
+  });
+};
+
 // -- filters --
 
 // note: pattern/replace should not have surrounding whitespace
@@ -208,10 +304,28 @@ module.exports.tests.addressStopFilter = function(test, common) {
     var filter = s.analysis.filter.address_stop;
     t.equal(filter.type, 'stop');
     t.deepEqual(filter.stopwords, [
-      "alley", "avenue", "boulevard", "bypass", "crescent", "drive", "esplanade",
-      "expressway", "field", "freeway", "garden", "green", "grove", "heights",
-      "highway", "lane", "mews", "parade", "pike", "place", "promenade", "road",
-      "row", "street", "terrace", "turnpike", "viaduct", "way"
+      "alley", "annex", "avenue",
+      "bay", "bayou", "beach", "beltway", "bend", "bluff", "bluffs", "boulevard", "bottom", "branch", "bridge", "brook", "bypass",
+      "canyon", "cape", "causeway", "center", "channel", "circle", "cliff", "club", "common", "commons", "connector", "corridor",
+      "course", "cove", "creek", "crescent", "crest", "crossing", "crossroad", "crossroads", "curve",
+      "dale", "dam", "drive",
+      "esplanade", "expressway", "extended",
+      "falls", "ferry", "field", "fields", "flat", "flats", "ford", "forest", "forge", "fork", "forks", "freeway",
+      "garden", "gardens", "gateway", "glen", "glenn", "green", "grove",
+      "harbor", "haven", "heights", "highway", "hill", "hills", "hollow",
+      "isle",
+      "junction",
+      "key", "keys", "knoll", "knolls",
+      "landing", "lane", "light", "lights", "lock", "locks",
+      "manor", "meadow", "meadows", "mews", "mill", "mills", "mountain", "motorway",
+      "neck",
+      "orchard",
+      "parade", "parkway", "passage", "pier", "pike", "pine", "pines", "place", "plaza", "promenade",
+      "ranch", "ridge", "ridges", "river", "road", "route", "row",
+      "shore", "shores", "skyway", "spring", "springs", "square", "street",
+      "terrace", "trail", "trafficway", "tunnel", "turnpike",
+      "valley", "vista", "village", "viaduct",
+      "way"
     ]);
     t.end();
   });
@@ -226,7 +340,7 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
     var filter = s.analysis.filter.street_synonym;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 18);
+    t.equal(filter.synonyms.length, 120);
     t.end();
   });
 };
@@ -245,6 +359,20 @@ module.exports.tests.directionSynonymFilter = function(test, common) {
   });
 };
 
+// this filter removes number ordinals
+// eg. 26th => 26, 1st => 1
+module.exports.tests.removeOrdinalsFilter = function(test, common) {
+  test('has remove_ordinals filter', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.remove_ordinals, 'object', 'there is an remove_ordinals filter');
+    var filter = s.analysis.filter.remove_ordinals;
+    t.equal(filter.type, 'pattern_replace');
+    t.equal(filter.pattern, '(([0-9])(st|nd|rd|th))');
+    t.equal(filter.replacement, '$2');
+    t.end();
+  });
+};
+
 // -- char filters --
 
 // we use a custom punctuation filter in order to allow the ampersand
@@ -257,6 +385,32 @@ module.exports.tests.punctuationCharFilter = function(test, common) {
     t.equal(char_filter.type, 'mapping');
     t.true(Array.isArray(char_filter.mappings));
     t.equal(char_filter.mappings.length, 50);
+    t.end();
+  });
+};
+
+// remove non alphanumeric characters
+module.exports.tests.alphanumericCharFilter = function(test, common) {
+  test('has alphanumeric char_filter', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.char_filter.alphanumeric, 'object', 'there is a alphanumeric char_filter');
+    var char_filter = s.analysis.char_filter.alphanumeric;
+    t.equal(char_filter.type, 'pattern_replace');
+    t.equal(char_filter.pattern, '[^a-zA-Z0-9]');
+    t.equal(char_filter.replacement, '');
+    t.end();
+  });
+};
+
+// replace non-numeric chars with a space
+module.exports.tests.numericCharFilter = function(test, common) {
+  test('has numeric char_filter', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.char_filter.numeric, 'object', 'there is a numeric char_filter');
+    var char_filter = s.analysis.char_filter.numeric;
+    t.equal(char_filter.type, 'pattern_replace');
+    t.equal(char_filter.pattern, '[^0-9]');
+    t.equal(char_filter.replacement, ' ');
     t.end();
   });
 };

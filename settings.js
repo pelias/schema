@@ -74,6 +74,37 @@ function generate(){
             "unique",
             "notnull"
           ]
+        },
+        "peliasZip": {
+          "type": "custom",
+          "tokenizer":"keyword",
+          "char_filter" : ["alphanumeric"],
+          "filter": [
+            "lowercase",
+            "trim"
+          ]
+        },
+        "peliasHousenumber": {
+          "type": "custom",
+          "tokenizer":"standard",
+          "char_filter" : ["numeric"]
+        },
+        "peliasStreet": {
+          "type": "custom",
+          "tokenizer":"keyword",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "remove_duplicate_spaces",
+          ].concat( street_suffix.synonyms.map( function( synonym ){
+            return "keyword_street_suffix_" + synonym.split(' ')[0];
+          })).concat( street_suffix.direction_synonyms.map( function( synonym ){
+            return "keyword_compass_" + synonym.split(' ')[0];
+          })).concat([
+            "remove_ordinals",
+            "trim"
+          ])
         }
       },
       "filter" : {
@@ -112,7 +143,18 @@ function generate(){
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
+        },
+        "remove_ordinals" : {
+          "type" : "pattern_replace",
+          "pattern": "(([0-9])(st|nd|rd|th))",
+          "replacement": "$2"
+        },
+        "remove_duplicate_spaces" : {
+          "type" : "pattern_replace",
+          "pattern": " +",
+          "replacement": " "
         }
+        // more generated below
       },
       "char_filter": {
         "punctuation" : {
@@ -120,6 +162,16 @@ function generate(){
           "mappings" : punctuation.blacklist.map(function(c){
             return c + '=>';
           })
+        },
+        "alphanumeric" : {
+          "type" : "pattern_replace",
+          "pattern": "[^a-zA-Z0-9]",
+          "replacement": ""
+        },
+        "numeric" : {
+          "type" : "pattern_replace",
+          "pattern": "[^0-9]",
+          "replacement": " "
         }
       }
     },
@@ -131,6 +183,34 @@ function generate(){
       "index_concurrency": "10"
     }
   };
+
+  // dynamically create filters which can replace text *inside* a token.
+  // we are not able to re-use the synonym functionality in elasticsearch
+  // because it only matches whole tokens, not strings *within* tokens.
+  // eg. synonyms are capable of ['street'] => ['st'] but not
+  // ['sesame street'] => ['sesame st']
+
+  // street suffix filters (replace text inside tokens)
+  // based off synonym list
+  street_suffix.synonyms.forEach( function( synonym ){
+    var split = synonym.split(' ');
+    settings.analysis.filter[ "keyword_street_suffix_" + split[0] ] = {
+      "type": "pattern_replace",
+      "pattern": " " + split[0],
+      "replacement": " " + split[2]
+    }
+  });
+
+  // compass prefix filters (replace text inside tokens)
+  // based off direction_synonyms list
+  street_suffix.direction_synonyms.forEach( function( synonym ){
+    var split = synonym.split(' ');
+    settings.analysis.filter[ "keyword_compass_" + split[0] ] = {
+      "type": "pattern_replace",
+      "pattern": split[0] + " ",
+      "replacement": split[2] + " "
+    }
+  });
 
   // Merge settings from pelias/config
   if( 'object' == typeof config &&
