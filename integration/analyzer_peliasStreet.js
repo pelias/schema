@@ -54,7 +54,10 @@ module.exports.tests.normalize_punctuation = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'double space', 'Chapala  Street', [ 'chapala st' ]);
+    assertAnalysis( 'single space', 'Chapala Street',    [ 'chapala st' ]);
+    assertAnalysis( 'double space', 'Chapala  Street',   [ 'chapala st' ]);
+    assertAnalysis( 'triple space', 'Chapala   Street',  [ 'chapala st' ]);
+    assertAnalysis( 'quad space',   'Chapala    Street', [ 'chapala st' ]);
 
     suite.run( t.end );
   });

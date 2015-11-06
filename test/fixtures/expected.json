@@ -99,6 +99,7 @@
           "filter": [
             "lowercase",
             "asciifolding",
+            "remove_duplicate_spaces",
             "keyword_street_suffix_alley",
             "keyword_street_suffix_annex",
             "keyword_street_suffix_avenue",
@@ -529,6 +530,11 @@
           "type": "pattern_replace",
           "pattern": "(([0-9])(st|nd|rd|th))",
           "replacement": "$2"
+        },
+        "remove_duplicate_spaces": {
+          "type": "pattern_replace",
+          "pattern": " +",
+          "replacement": " "
         },
         "keyword_street_suffix_alley": {
           "type": "pattern_replace",

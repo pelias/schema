@@ -177,7 +177,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 132, 'lots of filters' );
+    t.equal( analyzer.filter.length, 133, 'lots of filters' );
     t.end();
   });
 };

@@ -95,7 +95,8 @@ function generate(){
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
-            "asciifolding"
+            "asciifolding",
+            "remove_duplicate_spaces",
           ].concat( street_suffix.synonyms.map( function( synonym ){
             return "keyword_street_suffix_" + synonym.split(' ')[0];
           })).concat( street_suffix.direction_synonyms.map( function( synonym ){
@@ -147,6 +148,11 @@ function generate(){
           "type" : "pattern_replace",
           "pattern": "(([0-9])(st|nd|rd|th))",
           "replacement": "$2"
+        },
+        "remove_duplicate_spaces" : {
+          "type" : "pattern_replace",
+          "pattern": " +",
+          "replacement": " "
         }
         // more generated below
       },
