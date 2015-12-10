@@ -1355,6 +1355,10 @@
           "tree": "quadtree",
           "tree_levels": "20"
         },
+        "bounding_box": {
+          "type": "geo_shape",
+          "store": "yes"
+        },
         "source_id": {
           "type": "string",
           "index_analyzer": "keyword",
