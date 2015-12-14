@@ -49,6 +49,7 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
+            "address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
@@ -137,6 +138,10 @@ function generate(){
         "street_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.synonyms
+        },
+        "address_suffix_expansion": {
+          "type": "synonym",
+          "synonyms": street_suffix.safe_expansions
         },
         "direction_synonym": {
           "type": "synonym",

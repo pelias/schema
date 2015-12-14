@@ -92,6 +92,26 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+
+module.exports.tests.functional = function(test, common){
+  test( 'address suffix expansion', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'street', 'FOO rd', [
+      'fo', 'foo', 'ro', 'roa', 'road'
+    ]);
+
+    assertAnalysis( 'place', 'Union Sq', [
+      'un', 'uni', 'unio', 'union', 'sq'
+    ]);
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {

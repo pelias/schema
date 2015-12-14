@@ -89,6 +89,7 @@ module.exports.tests.peliasTwoEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "asciifolding",
       "trim",
+      "address_suffix_expansion",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
