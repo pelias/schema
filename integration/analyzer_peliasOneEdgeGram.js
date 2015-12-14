@@ -22,14 +22,13 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'stop_words', 'a street b avenue c', ['a','b','c'] );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'peliasOneEdgeGramFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
-    assertAnalysis( 'notnull', 'avenue street', [] );
+    assertAnalysis( 'notnull', ' / / ', [] );
 
     assertAnalysis( 'kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
     assertAnalysis( 'kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
@@ -37,6 +36,26 @@ module.exports.tests.analyze = function(test, common){
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
+
+    suite.run( t.end );
+  });
+};
+
+// stop words should be disabled so that the entire street prefix is indexed as ngrams
+module.exports.tests.stop_words = function(test, common){
+  test( 'stop words', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'street suffix', 'AB street', [
+      'a', 'ab', 's', 'st', 'str', 'stre', 'stree', 'street'
+    ]);
+
+    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [
+      'a', 'ab', 's', 'st'
+    ]);
 
     suite.run( t.end );
   });
@@ -58,7 +77,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '1', '10', '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen'
+      '1', '10', '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
     ]);
 
     suite.run( t.end );

@@ -22,7 +22,6 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'łA', ['la']);
     assertAnalysis( 'asciifolding', 'ɰA', ['ma']);
     assertAnalysis( 'trim', ' fA ', ['fa'] );
-    assertAnalysis( 'stop_words', 'aa street bb avenue cc', ['aa','bb','cc'] );
     assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
 
     // note, this functionality could be changed in the future in
@@ -34,7 +33,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'peliasTwoEdgeGramFilter', '1 a ab abc abcdefghijk', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['11'] );
     assertAnalysis( 'unique', '11 11 11', ['11'] );
-    assertAnalysis( 'notnull', 'avenue street', [] );
+    assertAnalysis( 'notnull', ' / / ', [] );
 
     assertAnalysis( 'kstem', 'mcdonalds', ['mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
     assertAnalysis( 'kstem', 'McDonald\'s', ['mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
@@ -45,6 +44,26 @@ module.exports.tests.analyze = function(test, common){
 
     // ensure that single grams are not created
     assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','11'] );
+
+    suite.run( t.end );
+  });
+};
+
+// stop words should be disabled so that the entire street prefix is indexed as ngrams
+module.exports.tests.stop_words = function(test, common){
+  test( 'stop words', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'street suffix', 'AB street', [
+      'ab', 'st', 'str', 'stre', 'stree', 'street'
+    ]);
+
+    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [
+      'ab', 'st'
+    ]);
 
     suite.run( t.end );
   });
@@ -66,7 +85,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '10', '101', 'ma', 'map', 'mapz', 'mapze', 'mapzen'
+      '10', '101', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'pl', 'pla', 'plac', 'place'
     ]);
 
     suite.run( t.end );
