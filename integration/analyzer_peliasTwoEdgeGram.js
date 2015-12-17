@@ -24,6 +24,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'trim', ' fA ', ['fa'] );
     assertAnalysis( 'stop_words', 'aa street bb avenue cc', ['aa','bb','cc'] );
     assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
+    assertAnalysis( 'ampersand', 'land', ['la','lan','land'] ); // should not replace inside tokens
 
     // note, this functionality could be changed in the future in
     // order to allow the following cases to pass:
