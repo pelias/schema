@@ -59,6 +59,7 @@ var schema = {
     // geography
     center_point: require('./partial/centroid'),
     shape: require('./partial/shape'),
+    bounding_box: require('./partial/boundingbox'),
 
     // meta info
     source_id: literal,
