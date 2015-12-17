@@ -23,6 +23,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ɰA', ['ma']);
     assertAnalysis( 'trim', ' fA ', ['fa'] );
     assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
+    assertAnalysis( 'ampersand', 'land', ['la','lan','land'] ); // should not replace inside tokens
 
     // note, this functionality could be changed in the future in
     // order to allow the following cases to pass:

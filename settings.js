@@ -108,9 +108,8 @@ function generate(){
       },
       "filter" : {
         "ampersand" :{
-          "type" : "pattern_replace",
-          "pattern" : "and",
-          "replacement" : "&"
+          "type": "synonym",
+          "synonyms": [ "and => &" ]
         },
         "notnull" :{
           "type" : "length",
