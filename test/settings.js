@@ -263,7 +263,7 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
     var filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 1);
-    t.equal(filter.max_gram, 10);
+    t.equal(filter.max_gram, 18);
     t.end();
   });
 };
@@ -276,7 +276,7 @@ module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
     var filter = s.analysis.filter.peliasTwoEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 2);
-    t.equal(filter.max_gram, 10);
+    t.equal(filter.max_gram, 18);
     t.end();
   });
 };

@@ -26,7 +26,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
-    assertAnalysis( 'peliasOneEdgeGramFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'peliasOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', 'avenue street', [] );
@@ -37,6 +37,13 @@ module.exports.tests.analyze = function(test, common){
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
+
+    // ensure that very large grams are created
+    assertAnalysis( 'largeGrams', 'grolmanstrasse', [
+      'g','gr','gro','grol','grolm','grolma','grolman','grolmans','grolmanst',
+      'grolmanstr','grolmanstra','grolmanstras','grolmanstrass',
+      'grolmanstrasse'
+    ]);
 
     suite.run( t.end );
   });
