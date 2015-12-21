@@ -35,6 +35,8 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
     assertAnalysis( 'kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people'] );
 
+    assertAnalysis( 'remove_ordinals', '20th 21st 22nd 23rd', ['2','20','21','22','23'] );
+
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
 

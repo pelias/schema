@@ -33,7 +33,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'kstem', 'mcdonalds restaurant', ['mcdonald','restaurant'] );
     assertAnalysis( 'kstem', 'McDonald\'s Restaurant', ['mcdonald','restaurant'] );
     assertAnalysis( 'kstem', 'walking peoples', ['walking','people'] );
-    
+
     assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcdefghijk'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' ^ ', [] );
@@ -43,6 +43,8 @@ module.exports.tests.analyze = function(test, common){
 
     assertAnalysis( 'stem direction synonyms', 'south by southwest', ['s','by','sw'] );
     assertAnalysis( 'stem direction synonyms', '20 bear road northeast', ['20','bear','rd','ne'] );
+
+    assertAnalysis( 'remove_ordinals', '20th 21st 22nd 23rd', ['20','21','22','23'] );
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), [ '-&' ] );
@@ -71,8 +73,8 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     // both terms should map to same tokens
-    var expected1 = [ '325', 'n', '12th', 'st' ];
-    assertAnalysis( 'address', '325 N 12th St', expected1 );
+    var expected1 = [ '325', 'n', '12', 'st' ];
+    assertAnalysis( 'address', '325 N 12 St', expected1 );
     assertAnalysis( 'address', '325 North 12th Street', expected1 );
 
     // both terms should map to same tokens

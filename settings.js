@@ -37,6 +37,7 @@ function generate(){
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "remove_ordinals",
             "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
@@ -54,6 +55,7 @@ function generate(){
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "remove_ordinals",
             "peliasTwoEdgeGramFilter",
             "unique",
             "notnull"
@@ -71,6 +73,7 @@ function generate(){
             "kstem",
             "street_synonym",
             "direction_synonym",
+            "remove_ordinals",
             "unique",
             "notnull"
           ]
