@@ -45,6 +45,8 @@ function nameAssertion( type, analyzer ){
       }, done );
     });
 
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
     // check dynamically created mapping has
     // inherited from the dynamic_template
     suite.assert( function( done ){
@@ -78,6 +80,8 @@ function phraseAssertion( type, analyzer ){
         body: { phrase: { default: 'foo', alt: 'bar' } }
       }, done );
     });
+
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // check dynamically created mapping has
     // inherited from the dynamic_template
