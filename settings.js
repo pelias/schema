@@ -33,7 +33,6 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
-            "address_stop",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
@@ -50,7 +49,7 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
-            "address_stop",
+            "address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
@@ -109,9 +108,8 @@ function generate(){
       },
       "filter" : {
         "ampersand" :{
-          "type" : "pattern_replace",
-          "pattern" : "and",
-          "replacement" : "&"
+          "type": "synonym",
+          "synonyms": [ "and => &" ]
         },
         "notnull" :{
           "type" : "length",
@@ -120,12 +118,12 @@ function generate(){
         "peliasOneEdgeGramFilter": {
           "type" : "edgeNGram",
           "min_gram" : 1,
-          "max_gram" : 10
+          "max_gram" : 18
         },
         "peliasTwoEdgeGramFilter": {
           "type" : "edgeNGram",
           "min_gram" : 2,
-          "max_gram" : 10
+          "max_gram" : 18
         },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
@@ -139,6 +137,10 @@ function generate(){
         "street_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.synonyms
+        },
+        "address_suffix_expansion": {
+          "type": "synonym",
+          "synonyms": street_suffix.safe_expansions
         },
         "direction_synonym": {
           "type": "synonym",
