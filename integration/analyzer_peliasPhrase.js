@@ -26,6 +26,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // @todo: handle multiple consecutive 'and'
     // assertAnalysis( 'ampersand', 'a and & and b', ['a &','& b'] );
@@ -33,7 +34,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'kstem', 'mcdonalds restaurant', ['mcdonald','restaurant'] );
     assertAnalysis( 'kstem', 'McDonald\'s Restaurant', ['mcdonald','restaurant'] );
     assertAnalysis( 'kstem', 'walking peoples', ['walking','people'] );
-    
+
     assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcdefghijk'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' ^ ', [] );

@@ -61,7 +61,6 @@ module.exports.tests.peliasOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "asciifolding",
       "trim",
-      "address_stop",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
@@ -90,7 +89,7 @@ module.exports.tests.peliasTwoEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "asciifolding",
       "trim",
-      "address_stop",
+      "address_suffix_expansion",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
@@ -235,9 +234,8 @@ module.exports.tests.ampersandFilter = function(test, common) {
     var s = settings();
     t.equal(typeof s.analysis.filter.ampersand, 'object', 'there is a ampersand filter');
     var filter = s.analysis.filter.ampersand;
-    t.equal(filter.type, 'pattern_replace');
-    t.equal(filter.pattern, 'and');
-    t.equal(filter.replacement, '&');
+    t.equal(filter.type, 'synonym');
+    t.deepEqual(filter.synonyms, [ "and => &" ]);
     t.end();
   });
 };
@@ -263,7 +261,7 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
     var filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 1);
-    t.equal(filter.max_gram, 10);
+    t.equal(filter.max_gram, 18);
     t.end();
   });
 };
@@ -276,7 +274,7 @@ module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
     var filter = s.analysis.filter.peliasTwoEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 2);
-    t.equal(filter.max_gram, 10);
+    t.equal(filter.max_gram, 18);
     t.end();
   });
 };
