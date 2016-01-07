@@ -58,6 +58,22 @@ function generate(){
             "notnull"
           ]
         },
+        "peliasAutocompleteQuery": {
+          "type": "custom",
+          "tokenizer":"whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "direction_expansion",
+            "asciifolding",
+            "trim",
+            "address_suffix_expansion",
+            "ampersand",
+            "kstem",
+            "unique",
+            "notnull"
+          ]
+        },
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"whitespace",
@@ -145,6 +161,10 @@ function generate(){
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
+        },
+        "direction_expansion": {
+          "type": "synonym",
+          "synonyms": street_suffix.direction_synonyms_expansions
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",
