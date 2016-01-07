@@ -160,6 +160,18 @@ module.exports.direction_synonyms = [
   "west => w"
 ];
 
+// foo
+module.exports.direction_synonyms_expansions = [
+  "sw => southwest",
+  "se => southeast",
+  "nw => northwest",
+  "ne => northeast",
+  "n => north",
+  "s => south",
+  "e => east",
+  "w => west"
+];
+
 /**
   a list of 'safe' street suffix expansions.
 
