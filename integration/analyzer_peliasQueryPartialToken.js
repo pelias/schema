@@ -36,9 +36,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
-    assertAnalysis( 'kstem', 'mcdonalds', ['mcdonald'] );
-    assertAnalysis( 'kstem', 'McDonald\'s', ['mcdonald'] );
-    assertAnalysis( 'kstem', 'peoples', ['people'] );
+    assertAnalysis( 'no kstem', 'mcdonalds', ['mcdonalds'] );
+    assertAnalysis( 'no kstem', 'McDonald\'s', ['mcdonalds'] );
+    assertAnalysis( 'no kstem', 'peoples', ['peoples'] );
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-&'] );
@@ -92,7 +92,7 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [ 'trinidad', '&', 'tobago' ]);
-    assertAnalysis( 'place', 'Toys "R" Us!', [ 'toy', 'r', 'us' ]);
+    assertAnalysis( 'place', 'Toys "R" Us!', [ 'toys', 'r', 'us' ]);
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 
     suite.run( t.end );
