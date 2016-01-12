@@ -100,11 +100,21 @@ module.exports.tests.remove_ordinals = function(test, common){
     assertAnalysis( 'teens - hundreds', "119th", ["119"] );
     assertAnalysis( 'teens - hundreds', "120th", ["120"] );
 
+    // teens (wrong suffix)
+    assertAnalysis( 'teens - wrong suffix', "11st", ["11st"] );
+    assertAnalysis( 'teens - wrong suffix', "12nd", ["12nd"] );
+    assertAnalysis( 'teens - wrong suffix', "13rd", ["13rd"] );
+    assertAnalysis( 'teens - wrong suffix', "111st", ["111st"] );
+    assertAnalysis( 'teens - wrong suffix', "112nd", ["112nd"] );
+    assertAnalysis( 'teens - wrong suffix', "113rd", ["113rd"] );
+
+    // uppercase
     assertAnalysis( 'uppercase', "1ST", ["1"] );
     assertAnalysis( 'uppercase', "22ND", ["22"] );
     assertAnalysis( 'uppercase', "333RD", ["333"] );
     assertAnalysis( 'uppercase', "4444TH", ["4444"] );
 
+    // autocomplete
     assertAnalysis( 'autocomplete', "26", ["26"] );
     assertAnalysis( 'autocomplete', "26t", ["26"] );
     assertAnalysis( 'autocomplete', "26th", ["26"] );
@@ -112,6 +122,7 @@ module.exports.tests.remove_ordinals = function(test, common){
     assertAnalysis( 'autocomplete', "3r", ["3"] );
     assertAnalysis( 'autocomplete', "3rd", ["3"] );
 
+    // wrong suffix
     assertAnalysis( 'wrong suffix (do nothing)', "0th", ["0th"] );
     assertAnalysis( 'wrong suffix (do nothing)', "26s", ["26s"] );
     assertAnalysis( 'wrong suffix (do nothing)', "26st", ["26st"] );

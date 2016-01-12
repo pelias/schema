@@ -365,8 +365,8 @@ module.exports.tests.removeOrdinalsFilter = function(test, common) {
     t.equal(typeof s.analysis.filter.remove_ordinals, 'object', 'there is an remove_ordinals filter');
     var filter = s.analysis.filter.remove_ordinals;
     t.equal(filter.type, 'pattern_replace');
-    t.equal(filter.pattern, '(([0-9]*1)st?|([0-9]*2)nd?|([0-9]*3)rd?|([0-9]*[456789])th?|([0-9]+0)th?|([0-9]*1[0-9])th?)');
-    t.equal(filter.replacement, '$2$3$4$5$6$7');
+    t.equal(filter.pattern, '(?i)((^| )((1)st?|(2)nd?|(3)rd?|([4-9])th?)|(([0-9]*)(1[0-9])th?)|(([0-9]*[02-9])((1)st?|(2)nd?|(3)rd?|([04-9])th?))($| ))');
+    t.equal(filter.replacement, '$2$4$5$6$7$9$10$12$14$15$16$17$18');
     t.end();
   });
 };
