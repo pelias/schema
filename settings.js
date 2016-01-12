@@ -148,8 +148,8 @@ function generate(){
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",
-          "pattern": "(([0-9]*1)st?|([0-9]*2)nd?|([0-9]*3)rd?|([0-9]*[456789])th?|([0-9]+0)th?)",
-          "replacement": "$2$3$4$5$6"
+          "pattern": "(([0-9]*1)st?|([0-9]*2)nd?|([0-9]*3)rd?|([0-9]*[456789])th?|([0-9]+0)th?|([0-9]*1[0-9])th?)",
+          "replacement": "$2$3$4$5$6$7"
         },
         "remove_duplicate_spaces" : {
           "type" : "pattern_replace",

@@ -76,6 +76,30 @@ module.exports.tests.remove_ordinals = function(test, common){
     assertAnalysis( 'ordindals', "4444th", ["4444"] );
     assertAnalysis( 'ordindals', "2500th", ["2500"] );
 
+    // teens
+    assertAnalysis( 'teens', "11th", ["11"] );
+    assertAnalysis( 'teens', "12th", ["12"] );
+    assertAnalysis( 'teens', "13th", ["13"] );
+    assertAnalysis( 'teens', "14th", ["14"] );
+    assertAnalysis( 'teens', "15th", ["15"] );
+    assertAnalysis( 'teens', "16th", ["16"] );
+    assertAnalysis( 'teens', "17th", ["17"] );
+    assertAnalysis( 'teens', "18th", ["18"] );
+    assertAnalysis( 'teens', "19th", ["19"] );
+    assertAnalysis( 'teens', "20th", ["20"] );
+
+    // teens (hundreds)
+    assertAnalysis( 'teens - hundreds', "111th", ["111"] );
+    assertAnalysis( 'teens - hundreds', "112th", ["112"] );
+    assertAnalysis( 'teens - hundreds', "113th", ["113"] );
+    assertAnalysis( 'teens - hundreds', "114th", ["114"] );
+    assertAnalysis( 'teens - hundreds', "115th", ["115"] );
+    assertAnalysis( 'teens - hundreds', "116th", ["116"] );
+    assertAnalysis( 'teens - hundreds', "117th", ["117"] );
+    assertAnalysis( 'teens - hundreds', "118th", ["118"] );
+    assertAnalysis( 'teens - hundreds', "119th", ["119"] );
+    assertAnalysis( 'teens - hundreds', "120th", ["120"] );
+
     assertAnalysis( 'uppercase', "1ST", ["1"] );
     assertAnalysis( 'uppercase', "22ND", ["22"] );
     assertAnalysis( 'uppercase', "333RD", ["333"] );
