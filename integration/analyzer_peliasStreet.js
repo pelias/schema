@@ -63,6 +63,45 @@ module.exports.tests.normalize_punctuation = function(test, common){
   });
 };
 
+module.exports.tests.remove_ordinals = function(test, common){
+  test( 'remove ordinals', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'ordindals', "1st", ["1"] );
+    assertAnalysis( 'ordindals', "22nd", ["22"] );
+    assertAnalysis( 'ordindals', "333rd", ["333"] );
+    assertAnalysis( 'ordindals', "4444th", ["4444"] );
+    assertAnalysis( 'ordindals', "2500th", ["2500"] );
+
+    assertAnalysis( 'uppercase', "1ST", ["1"] );
+    assertAnalysis( 'uppercase', "22ND", ["22"] );
+    assertAnalysis( 'uppercase', "333RD", ["333"] );
+    assertAnalysis( 'uppercase', "4444TH", ["4444"] );
+
+    assertAnalysis( 'autocomplete', "26", ["26"] );
+    assertAnalysis( 'autocomplete', "26t", ["26"] );
+    assertAnalysis( 'autocomplete', "26th", ["26"] );
+    assertAnalysis( 'autocomplete', "3", ["3"] );
+    assertAnalysis( 'autocomplete', "3r", ["3"] );
+    assertAnalysis( 'autocomplete', "3rd", ["3"] );
+
+    assertAnalysis( 'wrong suffix (do nothing)', "0th", ["0th"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "26s", ["26s"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "26st", ["26st"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "31t", ["31t"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "31th", ["31th"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "21r", ["21r"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "21rd", ["21rd"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "29n", ["29n"] );
+    assertAnalysis( 'wrong suffix (do nothing)', "29nd", ["29nd"] );
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
