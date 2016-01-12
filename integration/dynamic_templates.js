@@ -9,13 +9,13 @@ module.exports.tests = {};
 
 // 'admin' mappings have a different 'name' dynamic_template to the other types
 module.exports.tests.dynamic_templates_name = function(test, common){
-  test( 'admin->name', nameAssertion( 'admin0', 'peliasOneEdgeGram' ) );
+  test( 'admin->name', nameAssertion( 'country', 'peliasOneEdgeGram' ) );
   test( 'document->name', nameAssertion( 'myType', 'peliasTwoEdgeGram' ) );
 };
 
 // all types share the same phrase mapping
 module.exports.tests.dynamic_templates_phrase = function(test, common){
-  test( 'admin->phrase', phraseAssertion( 'admin0', 'peliasPhrase' ) );
+  test( 'admin->phrase', phraseAssertion( 'country', 'peliasPhrase' ) );
   test( 'document->phrase', phraseAssertion( 'myType', 'peliasPhrase' ) );
 };
 

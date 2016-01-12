@@ -44,17 +44,45 @@ var schema = {
       }
     },
 
-    // generic topology
-    alpha3: admin,
+    // hierarchy
+    parent: {
+      type: 'object',
+      dynamic: true,
+      properties: {
+        // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+        alpha3: admin,
 
-    // quattroshapes topology
-    admin0: admin,
-    admin1: admin,
-    admin1_abbr: admin,
-    admin2: admin,
-    local_admin: admin,
-    locality: admin,
-    neighborhood: admin,
+        // https://github.com/whosonfirst/whosonfirst-placetypes#country
+        country: admin,
+        country_abbr: admin,
+        country_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#region
+        region: admin,
+        region_abbr: admin,
+        region_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#county
+        county: admin,
+        county_abbr: admin,
+        county_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#locality
+        locality: admin,
+        locality_abbr: admin,
+        locality_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#localadmin
+        localadmin: admin,
+        localadmin_abbr: admin,
+        localadmin_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#neighbourhood
+        neighbourhood: admin,
+        neighbourhood_abbr: admin,
+        neighbourhood_id: literal
+      }
+    },
 
     // geography
     center_point: require('./partial/centroid'),
