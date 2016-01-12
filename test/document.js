@@ -88,7 +88,7 @@ module.exports.tests.parent_fields = function(test, common) {
 };
 
 // parent field analysis
-// ref: @todo add PR reference url
+// ref: https://github.com/pelias/schema/pull/95
 module.exports.tests.parent_analysis = function(test, common) {
   var prop = schema.properties.parent.properties;
 
