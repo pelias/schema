@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source','layer','name','phrase','address','parent','center_point','shape','bounding_box','source_id','category','population','popularity'];
+  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address', 'admin0', 'admin1', 'admin1_abbr', 'admin2', 'local_admin', 'locality', 'neighborhood', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
@@ -80,7 +80,7 @@ module.exports.tests.address_analysis = function(test, common) {
 
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
-  var fields = ['alpha3', 'country', 'country_abbr', 'country_id', 'region', 'region_abbr', 'region_id', 'county', 'county_abbr', 'county_id', 'locality', 'locality_abbr', 'locality_id', 'localadmin', 'localadmin_abbr', 'localadmin_id', 'neighbourhood', 'neighbourhood_abbr', 'neighbourhood_id'];
+  var fields = ['country', 'country_abbr', 'country_id', 'region', 'region_abbr', 'region_id', 'county', 'county_abbr', 'county_id', 'locality', 'locality_abbr', 'locality_id', 'localadmin', 'localadmin_abbr', 'localadmin_id', 'neighbourhood', 'neighbourhood_abbr', 'neighbourhood_id'];
   test('parent fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
     t.end();
@@ -91,13 +91,6 @@ module.exports.tests.parent_fields = function(test, common) {
 // ref: https://github.com/pelias/schema/pull/95
 module.exports.tests.parent_analysis = function(test, common) {
   var prop = schema.properties.parent.properties;
-
-  test('alpha3', function(t) {
-    t.equal(prop.alpha3.type, 'string');
-    t.equal(prop.alpha3.analyzer, 'peliasAdmin');
-    t.end();
-  });
-
   var fields = ['country','region','county','locality','localadmin','neighbourhood'];
   fields.forEach( function( field ){
     test(field, function(t) {
@@ -110,6 +103,15 @@ module.exports.tests.parent_analysis = function(test, common) {
       t.equal(prop[field+'_id'].search_analyzer, 'keyword');
       t.end();
     });
+  });
+};
+
+module.exports.tests.alpha3_analysis = function(test, common) {
+  var prop = schema.properties.alpha3;
+  test('alpha3', function(t) {
+    t.equal(prop.type, 'string');
+    t.equal(prop.analyzer, 'peliasAdmin');
+    t.end();
   });
 };
 

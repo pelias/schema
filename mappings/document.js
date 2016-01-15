@@ -9,6 +9,7 @@ var schema = {
     // data partitioning
     source: literal,
     layer: literal,
+    alpha3: admin,
 
     // place name (ngram analysis)
     name: hash,
@@ -44,13 +45,20 @@ var schema = {
       }
     },
 
+    // quattroshapes (legacy) hierarchy
+    admin0: admin,
+    admin1: admin,
+    admin1_abbr: admin,
+    admin2: admin,
+    local_admin: admin,
+    locality: admin,
+    neighborhood: admin,
+
     // hierarchy
     parent: {
       type: 'object',
       dynamic: true,
       properties: {
-        // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
-        alpha3: admin,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#country
         country: admin,

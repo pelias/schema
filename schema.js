@@ -41,7 +41,15 @@ var schema = {
     **/
     country: oneGramMapping,
     region: oneGramMapping,
-    county: oneGramMapping
+    county: oneGramMapping,
+
+    /**
+      legacy _type for quattroshapes.
+      @todo: remove these once quattroshapes has been decomissioned.
+    **/
+    admin0: oneGramMapping,
+    admin1: oneGramMapping,
+    admin2: oneGramMapping
   }
 };
 
