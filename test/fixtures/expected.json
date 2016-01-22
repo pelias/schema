@@ -1559,7 +1559,8 @@
           "tree_levels": "20"
         },
         "bounding_box": {
-          "type": "geo_shape",
+          "type": "string",
+          "index": "no",
           "store": "yes"
         },
         "source_id": {
