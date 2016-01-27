@@ -1367,6 +1367,11 @@
           "search_analyzer": "keyword",
           "store": "yes"
         },
+        "alpha3": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -1400,11 +1405,6 @@
               "search_analyzer": "peliasZip"
             }
           }
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
         },
         "admin0": {
           "type": "string",
@@ -1440,6 +1440,108 @@
           "type": "string",
           "analyzer": "peliasAdmin",
           "store": "yes"
+        },
+        "parent": {
+          "type": "object",
+          "dynamic": true,
+          "properties": {
+            "country": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "country_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "country_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "region": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "region_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "region_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "county": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "county_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "county_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "locality": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "locality_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "locality_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "localadmin": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "localadmin_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "localadmin_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "neighbourhood": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "neighbourhood_abbr": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "neighbourhood_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            }
+          }
         },
         "center_point": {
           "type": "geo_point",
@@ -1520,6 +1622,60 @@
         "enabled": false
       },
       "dynamic": "true"
+    },
+    "country": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "region": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "county": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
     },
     "admin0": {
       "dynamic_templates": [

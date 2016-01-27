@@ -21,9 +21,96 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source','layer','name','phrase','address','alpha3','admin0','admin1','admin1_abbr','admin2','local_admin','locality','neighborhood','center_point','shape','bounding_box','source_id','category','population','popularity'];
+  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address', 'admin0', 'admin1', 'admin1_abbr', 'admin2', 'local_admin', 'locality', 'neighborhood', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
+    t.end();
+  });
+};
+
+// should contain the correct address field definitions
+module.exports.tests.address_fields = function(test, common) {
+  var fields = ['name','number','street','zip'];
+  test('address fields specified', function(t) {
+    t.deepEqual(Object.keys(schema.properties.address.properties), fields);
+    t.end();
+  });
+};
+
+// address field analysis
+// ref: https://github.com/pelias/schema/pull/77
+module.exports.tests.address_analysis = function(test, common) {
+  var prop = schema.properties.address.properties;
+
+  // $name analysis is pretty basic, work can be done to improve this, although
+  // at time of writing this field was not used by any API queries.
+  test('name', function(t) {
+    t.equal(prop.name.type, 'string');
+    t.equal(prop.name.index_analyzer, 'keyword');
+    t.equal(prop.name.search_analyzer, 'keyword');
+    t.end();
+  });
+
+  // $number analysis is discussed in: https://github.com/pelias/schema/pull/77
+  test('number', function(t) {
+    t.equal(prop.number.type, 'string');
+    t.equal(prop.number.index_analyzer, 'peliasHousenumber');
+    t.equal(prop.number.search_analyzer, 'peliasHousenumber');
+    t.end();
+  });
+
+  // $street analysis is discussed in: https://github.com/pelias/schema/pull/77
+  test('street', function(t) {
+    t.equal(prop.street.type, 'string');
+    t.equal(prop.street.index_analyzer, 'peliasStreet');
+    t.equal(prop.street.search_analyzer, 'peliasStreet');
+    t.end();
+  });
+
+  // $zip analysis is discussed in: https://github.com/pelias/schema/pull/77
+  // note: this is a poor name, it would be better to rename this field to a more
+  // generic term such as $postalcode as it is not specific to the USA.
+  test('zip', function(t) {
+    t.equal(prop.zip.type, 'string');
+    t.equal(prop.zip.index_analyzer, 'peliasZip');
+    t.equal(prop.zip.search_analyzer, 'peliasZip');
+    t.end();
+  });
+};
+
+// should contain the correct parent field definitions
+module.exports.tests.parent_fields = function(test, common) {
+  var fields = ['country', 'country_abbr', 'country_id', 'region', 'region_abbr', 'region_id', 'county', 'county_abbr', 'county_id', 'locality', 'locality_abbr', 'locality_id', 'localadmin', 'localadmin_abbr', 'localadmin_id', 'neighbourhood', 'neighbourhood_abbr', 'neighbourhood_id'];
+  test('parent fields specified', function(t) {
+    t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
+    t.end();
+  });
+};
+
+// parent field analysis
+// ref: https://github.com/pelias/schema/pull/95
+module.exports.tests.parent_analysis = function(test, common) {
+  var prop = schema.properties.parent.properties;
+  var fields = ['country','region','county','locality','localadmin','neighbourhood'];
+  fields.forEach( function( field ){
+    test(field, function(t) {
+      t.equal(prop[field].type, 'string');
+      t.equal(prop[field].analyzer, 'peliasAdmin');
+      t.equal(prop[field+'_abbr'].type, 'string');
+      t.equal(prop[field+'_abbr'].analyzer, 'peliasAdmin');
+      t.equal(prop[field+'_id'].type, 'string');
+      t.equal(prop[field+'_id'].index_analyzer, 'keyword');
+      t.equal(prop[field+'_id'].search_analyzer, 'keyword');
+      t.end();
+    });
+  });
+};
+
+module.exports.tests.alpha3_analysis = function(test, common) {
+  var prop = schema.properties.alpha3;
+  test('alpha3', function(t) {
+    t.equal(prop.type, 'string');
+    t.equal(prop.analyzer, 'peliasAdmin');
     t.end();
   });
 };

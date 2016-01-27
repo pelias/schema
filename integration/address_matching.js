@@ -8,8 +8,8 @@ var tape = require('tape'),
 
 module.exports.tests = {};
 
-module.exports.tests.source_filter = function(test, common){
-  test( 'mapzen hq', function(t){
+module.exports.tests.functional = function(test, common){
+  test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
