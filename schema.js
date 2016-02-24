@@ -1,55 +1,21 @@
 var doc = require('./mappings/document');
 
-var oneGramMapping = {
-  dynamic_templates: [{
-    nameGram: {
-      path_match: 'name.*',
-      match_mapping_type: 'string',
-      mapping: {
-        type: 'string',
-        analyzer: 'peliasOneEdgeGram',
-        fielddata : {
-          format : 'fst',
-          loading: 'eager_global_ordinals'
-        }
-      }
-    }
-  }]
-};
-
 var schema = {
   settings: require('./settings')(),
   mappings: {
     /**
       the _default_ mapping is applied to all new _type dynamically added after
-      the index was created, see comment below for more info.
+      the index was created.
     **/
     _default_: doc,
 
     /**
-      these 3 _type are created when the index is created, while all other _type
-      are dynamically created as required at run time, this served two purposes:
+      creating at least one _type to avoid errors when searching against
+      an empty database. Having at least one _type means that 0 documents are
+      returned instead of a error from elasticsearch.
 
-      1) creating at least one _type will avoid errors when searching against
-         an empty database. Having at least one _type means that 0 documents are
-         returned instead of a error from elasticsearch.
-
-      2) allows us to define their analysis differently from the other _type.
-         in this case, we will elect to use the $oneGramMapping so that these
-         _type can be searched with a single character. doing so on *all* _type
-         would result in much larger indeces and decreased search performance.
     **/
-    country: oneGramMapping,
-    region: oneGramMapping,
-    county: oneGramMapping,
-
-    /**
-      legacy _type for quattroshapes.
-      @todo: remove these once quattroshapes has been decomissioned.
-    **/
-    admin0: oneGramMapping,
-    admin1: oneGramMapping,
-    admin2: oneGramMapping
+    country: doc
   }
 };
 
