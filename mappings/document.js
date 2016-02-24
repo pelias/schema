@@ -111,7 +111,6 @@ var schema = {
         type: 'string',
         analyzer: 'peliasOneEdgeGram',
         fielddata : {
-          format : 'fst',
           loading: 'eager_global_ordinals'
         }
       }
