@@ -46,24 +46,21 @@ module.exports.tests.address_analysis = function(test, common) {
   // at time of writing this field was not used by any API queries.
   test('name', function(t) {
     t.equal(prop.name.type, 'string');
-    t.equal(prop.name.index_analyzer, 'keyword');
-    t.equal(prop.name.search_analyzer, 'keyword');
+    t.equal(prop.name.analyzer, 'keyword');
     t.end();
   });
 
   // $number analysis is discussed in: https://github.com/pelias/schema/pull/77
   test('number', function(t) {
     t.equal(prop.number.type, 'string');
-    t.equal(prop.number.index_analyzer, 'peliasHousenumber');
-    t.equal(prop.number.search_analyzer, 'peliasHousenumber');
+    t.equal(prop.number.analyzer, 'peliasHousenumber');
     t.end();
   });
 
   // $street analysis is discussed in: https://github.com/pelias/schema/pull/77
   test('street', function(t) {
     t.equal(prop.street.type, 'string');
-    t.equal(prop.street.index_analyzer, 'peliasStreet');
-    t.equal(prop.street.search_analyzer, 'peliasStreet');
+    t.equal(prop.street.analyzer, 'peliasStreet');
     t.end();
   });
 
@@ -72,8 +69,7 @@ module.exports.tests.address_analysis = function(test, common) {
   // generic term such as $postalcode as it is not specific to the USA.
   test('zip', function(t) {
     t.equal(prop.zip.type, 'string');
-    t.equal(prop.zip.index_analyzer, 'peliasZip');
-    t.equal(prop.zip.search_analyzer, 'peliasZip');
+    t.equal(prop.zip.analyzer, 'peliasZip');
     t.end();
   });
 };
@@ -99,8 +95,7 @@ module.exports.tests.parent_analysis = function(test, common) {
       t.equal(prop[field+'_abbr'].type, 'string');
       t.equal(prop[field+'_abbr'].analyzer, 'peliasAdmin');
       t.equal(prop[field+'_id'].type, 'string');
-      t.equal(prop[field+'_id'].index_analyzer, 'keyword');
-      t.equal(prop[field+'_id'].search_analyzer, 'keyword');
+      t.equal(prop[field+'_id'].analyzer, 'keyword');
       t.end();
     });
   });

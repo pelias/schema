@@ -1357,14 +1357,12 @@
       "properties": {
         "source": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "layer": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "alpha3": {
@@ -1386,23 +1384,19 @@
           "properties": {
             "name": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword"
+              "analyzer": "keyword"
             },
             "number": {
               "type": "string",
-              "index_analyzer": "peliasHousenumber",
-              "search_analyzer": "peliasHousenumber"
+              "analyzer": "peliasHousenumber"
             },
             "street": {
               "type": "string",
-              "index_analyzer": "peliasStreet",
-              "search_analyzer": "peliasStreet"
+              "analyzer": "peliasStreet"
             },
             "zip": {
               "type": "string",
-              "index_analyzer": "peliasZip",
-              "search_analyzer": "peliasZip"
+              "analyzer": "peliasZip"
             }
           }
         },
@@ -1457,8 +1451,7 @@
             },
             "country_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "region": {
@@ -1473,8 +1466,7 @@
             },
             "region_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "county": {
@@ -1489,8 +1481,7 @@
             },
             "county_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "locality": {
@@ -1505,8 +1496,7 @@
             },
             "locality_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "localadmin": {
@@ -1521,8 +1511,7 @@
             },
             "localadmin_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "neighbourhood": {
@@ -1537,8 +1526,7 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             }
           }
@@ -1565,14 +1553,12 @@
         },
         "source_id": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "category": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "population": {
@@ -1627,14 +1613,12 @@
       "properties": {
         "source": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "layer": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "alpha3": {
@@ -1656,23 +1640,19 @@
           "properties": {
             "name": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword"
+              "analyzer": "keyword"
             },
             "number": {
               "type": "string",
-              "index_analyzer": "peliasHousenumber",
-              "search_analyzer": "peliasHousenumber"
+              "analyzer": "peliasHousenumber"
             },
             "street": {
               "type": "string",
-              "index_analyzer": "peliasStreet",
-              "search_analyzer": "peliasStreet"
+              "analyzer": "peliasStreet"
             },
             "zip": {
               "type": "string",
-              "index_analyzer": "peliasZip",
-              "search_analyzer": "peliasZip"
+              "analyzer": "peliasZip"
             }
           }
         },
@@ -1727,8 +1707,7 @@
             },
             "country_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "region": {
@@ -1743,8 +1722,7 @@
             },
             "region_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "county": {
@@ -1759,8 +1737,7 @@
             },
             "county_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "locality": {
@@ -1775,8 +1752,7 @@
             },
             "locality_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "localadmin": {
@@ -1791,8 +1767,7 @@
             },
             "localadmin_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             },
             "neighbourhood": {
@@ -1807,8 +1782,7 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "index_analyzer": "keyword",
-              "search_analyzer": "keyword",
+              "analyzer": "keyword",
               "store": "yes"
             }
           }
@@ -1835,14 +1809,12 @@
         },
         "source_id": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "category": {
           "type": "string",
-          "index_analyzer": "keyword",
-          "search_analyzer": "keyword",
+          "analyzer": "keyword",
           "store": "yes"
         },
         "population": {

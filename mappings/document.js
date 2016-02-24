@@ -24,23 +24,19 @@ var schema = {
       properties: {
         name: {
           type: 'string',
-          index_analyzer: 'keyword',
-          search_analyzer: 'keyword'
+          analyzer: 'keyword'
         },
         number: {
           type: 'string',
-          index_analyzer: 'peliasHousenumber',
-          search_analyzer: 'peliasHousenumber',
+          analyzer: 'peliasHousenumber',
         },
         street: {
           type: 'string',
-          index_analyzer: 'peliasStreet',
-          search_analyzer: 'peliasStreet'
+          analyzer: 'peliasStreet'
         },
         zip: {
           type: 'string',
-          index_analyzer: 'peliasZip',
-          search_analyzer: 'peliasZip'
+          analyzer: 'peliasZip'
         }
       }
     },
