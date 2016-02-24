@@ -109,7 +109,7 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasTwoEdgeGram',
+        analyzer: 'peliasOneEdgeGram',
         fielddata : {
           format : 'fst',
           loading: 'eager_global_ordinals'

@@ -19,7 +19,7 @@ module.exports.tests.compile = function(test, common) {
 module.exports.tests.indeces = function(test, common) {
   test('contains "_default_" index definition', function(t) {
     t.equal(typeof schema.mappings._default_, 'object', 'mappings present');
-    t.equal(schema.mappings._default_.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasTwoEdgeGram');
+    t.equal(schema.mappings._default_.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasOneEdgeGram');
     t.end();
   });
   test('explicitly specify some admin indeces and their analyzer', function(t) {

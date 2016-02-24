@@ -123,7 +123,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
       type: 'string',
-      analyzer: 'peliasTwoEdgeGram',
+      analyzer: 'peliasOneEdgeGram',
       fielddata: {
         format: 'fst',
         loading: 'eager_global_ordinals'
