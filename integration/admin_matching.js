@@ -21,22 +21,22 @@ module.exports.tests.functional = function(test, common){
         id: '1', body: { admin: {
           alpha3: 'TST',
           country: 'Test Country',
-          country_abbr: 'TestCountry',
+          country_a: 'TestCountry',
           country_id: '100',
           region: 'Test Region',
-          region_abbr: 'TestRegion',
+          region_a: 'TestRegion',
           region_id: '200',
           county: 'Test County',
-          county_abbr: 'TestCounty',
+          county_a: 'TestCounty',
           county_id: '300',
           locality: 'Test Locality',
-          locality_abbr: 'TestLocality',
+          locality_a: 'TestLocality',
           locality_id: '400',
           localadmin: 'Test LocalAdmin',
-          localadmin_abbr: 'TestLocalAdmin',
+          localadmin_a: 'TestLocalAdmin',
           localadmin_id: '500',
           neighbourhood: 'Test Neighbourhood',
-          neighbourhood_abbr: 'TestNeighbourhood',
+          neighbourhood_a: 'TestNeighbourhood',
           neighbourhood_id: '600',
         }}
       }, done );
@@ -68,12 +68,12 @@ module.exports.tests.functional = function(test, common){
       });
     });
 
-    // search by country_abbr
+    // search by country_a
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
-        body: { query: { match: { 'admin.country_abbr': 'TestCountry' } } }
+        body: { query: { match: { 'admin.country_a': 'TestCountry' } } }
       }, function( err, res ){
         t.equal( err, undefined );
         t.equal( res.hits.total, 1, 'document found' );
