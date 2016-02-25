@@ -21,7 +21,7 @@ env:
  global:
    - CXX=g++-4.8
  matrix:
-   - TEST_SUITE=unit
+   - TEST_SUITE=test
    - TEST_SUITE=integration
 script: "npm run $TEST_SUITE"
 addons:
