@@ -80,7 +80,7 @@ module.exports.tests.address_analysis = function(test, common) {
 
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
-  var fields = ['country', 'country_abbr', 'country_id', 'region', 'region_abbr', 'region_id', 'county', 'county_abbr', 'county_id', 'locality', 'locality_abbr', 'locality_id', 'localadmin', 'localadmin_abbr', 'localadmin_id', 'neighbourhood', 'neighbourhood_abbr', 'neighbourhood_id'];
+  var fields = ['country', 'country_a', 'country_id', 'region', 'region_a', 'region_id', 'county', 'county_a', 'county_id', 'locality', 'locality_a', 'locality_id', 'localadmin', 'localadmin_a', 'localadmin_id', 'neighbourhood', 'neighbourhood_a', 'neighbourhood_id'];
   test('parent fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
     t.end();
@@ -96,8 +96,8 @@ module.exports.tests.parent_analysis = function(test, common) {
     test(field, function(t) {
       t.equal(prop[field].type, 'string');
       t.equal(prop[field].analyzer, 'peliasAdmin');
-      t.equal(prop[field+'_abbr'].type, 'string');
-      t.equal(prop[field+'_abbr'].analyzer, 'peliasAdmin');
+      t.equal(prop[field+'_a'].type, 'string');
+      t.equal(prop[field+'_a'].analyzer, 'peliasAdmin');
       t.equal(prop[field+'_id'].type, 'string');
       t.equal(prop[field+'_id'].index_analyzer, 'keyword');
       t.equal(prop[field+'_id'].search_analyzer, 'keyword');

@@ -1450,7 +1450,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "country_abbr": {
+            "country_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"
@@ -1466,7 +1466,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "region_abbr": {
+            "region_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"
@@ -1482,7 +1482,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "county_abbr": {
+            "county_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"
@@ -1498,7 +1498,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "locality_abbr": {
+            "locality_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"
@@ -1514,7 +1514,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "localadmin_abbr": {
+            "localadmin_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"
@@ -1530,7 +1530,7 @@
               "analyzer": "peliasAdmin",
               "store": "yes"
             },
-            "neighbourhood_abbr": {
+            "neighbourhood_a": {
               "type": "string",
               "analyzer": "peliasAdmin",
               "store": "yes"

@@ -62,32 +62,32 @@ var schema = {
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#country
         country: admin,
-        country_abbr: admin,
+        country_a: admin,
         country_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#region
         region: admin,
-        region_abbr: admin,
+        region_a: admin,
         region_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#county
         county: admin,
-        county_abbr: admin,
+        county_a: admin,
         county_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#locality
         locality: admin,
-        locality_abbr: admin,
+        locality_a: admin,
         locality_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#localadmin
         localadmin: admin,
-        localadmin_abbr: admin,
+        localadmin_a: admin,
         localadmin_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#neighbourhood
         neighbourhood: admin,
-        neighbourhood_abbr: admin,
+        neighbourhood_a: admin,
         neighbourhood_id: literal
       }
     },
