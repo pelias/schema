@@ -33,6 +33,7 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
+            "address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
