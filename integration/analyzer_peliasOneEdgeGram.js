@@ -49,6 +49,35 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
+// address suffix expansions should only performed in a way that is
+// safe for 'partial tokens'.
+module.exports.tests.address_suffix_expansions = function(test, common){
+  test( 'address suffix expansions', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'safe expansions', 'aly', [
+      'a', 'al', 'all', 'alle', 'alley'
+    ]);
+
+    assertAnalysis( 'safe expansions', 'xing', [
+      'c', 'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
+    ]);
+
+    assertAnalysis( 'safe expansions', 'rd', [
+      'r', 'ro', 'roa', 'road'
+    ]);
+
+    assertAnalysis( 'unsafe expansion', 'ct st', [
+      'c', 'ct', 's', 'st'
+    ]);
+
+    suite.run( t.end );
+  });
+};
+
 // stop words should be disabled so that the entire street prefix is indexed as ngrams
 module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
