@@ -18,7 +18,7 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '1', body: { address: {
+        id: '1', body: { address_parts: {
           name: 'Mapzen HQ',
           number: 30,
           street: 'West 26th Street',
@@ -30,7 +30,7 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '2', body: { address: {
+        id: '2', body: { address_parts: {
           name: 'Fake Venue',
           number: 300,
           street: 'west 26th street',
@@ -42,7 +42,7 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '3', body: { address: {
+        id: '3', body: { address_parts: {
           name: 'Mock British Address',
           number: 3000,
           street: 'Buckinghamshire Street',
@@ -57,7 +57,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.number': 30 } }
+          { match: { 'address_parts.number': 30 } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -72,7 +72,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.street': 'west 26th street' } }
+          { match: { 'address_parts.street': 'west 26th street' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -87,7 +87,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.street': 'W 26th ST' } }
+          { match: { 'address_parts.street': 'W 26th ST' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -102,7 +102,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': '10010' } }
+          { match: { 'address_parts.zip': '10010' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -117,7 +117,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': 'e24dn' } }
+          { match: { 'address_parts.zip': 'e24dn' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -132,7 +132,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': '100-10' } }
+          { match: { 'address_parts.zip': '100-10' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -147,7 +147,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': '10 0 10' } }
+          { match: { 'address_parts.zip': '10 0 10' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -162,7 +162,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': 'E2-4DN' } }
+          { match: { 'address_parts.zip': 'E2-4DN' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -177,7 +177,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address.zip': 'E2  4DN' } }
+          { match: { 'address_parts.zip': 'E2  4DN' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );

@@ -18,7 +18,7 @@ var schema = {
     phrase: hash,
 
     // address data
-    address: {
+    address_parts: {
       type: 'object',
       dynamic: true,
       properties: {
@@ -30,7 +30,7 @@ var schema = {
         number: {
           type: 'string',
           index_analyzer: 'peliasHousenumber',
-          search_analyzer: 'peliasHousenumber',
+          search_analyzer: 'peliasHousenumber'
         },
         street: {
           type: 'string',

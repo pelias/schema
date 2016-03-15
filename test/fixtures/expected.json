@@ -1381,7 +1381,7 @@
           "type": "object",
           "dynamic": true
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "properties": {
