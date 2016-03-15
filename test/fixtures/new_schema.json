@@ -823,7 +823,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -1724,7 +1724,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -2625,7 +2625,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -3526,7 +3526,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -4427,7 +4427,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -5328,7 +5328,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -6229,7 +6229,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -7130,7 +7130,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -8031,7 +8031,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -8932,7 +8932,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"
@@ -9833,7 +9833,7 @@
             }
           }
         },
-        "address": {
+        "address_parts": {
           "type": "object",
           "dynamic": true,
           "index": "no"

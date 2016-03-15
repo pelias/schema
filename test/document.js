@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address', 'admin0', 'admin1', 'admin1_abbr', 'admin2', 'local_admin', 'locality', 'neighborhood', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
+  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts', 'admin0', 'admin1', 'admin1_abbr', 'admin2', 'local_admin', 'locality', 'neighborhood', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
@@ -32,7 +32,7 @@ module.exports.tests.fields = function(test, common) {
 module.exports.tests.address_fields = function(test, common) {
   var fields = ['name','number','street','zip'];
   test('address fields specified', function(t) {
-    t.deepEqual(Object.keys(schema.properties.address.properties), fields);
+    t.deepEqual(Object.keys(schema.properties.address_parts.properties), fields);
     t.end();
   });
 };
@@ -40,7 +40,7 @@ module.exports.tests.address_fields = function(test, common) {
 // address field analysis
 // ref: https://github.com/pelias/schema/pull/77
 module.exports.tests.address_analysis = function(test, common) {
-  var prop = schema.properties.address.properties;
+  var prop = schema.properties.address_parts.properties;
 
   // $name analysis is pretty basic, work can be done to improve this, although
   // at time of writing this field was not used by any API queries.
