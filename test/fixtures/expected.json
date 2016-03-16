@@ -46,6 +46,7 @@
             "removeAllZeroNumericPrefix",
             "kstem",
             "peliasTwoEdgeGramFilter",
+            "direction_synonym_contraction_keep_original",
             "unique",
             "notnull"
           ]
@@ -742,7 +743,11 @@
             "tpke => turnpike",
             "vly => valley",
             "vlg => village",
-            "wy => way"
+            "wy => way",
+            "n => north",
+            "s => south",
+            "e => east",
+            "w => west"
           ]
         },
         "direction_synonym": {
@@ -756,6 +761,15 @@
             "south => s",
             "east => e",
             "west => w"
+          ]
+        },
+        "direction_synonym_contraction_keep_original": {
+          "type": "synonym",
+          "synonyms": [
+            "north => north,n",
+            "south => south,s",
+            "east => east,e",
+            "west => west,w"
           ]
         },
         "remove_ordinals": {

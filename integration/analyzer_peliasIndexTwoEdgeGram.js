@@ -16,12 +16,17 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'FA', ['fa']);
-    assertAnalysis( 'asciifolding', 'éA', ['ea']);
+    assertAnalysis( 'asciifolding', 'lé', ['le']);
     assertAnalysis( 'asciifolding', 'ß', ['ss']);
     assertAnalysis( 'asciifolding', 'æ', ['ae']);
     assertAnalysis( 'asciifolding', 'łA', ['la']);
     assertAnalysis( 'asciifolding', 'ɰA', ['ma']);
     assertAnalysis( 'trim', ' fA ', ['fa'] );
+
+    // full_token_address_suffix_expansion
+    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['ro','roa','road'] );
+    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['ce','cen','cent','cente','center'] );
+
     assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
     assertAnalysis( 'ampersand', 'land', ['la','lan','land'] ); // should not replace inside tokens
 
@@ -45,6 +50,12 @@ module.exports.tests.analyze = function(test, common){
 
     // ensure that single grams are not created
     assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','11'] );
+
+    // for directionals (north/south/east/west) we allow single grams
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'a', [] );
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'n', ['no','nor','nort','north','n'] );
+    // note the single gram created below
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'north', ['no','nor','nort','north','n'] );
 
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', [

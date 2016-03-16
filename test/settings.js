@@ -95,6 +95,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
       "removeAllZeroNumericPrefix",
       "kstem",
       "peliasTwoEdgeGramFilter",
+      "direction_synonym_contraction_keep_original",
       "unique",
       "notnull"
     ]);

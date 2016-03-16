@@ -26,6 +26,11 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
+
+    // partial_token_address_suffix_expansion
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
+
     assertAnalysis( 'peliasQueryPartialTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );

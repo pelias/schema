@@ -16,7 +16,7 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
-    assertAnalysis( 'asciifolding', 'é', ['e']);
+    assertAnalysis( 'asciifolding', 'á', ['a']);
     assertAnalysis( 'asciifolding', 'ß', ['s','ss']);
     assertAnalysis( 'asciifolding', 'æ', ['a','ae']);
     assertAnalysis( 'asciifolding', 'ł', ['l']);
@@ -26,6 +26,11 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
+
+    // full_token_address_suffix_expansion
+    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
+    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
+
     assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );

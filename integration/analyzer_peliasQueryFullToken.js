@@ -16,7 +16,7 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
-    assertAnalysis( 'asciifolding', 'é', ['e']);
+    assertAnalysis( 'asciifolding', 'á', ['a']);
     assertAnalysis( 'asciifolding', 'ß', ['ss']);
     assertAnalysis( 'asciifolding', 'æ', ['ae']);
     assertAnalysis( 'asciifolding', 'ł', ['l']);
@@ -26,6 +26,11 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
+
+    // full_token_address_suffix_expansion
+    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['road'] );
+    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['center'] );
+
     assertAnalysis( 'peliasQueryFullTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
