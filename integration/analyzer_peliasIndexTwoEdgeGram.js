@@ -12,7 +12,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'FA', ['fa']);
@@ -31,7 +31,7 @@ module.exports.tests.analyze = function(test, common){
     // assertAnalysis( 'ampersand', 'aa & bb', ['aa','&','bb'] );
     // assertAnalysis( 'ampersand', 'aa and & and bb', ['aa','&','bb'] );
 
-    assertAnalysis( 'peliasTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'peliasIndexTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['11'] );
     assertAnalysis( 'unique', '11 11 11', ['11'] );
     assertAnalysis( 'notnull', ' / / ', [] );
@@ -63,7 +63,7 @@ module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
@@ -91,7 +91,7 @@ module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [
@@ -110,7 +110,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -134,7 +134,7 @@ module.exports.tests.functional = function(test, common){
   test( 'address suffix expansion', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street', 'FOO rd', [
@@ -152,7 +152,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasTwoEdgeGram: ' + name, testFunction);
+    return tape('peliasIndexTwoEdgeGram: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
