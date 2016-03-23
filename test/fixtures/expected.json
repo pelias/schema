@@ -1643,6 +1643,24 @@
         }
       ]
     },
+    "macroregion": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
     "region": {
       "dynamic_templates": [
         {
@@ -1661,7 +1679,61 @@
         }
       ]
     },
+    "macrocounty": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
     "county": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "localadmin": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "locality": {
       "dynamic_templates": [
         {
           "nameGram": {
