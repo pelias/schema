@@ -61,6 +61,7 @@ module.exports.tests.peliasOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "asciifolding",
       "trim",
+      "address_suffix_expansion",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
