@@ -95,6 +95,31 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+module.exports.tests.tokenizer = function(test, common){
+  test( 'tokenizer', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // specify 2 parts with a delimeter
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street,133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+
+    suite.run( t.end );
+  });
+};
+
 // @ref: https://www.elastic.co/guide/en/elasticsearch/guide/current/phrase-matching.html
 // @ref: https://www.elastic.co/guide/en/elasticsearch/guide/current/slop.html
 module.exports.tests.slop = function(test, common){

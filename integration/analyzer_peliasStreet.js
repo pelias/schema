@@ -63,6 +63,28 @@ module.exports.tests.normalize_punctuation = function(test, common){
   });
 };
 
+module.exports.tests.tokenizer = function(test, common){
+  test( 'tokenizer', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // specify 2 streets with a delimeter
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell st', '133 ave' ]);
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
