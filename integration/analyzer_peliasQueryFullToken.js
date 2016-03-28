@@ -118,15 +118,15 @@ module.exports.tests.tokenizer = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // specify 2 streets with a delimeter
-    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell st', '133 ave' ]);
-    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell st', '133 ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
 
     suite.run( t.end );
   });
