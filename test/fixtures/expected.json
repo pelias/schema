@@ -16,17 +16,15 @@
             "notnull"
           ]
         },
-        "peliasOneEdgeGram": {
+        "peliasIndexOneEdgeGram" : {
           "type": "custom",
-          "tokenizer": "whitespace",
-          "char_filter": [
-            "punctuation"
-          ],
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
@@ -35,21 +33,53 @@
             "notnull"
           ]
         },
-        "peliasTwoEdgeGram": {
+        "peliasIndexTwoEdgeGram" : {
           "type": "custom",
-          "tokenizer": "whitespace",
-          "char_filter": [
-            "punctuation"
-          ],
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
             "peliasTwoEdgeGramFilter",
+            "direction_synonym_contraction_keep_original",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryPartialToken" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "partial_token_address_suffix_expansion",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasOneEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryFullToken" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "full_token_address_suffix_expansion",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
             "unique",
             "notnull"
           ]
@@ -514,7 +544,7 @@
             "way => wy"
           ]
         },
-        "address_suffix_expansion": {
+        "partial_token_address_suffix_expansion": {
           "type": "synonym",
           "synonyms": [
             "aly => alley",
@@ -615,6 +645,111 @@
             "wy => way"
           ]
         },
+        "full_token_address_suffix_expansion": {
+          "type": "synonym",
+          "synonyms": [
+            "aly => alley",
+            "anx => annex",
+            "byu => bayou",
+            "bch => beach",
+            "bnd => bend",
+            "blf => bluff",
+            "blfs => bluffs",
+            "btm => bottom",
+            "blvd => boulevard",
+            "brg => bridge",
+            "brk => brook",
+            "cyn => canyon",
+            "cp => cape",
+            "cswy => causeway",
+            "ctr => center",
+            "chnnl => channel",
+            "clf => cliff",
+            "clb => club",
+            "cmn => common",
+            "cmns => commons",
+            "crse => course",
+            "cv => cove",
+            "crk => creek",
+            "crst => crest",
+            "xing => crossing",
+            "xrd => crossroad",
+            "xrds => crossroads",
+            "dl => dale",
+            "dm => dam",
+            "expy => expressway",
+            "fls => falls",
+            "fry => ferry",
+            "fld => field",
+            "flds => fields",
+            "flt => flat",
+            "flts => flats",
+            "frd => ford",
+            "frst => forest",
+            "frg => forge",
+            "frk => fork",
+            "frks => forks",
+            "fwy => freeway",
+            "gdn => garden",
+            "gdns => gardens",
+            "gtwy => gateway",
+            "gln => glenn",
+            "grn => green",
+            "grv => grove",
+            "hbr => harbor",
+            "hvn => haven",
+            "hts => heights",
+            "hwy => highway",
+            "hl => hill",
+            "hls => hills",
+            "holw => hollow",
+            "jct => junction",
+            "ky => key",
+            "kys => keys",
+            "knl => knoll",
+            "knls => knolls",
+            "lndg => landing",
+            "ln => lane",
+            "lgt => light",
+            "lgts => lights",
+            "lck => lock",
+            "lcks => locks",
+            "mnr => manor",
+            "mdw => meadow",
+            "mdws => meadows",
+            "ml => mill",
+            "mls => mills",
+            "mnt => mountain",
+            "mtwy => motorway",
+            "nck => neck",
+            "pkwy => parkway",
+            "psge => pasage",
+            "pne => pine",
+            "pnes => pines",
+            "plz => plaza",
+            "rnch => ranch",
+            "rdg => ridge",
+            "rdgs => ridges",
+            "rd => road",
+            "rte => route",
+            "shr => shore",
+            "shrs => shores",
+            "skwy => skyway",
+            "spg => spring",
+            "spgs => springs",
+            "ste => suite",
+            "trfy => trafficway",
+            "tunl => tunnel",
+            "tpke => turnpike",
+            "vly => valley",
+            "vlg => village",
+            "wy => way",
+            "n => north",
+            "s => south",
+            "e => east",
+            "w => west"
+          ]
+        },
         "direction_synonym": {
           "type": "synonym",
           "synonyms": [
@@ -626,6 +761,15 @@
             "south => s",
             "east => e",
             "west => w"
+          ]
+        },
+        "direction_synonym_contraction_keep_original": {
+          "type": "synonym",
+          "synonyms": [
+            "north => north,n",
+            "south => south,s",
+            "east => east,e",
+            "west => west,w"
           ]
         },
         "remove_ordinals": {
@@ -1592,7 +1736,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasTwoEdgeGram",
+              "analyzer": "peliasIndexTwoEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1633,7 +1777,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1669,7 +1813,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1705,7 +1849,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1759,7 +1903,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1777,7 +1921,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1795,7 +1939,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
