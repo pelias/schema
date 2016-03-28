@@ -72,7 +72,7 @@ function generate(){
         },
         "peliasQueryPartialToken" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -89,7 +89,7 @@ function generate(){
         },
         "peliasQueryFullToken" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -201,8 +201,8 @@ function generate(){
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",
-          "pattern": "(([0-9])(st|nd|rd|th))",
-          "replacement": "$2"
+          "pattern": "(?i)((^| )((1)st?|(2)nd?|(3)rd?|([4-9])th?)|(([0-9]*)(1[0-9])th?)|(([0-9]*[02-9])((1)st?|(2)nd?|(3)rd?|([04-9])th?))($| ))",
+          "replacement": "$2$4$5$6$7$9$10$12$14$15$16$17$18"
         },
         "remove_duplicate_spaces" : {
           "type" : "pattern_replace",
