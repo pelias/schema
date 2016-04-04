@@ -1407,41 +1407,6 @@
             }
           }
         },
-        "admin0": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "admin1": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "admin1_abbr": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "admin2": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "local_admin": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "locality": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
-        "neighborhood": {
-          "type": "string",
-          "analyzer": "peliasAdmin",
-          "store": "yes"
-        },
         "parent": {
           "type": "object",
           "dynamic": true,
@@ -1800,60 +1765,6 @@
       ]
     },
     "locality": {
-      "dynamic_templates": [
-        {
-          "nameGram": {
-            "path_match": "name.*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "string",
-              "analyzer": "peliasOneEdgeGram",
-              "fielddata": {
-                "format": "fst",
-                "loading": "eager_global_ordinals"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "admin0": {
-      "dynamic_templates": [
-        {
-          "nameGram": {
-            "path_match": "name.*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "string",
-              "analyzer": "peliasOneEdgeGram",
-              "fielddata": {
-                "format": "fst",
-                "loading": "eager_global_ordinals"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "admin1": {
-      "dynamic_templates": [
-        {
-          "nameGram": {
-            "path_match": "name.*",
-            "match_mapping_type": "string",
-            "mapping": {
-              "type": "string",
-              "analyzer": "peliasOneEdgeGram",
-              "fielddata": {
-                "format": "fst",
-                "loading": "eager_global_ordinals"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "admin2": {
       "dynamic_templates": [
         {
           "nameGram": {
