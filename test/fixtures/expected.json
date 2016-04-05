@@ -1661,6 +1661,24 @@
         }
       ]
     },
+    "borough": {
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasOneEdgeGram",
+              "fielddata": {
+                "format": "fst",
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ]
+    },
     "region": {
       "dynamic_templates": [
         {
