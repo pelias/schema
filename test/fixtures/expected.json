@@ -1462,6 +1462,22 @@
               "search_analyzer": "keyword",
               "store": "yes"
             },
+            "macroregion": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macroregion_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macroregion_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
             "region": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -1473,6 +1489,22 @@
               "store": "yes"
             },
             "region_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "macrocounty": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macrocounty_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macrocounty_id": {
               "type": "string",
               "index_analyzer": "keyword",
               "search_analyzer": "keyword",
@@ -1505,6 +1537,22 @@
               "store": "yes"
             },
             "locality_id": {
+              "type": "string",
+              "index_analyzer": "keyword",
+              "search_analyzer": "keyword",
+              "store": "yes"
+            },
+            "borough": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "borough_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "borough_id": {
               "type": "string",
               "index_analyzer": "keyword",
               "search_analyzer": "keyword",
