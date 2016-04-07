@@ -132,6 +132,50 @@ module.exports.tests.tokenizer = function(test, common){
   });
 };
 
+// test the minimum amount of slop required to retrieve address documents
+module.exports.tests.slop = function(test, common){
+  test( 'slop', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // index a document
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index,
+        type: 'test',
+        id: '1',
+        body: { name: { default: '52 Görlitzer Straße' } }
+      }, done);
+    });
+
+    // search using 'peliasQueryFullToken'
+    // in this case we require a slop of 3 to return the same
+    // record with the street number and street name reversed.
+    // (as is common in European countries, such as Germany).
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        body: { query: { match: {
+          'name.default': {
+            'analyzer': 'peliasQueryFullToken',
+            'query': 'Görlitzer Straße 52',
+            'type': 'phrase',
+            'slop': 3,
+          }
+        }}}
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, 1, 'document found' );
+        done();
+      });
+    });
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
