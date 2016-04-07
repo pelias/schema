@@ -36,8 +36,8 @@ module.exports.tests.analyze = function(test, common){
     // assertAnalysis( 'ampersand', 'aa & bb', ['aa','&','bb'] );
     // assertAnalysis( 'ampersand', 'aa and & and bb', ['aa','&','bb'] );
 
-    assertAnalysis( 'peliasIndexTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
-    assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['11'] );
+    assertAnalysis( 'peliasIndexTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['1', 'ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['2', '11'] );
     assertAnalysis( 'unique', '11 11 11', ['11'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
@@ -49,7 +49,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-&'] );
 
     // ensure that single grams are not created
-    assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','11'] );
+    assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','1','11'] );
 
     // for directionals (north/south/east/west) we allow single grams
     assertAnalysis( 'direction_synonym_contraction_keep_original', 'a', [] );
@@ -140,8 +140,7 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-
-module.exports.tests.functional = function(test, common){
+module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansion', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
@@ -155,6 +154,24 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'place', 'Union Sq', [
       'un', 'uni', 'unio', 'union', 'sq'
     ]);
+
+    suite.run( t.end );
+  });
+};
+
+// handle special cases for numerals
+module.exports.tests.numerals = function(test, common){
+  test( 'numerals', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // allow single grams for single digit numbers
+    assertAnalysis( 'single digit', '1 2', [ '1', '2' ]);
+
+    // do not produce single grams for 2+ digit numbers
+    assertAnalysis( 'multi digits', '12 999', [ '12', '99', '999' ]);
 
     suite.run( t.end );
   });

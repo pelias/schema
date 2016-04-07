@@ -66,7 +66,9 @@ function generate(){
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "prefixZeroToSingleDigitNumbers",
             "peliasTwoEdgeGramFilter",
+            "removeAllZeroNumericPrefix",
             "direction_synonym_contraction_keep_original",
             "unique",
             "notnull"
@@ -173,6 +175,11 @@ function generate(){
           "type" : "edgeNGram",
           "min_gram" : 2,
           "max_gram" : 18
+        },
+        "prefixZeroToSingleDigitNumbers" :{
+          "type" : "pattern_replace",
+          "pattern" : "^([0-9])$",
+          "replacement" : "0$1"
         },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
