@@ -7,7 +7,7 @@ var oneGramMapping = {
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasOneEdgeGram',
+        analyzer: 'peliasIndexOneEdgeGram',
         fielddata : {
           format : 'fst',
           loading: 'eager_global_ordinals'

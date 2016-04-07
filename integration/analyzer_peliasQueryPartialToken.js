@@ -12,7 +12,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
@@ -26,7 +26,12 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
-    assertAnalysis( 'peliasOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+
+    // partial_token_address_suffix_expansion
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
+
+    assertAnalysis( 'peliasQueryPartialTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
@@ -55,7 +60,7 @@ module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
@@ -83,7 +88,7 @@ module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [
@@ -102,7 +107,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasOneEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -124,7 +129,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasOneEdgeGram: ' + name, testFunction);
+    return tape('peliasQueryPartialToken: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

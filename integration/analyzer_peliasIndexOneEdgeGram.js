@@ -12,43 +12,40 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'lowercase', 'FA', ['fa']);
-    assertAnalysis( 'asciifolding', 'éA', ['ea']);
-    assertAnalysis( 'asciifolding', 'ß', ['ss']);
-    assertAnalysis( 'asciifolding', 'æ', ['ae']);
-    assertAnalysis( 'asciifolding', 'łA', ['la']);
-    assertAnalysis( 'asciifolding', 'ɰA', ['ma']);
-    assertAnalysis( 'trim', ' fA ', ['fa'] );
-    assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
-    assertAnalysis( 'ampersand', 'land', ['la','lan','land'] ); // should not replace inside tokens
+    assertAnalysis( 'lowercase', 'F', ['f']);
+    assertAnalysis( 'asciifolding', 'á', ['a']);
+    assertAnalysis( 'asciifolding', 'ß', ['s','ss']);
+    assertAnalysis( 'asciifolding', 'æ', ['a','ae']);
+    assertAnalysis( 'asciifolding', 'ł', ['l']);
+    assertAnalysis( 'asciifolding', 'ɰ', ['m']);
+    assertAnalysis( 'trim', ' f ', ['f'] );
+    assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
 
-    // note, this functionality could be changed in the future in
-    // order to allow the following cases to pass:
-    // assertAnalysis( 'ampersand', 'aa and bb', ['aa','&','bb'] );
-    // assertAnalysis( 'ampersand', 'aa & bb', ['aa','&','bb'] );
-    // assertAnalysis( 'ampersand', 'aa and & and bb', ['aa','&','bb'] );
+    // full_token_address_suffix_expansion
+    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
+    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
 
-    assertAnalysis( 'peliasTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
-    assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['11'] );
-    assertAnalysis( 'unique', '11 11 11', ['11'] );
+    assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
+    assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
-    assertAnalysis( 'kstem', 'mcdonalds', ['mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'McDonald\'s', ['mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'peoples', ['pe', 'peo', 'peop', 'peopl', 'people'] );
+    assertAnalysis( 'kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
+    assertAnalysis( 'kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
+    assertAnalysis( 'kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people'] );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), ['-&'] );
-
-    // ensure that single grams are not created
-    assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','11'] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
 
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', [
-      'gr','gro','grol','grolm','grolma','grolman','grolmans','grolmanst',
+      'g','gr','gro','grol','grolm','grolma','grolman','grolmans','grolmanst',
       'grolmanstr','grolmanstra','grolmanstras','grolmanstrass',
       'grolmanstrasse'
     ]);
@@ -63,23 +60,23 @@ module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
-      'al', 'all', 'alle', 'alley'
+      'a', 'al', 'all', 'alle', 'alley'
     ]);
 
     assertAnalysis( 'safe expansions', 'xing', [
-      'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
+      'c', 'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
     ]);
 
     assertAnalysis( 'safe expansions', 'rd', [
-      'ro', 'roa', 'road'
+      'r', 'ro', 'roa', 'road'
     ]);
 
     assertAnalysis( 'unsafe expansion', 'ct st', [
-      'ct', 'st'
+      'c', 'ct', 's', 'st'
     ]);
 
     suite.run( t.end );
@@ -91,15 +88,15 @@ module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [
-      'ab', 'st', 'str', 'stre', 'stree', 'street'
+      'a', 'ab', 's', 'st', 'str', 'stre', 'stree', 'street'
     ]);
 
     assertAnalysis( 'street suffix (abbreviation)', 'AB st', [
-      'ab', 'st'
+      'a', 'ab', 's', 'st'
     ]);
 
     suite.run( t.end );
@@ -110,39 +107,19 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
-      'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', 'to', 'tob', 'toba', 'tobag', 'tobago'
+      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', '&', 'to', 'tob', 'toba', 'tobag', 'tobago'
     ]);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
-      'to', 'toy', 'us'
+      't', 'to', 'toy', 'r', 'u', 'us'
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '10', '101', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'pl', 'pla', 'plac', 'place'
-    ]);
-
-    suite.run( t.end );
-  });
-};
-
-
-module.exports.tests.functional = function(test, common){
-  test( 'address suffix expansion', function(t){
-
-    var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
-
-    assertAnalysis( 'street', 'FOO rd', [
-      'fo', 'foo', 'ro', 'roa', 'road'
-    ]);
-
-    assertAnalysis( 'place', 'Union Sq', [
-      'un', 'uni', 'unio', 'union', 'sq'
+      '1', '10', '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
     ]);
 
     suite.run( t.end );
@@ -152,7 +129,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasTwoEdgeGram: ' + name, testFunction);
+    return tape('peliasIndexOneEdgeGram: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
