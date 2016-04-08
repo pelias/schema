@@ -1,4 +1,5 @@
 {
-  "type": "geo_shape",
+  "type": "string",
+  "index": "no",
   "store": "yes"
 }

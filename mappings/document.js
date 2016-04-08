@@ -9,6 +9,7 @@ var schema = {
     // data partitioning
     source: literal,
     layer: literal,
+    alpha3: admin,
 
     // place name (ngram analysis)
     name: hash,
@@ -17,7 +18,7 @@ var schema = {
     phrase: hash,
 
     // address data
-    address: {
+    address_parts: {
       type: 'object',
       dynamic: true,
       properties: {
@@ -29,7 +30,7 @@ var schema = {
         number: {
           type: 'string',
           index_analyzer: 'peliasHousenumber',
-          search_analyzer: 'peliasHousenumber',
+          search_analyzer: 'peliasHousenumber'
         },
         street: {
           type: 'string',
@@ -44,10 +45,7 @@ var schema = {
       }
     },
 
-    // generic topology
-    alpha3: admin,
-
-    // quattroshapes topology
+    // quattroshapes (legacy) hierarchy
     admin0: admin,
     admin1: admin,
     admin1_abbr: admin,
@@ -55,6 +53,59 @@ var schema = {
     local_admin: admin,
     locality: admin,
     neighborhood: admin,
+
+    // hierarchy
+    parent: {
+      type: 'object',
+      dynamic: true,
+      properties: {
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#country
+        country: admin,
+        country_a: admin,
+        country_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#macroregion
+        macroregion: admin,
+        macroregion_a: admin,
+        macroregion_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#region
+        region: admin,
+        region_a: admin,
+        region_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#macrocounty
+        macrocounty: admin,
+        macrocounty_a: admin,
+        macrocounty_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#county
+        county: admin,
+        county_a: admin,
+        county_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#locality
+        locality: admin,
+        locality_a: admin,
+        locality_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#borough
+        borough: admin,
+        borough_a: admin,
+        borough_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#localadmin
+        localadmin: admin,
+        localadmin_a: admin,
+        localadmin_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#neighbourhood
+        neighbourhood: admin,
+        neighbourhood_a: admin,
+        neighbourhood_id: literal
+      }
+    },
 
     // geography
     center_point: require('./partial/centroid'),
