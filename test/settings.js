@@ -44,24 +44,24 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasOneEdgeGramAnalyzer = function(test, common) {
-  test('has peliasOneEdgeGram analyzer', function(t) {
+module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
+  test('has peliasIndexOneEdgeGram analyzer', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasOneEdgeGram, 'object', 'there is a peliasOneEdgeGram analyzer');
-    var analyzer = s.analysis.analyzer.peliasOneEdgeGram;
+    t.equal(typeof s.analysis.analyzer.peliasIndexOneEdgeGram, 'object', 'there is a peliasIndexOneEdgeGram analyzer');
+    var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasOneEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasOneEdgeGram;
+  test('peliasIndexOneEdgeGram token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "asciifolding",
       "trim",
-      "address_suffix_expansion",
+      "full_token_address_suffix_expansion",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
@@ -73,28 +73,29 @@ module.exports.tests.peliasOneEdgeGramAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasTwoEdgeGramAnalyzer = function(test, common) {
-  test('has peliasTwoEdgeGram analyzer', function(t) {
+module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
+  test('has peliasIndexTwoEdgeGram analyzer', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasTwoEdgeGram, 'object', 'there is a peliasTwoEdgeGram analyzer');
-    var analyzer = s.analysis.analyzer.peliasTwoEdgeGram;
+    t.equal(typeof s.analysis.analyzer.peliasIndexTwoEdgeGram, 'object', 'there is a peliasIndexTwoEdgeGram analyzer');
+    var analyzer = s.analysis.analyzer.peliasIndexTwoEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasTwoEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasTwoEdgeGram;
+  test('peliasIndexTwoEdgeGram token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasIndexTwoEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "asciifolding",
       "trim",
-      "address_suffix_expansion",
+      "full_token_address_suffix_expansion",
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
       "peliasTwoEdgeGramFilter",
+      "direction_synonym_contraction_keep_original",
       "unique",
       "notnull"
     ]);
@@ -256,9 +257,9 @@ module.exports.tests.notnullFilter = function(test, common) {
 
 // this filter creates edgeNGrams with the minimum size of 1
 module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
-  test('has peliasOneEdgeGram filter', function(t) {
+  test('has peliasIndexOneEdgeGram filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.peliasOneEdgeGramFilter, 'object', 'there is a peliasOneEdgeGram filter');
+    t.equal(typeof s.analysis.filter.peliasOneEdgeGramFilter, 'object', 'there is a peliasIndexOneEdgeGram filter');
     var filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 1);
@@ -269,9 +270,9 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
 
 // this filter creates edgeNGrams with the minimum size of 2
 module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
-  test('has peliasTwoEdgeGram filter', function(t) {
+  test('has peliasIndexTwoEdgeGram filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.peliasTwoEdgeGramFilter, 'object', 'there is a peliasTwoEdgeGram filter');
+    t.equal(typeof s.analysis.filter.peliasTwoEdgeGramFilter, 'object', 'there is a peliasIndexTwoEdgeGram filter');
     var filter = s.analysis.filter.peliasTwoEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 2);

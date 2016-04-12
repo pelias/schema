@@ -124,7 +124,7 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasTwoEdgeGram',
+        analyzer: 'peliasIndexTwoEdgeGram',
         fielddata : {
           format : 'fst',
           loading: 'eager_global_ordinals'

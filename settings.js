@@ -25,7 +25,7 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasOneEdgeGram" : {
+        "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "whitespace",
           "char_filter" : ["punctuation"],
@@ -33,7 +33,7 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
@@ -42,7 +42,7 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasTwoEdgeGram" : {
+        "peliasIndexTwoEdgeGram" : {
           "type": "custom",
           "tokenizer" : "whitespace",
           "char_filter" : ["punctuation"],
@@ -50,11 +50,45 @@ function generate(){
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
             "peliasTwoEdgeGramFilter",
+            "direction_synonym_contraction_keep_original",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryPartialToken" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "partial_token_address_suffix_expansion",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "peliasOneEdgeGramFilter",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryFullToken" : {
+          "type": "custom",
+          "tokenizer" : "whitespace",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "full_token_address_suffix_expansion",
+            "ampersand",
+            "removeAllZeroNumericPrefix",
+            "kstem",
             "unique",
             "notnull"
           ]
@@ -139,13 +173,21 @@ function generate(){
           "type": "synonym",
           "synonyms": street_suffix.synonyms
         },
-        "address_suffix_expansion": {
+        "partial_token_address_suffix_expansion": {
           "type": "synonym",
-          "synonyms": street_suffix.safe_expansions
+          "synonyms": street_suffix.partial_token_safe_expansions
+        },
+        "full_token_address_suffix_expansion": {
+          "type": "synonym",
+          "synonyms": street_suffix.full_token_safe_expansions
         },
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
+        },
+        "direction_synonym_contraction_keep_original": {
+          "type": "synonym",
+          "synonyms": street_suffix.direction_synonyms_keep_original
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",
