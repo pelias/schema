@@ -1,4 +1,5 @@
-
+var colors = require('colors/safe');
+var config = require('pelias-config').generate();
 var readline = require('readline'),
     rl = readline.createInterface({ input: process.stdin, output: process.stdout }),
     client = require('pelias-esclient')(),
@@ -15,7 +16,14 @@ function drop(){
   });
 }
 
+function warnIfNotLocal() {
+  if(config.esclient.hosts[0].host !== "localhost") {
+    console.log(colors.red("WARNING: DROPPING SCHEMA NOT ON LOCALHOST"));
+  }
+}
+
 function prompt( yes, no ){
+  warnIfNotLocal();
   rl.question( 'Are you sure you want to drop the pelias index and delete ALL records? ', function( answer ){
     if( !answer.match(/^y(es)?$/i) ) return no();
     return yes();
