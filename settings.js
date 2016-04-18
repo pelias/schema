@@ -12,10 +12,20 @@ function generate(){
   // Default settings
   var settings = {
     "analysis": {
+      "tokenizer": {
+        "peliasNameTokenizer": {
+          "type": "pattern",
+          "pattern": "[\\s,/\\\\]+"
+        },
+        "peliasStreetTokenizer": {
+          "type": "pattern",
+          "pattern": "[,/\\\\]+"
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
-          "tokenizer": "whitespace",
+          "tokenizer": "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -27,7 +37,7 @@ function generate(){
         },
         "peliasOneEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -44,7 +54,7 @@ function generate(){
         },
         "peliasTwoEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -61,7 +71,7 @@ function generate(){
         },
         "peliasPhrase": {
           "type": "custom",
-          "tokenizer":"whitespace",
+          "tokenizer":"peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -91,7 +101,7 @@ function generate(){
         },
         "peliasStreet": {
           "type": "custom",
-          "tokenizer":"keyword",
+          "tokenizer":"peliasStreetTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
