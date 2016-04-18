@@ -17,38 +17,34 @@ module.exports.tests.analyze = function(test, common){
 
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'é', ['e']);
-    assertAnalysis( 'asciifolding', 'ß', ['s','ss']);
-    assertAnalysis( 'asciifolding', 'æ', ['a','ae']);
+    assertAnalysis( 'asciifolding', 'ß', ['ss']);
+    assertAnalysis( 'asciifolding', 'æ', ['ae']);
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
+    assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // partial_token_address_suffix_expansion
-    assertAnalysis( 'partial_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
-    assertAnalysis( 'partial_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'rd', ['road'] );
+    assertAnalysis( 'partial_token_address_suffix_expansion', 'ctr', ['center'] );
 
-    assertAnalysis( 'peliasQueryPartialTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'peliasQueryPartialTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
-    assertAnalysis( 'kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people'] );
+    assertAnalysis( 'kstem', 'mcdonalds', ['mcdonald'] );
+    assertAnalysis( 'kstem', 'McDonald\'s', ['mcdonald'] );
+    assertAnalysis( 'kstem', 'peoples', ['people'] );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['-&'] );
 
     // ensure that very large grams are created
-    assertAnalysis( 'largeGrams', 'grolmanstrasse', [
-      'g','gr','gro','grol','grolm','grolma','grolman','grolmans','grolmanst',
-      'grolmanstr','grolmanstra','grolmanstras','grolmanstrass',
-      'grolmanstrasse'
-    ]);
+    assertAnalysis( 'largeGrams', 'grolmanstrasse', ['grolmanstrasse']);
 
     suite.run( t.end );
   });
@@ -63,21 +59,11 @@ module.exports.tests.address_suffix_expansions = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'safe expansions', 'aly', [
-      'a', 'al', 'all', 'alle', 'alley'
-    ]);
+    assertAnalysis( 'safe expansions', 'aly', [ 'alley' ]);
+    assertAnalysis( 'safe expansions', 'xing', [ 'crossing' ]);
+    assertAnalysis( 'safe expansions', 'rd', [ 'road' ]);
 
-    assertAnalysis( 'safe expansions', 'xing', [
-      'c', 'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
-    ]);
-
-    assertAnalysis( 'safe expansions', 'rd', [
-      'r', 'ro', 'roa', 'road'
-    ]);
-
-    assertAnalysis( 'unsafe expansion', 'ct st', [
-      'c', 'ct', 's', 'st'
-    ]);
+    assertAnalysis( 'unsafe expansion', 'ct st', [ 'ct', 'st' ]);
 
     suite.run( t.end );
   });
@@ -91,13 +77,8 @@ module.exports.tests.stop_words = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'street suffix', 'AB street', [
-      'a', 'ab', 's', 'st', 'str', 'stre', 'stree', 'street'
-    ]);
-
-    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [
-      'a', 'ab', 's', 'st'
-    ]);
+    assertAnalysis( 'street suffix', 'AB street', [ 'ab', 'street' ]);
+    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [ 'ab', 'st' ]);
 
     suite.run( t.end );
   });
@@ -110,17 +91,9 @@ module.exports.tests.functional = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'country', 'Trinidad and Tobago', [
-      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', '&', 'to', 'tob', 'toba', 'tobag', 'tobago'
-    ]);
-
-    assertAnalysis( 'place', 'Toys "R" Us!', [
-      't', 'to', 'toy', 'r', 'u', 'us'
-    ]);
-
-    assertAnalysis( 'address', '101 mapzen place', [
-      '1', '10', '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
-    ]);
+    assertAnalysis( 'country', 'Trinidad and Tobago', [ 'trinidad', '&', 'tobago' ]);
+    assertAnalysis( 'place', 'Toys "R" Us!', [ 'toy', 'r', 'us' ]);
+    assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 
     suite.run( t.end );
   });

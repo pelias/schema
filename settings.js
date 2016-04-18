@@ -72,7 +72,6 @@ function generate(){
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
-            "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
           ]
