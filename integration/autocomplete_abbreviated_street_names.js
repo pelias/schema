@@ -14,7 +14,7 @@ module.exports.tests = {};
 
 // index the name as 'Grolmanstraße' and then retrieve with partially complete token 'Grolmanstr.'
 module.exports.tests.index_expanded_form_search_contracted = function(test, common){
-  test( 'index and retrieve expanded form', function(t){
+  test( 'index expanded and retrieve contracted form', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
@@ -71,7 +71,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 
 // index the name as 'Grolmanstr.' and then retrieve with 'Grolmanstraße'
 module.exports.tests.index_contracted_form_search_expanded = function(test, common){
-  test( 'index and retrieve contracted form', function(t){
+  test( 'index contracted and search expanded', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
@@ -86,23 +86,27 @@ module.exports.tests.index_contracted_form_search_expanded = function(test, comm
       }, done);
     });
 
-    // search using 'peliasQueryPartialToken'
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: 'test',
-        body: { query: { match: {
-          'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
-            'query': 'Grolmanstraße'
-          }
-        }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
-        done();
-      });
-    });
+    // @note: these tests are commented out, the issue would be better solved
+    // with https://github.com/pelias/openaddresses/pull/68
+
+    //
+    // // search using 'peliasQueryPartialToken'
+    // suite.assert( function( done ){
+    //   suite.client.search({
+    //     index: suite.props.index,
+    //     type: 'test',
+    //     body: { query: { match: {
+    //       'name.default': {
+    //         'analyzer': 'peliasQueryPartialToken',
+    //         'query': 'Grolmanstraße'
+    //       }
+    //     }}}
+    //   }, function( err, res ){
+    //     t.equal( err, undefined );
+    //     t.equal( res.hits.total, 1, 'document found' );
+    //     done();
+    //   });
+    // });
 
     // search using 'peliasQueryFullToken'
     // @note: this case is currently not supported.
@@ -132,7 +136,7 @@ module.exports.tests.index_contracted_form_search_expanded = function(test, comm
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('autocomplete street synonym expansion: ' + name, testFunction);
+    return tape('autocomplete abbreviated street names: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

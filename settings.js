@@ -87,7 +87,6 @@ function generate(){
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
-            "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
           ]

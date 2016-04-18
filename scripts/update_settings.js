@@ -8,6 +8,7 @@ var _index = 'pelias';
 if( schema.settings.hasOwnProperty('index') &&
     schema.settings.index.hasOwnProperty('number_of_shards') ){
   delete schema.settings.index.number_of_shards;
+  delete schema.settings.index.number_of_replicas;
 }
 
 client.indices.close( { index: _index }, function( err, res ){
