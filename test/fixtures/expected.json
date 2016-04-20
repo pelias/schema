@@ -30,6 +30,7 @@
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "remove_ordinals",
             "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
@@ -49,6 +50,7 @@
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "remove_ordinals",
             "peliasTwoEdgeGramFilter",
             "unique",
             "notnull"
@@ -68,6 +70,7 @@
             "kstem",
             "street_synonym",
             "direction_synonym",
+            "remove_ordinals",
             "unique",
             "notnull"
           ]

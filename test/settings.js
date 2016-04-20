@@ -65,6 +65,7 @@ module.exports.tests.peliasOneEdgeGramAnalyzer = function(test, common) {
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
+      "remove_ordinals",
       "peliasOneEdgeGramFilter",
       "unique",
       "notnull"
@@ -94,6 +95,7 @@ module.exports.tests.peliasTwoEdgeGramAnalyzer = function(test, common) {
       "ampersand",
       "removeAllZeroNumericPrefix",
       "kstem",
+      "remove_ordinals",
       "peliasTwoEdgeGramFilter",
       "unique",
       "notnull"
@@ -123,6 +125,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "kstem",
       "street_synonym",
       "direction_synonym",
+      "remove_ordinals",
       "unique",
       "notnull"
     ]);
