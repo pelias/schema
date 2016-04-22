@@ -63,6 +63,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "trim",
       "full_token_address_suffix_expansion",
       "ampersand",
+      "remove_ordinals",
       "removeAllZeroNumericPrefix",
       "kstem",
       "peliasOneEdgeGramFilter",
@@ -92,9 +93,12 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
       "trim",
       "full_token_address_suffix_expansion",
       "ampersand",
+      "remove_ordinals",
       "removeAllZeroNumericPrefix",
       "kstem",
+      "prefixZeroToSingleDigitNumbers",
       "peliasTwoEdgeGramFilter",
+      "removeAllZeroNumericPrefix",
       "direction_synonym_contraction_keep_original",
       "unique",
       "notnull"
@@ -384,7 +388,7 @@ module.exports.tests.punctuationCharFilter = function(test, common) {
     var char_filter = s.analysis.char_filter.punctuation;
     t.equal(char_filter.type, 'mapping');
     t.true(Array.isArray(char_filter.mappings));
-    t.equal(char_filter.mappings.length, 50);
+    t.equal(char_filter.mappings.length, 47);
     t.end();
   });
 };

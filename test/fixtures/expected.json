@@ -1,10 +1,20 @@
 {
   "settings": {
     "analysis": {
+      "tokenizer": {
+        "peliasNameTokenizer": {
+          "type": "pattern",
+          "pattern": "[\\s,/\\\\]+"
+        },
+        "peliasStreetTokenizer": {
+          "type": "pattern",
+          "pattern": "[,/\\\\]+"
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
-          "tokenizer": "whitespace",
+          "tokenizer": "peliasNameTokenizer",
           "char_filter": [
             "punctuation"
           ],
@@ -18,7 +28,7 @@
         },
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -26,6 +36,7 @@
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
+            "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
             "peliasOneEdgeGramFilter",
@@ -35,7 +46,7 @@
         },
         "peliasIndexTwoEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -43,9 +54,12 @@
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
+            "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
+            "prefixZeroToSingleDigitNumbers",
             "peliasTwoEdgeGramFilter",
+            "removeAllZeroNumericPrefix",
             "direction_synonym_contraction_keep_original",
             "unique",
             "notnull"
@@ -53,7 +67,7 @@
         },
         "peliasQueryPartialToken" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -61,6 +75,7 @@
             "trim",
             "partial_token_address_suffix_expansion",
             "ampersand",
+            "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
             "unique",
@@ -69,12 +84,13 @@
         },
         "peliasQueryFullToken" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
             "trim",
+            "remove_ordinals",
             "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
@@ -85,7 +101,7 @@
         },
         "peliasPhrase": {
           "type": "custom",
-          "tokenizer": "whitespace",
+          "tokenizer": "peliasNameTokenizer",
           "char_filter": [
             "punctuation"
           ],
@@ -121,7 +137,7 @@
         },
         "peliasStreet": {
           "type": "custom",
-          "tokenizer": "keyword",
+          "tokenizer": "peliasStreetTokenizer",
           "char_filter": [
             "punctuation"
           ],
@@ -282,6 +298,11 @@
           "type": "edgeNGram",
           "min_gram": 2,
           "max_gram": 18
+        },
+        "prefixZeroToSingleDigitNumbers" : {
+          "type" : "pattern_replace",
+          "pattern" : "^([0-9])$",
+          "replacement" : "0$1"
         },
         "removeAllZeroNumericPrefix": {
           "type": "pattern_replace",
@@ -1426,7 +1447,6 @@
         "punctuation": {
           "type": "mapping",
           "mappings": [
-            ",=>",
             ".=>",
             "`=>",
             "_=>",
@@ -1453,8 +1473,6 @@
             ":=>",
             ";=>",
             "+=>",
-            "/=>",
-            "\\\\=>",
             "《=>",
             "》=>",
             "—=>",
@@ -1794,7 +1812,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1830,7 +1848,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1866,7 +1884,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
@@ -1884,7 +1902,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "string",
-              "analyzer": "peliasOneEdgeGram",
+              "analyzer": "peliasIndexOneEdgeGram",
               "fielddata": {
                 "format": "fst",
                 "loading": "eager_global_ordinals"
