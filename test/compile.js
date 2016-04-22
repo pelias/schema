@@ -31,15 +31,6 @@ module.exports.tests.indeces = function(test, common) {
     t.equal(schema.mappings.county.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
     t.end();
   });
-  test('explicitly specify some admin indeces and their analyzer (legacy)', function(t) {
-    t.equal(typeof schema.mappings.admin0, 'object', 'mappings present');
-    t.equal(schema.mappings.admin0.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
-    t.equal(typeof schema.mappings.admin1, 'object', 'mappings present');
-    t.equal(schema.mappings.admin1.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
-    t.equal(typeof schema.mappings.admin2, 'object', 'mappings present');
-    t.equal(schema.mappings.admin2.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
-    t.end();
-  });
 };
 
 // some 'admin' types allow single edgeNGrams and so have a different dynamic_template
@@ -47,25 +38,6 @@ module.exports.tests.dynamic_templates = function(test, common) {
   test('dynamic_templates: nameGram', function(t) {
     t.equal(typeof schema.mappings.country.dynamic_templates[0].nameGram, 'object', 'nameGram template specified');
     var template = schema.mappings.country.dynamic_templates[0].nameGram;
-    t.equal(template.path_match, 'name.*');
-    t.equal(template.match_mapping_type, 'string');
-    t.deepEqual(template.mapping, {
-      type: 'string',
-      analyzer: 'peliasIndexOneEdgeGram',
-      fielddata: {
-        format: 'fst',
-        loading: 'eager_global_ordinals'
-      }
-    });
-    t.end();
-  });
-};
-
-// as above for the legacy quattroshapes _types
-module.exports.tests.dynamic_templates_legacy = function(test, common) {
-  test('dynamic_templates: nameGram (legacy)', function(t) {
-    t.equal(typeof schema.mappings.admin0.dynamic_templates[0].nameGram, 'object', 'nameGram template specified');
-    var template = schema.mappings.admin0.dynamic_templates[0].nameGram;
     t.equal(template.path_match, 'name.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {

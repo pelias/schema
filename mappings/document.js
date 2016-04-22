@@ -45,15 +45,6 @@ var schema = {
       }
     },
 
-    // quattroshapes (legacy) hierarchy
-    admin0: admin,
-    admin1: admin,
-    admin1_abbr: admin,
-    admin2: admin,
-    local_admin: admin,
-    locality: admin,
-    neighborhood: admin,
-
     // hierarchy
     parent: {
       type: 'object',
