@@ -160,6 +160,15 @@ module.exports.direction_synonyms = [
   "west => w"
 ];
 
+// note: this is a bit of a hack, it can be placed AFTER an 2+ ngram filter in
+// order to allow single grams in the index.
+module.exports.direction_synonyms_keep_original = [
+  "north => north,n",
+  "south => south,s",
+  "east => east,e",
+  "west => west,w"
+];
+
 /**
   a list of 'safe' street suffix expansions.
 
@@ -183,7 +192,7 @@ module.exports.direction_synonyms = [
  please use judgement when adding new expansions as it may cause the 'jitter'
  behaviour as outlined in https://github.com/pelias/schema/pull/83
 **/
-module.exports.safe_expansions = [
+module.exports.partial_token_safe_expansions = [
   "aly => alley",
   "anx => annex",
   "byu => bayou",
@@ -283,3 +292,13 @@ module.exports.safe_expansions = [
   "vlg => village",
   "wy => way"
 ];
+
+module.exports.full_token_safe_expansions = [];
+
+// copy the unsafe expansions
+module.exports.partial_token_safe_expansions.forEach( function( expansion ){
+  module.exports.full_token_safe_expansions.push( expansion );
+});
+
+// add the expansions which are only safe on complete tokens (not partial tokens)
+module.exports.full_token_safe_expansions.push( "n => north", "s => south", "e => east", "w => west" );
