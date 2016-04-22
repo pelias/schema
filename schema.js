@@ -46,6 +46,7 @@ var schema = {
     county: oneGramMapping,
     localadmin: oneGramMapping,
     locality: oneGramMapping,
+    borough: oneGramMapping,
 
     /**
       legacy _type for quattroshapes.

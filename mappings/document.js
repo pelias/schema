@@ -65,10 +65,20 @@ var schema = {
         country_a: admin,
         country_id: literal,
 
+        // https://github.com/whosonfirst/whosonfirst-placetypes#macroregion
+        macroregion: admin,
+        macroregion_a: admin,
+        macroregion_id: literal,
+
         // https://github.com/whosonfirst/whosonfirst-placetypes#region
         region: admin,
         region_a: admin,
         region_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#macrocounty
+        macrocounty: admin,
+        macrocounty_a: admin,
+        macrocounty_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#county
         county: admin,
@@ -79,6 +89,11 @@ var schema = {
         locality: admin,
         locality_a: admin,
         locality_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#borough
+        borough: admin,
+        borough_a: admin,
+        borough_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#localadmin
         localadmin: admin,
