@@ -45,15 +45,6 @@ var schema = {
       }
     },
 
-    // quattroshapes (legacy) hierarchy
-    admin0: admin,
-    admin1: admin,
-    admin1_abbr: admin,
-    admin2: admin,
-    local_admin: admin,
-    locality: admin,
-    neighborhood: admin,
-
     // hierarchy
     parent: {
       type: 'object',
@@ -124,7 +115,7 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasTwoEdgeGram',
+        analyzer: 'peliasIndexTwoEdgeGram',
         fielddata : {
           format : 'fst',
           loading: 'eager_global_ordinals'

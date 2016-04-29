@@ -31,10 +31,12 @@
     "elasticsearch": ">=1.1.1"
   },
   "dependencies": {
+    "colors": "^1.1.2",
     "mergeable": "latest",
     "pelias-config": "latest"
   },
   "devDependencies": {
+    "difflet": "^1.0.1",
     "elastictest": "^1.2.0",
     "pelias-esclient": "latest",
     "tap-spec": "^4.1.1",

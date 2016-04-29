@@ -21,7 +21,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts', 'admin0', 'admin1', 'admin1_abbr', 'admin2', 'local_admin', 'locality', 'neighborhood', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
+  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
@@ -123,7 +123,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
       type: 'string',
-      analyzer: 'peliasTwoEdgeGram',
+      analyzer: 'peliasIndexTwoEdgeGram',
       fielddata: {
         format: 'fst',
         loading: 'eager_global_ordinals'

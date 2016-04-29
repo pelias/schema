@@ -7,7 +7,7 @@ var oneGramMapping = {
       match_mapping_type: 'string',
       mapping: {
         type: 'string',
-        analyzer: 'peliasOneEdgeGram',
+        analyzer: 'peliasIndexOneEdgeGram',
         fielddata : {
           format : 'fst',
           loading: 'eager_global_ordinals'
@@ -46,15 +46,7 @@ var schema = {
     county: oneGramMapping,
     localadmin: oneGramMapping,
     locality: oneGramMapping,
-    borough: oneGramMapping,
-
-    /**
-      legacy _type for quattroshapes.
-      @todo: remove these once quattroshapes has been decomissioned.
-    **/
-    admin0: oneGramMapping,
-    admin1: oneGramMapping,
-    admin2: oneGramMapping
+    borough: oneGramMapping
   }
 };
 

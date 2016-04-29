@@ -12,10 +12,20 @@ function generate(){
   // Default settings
   var settings = {
     "analysis": {
+      "tokenizer": {
+        "peliasNameTokenizer": {
+          "type": "pattern",
+          "pattern": "[\\s,/\\\\]+"
+        },
+        "peliasStreetTokenizer": {
+          "type": "pattern",
+          "pattern": "[,/\\\\]+"
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
-          "tokenizer": "whitespace",
+          "tokenizer": "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -25,16 +35,17 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasOneEdgeGram" : {
+        "peliasIndexOneEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
             "ampersand",
+            "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "kstem",
             "peliasOneEdgeGramFilter",
@@ -42,26 +53,64 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasTwoEdgeGram" : {
+        "peliasIndexTwoEdgeGram" : {
           "type": "custom",
-          "tokenizer" : "whitespace",
+          "tokenizer" : "peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
             "trim",
-            "address_suffix_expansion",
+            "full_token_address_suffix_expansion",
+            "ampersand",
+            "remove_ordinals",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "prefixZeroToSingleDigitNumbers",
+            "peliasTwoEdgeGramFilter",
+            "removeAllZeroNumericPrefix",
+            "direction_synonym_contraction_keep_original",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryPartialToken" : {
+          "type": "custom",
+          "tokenizer" : "peliasNameTokenizer",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "partial_token_address_suffix_expansion",
+            "ampersand",
+            "remove_ordinals",
+            "removeAllZeroNumericPrefix",
+            "kstem",
+            "unique",
+            "notnull"
+          ]
+        },
+        "peliasQueryFullToken" : {
+          "type": "custom",
+          "tokenizer" : "peliasNameTokenizer",
+          "char_filter" : ["punctuation"],
+          "filter": [
+            "lowercase",
+            "asciifolding",
+            "trim",
+            "remove_ordinals",
+            "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
             "kstem",
-            "peliasTwoEdgeGramFilter",
             "unique",
             "notnull"
           ]
         },
         "peliasPhrase": {
           "type": "custom",
-          "tokenizer":"whitespace",
+          "tokenizer":"peliasNameTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -91,7 +140,7 @@ function generate(){
         },
         "peliasStreet": {
           "type": "custom",
-          "tokenizer":"keyword",
+          "tokenizer":"peliasStreetTokenizer",
           "char_filter" : ["punctuation"],
           "filter": [
             "lowercase",
@@ -126,6 +175,11 @@ function generate(){
           "min_gram" : 2,
           "max_gram" : 18
         },
+        "prefixZeroToSingleDigitNumbers" :{
+          "type" : "pattern_replace",
+          "pattern" : "^([0-9])$",
+          "replacement" : "0$1"
+        },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
           "pattern" : "^(0*)",
@@ -139,18 +193,26 @@ function generate(){
           "type": "synonym",
           "synonyms": street_suffix.synonyms
         },
-        "address_suffix_expansion": {
+        "partial_token_address_suffix_expansion": {
           "type": "synonym",
-          "synonyms": street_suffix.safe_expansions
+          "synonyms": street_suffix.partial_token_safe_expansions
+        },
+        "full_token_address_suffix_expansion": {
+          "type": "synonym",
+          "synonyms": street_suffix.full_token_safe_expansions
         },
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
         },
+        "direction_synonym_contraction_keep_original": {
+          "type": "synonym",
+          "synonyms": street_suffix.direction_synonyms_keep_original
+        },
         "remove_ordinals" : {
           "type" : "pattern_replace",
-          "pattern": "(([0-9])(st|nd|rd|th))",
-          "replacement": "$2"
+          "pattern": "(?i)((^| )((1)st?|(2)nd?|(3)rd?|([4-9])th?)|(([0-9]*)(1[0-9])th?)|(([0-9]*[02-9])((1)st?|(2)nd?|(3)rd?|([04-9])th?))($| ))",
+          "replacement": "$2$4$5$6$7$9$10$12$14$15$16$17$18"
         },
         "remove_duplicate_spaces" : {
           "type" : "pattern_replace",

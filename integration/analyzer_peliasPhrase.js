@@ -95,6 +95,31 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+module.exports.tests.tokenizer = function(test, common){
+  test( 'tokenizer', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // specify 2 parts with a delimeter
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street,133rd Avenue',   [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+    assertAnalysis( 'space',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'st', '133rd', 'ave' ]);
+
+    suite.run( t.end );
+  });
+};
+
 // @ref: https://www.elastic.co/guide/en/elasticsearch/guide/current/phrase-matching.html
 // @ref: https://www.elastic.co/guide/en/elasticsearch/guide/current/slop.html
 module.exports.tests.slop = function(test, common){
@@ -200,6 +225,50 @@ module.exports.tests.slop_query = function(test, common){
 
         t.true( hits[0]._score > hits[1]._score );
         t.true( hits[1]._score > hits[2]._score );
+        done();
+      });
+    });
+
+    suite.run( t.end );
+  });
+};
+
+// test the minimum amount of slop required to retrieve address documents
+module.exports.tests.slop = function(test, common){
+  test( 'slop', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // index a document
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index,
+        type: 'test',
+        id: '1',
+        body: { name: { default: '52 Görlitzer Straße' } }
+      }, done);
+    });
+
+    // search using 'peliasPhrase'
+    // in this case we require a slop of 3 to return the same
+    // record with the street number and street name reversed.
+    // (as is common in European countries, such as Germany).
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        body: { query: { match: {
+          'name.default': {
+            'analyzer': 'peliasPhrase',
+            'query': 'Görlitzer Straße 52',
+            'type': 'phrase',
+            'slop': 3,
+          }
+        }}}
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, 1, 'document found' );
         done();
       });
     });

@@ -12,16 +12,21 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'FA', ['fa']);
-    assertAnalysis( 'asciifolding', 'éA', ['ea']);
+    assertAnalysis( 'asciifolding', 'lé', ['le']);
     assertAnalysis( 'asciifolding', 'ß', ['ss']);
     assertAnalysis( 'asciifolding', 'æ', ['ae']);
     assertAnalysis( 'asciifolding', 'łA', ['la']);
     assertAnalysis( 'asciifolding', 'ɰA', ['ma']);
     assertAnalysis( 'trim', ' fA ', ['fa'] );
+
+    // full_token_address_suffix_expansion
+    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['ro','roa','road'] );
+    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['ce','cen','cent','cente','center'] );
+
     assertAnalysis( 'ampersand', 'aa and bb', ['aa','bb'] );
     assertAnalysis( 'ampersand', 'land', ['la','lan','land'] ); // should not replace inside tokens
 
@@ -31,8 +36,8 @@ module.exports.tests.analyze = function(test, common){
     // assertAnalysis( 'ampersand', 'aa & bb', ['aa','&','bb'] );
     // assertAnalysis( 'ampersand', 'aa and & and bb', ['aa','&','bb'] );
 
-    assertAnalysis( 'peliasTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
-    assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['11'] );
+    assertAnalysis( 'peliasIndexTwoEdgeGramFilter', '1 a ab abc abcdefghij', ['1', 'ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'removeAllZeroNumericPrefix', '0002 00011', ['2', '11'] );
     assertAnalysis( 'unique', '11 11 11', ['11'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
@@ -44,7 +49,13 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-&'] );
 
     // ensure that single grams are not created
-    assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','11'] );
+    assertAnalysis( '1grams', 'a aa b bb 1 11', ['aa','bb','1','11'] );
+
+    // for directionals (north/south/east/west) we allow single grams
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'a', [] );
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'n', ['no','nor','nort','north','n'] );
+    // note the single gram created below
+    assertAnalysis( 'direction_synonym_contraction_keep_original', 'north', ['no','nor','nort','north','n'] );
 
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', [
@@ -63,7 +74,7 @@ module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
@@ -91,7 +102,7 @@ module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [
@@ -110,7 +121,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -129,12 +140,11 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-
-module.exports.tests.functional = function(test, common){
+module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansion', function(t){
 
     var suite = new elastictest.Suite( null, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasTwoEdgeGram' );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street', 'FOO rd', [
@@ -149,10 +159,28 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+// handle special cases for numerals
+module.exports.tests.numerals = function(test, common){
+  test( 'numerals', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // allow single grams for single digit numbers
+    assertAnalysis( 'single digit', '1 2', [ '1', '2' ]);
+
+    // do not produce single grams for 2+ digit numbers
+    assertAnalysis( 'multi digits', '12 999', [ '12', '99', '999' ]);
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('peliasTwoEdgeGram: ' + name, testFunction);
+    return tape('peliasIndexTwoEdgeGram: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){
