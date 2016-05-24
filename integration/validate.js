@@ -10,12 +10,12 @@ module.exports.tests = {};
 
 module.exports.tests.validate = function(test, common){
   test( 'schema', function(t){
-    
+
     var suite = new elastictest.Suite( null, { schema: schema } );
 
     suite.assert( function( done ){
-      suite.client.info({}, function( err, res ){
-        t.equal( res.status, 200 );
+      suite.client.info({}, function( err, res, status ){
+        t.equal( status, 200 );
         done();
       });
     });

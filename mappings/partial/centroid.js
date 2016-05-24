@@ -9,12 +9,7 @@ var schema = {
   /* store geohashes (with prefixes) in order to facilitate the geohash_cell filter */
   'geohash': true,
   'geohash_prefix': true,
-  'geohash_precision': 18,
-
-  /* eager loading should be enabled to prevent cold starts */
-  'fielddata' : {
-    'loading': 'eager_global_ordinals'
-  }
+  'geohash_precision': 18
 };
 
 module.exports = schema;

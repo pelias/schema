@@ -1,22 +1,5 @@
 var doc = require('./mappings/document');
 
-var oneGramMapping = {
-  dynamic_templates: [{
-    nameGram: {
-      path_match: 'name.*',
-      match_mapping_type: 'string',
-      mapping: {
-        type: 'string',
-        analyzer: 'peliasIndexOneEdgeGram',
-        fielddata : {
-          format : 'fst',
-          loading: 'eager_global_ordinals'
-        }
-      }
-    }
-  }]
-};
-
 var schema = {
   settings: require('./settings')(),
   mappings: {
@@ -28,25 +11,22 @@ var schema = {
 
     /**
       these `_type`s are created when the index is created, while all other `_type`
-      are dynamically created as required at run time, this served two purposes:
+      are dynamically created as required at run time due to:
 
-      1) creating at least one _type will avoid errors when searching against
-         an empty database. Having at least one _type means that 0 documents are
-         returned instead of a error from elasticsearch.
+      creating at least one _type will avoid errors when searching against
+      an empty database. Having at least one _type means that 0 documents are
+      returned instead of a error from elasticsearch.
 
-      2) allows us to define their analysis differently from the other `_type`s.
-         in this case, we will elect to use the $oneGramMapping so that these
-         _type can be searched with a single character. doing so on *all* _type
-         would result in much larger indeces and decreased search performance.
+      querying against non-existant _types will result in errors.
     **/
-    country: oneGramMapping,
-    macroregion: oneGramMapping,
-    region: oneGramMapping,
-    macrocounty: oneGramMapping,
-    county: oneGramMapping,
-    localadmin: oneGramMapping,
-    locality: oneGramMapping,
-    borough: oneGramMapping
+    country: doc,
+    macroregion: doc,
+    region: doc,
+    macrocounty: doc,
+    county: doc,
+    localadmin: doc,
+    locality: doc,
+    borough: doc
   }
 };
 

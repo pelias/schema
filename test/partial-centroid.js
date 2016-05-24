@@ -39,15 +39,6 @@ module.exports.tests.geohash = function(test, common) {
   });
 };
 
-// this should be set to 'eager_global_ordinals' in order
-// to build caches at index time rather than query time
-module.exports.tests.fielddata = function(test, common) {
-  test('fielddata configured', function(t) {
-    t.equal(schema.fielddata.loading, 'eager_global_ordinals', 'correct value');
-    t.end();
-  });
-};
-
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
