@@ -38,7 +38,6 @@
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
@@ -56,7 +55,6 @@
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "prefixZeroToSingleDigitNumbers",
             "peliasTwoEdgeGramFilter",
             "removeAllZeroNumericPrefix",
@@ -77,7 +75,6 @@
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "unique",
             "notnull"
           ]
@@ -94,7 +91,6 @@
             "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "unique",
             "notnull"
           ]
@@ -110,7 +106,6 @@
             "asciifolding",
             "trim",
             "ampersand",
-            "kstem",
             "street_synonym",
             "direction_synonym",
             "unique",
