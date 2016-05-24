@@ -31,16 +31,16 @@ module.exports.tests.analyze = function(test, common){
     // @todo: handle multiple consecutive 'and'
     // assertAnalysis( 'ampersand', 'a and & and b', ['a &','& b'] );
 
-    assertAnalysis( 'kstem', 'mcdonalds restaurant', ['mcdonald','restaurant'] );
-    assertAnalysis( 'kstem', 'McDonald\'s Restaurant', ['mcdonald','restaurant'] );
-    assertAnalysis( 'kstem', 'walking peoples', ['walking','people'] );
+    assertAnalysis( 'no kstem', 'mcdonalds', ['mcdonalds'] );
+    assertAnalysis( 'no kstem', 'McDonald\'s', ['mcdonalds'] );
+    assertAnalysis( 'no kstem', 'peoples', ['peoples'] );
 
     assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcdefghijk'] );
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' ^ ', [] );
 
-    assertAnalysis( 'stem street suffixes', 'streets avenue', ['st','ave'] );
-    assertAnalysis( 'stem street suffixes', 'boulevard roads', ['blvd','rd'] );
+    assertAnalysis( 'stem street suffixes', 'streets avenue', ['streets','ave'] );
+    assertAnalysis( 'stem street suffixes', 'boulevard roads', ['blvd','roads'] );
 
     assertAnalysis( 'stem direction synonyms', 'south by southwest', ['s','by','sw'] );
     assertAnalysis( 'stem direction synonyms', '20 bear road northeast', ['20','bear','rd','ne'] );
@@ -64,7 +64,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
-      'toy', 'r', 'us'
+      'toys', 'r', 'us'
     ]);
 
     assertAnalysis( 'address', '101 mapzen pl', [
