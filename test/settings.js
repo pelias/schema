@@ -65,7 +65,6 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "ampersand",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
-      "kstem",
       "peliasOneEdgeGramFilter",
       "unique",
       "notnull"
@@ -95,7 +94,6 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
       "ampersand",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
-      "kstem",
       "prefixZeroToSingleDigitNumbers",
       "peliasTwoEdgeGramFilter",
       "removeAllZeroNumericPrefix",
@@ -125,7 +123,6 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "asciifolding",
       "trim",
       "ampersand",
-      "kstem",
       "street_synonym",
       "direction_synonym",
       "unique",
@@ -190,7 +187,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
 // cycle through all analyzers and ensure the corrsponding token filters are defined
 module.exports.tests.allTokenFiltersPresent = function(test, common) {
   var ES_INBUILT_FILTERS = [
-    'lowercase', 'asciifolding', 'trim', 'word_delimiter', 'kstem', 'unique'
+    'lowercase', 'asciifolding', 'trim', 'word_delimiter', 'unique'
   ];
   test('all token filters present', function(t) {
     var s = settings();

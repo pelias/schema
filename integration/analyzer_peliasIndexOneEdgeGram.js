@@ -36,9 +36,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
-    assertAnalysis( 'kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald'] );
-    assertAnalysis( 'kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people'] );
+    assertAnalysis( 'no kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald', 'mcdonalds'] );
+    assertAnalysis( 'no kstem', 'McDonald\'s', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald', 'mcdonalds'] );
+    assertAnalysis( 'no kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people', 'peoples'] );
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
@@ -115,7 +115,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
-      't', 'to', 'toy', 'r', 'u', 'us'
+      't', 'to', 'toy', 'toys', 'r', 'u', 'us'
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [

@@ -47,7 +47,6 @@ function generate(){
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "peliasOneEdgeGramFilter",
             "unique",
             "notnull"
@@ -65,7 +64,6 @@ function generate(){
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "prefixZeroToSingleDigitNumbers",
             "peliasTwoEdgeGramFilter",
             "removeAllZeroNumericPrefix",
@@ -86,7 +84,6 @@ function generate(){
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "unique",
             "notnull"
           ]
@@ -103,7 +100,6 @@ function generate(){
             "full_token_address_suffix_expansion",
             "ampersand",
             "removeAllZeroNumericPrefix",
-            "kstem",
             "unique",
             "notnull"
           ]
@@ -117,7 +113,6 @@ function generate(){
             "asciifolding",
             "trim",
             "ampersand",
-            "kstem",
             "street_synonym",
             "direction_synonym",
             "unique",
