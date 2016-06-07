@@ -133,6 +133,21 @@ function generate(){
           "tokenizer":"standard",
           "char_filter" : ["numeric"]
         },
+        "goldbergianPeliasHousenumber": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "surround_single_letters_with_!s",
+            "house_number_word_delimiter",
+            "remove_single_letters",
+            "surround_numbers_with_!s",
+            "peliasOneEdgeGramFilter",
+            "eliminate_tokens_starting_with_!",
+            "remove_encapsulating_!s",
+            "unique",
+            "notnull"
+          ]
+        },
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasStreetTokenizer",
@@ -213,7 +228,45 @@ function generate(){
           "type" : "pattern_replace",
           "pattern": " +",
           "replacement": " "
+        },
+        // START OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
+        "surround_single_letters_with_!s":{
+          "description": "wraps single characters with !'s'",
+          "type": "pattern_replace",
+          "pattern": "^([a-z0-9])$",
+          "replacement": "!$1!"
+        },
+        "house_number_word_delimiter": {
+          "description": "splits on letter-to-number transition and vice versa",
+          "type": "word_delimiter",
+          "split_on_numerics": "true",
+          "preserve_original": "true"
+        },
+        "remove_single_letters": {
+          "description": "removes single characters created from house_number_word_delimiter",
+          "type": "length",
+          "min": 2
+        },
+        "surround_numbers_with_!s": {
+          "description": "surrounds numbers with !'s'",
+          "type": "pattern_replace",
+          "pattern": "^([0-9]+[a-z]?)$",
+          "replacement": "!$1!"
+        },
+        "eliminate_tokens_starting_with_!": {
+          "description": "removed tokens starting but not ending with !'s'",
+          "type": "pattern_replace",
+          "pattern": "^!(.*[^!])?$",
+          "replacement": ""
+        },
+        "remove_encapsulating_!s": {
+          "description": "extract the stuff between the !'s'",
+          "type": "pattern_replace",
+          "pattern": "^!(.*)!$",
+          "replacement": "$1"
         }
+        // END OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
+
         // more generated below
       },
       "char_filter": {
