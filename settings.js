@@ -133,6 +133,32 @@ function generate(){
           "tokenizer":"standard",
           "char_filter" : ["numeric"]
         },
+        "goldbergianPeliasHousenumber": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "surround_single_characters_with_!s",
+            "house_number_word_delimiter",
+            "remove_single_characters",
+            "surround_house_numbers_with_!s",
+            "peliasOneEdgeGramFilter",
+            "eliminate_tokens_starting_with_!",
+            "remove_encapsulating_!s",
+            "notnull",
+            "unique"
+          ]
+          // eg: 14a w main st
+          // surround_single_characters_with_!s  -> [14a, !w!, main, st]
+          // house_number_word_delimiter         -> [14, 14a, a, !w!, main, st]
+          // remove_single_characters            -> [14, 14a, !w!, main, st]
+          // surround_house_numbers_with_!s      -> [!14!, !14a!, !w!, main, st]
+          // peliasOneEdgeGramFilter             -> [!, !1, !14, !14!, !, !1, !14, !14a, !14a!, !, !w, !w!, m, ma, mai, main, s, st]
+          // eliminate_tokens_starting_with_!    -> ["", "", "", !14!, "", "", "", "", !14a!, "", "", w, m, ma, mai, main, s, st]
+          // remove_encapsulating_!s             -> ["", "", "", 14, "", "", "", "", 14a, "", "", w, m, ma, mai, main, s, st]
+          // notnull                             -> [14, 14a, w, m, ma, mai, main, s, st]
+          // unique                              -> [14, 14a, w, m, ma, mai, main, s, st]
+
+        },
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasStreetTokenizer",
@@ -213,7 +239,45 @@ function generate(){
           "type" : "pattern_replace",
           "pattern": " +",
           "replacement": " "
+        },
+        // START OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
+        "surround_single_characters_with_!s":{
+          "description": "wraps single characters with !s, needed to protect valid single characters and not those extracted from house numbers (14a creates an 'a' token)",
+          "type": "pattern_replace",
+          "pattern": "^([a-z0-9])$",
+          "replacement": "!$1!"
+        },
+        "house_number_word_delimiter": {
+          "description": "splits on letter-to-number transition and vice versa, splits 14a -> [14, 14a, a]",
+          "type": "word_delimiter",
+          "split_on_numerics": "true",
+          "preserve_original": "true"
+        },
+        "remove_single_characters": {
+          "description": "removes single characters created from house_number_word_delimiter, removes the letter portion of a house number",
+          "type": "length",
+          "min": 2
+        },
+        "surround_house_numbers_with_!s": {
+          "description": "surrounds house numbers with !'s', needed to protect whole house numbers from elimination step after prefix n-gramming",
+          "type": "pattern_replace",
+          "pattern": "^([0-9]+[a-z]?)$",
+          "replacement": "!$1!"
+        },
+        "eliminate_tokens_starting_with_!": {
+          "description": "remove tokens starting but not ending with !'s', saves whole house numbers wrapped in !s",
+          "type": "pattern_replace",
+          "pattern": "^!(.*[^!])?$",
+          "replacement": ""
+        },
+        "remove_encapsulating_!s": {
+          "description": "extract the stuff between the !'s', extract 14 from !14! since we're done the prefix n-gramming step",
+          "type": "pattern_replace",
+          "pattern": "^!(.*)!$",
+          "replacement": "$1"
         }
+        // END OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
+
         // more generated below
       },
       "char_filter": {
