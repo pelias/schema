@@ -65,7 +65,13 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "ampersand",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
+      "surround_single_characters_with_word_markers",
+      "house_number_word_delimiter",
+      "remove_single_characters",
+      "surround_house_numbers_with_word_markers",
       "peliasOneEdgeGramFilter",
+      "eliminate_tokens_starting_with_word_marker",
+      "remove_encapsulating_word_markers",
       "unique",
       "notnull"
     ]);

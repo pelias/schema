@@ -19,7 +19,7 @@ module.exports.tests.compile = function(test, common) {
 module.exports.tests.indeces = function(test, common) {
   test('contains "_default_" index definition', function(t) {
     t.equal(typeof schema.mappings._default_, 'object', 'mappings present');
-    t.equal(schema.mappings._default_.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexTwoEdgeGram');
+    t.equal(schema.mappings._default_.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
     t.end();
   });
   test('explicitly specify some admin indeces and their analyzer', function(t) {
@@ -44,7 +44,6 @@ module.exports.tests.dynamic_templates = function(test, common) {
       type: 'string',
       analyzer: 'peliasIndexOneEdgeGram',
       fielddata: {
-        format: 'fst',
         loading: 'eager_global_ordinals'
       }
     });
@@ -66,7 +65,7 @@ module.exports.tests.current_schema = function(test, common) {
     delete process.env.PELIAS_CONFIG;
 
     // code intentionally commented to allow quick debugging of expected.json
-    // common.diff(fixture, schemaCopy);
+    // common.diff(schemaCopy, fixture);
 
     t.deepEqual(schemaCopy, fixture);
     t.end();

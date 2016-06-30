@@ -10,7 +10,7 @@ module.exports.tests = {};
 // 'admin' mappings have a different 'name' dynamic_template to the other types
 module.exports.tests.dynamic_templates_name = function(test, common){
   test( 'admin->name', nameAssertion( 'country', 'peliasIndexOneEdgeGram' ) );
-  test( 'document->name', nameAssertion( 'myType', 'peliasIndexTwoEdgeGram' ) );
+  test( 'document->name', nameAssertion( 'myType', 'peliasIndexOneEdgeGram' ) );
 };
 
 // all types share the same phrase mapping

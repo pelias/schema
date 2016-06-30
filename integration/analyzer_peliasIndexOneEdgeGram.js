@@ -33,6 +33,7 @@ module.exports.tests.analyze = function(test, common){
 
     assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
+
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
@@ -119,7 +120,30 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '1', '10', '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
+      '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
+    ]);
+
+    suite.run( t.end );
+  });
+};
+
+module.exports.tests.address = function(test, common){
+  test( 'address', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'address', '101 mapzen place', [
+      '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
+    ]);
+
+    assertAnalysis( 'address', '30 w 26 st', [
+      '30', 'w', 'we', 'wes', 'west', '26', 's', 'st'
+    ]);
+
+    assertAnalysis( 'address', '4B 921 83 st', [
+      '4b', '921', '83', 's', 'st'
     ]);
 
     suite.run( t.end );
