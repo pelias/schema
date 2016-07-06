@@ -29,8 +29,7 @@ module.exports.tests.store = function(test, common) {
 // do not perform analysis on categories
 module.exports.tests.analysis = function(test, common) {
   test('index analysis', function(t) {
-    t.equal(schema.index_analyzer, 'keyword', 'should be keyword');
-    t.equal(schema.search_analyzer, 'keyword', 'should be keyword');
+    t.equal(schema.analyzer, 'keyword', 'should be keyword');
     t.end();
   });
 };

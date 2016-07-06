@@ -99,6 +99,29 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+module.exports.tests.address = function(test, common){
+  test( 'address', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'address', '101 mapzen place', [
+      '101', 'mapzen', 'place'
+    ]);
+
+    assertAnalysis( 'address', '30 w 26 st', [
+      '30', 'w', '26', 'st'
+    ]);
+
+    assertAnalysis( 'address', '4B 921 83 st', [
+      '4b', '921', '83', 'st'
+    ]);
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
