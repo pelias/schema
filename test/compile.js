@@ -1,4 +1,3 @@
-
 var path = require('path'),
     schema = require('../'),
     fixture = require('./fixtures/expected.json');

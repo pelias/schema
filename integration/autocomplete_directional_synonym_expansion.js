@@ -1,4 +1,3 @@
-
 // Tests to ensure no regressions in the way the autocomplete analyzers handle
 // synonym expansions and the corresponding matching of those tokens.
 
