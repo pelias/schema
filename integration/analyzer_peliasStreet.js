@@ -15,6 +15,15 @@ module.exports.tests.analyze = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    // expand umlauts
+    assertAnalysis( 'umlaut', 'Häuser', ['haeuser']);
+    assertAnalysis( 'umlaut', 'Malmö', ['malmoe']);
+    assertAnalysis( 'umlaut', 'Bücher', ['buecher']);
+    assertAnalysis( 'umlaut', 'Äpfel', ['aepfel']);
+    assertAnalysis( 'umlaut', 'Österreich', ['oesterreich']);
+    assertAnalysis( 'umlaut', 'Übergröße', ['uebergroesse']);
+    assertAnalysis( 'umlaut', 'Straße', ['strasse']);
+
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'Max-Beer-Straße', ['max-beer-strasse']);
     assertAnalysis( 'trim', ' f ', ['f'] );

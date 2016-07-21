@@ -15,6 +15,15 @@ module.exports.tests.analyze = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    // expand umlauts
+    assertAnalysis( 'umlaut', 'Häuser', ['h', 'ha', 'hae', 'haeu', 'haeus', 'haeuse', 'haeuser']);
+    assertAnalysis( 'umlaut', 'Malmö', ['m', 'ma', 'mal', 'malm', 'malmo', 'malmoe']);
+    assertAnalysis( 'umlaut', 'Bücher', ['b', 'bu', 'bue', 'buec', 'buech', 'bueche', 'buecher']);
+    assertAnalysis( 'umlaut', 'Äpfel', ['a', 'ae', 'aep', 'aepf', 'aepfe', 'aepfel']);
+    assertAnalysis( 'umlaut', 'Österreich', ['o', 'oe', 'oes', 'oest', 'oeste', 'oester', 'oesterr', 'oesterre', 'oesterrei', 'oesterreic', 'oesterreich']);
+    assertAnalysis( 'umlaut', 'Übergröße', ['u', 'ue', 'ueb', 'uebe', 'ueber', 'ueberg', 'uebergr', 'uebergro', 'uebergroe', 'uebergroes', 'uebergroess', 'uebergroesse']);
+    assertAnalysis( 'umlaut', 'Straße', ['s', 'st', 'str', 'stra', 'stras', 'strass', 'strasse']);
+
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'á', ['a']);
     assertAnalysis( 'asciifolding', 'ß', ['s','ss']);
