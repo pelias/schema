@@ -51,7 +51,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["umlaut","punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -86,7 +86,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexTwoEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["umlaut","punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -118,7 +118,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["umlaut","punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -179,7 +179,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["umlaut","punctuation"], 'punctuation filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
