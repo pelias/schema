@@ -26,10 +26,10 @@ function generate(){
         "peliasAdmin": {
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "word_delimiter",
             "notnull"
@@ -38,10 +38,10 @@ function generate(){
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
@@ -61,10 +61,10 @@ function generate(){
         "peliasIndexTwoEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
@@ -81,10 +81,10 @@ function generate(){
         "peliasQueryPartialToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "partial_token_address_suffix_expansion",
             "ampersand",
@@ -97,10 +97,10 @@ function generate(){
         "peliasQueryFullToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "remove_ordinals",
             "full_token_address_suffix_expansion",
@@ -113,10 +113,10 @@ function generate(){
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "ampersand",
             "street_synonym",
@@ -142,10 +142,10 @@ function generate(){
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasStreetTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "remove_duplicate_spaces",
           ].concat( street_suffix.synonyms.map( function( synonym ){
             return "keyword_street_suffix_" + synonym.split(' ')[0];
@@ -279,6 +279,11 @@ function generate(){
           "type" : "pattern_replace",
           "pattern": "[^0-9]",
           "replacement": " "
+        },
+        "nfkc_normalizer": {
+          "type": "icu_normalizer",
+          "name": "nfkc",
+          "mode": "compose"
         }
       }
     },

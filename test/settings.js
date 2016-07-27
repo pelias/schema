@@ -51,7 +51,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -59,7 +59,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "asciifolding",
+      "icu_folding",
       "trim",
       "full_token_address_suffix_expansion",
       "ampersand",
@@ -86,7 +86,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexTwoEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -94,7 +94,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasIndexTwoEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "asciifolding",
+      "icu_folding",
       "trim",
       "full_token_address_suffix_expansion",
       "ampersand",
@@ -118,7 +118,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -126,7 +126,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "asciifolding",
+      "icu_folding",
       "trim",
       "ampersand",
       "street_synonym",
@@ -179,7 +179,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation"], 'punctuation filter specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -193,7 +193,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
 // cycle through all analyzers and ensure the corrsponding token filters are defined
 module.exports.tests.allTokenFiltersPresent = function(test, common) {
   var ES_INBUILT_FILTERS = [
-    'lowercase', 'asciifolding', 'trim', 'word_delimiter', 'unique'
+    'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique'
   ];
   test('all token filters present', function(t) {
     var s = settings();

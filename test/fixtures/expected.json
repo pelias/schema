@@ -16,11 +16,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "word_delimiter",
             "notnull"
@@ -30,11 +31,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
@@ -55,11 +57,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "full_token_address_suffix_expansion",
             "ampersand",
@@ -77,11 +80,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "partial_token_address_suffix_expansion",
             "ampersand",
@@ -95,11 +99,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "remove_ordinals",
             "full_token_address_suffix_expansion",
@@ -113,11 +118,12 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "trim",
             "ampersand",
             "street_synonym",
@@ -148,11 +154,12 @@
           "type": "custom",
           "tokenizer": "peliasStreetTokenizer",
           "char_filter": [
-            "punctuation"
+            "punctuation",
+            "nfkc_normalizer"
           ],
           "filter": [
             "lowercase",
-            "asciifolding",
+            "icu_folding",
             "remove_duplicate_spaces",
             "keyword_street_suffix_alley",
             "keyword_street_suffix_annex",
@@ -1549,6 +1556,11 @@
           "type": "pattern_replace",
           "pattern": "[^0-9]",
           "replacement": " "
+        },
+        "nfkc_normalizer": {
+          "type": "icu_normalizer",
+          "name": "nfkc",
+          "mode": "compose"
         }
       }
     },
