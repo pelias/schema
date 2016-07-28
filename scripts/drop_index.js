@@ -1,7 +1,7 @@
 var colors = require('colors/safe');
 var config = require('pelias-config').generate();
 var es = require('elasticsearch');
-var client = new es.Client();
+var client = new es.Client(config.esclient);
 var readline = require('readline'),
     rl = readline.createInterface({ input: process.stdin, output: process.stdout }),
     schema = require('../schema');
