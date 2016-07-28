@@ -1,3 +1,4 @@
+var es = require('elasticsearch');
+var client = new es.Client();
 
-var client = require('pelias-esclient')();
 client.info( {}, console.log.bind(console) );
