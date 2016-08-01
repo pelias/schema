@@ -11,8 +11,8 @@ if( isForced() ) drop();
 else prompt( drop, fail );
 
 function drop(){
-  client.indices.delete( { index: 'pelias' }, function( err, res ){
-    console.log( '\n[delete mapping]', '\t', 'pelias', err || '\t', res );
+  client.indices.delete( { index: config.schema.indexName }, function( err, res ){
+    console.log( '\n[delete mapping]', '\t', config.schema.indexName, err || '\t', res );
     process.exit( !!err );
   });
 }
@@ -25,7 +25,7 @@ function warnIfNotLocal() {
 
 function prompt( yes, no ){
   warnIfNotLocal();
-  rl.question( 'Are you sure you want to drop the pelias index and delete ALL records? ', function( answer ){
+  rl.question( 'Are you sure you want to drop the ' + config.schema.indexName + ' index and delete ALL records? ', function( answer ){
     if( !answer.match(/^y(es)?$/i) ) return no();
     return yes();
   });

@@ -1,4 +1,3 @@
-
 // validate analyzer is behaving as expected
 
 var tape = require('tape'),

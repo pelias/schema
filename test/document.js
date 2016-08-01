@@ -1,4 +1,3 @@
-
 var schema = require('../mappings/document');
 
 module.exports.tests = {};
