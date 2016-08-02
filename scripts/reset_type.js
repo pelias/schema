@@ -1,6 +1,7 @@
-
-var client = require('pelias-esclient')(),
-    schema = require('../schema');
+var config = require('pelias-config').generate().esclient;
+var es = require('elasticsearch');
+var client = new es.Client(config);
+var schema = require('../schema');
 
 var _index = ( process.argv.length > 3 ) ? process.argv[3] : 'pelias';
 var _type = ( process.argv.length > 2 ) ? process.argv[2] : null; // get type from cli args

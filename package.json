@@ -12,7 +12,8 @@
     "create_index": "node scripts/create_index",
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
-    "update_settings": "node scripts/update_settings"
+    "update_settings": "node scripts/update_settings",
+    "travis": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -33,12 +34,12 @@
   "dependencies": {
     "colors": "^1.1.2",
     "mergeable": "latest",
-    "pelias-config": "~2.0.0"
+    "pelias-config": "2.1.0"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
+    "elasticsearch": "^11.0.1",
     "elastictest": "^1.2.0",
-    "pelias-esclient": "latest",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.0"
   }
