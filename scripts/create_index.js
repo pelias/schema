@@ -1,9 +1,11 @@
-var config = require('pelias-config').generate().esclient;
+var config = require('pelias-config').generate();
 var es = require('elasticsearch');
-var client = new es.Client(config);
+var client = new es.Client(config.esclient);
 var schema = require('../schema');
 
-client.indices.create( { index: 'pelias', body: schema }, function( err, res ){
-  console.log( '[put mapping]', '\t', 'pelias', err || '\t', res );
+var indexName = config.schema.indexName;
+
+client.indices.create( { index: indexName, body: schema }, function( err, res ){
+  console.log( '[put mapping]', '\t', indexName, err || '\t', res );
   process.exit( !!err );
 });

@@ -1,4 +1,3 @@
-
 // validate bounding box behaves as expected
 
 var tape = require('tape'),

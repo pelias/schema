@@ -1,4 +1,3 @@
-
 var schema = require('../mappings/partial/admin');
 
 module.exports.tests = {};
