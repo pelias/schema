@@ -1,4 +1,3 @@
-
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 var punctuation = require('./punctuation');

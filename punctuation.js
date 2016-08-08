@@ -1,4 +1,3 @@
-
 // These characters will be removed from ngrams/shingles
 // @see: org/apache/lucene/analysis/cn/smart/stopwords.txt
 

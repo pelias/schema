@@ -1,4 +1,3 @@
-
 var tape = require('tape'),
     diff = require('difflet')({ indent : 2, comment : true });
 

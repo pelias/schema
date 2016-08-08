@@ -1,4 +1,3 @@
-
 // http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-root-object-type.html#_dynamic_templates
 
 var tape = require('tape'),

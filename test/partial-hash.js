@@ -1,4 +1,3 @@
-
 var schema = require('../mappings/partial/hash');
 
 module.exports.tests = {};

@@ -1,4 +1,3 @@
-
 // simply validate that the schema doesn't error when inserted in to
 // your local elasticsearch server, useful to sanity check version upgrades.
 

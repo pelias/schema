@@ -1,9 +1,9 @@
-var config = require('pelias-config').generate().esclient;
+var config = require('pelias-config').generate();
 var es = require('elasticsearch');
-var client = new es.Client(config);
+var client = new es.Client(config.esclient);
 var schema = require('../schema');
 
-var _index = 'pelias';
+var _index = config.schema.indexName;
 
 // Error: ElasticsearchIllegalArgumentException[can't change the number of shards for an index
 if( schema.settings.hasOwnProperty('index') &&
