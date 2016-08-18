@@ -58,6 +58,14 @@ node scripts/output_mapping.js mytype;          # single type mapping
 node scripts/output_mapping.js;                 # whole schema file
 ```
 
+#### check all mandatory elasticsearch plugins are correctly installed
+
+Print a list of which plugins are installed and how to install any that are missing.
+
+```bash
+node scripts/check_plugins.js;
+```
+
 ## NPM Module
 
 The `pelias-schema` npm module can be found here:
