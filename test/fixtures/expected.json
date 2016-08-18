@@ -1625,6 +1625,21 @@
               "analyzer": "keyword",
               "store": "yes"
             },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
             "macroregion": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -1884,6 +1899,299 @@
               "store": "yes"
             },
             "country_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "macroregion": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macroregion_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macroregion_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "region": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "region_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "region_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "macrocounty": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macrocounty_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "macrocounty_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "county": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "county_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "county_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "locality": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "locality_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "locality_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "borough": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "borough_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "borough_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "localadmin": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "localadmin_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "localadmin_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "neighbourhood": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "neighbourhood_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            }
+          }
+        },
+        "center_point": {
+          "type": "geo_point",
+          "lat_lon": true,
+          "geohash": true,
+          "geohash_prefix": true,
+          "geohash_precision": 18
+        },
+        "shape": {
+          "type": "geo_shape",
+          "tree": "quadtree",
+          "tree_levels": "20"
+        },
+        "bounding_box": {
+          "type": "string",
+          "index": "no",
+          "store": "yes"
+        },
+        "source_id": {
+          "type": "string",
+          "analyzer": "keyword",
+          "store": "yes"
+        },
+        "category": {
+          "type": "string",
+          "analyzer": "keyword",
+          "store": "yes"
+        },
+        "population": {
+          "type": "long",
+          "null_value": 0
+        },
+        "popularity": {
+          "type": "long",
+          "null_value": 0
+        }
+      },
+      "dynamic_templates": [
+        {
+          "nameGram": {
+            "path_match": "name.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasIndexOneEdgeGram",
+              "fielddata": {
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        },
+        {
+          "phrase": {
+            "path_match": "phrase.*",
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "string",
+              "analyzer": "peliasPhrase",
+              "fielddata": {
+                "loading": "eager_global_ordinals"
+              }
+            }
+          }
+        }
+      ],
+      "_source": {
+        "excludes": [
+          "shape",
+          "phrase"
+        ]
+      },
+      "_all": {
+        "enabled": false
+      },
+      "dynamic": "true"
+    },
+    "dependency": {
+      "properties": {
+        "source": {
+          "type": "string",
+          "analyzer": "keyword",
+          "store": "yes"
+        },
+        "layer": {
+          "type": "string",
+          "analyzer": "keyword",
+          "store": "yes"
+        },
+        "alpha3": {
+          "type": "string",
+          "analyzer": "peliasAdmin",
+          "store": "yes"
+        },
+        "name": {
+          "type": "object",
+          "dynamic": true
+        },
+        "phrase": {
+          "type": "object",
+          "dynamic": true
+        },
+        "address_parts": {
+          "type": "object",
+          "dynamic": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "analyzer": "keyword"
+            },
+            "number": {
+              "type": "string",
+              "analyzer": "peliasHousenumber"
+            },
+            "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "zip": {
+              "type": "string",
+              "analyzer": "peliasZip"
+            }
+          }
+        },
+        "parent": {
+          "type": "object",
+          "dynamic": true,
+          "properties": {
+            "country": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "country_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "country_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -2151,6 +2459,21 @@
               "analyzer": "keyword",
               "store": "yes"
             },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
             "macroregion": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -2410,6 +2733,21 @@
               "store": "yes"
             },
             "country_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -2677,6 +3015,21 @@
               "analyzer": "keyword",
               "store": "yes"
             },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
             "macroregion": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -2936,6 +3289,21 @@
               "store": "yes"
             },
             "country_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -3203,6 +3571,21 @@
               "analyzer": "keyword",
               "store": "yes"
             },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
             "macroregion": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -3466,6 +3849,21 @@
               "analyzer": "keyword",
               "store": "yes"
             },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
             "macroregion": {
               "type": "string",
               "analyzer": "peliasAdmin",
@@ -3725,6 +4123,21 @@
               "store": "yes"
             },
             "country_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "dependency": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin",
+              "store": "yes"
+            },
+            "dependency_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
