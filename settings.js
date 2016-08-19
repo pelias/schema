@@ -25,7 +25,7 @@ function generate(){
         "peliasAdmin": {
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -37,7 +37,7 @@ function generate(){
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -60,7 +60,7 @@ function generate(){
         "peliasIndexTwoEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -80,7 +80,7 @@ function generate(){
         "peliasQueryPartialToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -96,7 +96,7 @@ function generate(){
         "peliasQueryFullToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -112,7 +112,7 @@ function generate(){
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"peliasNameTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -141,7 +141,7 @@ function generate(){
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasStreetTokenizer",
-          "char_filter" : ["punctuation"],
+          "char_filter" : ["umlaut","punctuation"],
           "filter": [
             "lowercase",
             "asciifolding",
@@ -268,6 +268,18 @@ function generate(){
           "mappings" : punctuation.blacklist.map(function(c){
             return c + '=>';
           })
+        },
+        "umlaut" : {
+          "type" : "mapping",
+          "mappings" : [
+            "ä=>ae",
+            "ö=>oe",
+            "ü=>ue",
+            "Ä=>Ae",
+            "Ö=>Oe",
+            "Ü=>Ue",
+            "ß=>ss"
+          ]
         },
         "alphanumeric" : {
           "type" : "pattern_replace",

@@ -16,6 +16,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -30,6 +31,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -55,6 +57,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -77,6 +80,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -95,6 +99,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -113,6 +118,7 @@
           "type": "custom",
           "tokenizer": "peliasNameTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -148,6 +154,7 @@
           "type": "custom",
           "tokenizer": "peliasStreetTokenizer",
           "char_filter": [
+            "umlaut",
             "punctuation"
           ],
           "filter": [
@@ -1538,6 +1545,18 @@
             "［=>",
             "］=>",
             "●=>"
+          ]
+        },
+        "umlaut" : {
+          "type" : "mapping",
+          "mappings" : [
+            "ä=>ae",
+            "ö=>oe",
+            "ü=>ue",
+            "Ä=>Ae",
+            "Ö=>Oe",
+            "Ü=>Ue",
+            "ß=>ss"
           ]
         },
         "alphanumeric": {
