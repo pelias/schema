@@ -176,6 +176,38 @@ module.exports.tests.numerals = function(test, common){
   });
 };
 
+// @see: https://github.com/pelias/api/issues/600
+module.exports.tests.unicode = function(test, common){
+  test( 'normalization', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexTwoEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
+    var latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
+    var combining_acute_accent = String.fromCodePoint(0x0301);
+    var latin_large_letter_e = String.fromCodePoint(0x0045);
+    var latin_small_letter_e = String.fromCodePoint(0x0065);
+
+    // Chambéry (both forms appear the same)
+    var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
+    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+
+    assertAnalysis( 'composed', composed, ['ch', 'cha', 'cham', 'chamb', 'chambe', 'chamber', 'chambery'] );
+    assertAnalysis( 'decomposed', decomposed, ['ch', 'cha', 'cham', 'chamb', 'chambe', 'chamber', 'chambery'] );
+
+    // Één (both forms appear the same)
+    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+
+    assertAnalysis( 'composed', composed, ['ee','een'] );
+    assertAnalysis( 'decomposed', decomposed, ['ee','een'] );
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
