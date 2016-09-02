@@ -75,7 +75,7 @@ module.exports.tests.address_analysis = function(test, common) {
 
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
-  var fields = ['country', 'country_a', 'country_id', 'macroregion', 'macroregion_a', 'macroregion_id', 'region', 'region_a', 'region_id', 'macrocounty', 'macrocounty_a', 'macrocounty_id', 'county', 'county_a', 'county_id', 'locality', 'locality_a', 'locality_id', 'borough', 'borough_a', 'borough_id', 'localadmin', 'localadmin_a', 'localadmin_id', 'neighbourhood', 'neighbourhood_a', 'neighbourhood_id'];
+  var fields = ['country', 'country_a', 'country_id', 'dependency', 'dependency_a', 'dependency_id', 'macroregion', 'macroregion_a', 'macroregion_id', 'region', 'region_a', 'region_id', 'macrocounty', 'macrocounty_a', 'macrocounty_id', 'county', 'county_a', 'county_id', 'locality', 'locality_a', 'locality_id', 'borough', 'borough_a', 'borough_id', 'localadmin', 'localadmin_a', 'localadmin_id', 'neighbourhood', 'neighbourhood_a', 'neighbourhood_id'];
   test('parent fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
     t.end();
