@@ -1,21 +1,32 @@
 
 module.exports.terms =  [
-  "allée", "annexe", "avenue", "autoroute",
-  "baie", "boulevard", "barrage",
-  "centre",
-  "crique",
-  "forêt", "falaise",
+  "allee", "allees", "avenue", "autoroute",
+  "baie", "boulevard", "barrage", "barriere", "bas chemin",
+  "berge", "bifurcation",
+  "centre", "chaussee", "chemin", "cheminement", "corniche", "cottage", "cour",
+  "col", "cours", "crique", "croisement", "croisements", "colline", "collines",
+  "crete", "cretes",
+  "digue", "domaine",
+  "ecart", "ecluse", "enceinte", "enclave", "enclos", "escalier", "espace",
+  "faubourg", "forêt", "falaise",
+  "gue",
   "ile",
-  "jardin", "jardins",
-  "plage", "pont",
-  "rivière", "rond-point", "rivage", "rivages", "rue",
-  "terrasse",
-  "vallée", "viaduc"
+  "jardin", "jardins", "jonction",
+  "manoir",
+  "passage", "plage", "plaine", "pont", "presqu'ile", "pourtour", "peripherique",
+  "prairie", "prairies", "porte",
+  "rivière", "rond-point", "rivage", "rivages", "rue", "ruelle", "route departementale",
+  "rampe", "route nationale", "rocade",
+  "sentier",
+  "terrasse", "tunnel", "traverse", "tertre", "tertres",
+  "vallée", "verger", "viaduc", "voie"
 ];
 
 module.exports.synonyms = [
-  "avenue => av",
-  "boulevard => bd"
+  "boulevard => bd",
+  "route departementale => rd",
+  "route nationale => rn",
+  "faubourg => fbg"
 ];
 
 // note: more descriptive tokens must come before less descriptive ones
@@ -64,7 +75,10 @@ module.exports.direction_synonyms_keep_original = [
  behaviour as outlined in https://github.com/pelias/schema/pull/83
 **/
 module.exports.partial_token_safe_expansions = [
-  "bd => boulevard"
+  "bd => boulevard",
+  "rd => route departementale",
+  "rn => route nationale",
+  "fbg => faubourg"
 ];
 
 module.exports.full_token_safe_expansions = [];
