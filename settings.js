@@ -1,12 +1,31 @@
 var Mergeable = require('mergeable');
 var peliasConfig = require('pelias-config');
 var punctuation = require('./punctuation');
-var street_suffix = require('./street_suffix');
 
 var moduleDir = require('path').dirname("../");
 
 function generate(){
   var config = peliasConfig.generate().export();
+
+  var locales = config.schema.locales ? config.schema.locales : ["en"];
+  var street_suffix = {
+    terms: [],
+    synonyms: [],
+    direction_synonyms: [],
+    direction_synonyms_keep_original: [],
+    partial_token_safe_expansions: [],
+    full_token_safe_expansions: []
+  };
+
+  locales.forEach(function(locale) {
+    var sf = require('./locales/street_suffix.' + locale);
+
+    for (var property in street_suffix) {
+      if(!street_suffix.hasOwnProperty(property) || !sf[property]) continue;
+
+      street_suffix[property] = street_suffix[property].concat(sf[property])
+    }
+  });
 
   // Default settings
   var settings = {

@@ -1,4 +1,7 @@
 {
+  "schema": {
+    "locales": ["en"]
+  },
   "elasticsearch": {
     "settings": {
       "index": {
