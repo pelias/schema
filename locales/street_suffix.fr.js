@@ -1,32 +1,54 @@
 
 module.exports.terms =  [
-  "allee", "allees", "avenue", "autoroute",
-  "baie", "boulevard", "barrage", "barriere", "bas chemin",
-  "berge", "bifurcation",
-  "centre", "chaussee", "chemin", "cheminement", "corniche", "cottage", "cour",
-  "col", "cours", "crique", "croisement", "croisements", "colline", "collines",
-  "crete", "cretes",
-  "digue", "domaine",
-  "ecart", "ecluse", "enceinte", "enclave", "enclos", "escalier", "espace",
-  "faubourg", "forêt", "falaise",
-  "gue",
-  "ile",
-  "jardin", "jardins", "jonction",
-  "manoir",
-  "passage", "plage", "plaine", "pont", "presqu'ile", "pourtour", "peripherique",
-  "prairie", "prairies", "porte",
-  "rivière", "rond-point", "rivage", "rivages", "rue", "ruelle", "route departementale",
-  "rampe", "route nationale", "rocade",
+  "allée", "ancien chemin", "ancienne route", "anse", "arcade", "autoroute", "avenue",
+  "barrière", "bas chemin", "berge", "bois", "boucle", "boulevard", "butte",
+  "côte", "côteau", "cale", "camp", "campagne", "carrefour", "carrière",
+  "carrières", "carré", "cavée", "cercle", "chalet", "champ", "chaussée", "chaussées", "chemin", "cheminement",
+  "clos", "col", "contour", "cour", "cours",
+  "descente", "descentes", "digue", "digues",
+  "échangeur", "écluse", "écluses", "enclave", "enclos", "espace", "esplanade", "esplanades",
+  "faubourg", "fosse", "fosses", "foyer",
+  "galerie", "galeries", "garenne", "gué",
+  "haut chemin", "hauts chemins",
+  "impasse", "ile",
+  "jetée",
+  "montée",
+  "parc", "parvis", "passage", "passerelle", "périphérique", "place", "plaine", "plage", "pointe", "pont", "porte", "pourtour", "presqu'île", "promenade",
+  "quai",
+  "rempart", "rond-point", "rue", "ruelle", "route departementale", "rampe", "route nationale", "rocade",
   "sentier",
-  "terrasse", "tunnel", "traverse", "tertre", "tertres",
-  "vallée", "verger", "viaduc", "voie"
+  "terrasse", "tunnel", "traverse",
+  "vallée", "viaduc", "voie"
 ];
 
 module.exports.synonyms = [
+  "allée => all",
+  "arcade => arc",
+  "autoroute => aut",
+  "barrière => bre",
+  "bas chemin => bch",
+  "berge => ber",
+  "boucle => bcle",
   "boulevard => bd",
+  "carrefour => carf",
+  "cercle => cercl",
+  "chemin => che",
+  "cheminement => chem",
+  "cours => crs",
+  "faubourg => fbg",
+  "jetée => jte",
+  "impasse => imp",
+  "parc => prc",
+  "parvis => prv",
+  "passerelle > ple",
+  "périphérique => peri",
+  "pointe => pte",
+  "presqu'île => prql",
+  "rond-point => rpt",
+  "route => rte",
   "route departementale => rd",
   "route nationale => rn",
-  "faubourg => fbg"
+  "place => pl"
 ];
 
 // note: more descriptive tokens must come before less descriptive ones
@@ -75,10 +97,20 @@ module.exports.direction_synonyms_keep_original = [
  behaviour as outlined in https://github.com/pelias/schema/pull/83
 **/
 module.exports.partial_token_safe_expansions = [
+  "bre => barrière",
   "bd => boulevard",
-  "rd => route departementale",
+  "carf => carrefour",
+  "crs => cours",
+  "jte => jetée",
+  "ple => passerelle",
+  "prc => parc",
+  "prv => parvis",
+  "pte => pointe",
+  "prql => presqu'île",
+  "rd => route départementale",
+  "rpt => rond-point",
   "rn => route nationale",
-  "fbg => faubourg"
+  "rte => route"
 ];
 
 module.exports.full_token_safe_expansions = [];
