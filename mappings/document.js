@@ -52,6 +52,11 @@ var schema = {
         country_a: admin,
         country_id: literal,
 
+        // https://github.com/whosonfirst/whosonfirst-placetypes#dependency
+        dependency: admin,
+        dependency_a: admin,
+        dependency_id: literal,
+
         // https://github.com/whosonfirst/whosonfirst-placetypes#macroregion
         macroregion: admin,
         macroregion_a: admin,

@@ -20,6 +20,7 @@ var schema = {
       querying against non-existant _types will result in errors.
     **/
     country: doc,
+    dependency: doc,
     macroregion: doc,
     region: doc,
     macrocounty: doc,
