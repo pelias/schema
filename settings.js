@@ -318,8 +318,8 @@ function generate(){
     var split = synonym.split(' ');
     settings.analysis.filter[ "keyword_compass_" + split[0] ] = {
       "type": "pattern_replace",
-      "pattern": split[0] + " ",
-      "replacement": split[2] + " "
+      "pattern": split[0],
+      "replacement": split[2]
     }
   });
 
