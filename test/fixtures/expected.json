@@ -1455,43 +1455,43 @@
         },
         "keyword_compass_southwest": {
           "type": "pattern_replace",
-          "pattern": "southwest ",
-          "replacement": "sw "
+          "pattern": "southwest",
+          "replacement": "sw"
         },
         "keyword_compass_southeast": {
           "type": "pattern_replace",
-          "pattern": "southeast ",
-          "replacement": "se "
+          "pattern": "southeast",
+          "replacement": "se"
         },
         "keyword_compass_northwest": {
           "type": "pattern_replace",
-          "pattern": "northwest ",
-          "replacement": "nw "
+          "pattern": "northwest",
+          "replacement": "nw"
         },
         "keyword_compass_northeast": {
           "type": "pattern_replace",
-          "pattern": "northeast ",
-          "replacement": "ne "
+          "pattern": "northeast",
+          "replacement": "ne"
         },
         "keyword_compass_north": {
           "type": "pattern_replace",
-          "pattern": "north ",
-          "replacement": "n "
+          "pattern": "north",
+          "replacement": "n"
         },
         "keyword_compass_south": {
           "type": "pattern_replace",
-          "pattern": "south ",
-          "replacement": "s "
+          "pattern": "south",
+          "replacement": "s"
         },
         "keyword_compass_east": {
           "type": "pattern_replace",
-          "pattern": "east ",
-          "replacement": "e "
+          "pattern": "east",
+          "replacement": "e"
         },
         "keyword_compass_west": {
           "type": "pattern_replace",
-          "pattern": "west ",
-          "replacement": "w "
+          "pattern": "west",
+          "replacement": "w"
         }
       },
       "char_filter": {
