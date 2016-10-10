@@ -22,6 +22,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo cres'] );
     assertAnalysis( 'keyword_compass', 'north foo', ['n foo'] );
     assertAnalysis( 'keyword_compass', 'SouthWest foo', ['sw foo'] );
+    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['foo sw'] );
     assertAnalysis( 'remove_ordinals', '1st 2nd 3rd 4th 5th', ['1 2 3 4 5'] );
     assertAnalysis( 'remove_ordinals', 'Ast th 101st', ['ast th 101'] );
 
