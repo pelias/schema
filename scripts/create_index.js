@@ -6,12 +6,13 @@ var cli = require('./cli');
 var schema = require('../schema');
 
 // check mandatory plugins are installed before continuing
-try {
-  child_process.execSync( 'node ./scripts/check_plugins.js' );
-} catch( e ){
-  console.error( "please install mandatory plugins before continuing.\n");
-  process.exit(1);
-}
+// ES service always has icu plugin enabled
+//try {
+  //child_process.execSync( 'node ./scripts/check_plugins.js' );
+//} catch( e ){
+  //console.error( "please install mandatory plugins before continuing.\n");
+  //process.exit(1);
+//}
 
 cli.header("create index");
 var indexName = config.schema.indexName;
