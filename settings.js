@@ -285,13 +285,6 @@ function generate(){
           "mode": "compose"
         }
       }
-    },
-    "index": {
-      "number_of_replicas": "0",
-      "number_of_shards": "1",
-
-      // A safe default can be 65% of the number of bounded cores (bounded at 32), with a minimum of 8 (which is the default in Lucene).
-      "index_concurrency": "10"
     }
   };
 
