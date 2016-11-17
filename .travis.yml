@@ -41,7 +41,4 @@ before_script:
   - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
 after_success:
-  - 'curl -Lo travis_after_all.py https://git.io/travis_after_all'
-  - python travis_after_all.py
-  - export $(cat .to_export_back) &> /dev/null
   - npm run semantic-release
