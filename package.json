@@ -43,6 +43,6 @@
     "elastictest": "^1.2.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.0",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "^6.3.2"
   }
 }
