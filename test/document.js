@@ -1,4 +1,4 @@
-var schema = require('../mappings/document');
+var schema = require('../mappings/document')();
 
 module.exports.tests = {};
 

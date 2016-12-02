@@ -1,7 +1,8 @@
-var doc = require('./mappings/document');
+var settings = require('./settings')(),
+    doc = require('./mappings/document')(settings);
 
 var schema = {
-  settings: require('./settings')(),
+  settings: settings,
   mappings: {
     /**
       the _default_ mapping is applied to all new _type dynamically added after

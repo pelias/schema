@@ -1,3 +1,5 @@
+module.exports = function(settings) {
+
 // @ref: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-geo-point-type.html
 var schema = {
   'type': 'geo_point',
@@ -11,4 +13,6 @@ var schema = {
   'geohash_precision': 18
 };
 
-module.exports = schema;
+return schema;
+
+};
