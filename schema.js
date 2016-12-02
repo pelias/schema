@@ -1,5 +1,6 @@
-var settings = require('./settings')(),
-    doc = require('./mappings/document')(settings);
+var config = require('pelias-config').generate().export(),
+    settings = require('./settings')(config),
+    doc = require('./mappings/document')(config);
 
 var schema = {
   settings: settings,

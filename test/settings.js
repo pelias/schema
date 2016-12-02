@@ -1,6 +1,14 @@
-var path = require('path'),
+var path = require('path');
+
+// set the PELIAS_CONFIG env var
+process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/config.json' );
+
+var config = require('pelias-config').generate().export(),
     settings = require('../settings'),
     fs = require('fs');
+
+process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/alt_config.json' );
+var alt_config = require('pelias-config').generate().export();
 
 module.exports.tests = {};
 
@@ -13,7 +21,7 @@ module.exports.tests.interface = function(test, common) {
 
 module.exports.tests.compile = function(test, common) {
   test('valid settings file', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s, 'object', 'settings generated');
     t.equal(Object.keys(s).length>0, true, 'settings has body');
     t.end();
@@ -23,7 +31,7 @@ module.exports.tests.compile = function(test, common) {
 // analysis should always be set
 module.exports.tests.analysis = function(test, common) {
   test('has analysis settings', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis, 'object', 'analysis specified');
     t.end();
   });
@@ -33,7 +41,7 @@ module.exports.tests.analysis = function(test, common) {
 
 module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   test('has pelias admin analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasAdmin, 'object', 'there is a pelias admin analyzer');
     var analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -45,7 +53,7 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
 
 module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
   test('has peliasIndexOneEdgeGram analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasIndexOneEdgeGram, 'object', 'there is a peliasIndexOneEdgeGram analyzer');
     var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -55,7 +63,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     t.end();
   });
   test('peliasIndexOneEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
+    var analyzer = settings(config).analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "icu_folding",
@@ -80,7 +88,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
 
 module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
   test('has peliasIndexTwoEdgeGram analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasIndexTwoEdgeGram, 'object', 'there is a peliasIndexTwoEdgeGram analyzer');
     var analyzer = s.analysis.analyzer.peliasIndexTwoEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -90,7 +98,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
     t.end();
   });
   test('peliasIndexTwoEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexTwoEdgeGram;
+    var analyzer = settings(config).analysis.analyzer.peliasIndexTwoEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "icu_folding",
@@ -112,7 +120,7 @@ module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
 
 module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
   test('has peliasPhrase analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasPhrase, 'object', 'there is a peliasPhrase analyzer');
     var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -122,7 +130,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     t.end();
   });
   test('peliasPhrase token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasPhrase;
+    var analyzer = settings(config).analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "icu_folding",
@@ -139,7 +147,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
 
 module.exports.tests.peliasZipAnalyzer = function(test, common) {
   test('has peliasZip analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasZip, 'object', 'there is a peliasZip analyzer');
     var analyzer = s.analysis.analyzer.peliasZip;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -149,7 +157,7 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
     t.end();
   });
   test('peliasZip token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasZip;
+    var analyzer = settings(config).analysis.analyzer.peliasZip;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "trim"
@@ -160,7 +168,7 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
 
 module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
   test('has peliasHousenumber analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasHousenumber, 'object', 'there is a peliasHousenumber analyzer');
     var analyzer = s.analysis.analyzer.peliasHousenumber;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -173,7 +181,7 @@ module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
 
 module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   test('has peliasStreet analyzer', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.analyzer.peliasStreet, 'object', 'there is a peliasStreet analyzer');
     var analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
@@ -183,7 +191,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
     t.end();
   });
   test('peliasStreet token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasStreet;
+    var analyzer = settings(config).analysis.analyzer.peliasStreet;
     t.equal( analyzer.filter.length, 133, 'lots of filters' );
     t.end();
   });
@@ -195,7 +203,7 @@ module.exports.tests.allTokenFiltersPresent = function(test, common) {
     'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique'
   ];
   test('all token filters present', function(t) {
-    var s = settings();
+    var s = settings(config);
     for( var analyzerName in s.analysis.analyzer ){
       var analyzer = s.analysis.analyzer[analyzerName];
       if( Array.isArray( analyzer.filter ) ){
@@ -216,7 +224,7 @@ module.exports.tests.allTokenFiltersPresent = function(test, common) {
 module.exports.tests.allCharacterFiltersPresent = function(test, common) {
   var ES_INBUILT_FILTERS = [];
   test('all character filters present', function(t) {
-    var s = settings();
+    var s = settings(config);
     for( var analyzerName in s.analysis.analyzer ){
       var analyzer = s.analysis.analyzer[analyzerName];
       if( Array.isArray( analyzer.char_filter ) ){
@@ -239,7 +247,7 @@ module.exports.tests.allCharacterFiltersPresent = function(test, common) {
 // we convert and->& rather than &->and to save memory/disk
 module.exports.tests.ampersandFilter = function(test, common) {
   test('has ampersand filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.ampersand, 'object', 'there is a ampersand filter');
     var filter = s.analysis.filter.ampersand;
     t.equal(filter.type, 'synonym');
@@ -252,7 +260,7 @@ module.exports.tests.ampersandFilter = function(test, common) {
 // filters do weird things, so just to be sure, we explicitly get rid of them
 module.exports.tests.notnullFilter = function(test, common) {
   test('has notnull filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.notnull, 'object', 'there is a notnull filter');
     var filter = s.analysis.filter.notnull;
     t.equal(filter.type, 'length');
@@ -264,7 +272,7 @@ module.exports.tests.notnullFilter = function(test, common) {
 // this filter creates edgeNGrams with the minimum size of 1
 module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
   test('has peliasIndexOneEdgeGram filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.peliasOneEdgeGramFilter, 'object', 'there is a peliasIndexOneEdgeGram filter');
     var filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
@@ -277,7 +285,7 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
 // this filter creates edgeNGrams with the minimum size of 2
 module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
   test('has peliasIndexTwoEdgeGram filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.peliasTwoEdgeGramFilter, 'object', 'there is a peliasIndexTwoEdgeGram filter');
     var filter = s.analysis.filter.peliasTwoEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
@@ -290,7 +298,7 @@ module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
 // this filter removed leading 0 characters. eg. 0001 -> 1
 module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
   test('has removeAllZeroNumericPrefix filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.removeAllZeroNumericPrefix, 'object', 'there is a removeAllZeroNumericPrefix filter');
     var filter = s.analysis.filter.removeAllZeroNumericPrefix;
     t.equal(filter.type, 'pattern_replace');
@@ -305,7 +313,7 @@ module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
 // note: it is not intended to be used with shingles, but useful for ngrams
 module.exports.tests.addressStopFilter = function(test, common) {
   test('has address_stop filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.address_stop, 'object', 'there is an address_stop filter');
     var filter = s.analysis.filter.address_stop;
     t.equal(filter.type, 'stop');
@@ -341,7 +349,7 @@ module.exports.tests.addressStopFilter = function(test, common) {
 // eg. road=>rd and street=>st
 module.exports.tests.streetSynonymFilter = function(test, common) {
   test('has street_synonym filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.street_synonym, 'object', 'there is an street_synonym filter');
     var filter = s.analysis.filter.street_synonym;
     t.equal(filter.type, 'synonym');
@@ -355,7 +363,7 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
 // eg. north=>n and south=>s
 module.exports.tests.directionSynonymFilter = function(test, common) {
   test('has direction_synonym filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.direction_synonym, 'object', 'there is an direction_synonym filter');
     var filter = s.analysis.filter.direction_synonym;
     t.equal(filter.type, 'synonym');
@@ -369,7 +377,7 @@ module.exports.tests.directionSynonymFilter = function(test, common) {
 // eg. 26th => 26, 1st => 1
 module.exports.tests.removeOrdinalsFilter = function(test, common) {
   test('has remove_ordinals filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.filter.remove_ordinals, 'object', 'there is an remove_ordinals filter');
     var filter = s.analysis.filter.remove_ordinals;
     t.equal(filter.type, 'pattern_replace');
@@ -385,7 +393,7 @@ module.exports.tests.removeOrdinalsFilter = function(test, common) {
 // character which would otherwise be stripped by the standard tokenizer
 module.exports.tests.punctuationCharFilter = function(test, common) {
   test('has punctuation char_filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.char_filter.punctuation, 'object', 'there is a punctuation char_filter');
     var char_filter = s.analysis.char_filter.punctuation;
     t.equal(char_filter.type, 'mapping');
@@ -398,7 +406,7 @@ module.exports.tests.punctuationCharFilter = function(test, common) {
 // remove non alphanumeric characters
 module.exports.tests.alphanumericCharFilter = function(test, common) {
   test('has alphanumeric char_filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.char_filter.alphanumeric, 'object', 'there is a alphanumeric char_filter');
     var char_filter = s.analysis.char_filter.alphanumeric;
     t.equal(char_filter.type, 'pattern_replace');
@@ -411,7 +419,7 @@ module.exports.tests.alphanumericCharFilter = function(test, common) {
 // replace non-numeric chars with a space
 module.exports.tests.numericCharFilter = function(test, common) {
   test('has numeric char_filter', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.analysis.char_filter.numeric, 'object', 'there is a numeric char_filter');
     var char_filter = s.analysis.char_filter.numeric;
     t.equal(char_filter.type, 'pattern_replace');
@@ -426,7 +434,7 @@ module.exports.tests.numericCharFilter = function(test, common) {
 // index should always be set
 module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {
-    var s = settings();
+    var s = settings(config);
     t.equal(typeof s.index, 'object', 'index specified');
     t.equal(s.index.number_of_replicas, "0", 'replicas will increase index time');
     t.equal(s.index.number_of_shards, "1", 'sharding is only required in a distributed env');
@@ -438,13 +446,10 @@ module.exports.tests.index = function(test, common) {
 module.exports.tests.overrides = function(test, common) {
   test('override defaults', function(t) {
 
-    var s = settings();
+    var s = settings(config);
     t.equal(s.index['number_of_replicas'], '0', 'unchanged');
 
-    // set the PELIAS_CONFIG env var
-    process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/config.json' );
-
-    s = settings();
+    s = settings(alt_config);
     t.equal(s.index['number_of_replicas'], '999', 'changed');
     t.end();
 

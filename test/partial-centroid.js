@@ -1,5 +1,7 @@
 
-var schema = require('../mappings/partial/centroid')();
+var schema_cons = require('../mappings/partial/centroid'),
+    schema = schema_cons(),
+    schema5x = schema_cons({esclient:{apiVersion:'5.0'}});
 
 module.exports.tests = {};
 
@@ -35,6 +37,16 @@ module.exports.tests.geohash = function(test, common) {
     t.equal(schema.geohash, true, 'correct value');
     t.equal(schema.geohash_prefix, true, 'correct value');
     t.equal(schema.geohash_precision, 18, 'correct value');
+    t.end();
+  });
+};
+
+module.exports.tests.options_disabled_for_5_x = function(test, common) {
+  test('options disabled for elasticsearch 5.x', function(t) {
+    t.equal(schema5x.lat_lon, undefined, 'correctly unset');
+    t.equal(schema5x.geohash, undefined, 'correctly unset');
+    t.equal(schema5x.geohash_prefix, undefined, 'correctly unset');
+    t.equal(schema5x.geohash_precision, undefined, 'correctly unset');
     t.end();
   });
 };
