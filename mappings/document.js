@@ -1,9 +1,11 @@
+module.exports = function(config) {
+
 var admin = require('./partial/admin');
 var hash = require('./partial/hash');
 var multiplier = require('./partial/multiplier');
 var literal = require('./partial/literal');
 
-var schema = {
+return {
   properties: {
 
     // data partitioning
@@ -100,7 +102,7 @@ var schema = {
     },
 
     // geography
-    center_point: require('./partial/centroid'),
+    center_point: require('./partial/centroid')(config),
     shape: require('./partial/shape'),
     bounding_box: require('./partial/boundingbox'),
 
@@ -144,4 +146,4 @@ var schema = {
   dynamic: 'true'
 };
 
-module.exports = schema;
+};

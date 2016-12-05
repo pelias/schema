@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "whosonfirst": {
+      "datapath": "/path/to/whosonfirst"
+    }
+  }
+}

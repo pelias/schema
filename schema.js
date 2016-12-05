@@ -1,7 +1,9 @@
-var doc = require('./mappings/document');
+var config = require('pelias-config').generate().export(),
+    settings = require('./settings')(config),
+    doc = require('./mappings/document')(config);
 
 var schema = {
-  settings: require('./settings')(),
+  settings: settings,
   mappings: {
     /**
       the _default_ mapping is applied to all new _type dynamically added after
