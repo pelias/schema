@@ -35,12 +35,14 @@
   "dependencies": {
     "colors": "^1.1.2",
     "elasticsearch": "^12.0.1",
+    "joi": "^10.1.0",
     "mergeable": "latest",
     "pelias-config": "2.4.0"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
     "elastictest": "^1.2.0",
+    "proxyquire": "^1.7.10",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.0",
     "semantic-release": "^6.3.2"
