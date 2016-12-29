@@ -2,6 +2,9 @@
 
 const Joi = require('joi');
 
+// Schema Configuration
+// schema.indexName: populated by defaults if not overridden
+// esclient: object, validation performed by elasticsearch module
 const schema = Joi.object().keys({
   schema: {
     indexName: Joi.string()
