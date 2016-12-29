@@ -15,7 +15,8 @@ var tests = [
   require('./partial-admin.js'),
   require('./partial-literal.js'),
   require('./partial-hash.js'),
-  require('./settings.js')
+  require('./settings.js'),
+  require('./configValidation.js')
 ];
 
 tests.map(function(t) {
