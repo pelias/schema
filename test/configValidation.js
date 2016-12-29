@@ -70,6 +70,22 @@ module.exports.tests.interface = function(test, common) {
 
   });
 
+  test('config with string schema.indexName and object esclient should not throw error', function(t) {
+    var config = {
+      schema: {
+        indexName: 'index name'
+      },
+      esclient: {}
+    };
+
+    t.doesNotThrow(function() {
+      configValidation.validate(config);
+    }, 'no error should have been thrown');
+
+    t.end();
+
+  });
+
 };
 
 module.exports.all = function (tape, common) {
