@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path'),
     settings = require('../settings'),
     fs = require('fs');
@@ -10,6 +12,25 @@ module.exports.tests.interface = function(test, common) {
     t.end();
   });
 };
+
+module.exports.tests.configValidation = function(test, common) {
+  test('configValidation throwing error should rethrow', function(t) {
+    t.throws(function() {
+      const proxyquire = require('proxyquire').noCallThru();
+      proxyquire('../settings', {
+        './configValidation': {
+          validate: () => {
+            throw Error('config is not valid');
+          }
+        }
+      })();
+
+    }, /config is not valid/);
+
+    t.end();
+
+  });
+}
 
 module.exports.tests.compile = function(test, common) {
   test('valid settings file', function(t) {
