@@ -14,6 +14,11 @@ var schema = {
     // place name (ngram analysis)
     name: hash,
 
+    alt_names: {
+      type: 'string',
+      position_increment_gap: 100
+    },
+
     // place name (phrase analysis)
     phrase: hash,
 
