@@ -1,4 +1,5 @@
 var admin = require('./partial/admin');
+var postalcode = require('./partial/postalcode');
 var hash = require('./partial/hash');
 var multiplier = require('./partial/multiplier');
 var literal = require('./partial/literal');
@@ -95,7 +96,12 @@ var schema = {
         // https://github.com/whosonfirst/whosonfirst-placetypes#neighbourhood
         neighbourhood: admin,
         neighbourhood_a: admin,
-        neighbourhood_id: literal
+        neighbourhood_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#postalcode
+        postalcode: postalcode,
+        postalcode_a: postalcode,
+        postalcode_id: literal
       }
     },
 

@@ -20,7 +20,9 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts', 'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category', 'population', 'popularity'];
+  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts',
+    'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category',
+    'population', 'popularity'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
@@ -75,7 +77,19 @@ module.exports.tests.address_analysis = function(test, common) {
 
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
-  var fields = ['country', 'country_a', 'country_id', 'dependency', 'dependency_a', 'dependency_id', 'macroregion', 'macroregion_a', 'macroregion_id', 'region', 'region_a', 'region_id', 'macrocounty', 'macrocounty_a', 'macrocounty_id', 'county', 'county_a', 'county_id', 'locality', 'locality_a', 'locality_id', 'borough', 'borough_a', 'borough_id', 'localadmin', 'localadmin_a', 'localadmin_id', 'neighbourhood', 'neighbourhood_a', 'neighbourhood_id'];
+  var fields = [
+    'country',        'country_a',        'country_id',
+    'dependency',     'dependency_a',     'dependency_id',
+    'macroregion',    'macroregion_a',    'macroregion_id',
+    'region',         'region_a',         'region_id',
+    'macrocounty',    'macrocounty_a',    'macrocounty_id',
+    'county',         'county_a',         'county_id',
+    'locality',       'locality_a',       'locality_id',
+    'borough',        'borough_a',        'borough_id',
+    'localadmin',     'localadmin_a',     'localadmin_id',
+    'neighbourhood',  'neighbourhood_a',  'neighbourhood_id',
+    'postalcode',     'postalcode_a',     'postalcode_id'
+  ];
   test('parent fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
     t.end();
@@ -98,6 +112,17 @@ module.exports.tests.parent_analysis = function(test, common) {
 
       t.end();
     });
+  });
+
+  test('postalcode', function(t) {
+    t.equal(prop['postalcode'].type, 'string');
+    t.equal(prop['postalcode'].analyzer, 'peliasZip');
+    t.equal(prop['postalcode'+'_a'].type, 'string');
+    t.equal(prop['postalcode'+'_a'].analyzer, 'peliasZip');
+    t.equal(prop['postalcode'+'_id'].type, 'string');
+    t.equal(prop['postalcode'+'_id'].analyzer, 'keyword');
+
+    t.end();
   });
 };
 
