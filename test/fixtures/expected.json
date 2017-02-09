@@ -1771,6 +1771,21 @@
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
             }
           }
         },
@@ -2046,6 +2061,21 @@
               "store": "yes"
             },
             "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -2327,6 +2357,21 @@
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
             }
           }
         },
@@ -2602,6 +2647,21 @@
               "store": "yes"
             },
             "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -2883,6 +2943,21 @@
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
             }
           }
         },
@@ -3158,6 +3233,21 @@
               "store": "yes"
             },
             "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -3439,6 +3529,21 @@
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
             }
           }
         },
@@ -3714,6 +3819,21 @@
               "store": "yes"
             },
             "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
@@ -3995,6 +4115,21 @@
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
             }
           }
         },
@@ -4270,6 +4405,21 @@
               "store": "yes"
             },
             "neighbourhood_id": {
+              "type": "string",
+              "analyzer": "keyword",
+              "store": "yes"
+            },
+            "postalcode": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_a": {
+              "type": "string",
+              "analyzer": "peliasZip",
+              "store": "yes"
+            },
+            "postalcode_id": {
               "type": "string",
               "analyzer": "keyword",
               "store": "yes"
