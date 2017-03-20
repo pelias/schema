@@ -28,6 +28,13 @@ client.nodes.info( null, function( err, res ){
   for( var uid in res.nodes ){
 
     var node = res.nodes[uid];
+
+    // Amazon's hosted Elasticsearch does not have the plugins property
+    // but has the plugins we need
+    if (!node.plugins) {
+      continue;
+    }
+
     console.log( util.format( "\033[1;37mnode '%s' [%s]\033[0m", node.name, uid ) );
 
     // per node failures
