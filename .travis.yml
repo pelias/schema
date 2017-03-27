@@ -16,10 +16,7 @@ jdk:
   - oraclejdk8
 install:
   - mkdir /tmp/elasticsearch
-  - >-
-    wget -O -
-    https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz
-    | tar xz --directory=/tmp/elasticsearch --strip-components=1
+  - wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz | tar xz --directory=/tmp/elasticsearch --strip-components=1
   - /tmp/elasticsearch/bin/plugin install analysis-icu
   - /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp
   - npm i
@@ -37,7 +34,7 @@ before_install:
 before_script:
   - npm prune
   - sleep 10
-  - 'curl http://127.0.0.1:9200/'
+  - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
 after_success:
   - npm run semantic-release
