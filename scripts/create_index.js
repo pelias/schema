@@ -7,7 +7,7 @@ var schema = require('../schema');
 
 // check mandatory plugins are installed before continuing
 try {
-  child_process.execSync( 'node ./scripts/check_plugins.js' );
+  child_process.execSync( 'node ' + __dirname + '/check_plugins.js' );
 } catch( e ){
   console.error( "please install mandatory plugins before continuing.\n");
   process.exit(1);
