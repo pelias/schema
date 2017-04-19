@@ -1,0 +1,9 @@
+{
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "number_of_replicas": "999"
+      }
+    }
+  }
+}

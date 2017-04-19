@@ -1,7 +1,6 @@
 'use strict';
 
 var Mergeable = require('mergeable');
-var peliasConfig = require('pelias-config');
 var punctuation = require('./punctuation');
 var street_suffix = require('./street_suffix');
 
@@ -9,9 +8,7 @@ require('./configValidation').validate(peliasConfig.generate());
 
 var moduleDir = require('path').dirname("../");
 
-function generate(){
-  var config = peliasConfig.generate().export();
-
+function generate(config) {
   // Default settings
   var settings = {
     "analysis": {
