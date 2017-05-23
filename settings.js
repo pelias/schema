@@ -172,12 +172,12 @@ function generate(){
         "peliasOneEdgeGramFilter": {
           "type" : "edgeNGram",
           "min_gram" : 1,
-          "max_gram" : 18
+          "max_gram" : 24
         },
         "peliasTwoEdgeGramFilter": {
           "type" : "edgeNGram",
           "min_gram" : 2,
-          "max_gram" : 18
+          "max_gram" : 24
         },
         "prefixZeroToSingleDigitNumbers" :{
           "type" : "pattern_replace",
