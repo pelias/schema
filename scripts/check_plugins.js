@@ -70,7 +70,7 @@ client.nodes.info( null, function( err, res ){
     failures.forEach( function( failure ){
       console.error( util.format( "\nyou can install the missing packages on '%s' [%s] with the following command(s):\n", failure.node.name, failure.node.ip ) );
       failure.plugins.forEach( function( plugin ){
-        console.error( util.format( "\033[0;32m sudo %s/bin/plugin install %s\033[0m", failure.node.settings.path.home, plugin ) );
+        console.error( util.format( "\033[0;32m sudo %s/bin/elasticsearch-plugin install %s\033[0m", failure.node.settings.path.home, plugin ) );
       });
     });
     console.error( "\n\033[1;37mnote:\033[0m some plugins may require you to restart elasticsearch.\n");
