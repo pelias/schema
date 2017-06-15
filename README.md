@@ -8,16 +8,6 @@ $ npm install pelias-schema
 
 ## Usage
 
-You can pull down a versioned copy of the pelias schema from npm:
-
-```javascript
-var schema = require('pelias-schema');
-
-console.log( JSON.stringify( schema, null, 2 ) );
-```
-
-## Scripts
-
 #### create index
 
 ```bash
@@ -72,6 +62,13 @@ The `pelias-schema` npm module can be found here:
 
 [https://npmjs.org/package/pelias-schema](https://npmjs.org/package/pelias-schema)
 
+You can pull down a versioned copy of the pelias schema from npm:
+
+```javascript
+var schema = require('pelias-schema');
+
+console.log( JSON.stringify( schema, null, 2 ) );
+```
 ## Contributing
 
 Please fork and pull request against upstream master on a feature branch.
