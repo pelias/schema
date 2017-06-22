@@ -49,6 +49,12 @@ module.exports.tests.analyze = function(test, common){
       'grolmanstr','grolmanstra','grolmanstras','grolmanstrass',
       'grolmanstrasse'
     ]);
+    assertAnalysis( 'largeGrams2', 'Flughafeninformation', [ 'f', 'fl', 'flu',
+      'flug', 'flugh', 'flugha', 'flughaf', 'flughafe', 'flughafen', 'flughafeni',
+      'flughafenin', 'flughafeninf', 'flughafeninfo', 'flughafeninfor',
+      'flughafeninform', 'flughafeninforma', 'flughafeninformat', 'flughafeninformati',
+      'flughafeninformatio', 'flughafeninformation'
+    ]);
 
     suite.run( t.end );
   });
