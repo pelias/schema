@@ -46,7 +46,8 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
-            "full_token_address_suffix_expansion",
+            "partial_token_address_suffix_expansion",
+            "direction_synonyms_single_letter_expansions",
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
@@ -69,7 +70,8 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
-            "full_token_address_suffix_expansion",
+            "partial_token_address_suffix_expansion",
+            "direction_synonyms_single_letter_expansions",
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
@@ -208,6 +210,10 @@ function generate(){
         "direction_synonym": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms
+        },
+        "direction_synonyms_single_letter_expansions": {
+          "type": "synonym",
+          "synonyms": street_suffix.direction_synonyms_single_letter_expansions
         },
         "direction_synonym_contraction_keep_original": {
           "type": "synonym",
