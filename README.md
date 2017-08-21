@@ -88,6 +88,10 @@ $ npm test
 Requires a running elasticsearch server (no other setup required)
 
 ```bash
+# start a clean elasticsearch server to test against
+$ docker run -d -p 9200:9200 pelias/elasticsearch
+
+# run the integration tests
 $ npm run integration
 ```
 
