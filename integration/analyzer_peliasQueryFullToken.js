@@ -49,8 +49,7 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
-// address suffix expansions should only performed in a way that is
-// safe for 'partial tokens'.
+// address suffix expansions can performed in a way that is safe for 'completed tokens'.
 module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
@@ -58,13 +57,17 @@ module.exports.tests.address_suffix_expansions = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'safe expansions', 'aly', [ 'alley' ]);
+    assertAnalysis( 'completed token expansions', 'aly', [ 'alley' ]);
+    assertAnalysis( 'completed token expansions', 'alley', [ 'alley' ]);
+    assertAnalysis( 'completed token expansions', 'xing', [ 'crossing' ]);
+    assertAnalysis( 'completed token expansions', 'crossing', [ 'crossing' ]);
+    assertAnalysis( 'completed token expansions', 'rd', [ 'road' ]);
+    assertAnalysis( 'completed token expansions', 'road', [ 'road' ]);
+    assertAnalysis( 'completed token expansion', 'ct st', [ 'court', 'street' ]);
 
-    assertAnalysis( 'safe expansions', 'xing', [ 'crossing' ]);
-
-    assertAnalysis( 'safe expansions', 'rd', [ 'road' ]);
-
-    assertAnalysis( 'unsafe expansion', 'ct st', [ 'ct', 'st' ]);
+    // https://github.com/pelias/pelias/issues/563
+    assertAnalysis( 'issue 563', '901 hastings st', [ '901', 'hastings', 'street' ]);
+    assertAnalysis( 'issue 563', '901 hastings street', [ '901', 'hastings', 'street' ]);
 
     suite.run( t.end );
   });
@@ -80,7 +83,7 @@ module.exports.tests.stop_words = function(test, common){
 
     assertAnalysis( 'street suffix', 'AB street', [ 'ab', 'street' ]);
 
-    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [ 'ab', 'st' ]);
+    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [ 'ab', 'street' ]);
 
     suite.run( t.end );
   });
@@ -187,11 +190,11 @@ module.exports.tests.address = function(test, common){
     ]);
 
     assertAnalysis( 'address', '30 w 26 st', [
-      '30', 'west', '26', 'st'
+      '30', 'west', '26', 'street'
     ]);
 
     assertAnalysis( 'address', '4B 921 83 st', [
-      '4b', '921', '83', 'st'
+      '4b', '921', '83', 'street'
     ]);
 
     suite.run( t.end );

@@ -24,6 +24,14 @@ module.exports.terms =  [
   "way"
 ];
 
+// invert a synonym array
+// eg. "foo => f" becomes "f => foo"
+function invert( list ){
+  return list.map( function( item ){
+    return item.split(' ').reverse().join(' ');
+  });
+}
+
 module.exports.synonyms = [
   "alley => aly",
   "annex => anx",
@@ -293,12 +301,17 @@ module.exports.partial_token_safe_expansions = [
   "wy => way"
 ];
 
+// mapping of single-letter appreviations for compass directionals
+module.exports.direction_synonyms_single_letter_expansions = [
+  "n => north",
+  "s => south",
+  "e => east",
+  "w => west"
+];
+
 module.exports.full_token_safe_expansions = [];
 
-// copy the unsafe expansions
-module.exports.partial_token_safe_expansions.forEach( function( expansion ){
-  module.exports.full_token_safe_expansions.push( expansion );
-});
-
-// add the expansions which are only safe on complete tokens (not partial tokens)
-module.exports.full_token_safe_expansions.push( "n => north", "s => south", "e => east", "w => west" );
+// copy the synonyms list (inverting the substitution order)
+// add full token directional expansions
+module.exports.full_token_safe_expansions = invert( module.exports.synonyms )
+    .concat( invert( module.exports.direction_synonyms ) );
