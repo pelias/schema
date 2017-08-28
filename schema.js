@@ -19,15 +19,20 @@ var schema = {
 
       querying against non-existant _types will result in errors.
     **/
-    country: doc,
-    dependency: doc,
-    macroregion: doc,
-    region: doc,
-    macrocounty: doc,
-    county: doc,
-    localadmin: doc,
+    venue: doc,
+    address: doc,
+    street: doc,
+    neighbourhood: doc,
+    borough: doc,
+    postalcode: doc,
     locality: doc,
-    borough: doc
+    localadmin: doc,
+    county: doc,
+    macrocounty: doc,
+    region: doc,
+    macroregion: doc,
+    dependency: doc,
+    country: doc
   }
 };
 
