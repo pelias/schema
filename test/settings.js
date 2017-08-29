@@ -99,38 +99,6 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasIndexTwoEdgeGramAnalyzer = function(test, common) {
-  test('has peliasIndexTwoEdgeGram analyzer', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasIndexTwoEdgeGram, 'object', 'there is a peliasIndexTwoEdgeGram analyzer');
-    var analyzer = s.analysis.analyzer.peliasIndexTwoEdgeGram;
-    t.equal(analyzer.type, 'custom', 'custom analyzer');
-    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
-    t.true(Array.isArray(analyzer.filter), 'filters specified');
-    t.end();
-  });
-  test('peliasIndexTwoEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexTwoEdgeGram;
-    t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "icu_folding",
-      "trim",
-      "full_token_address_suffix_expansion",
-      "ampersand",
-      "remove_ordinals",
-      "removeAllZeroNumericPrefix",
-      "prefixZeroToSingleDigitNumbers",
-      "peliasTwoEdgeGramFilter",
-      "removeAllZeroNumericPrefix",
-      "direction_synonym_contraction_keep_original",
-      "unique",
-      "notnull"
-    ]);
-    t.end();
-  });
-};
-
 module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
   test('has peliasPhrase analyzer', function(t) {
     var s = settings();
@@ -290,19 +258,6 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
     var filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edgeNGram');
     t.equal(filter.min_gram, 1);
-    t.equal(filter.max_gram, 24);
-    t.end();
-  });
-};
-
-// this filter creates edgeNGrams with the minimum size of 2
-module.exports.tests.peliasTwoEdgeGramFilter = function(test, common) {
-  test('has peliasIndexTwoEdgeGram filter', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.peliasTwoEdgeGramFilter, 'object', 'there is a peliasIndexTwoEdgeGram filter');
-    var filter = s.analysis.filter.peliasTwoEdgeGramFilter;
-    t.equal(filter.type, 'edgeNGram');
-    t.equal(filter.min_gram, 2);
     t.equal(filter.max_gram, 24);
     t.end();
   });
