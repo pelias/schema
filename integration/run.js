@@ -5,7 +5,6 @@ var tests = [
   require('./validate.js'),
   require('./dynamic_templates.js'),
   require('./analyzer_peliasIndexOneEdgeGram.js'),
-  require('./analyzer_peliasIndexTwoEdgeGram.js'),
   require('./analyzer_peliasQueryPartialToken.js'),
   require('./analyzer_peliasQueryFullToken.js'),
   require('./analyzer_peliasPhrase.js'),
