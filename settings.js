@@ -61,26 +61,6 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasIndexTwoEdgeGram" : {
-          "type": "custom",
-          "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
-          "filter": [
-            "lowercase",
-            "icu_folding",
-            "trim",
-            "full_token_address_suffix_expansion",
-            "ampersand",
-            "remove_ordinals",
-            "removeAllZeroNumericPrefix",
-            "prefixZeroToSingleDigitNumbers",
-            "peliasTwoEdgeGramFilter",
-            "removeAllZeroNumericPrefix",
-            "direction_synonym_contraction_keep_original",
-            "unique",
-            "notnull"
-          ]
-        },
         "peliasQueryPartialToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
@@ -178,11 +158,6 @@ function generate(){
           "type" : "edgeNGram",
           "min_gram" : 2,
           "max_gram" : 24
-        },
-        "prefixZeroToSingleDigitNumbers" :{
-          "type" : "pattern_replace",
-          "pattern" : "^([0-9])$",
-          "replacement" : "0$1"
         },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
