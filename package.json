@@ -38,7 +38,7 @@
     "elasticsearch": "^13.3.1",
     "joi": "^11.0.1",
     "mergeable": "latest",
-    "pelias-config": "2.12.0"
+    "pelias-config": "2.12.1"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
