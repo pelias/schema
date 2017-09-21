@@ -10,7 +10,6 @@ matrix:
 env:
   global:
     - BUILD_LEADER_ID=2
-    - CXX=g++-4.8
   matrix:
     - ES_VERSION=2.3.4
 jdk:
@@ -25,10 +24,7 @@ script:
   - npm run travis
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
       - oracle-java8-installer
 before_install:
   - npm i -g npm@^3.0.0
