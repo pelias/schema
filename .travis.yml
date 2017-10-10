@@ -9,7 +9,7 @@ matrix:
   fast_finish: true
 env:
   global:
-    - CXX=g++-4.8
+    - BUILD_LEADER_ID=2
   matrix:
     - ES_VERSION=2.3.4
 jdk:
@@ -24,10 +24,7 @@ script:
   - npm run travis
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
       - oracle-java8-installer
 before_install:
   - npm i -g npm@^3.0.0
@@ -37,4 +34,5 @@ before_script:
   - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
 after_success:
-  - npm run semantic-release
+  - npm install -g npx
+  - npx -p node@8 npm run semantic-release
