@@ -38,14 +38,14 @@
     "elasticsearch": "^13.3.1",
     "joi": "^11.0.1",
     "mergeable": "latest",
-    "pelias-config": "2.12.0"
+    "pelias-config": "2.12.1"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
     "elastictest": "^1.2.0",
     "npm-check": "git://github.com/orangejulius/npm-check.git#disable-update-check",
     "proxyquire": "^1.7.10",
-    "semantic-release": "^7.0.1",
+    "semantic-release": "^8.0.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.0"
   },
