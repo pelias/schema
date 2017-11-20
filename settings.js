@@ -117,6 +117,15 @@ function generate(){
             "trim"
           ]
         },
+        "peliasUnit": {
+          "type": "custom",
+          "tokenizer":"keyword",
+          "char_filter" : ["alphanumeric"],
+          "filter": [
+            "lowercase",
+            "trim"
+          ]
+        },
         "peliasHousenumber": {
           "type": "custom",
           "tokenizer":"standard",

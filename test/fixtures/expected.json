@@ -120,6 +120,17 @@
             "trim"
           ]
         },
+        "peliasUnit": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "char_filter": [
+            "alphanumeric"
+          ],
+          "filter": [
+            "lowercase",
+            "trim"
+          ]
+        },
         "peliasHousenumber": {
           "type": "custom",
           "tokenizer": "standard",
@@ -1576,6 +1587,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -1868,6 +1883,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -2162,6 +2181,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -2454,6 +2477,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -2748,6 +2775,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -3040,6 +3071,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -3334,6 +3369,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -3626,6 +3665,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -3920,6 +3963,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -4212,6 +4259,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -4506,6 +4557,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -4798,6 +4853,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",
@@ -5092,6 +5151,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -5385,6 +5448,10 @@
               "type": "string",
               "analyzer": "keyword"
             },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
+            },
             "number": {
               "type": "string",
               "analyzer": "peliasHousenumber"
@@ -5677,6 +5744,10 @@
             "name": {
               "type": "string",
               "analyzer": "keyword"
+            },
+            "unit": {
+              "type": "string",
+              "analyzer": "peliasUnit"
             },
             "number": {
               "type": "string",

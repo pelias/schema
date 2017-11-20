@@ -147,6 +147,27 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
   });
 };
 
+module.exports.tests.peliasUnitAnalyzer = function(test, common) {
+  test('has peliasUnit analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasUnit, 'object', 'there is a peliasUnit analyzer');
+    var analyzer = s.analysis.analyzer.peliasUnit;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["alphanumeric"], 'alphanumeric filter specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasUnit token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasUnit;
+    t.deepEqual( analyzer.filter, [
+      "lowercase",
+      "trim"
+    ]);
+    t.end();
+  });
+};
+
 module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
   test('has peliasHousenumber analyzer', function(t) {
     var s = settings();
