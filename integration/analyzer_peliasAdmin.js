@@ -46,6 +46,10 @@ module.exports.tests.functional = function(test, common){
       'great', 'britain'
     ]);
 
+    assertAnalysis( 'country', 'Saint-Pierre-and-Miquelon', [
+      'st', 'pierre', 'and', 'miquelon'
+    ]);
+
     assertAnalysis( 'city', 'New York', [
       'new', 'york'
     ]);
@@ -66,7 +70,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'place', 'Saint-Louis-du-Ha! Ha!', [
-      'saint', 'louis', 'du', 'ha', 'ha'
+      'st', 'louis', 'du', 'ha', 'ha'
     ]);
 
     suite.run( t.end );

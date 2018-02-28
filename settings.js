@@ -35,7 +35,8 @@ function generate(){
             "icu_folding",
             "trim",
             "word_delimiter",
-            "notnull"
+            "notnull",
+            "admin_synonym"
           ]
         },
         "peliasIndexOneEdgeGram" : {
@@ -196,6 +197,10 @@ function generate(){
         "direction_synonym_contraction_keep_original": {
           "type": "synonym",
           "synonyms": street_suffix.direction_synonyms_keep_original
+        },
+        "admin_synonym": {
+          "type": "synonym",
+          "synonyms": ["saint => st", "sainte => ste"]
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",

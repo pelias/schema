@@ -24,7 +24,8 @@
             "icu_folding",
             "trim",
             "word_delimiter",
-            "notnull"
+            "notnull",
+            "admin_synonym"
           ]
         },
         "peliasIndexOneEdgeGram": {
@@ -790,6 +791,10 @@
             "east => east,e",
             "west => west,w"
           ]
+        },
+        "admin_synonym": {
+          "type": "synonym",
+          "synonyms": ["saint => st", "sainte => ste"]
         },
         "remove_ordinals": {
           "type": "pattern_replace",
