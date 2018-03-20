@@ -27,6 +27,10 @@ var schema = {
           type: 'string',
           analyzer: 'keyword',
         },
+        unit: {
+          type: 'string',
+          analyzer: 'peliasUnit',
+        },
         number: {
           type: 'string',
           analyzer: 'peliasHousenumber',

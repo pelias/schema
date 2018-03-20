@@ -1,6 +1,6 @@
 'use strict';
 
-var Mergeable = require('mergeable');
+var merge = require('lodash.merge');
 var peliasConfig = require('pelias-config');
 var punctuation = require('./punctuation');
 var street_suffix = require('./street_suffix');
@@ -109,6 +109,15 @@ function generate(){
           ]
         },
         "peliasZip": {
+          "type": "custom",
+          "tokenizer":"keyword",
+          "char_filter" : ["alphanumeric"],
+          "filter": [
+            "lowercase",
+            "trim"
+          ]
+        },
+        "peliasUnit": {
           "type": "custom",
           "tokenizer":"keyword",
           "char_filter" : ["alphanumeric"],
@@ -299,9 +308,7 @@ function generate(){
   if( 'object' == typeof config &&
       'object' == typeof config.elasticsearch &&
       'object' == typeof config.elasticsearch.settings ){
-    var defaults = new Mergeable( settings );
-    defaults.deepMerge( config.elasticsearch.settings );
-    return defaults.export();
+    return merge({}, settings, config.elasticsearch.settings);
   }
 
   return settings;
