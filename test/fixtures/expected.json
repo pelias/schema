@@ -38,6 +38,7 @@
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "full_token_address_suffix_expansion",
             "ampersand",
             "remove_ordinals",
@@ -102,6 +103,7 @@
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "ampersand",
             "street_suffix_contractions",
             "directionals",
@@ -149,6 +151,7 @@
             "lowercase",
             "icu_folding",
             "remove_duplicate_spaces",
+            "custom_street",
             "keyword_street_suffix_alley",
             "keyword_street_suffix_annex",
             "keyword_street_suffix_avenue",
@@ -283,6 +286,14 @@
         }
       },
       "filter": {
+        "custom_name": {
+          "type": "synonym",
+          "synonyms": [""]
+        },
+        "custom_street": {
+          "type": "synonym",
+          "synonyms": [""]
+        },
         "ampersand": {
           "type": "synonym",
           "synonyms": [

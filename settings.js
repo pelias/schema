@@ -59,6 +59,7 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "full_token_address_suffix_expansion",
             "ampersand",
             "remove_ordinals",
@@ -114,6 +115,7 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "ampersand",
             "street_suffix_contractions",
             "directionals",
@@ -152,6 +154,7 @@ function generate(){
             "lowercase",
             "icu_folding",
             "remove_duplicate_spaces",
+            "custom_street",
           ].concat( synonyms.street_suffix_contractions.map( function( synonym ){
             return "keyword_street_suffix_" + synonym.split(' ')[0];
           })).concat( synonyms.directionals.map( function( synonym ){

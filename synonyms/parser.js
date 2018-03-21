@@ -17,7 +17,7 @@ function parser( filename ){
   return fs.readFileSync( filename, 'utf8' )
                 .split('\n')
                 .map( line => {
-                  return line.trim()                          // trim whitespace
+                  return line.trim().toLowerCase()            // lowercase all tokens
                              .replace( /\s\s+/g, ' ' )        // squash double spaces
                              .replace(/(^,)|(,$)/g, '')       // trim commas
                              .replace(/(\s*,\s*)/g,',')       // trim spaces around commas
