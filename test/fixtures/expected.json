@@ -24,6 +24,7 @@
             "icu_folding",
             "trim",
             "word_delimiter",
+            "custom_admin",
             "notnull"
           ]
         },
@@ -291,6 +292,10 @@
           "synonyms": [""]
         },
         "custom_street": {
+          "type": "synonym",
+          "synonyms": [""]
+        },
+        "custom_admin": {
           "type": "synonym",
           "synonyms": [""]
         },

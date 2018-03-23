@@ -48,6 +48,7 @@ function generate(){
             "icu_folding",
             "trim",
             "word_delimiter",
+            "custom_admin",
             "notnull"
           ]
         },
