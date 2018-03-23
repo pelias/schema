@@ -23,3 +23,9 @@
 #   foo => foo bar, baz
 #
 # =============================================================================
+
+saint,st
+sainte,ste
+fort,ft
+mount,mt
+mont,mt
