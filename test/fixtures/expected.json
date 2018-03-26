@@ -297,7 +297,13 @@
         },
         "custom_admin": {
           "type": "synonym",
-          "synonyms": [""]
+          "synonyms": [
+            "saint,st",
+            "sainte,ste",
+            "fort,ft",
+            "mount,mt",
+            "mont,mt"
+          ]
         },
         "ampersand": {
           "type": "synonym",

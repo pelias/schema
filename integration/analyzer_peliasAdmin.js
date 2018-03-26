@@ -65,9 +65,32 @@ module.exports.tests.functional = function(test, common){
       'paskalomatunturi'
     ]);
 
+    suite.run( t.end );
+  });
+};
+
+module.exports.tests.synonyms = function(test, common){
+  test( 'synonyms', function(t){
+
+    var suite = new elastictest.Suite( null, { schema: schema } );
+    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
     assertAnalysis( 'place', 'Saint-Louis-du-Ha! Ha!', [
-      'saint', 'louis', 'du', 'ha', 'ha'
-    ]);
+      '0:saint', '0:st', '1:louis', '2:du', '3:ha', '4:ha'
+    ], true);
+
+    assertAnalysis( 'place', 'Sainte-Chapelle', [
+      '0:sainte', '0:ste', '1:chapelle'
+    ], true);
+
+    assertAnalysis( 'place', 'Mount Everest', [
+      '0:mount', '0:mt', '1:everest'
+    ], true);
+
+    assertAnalysis( 'place', 'Mont Blanc', [
+      '0:mont', '0:mt', '1:blanc'
+    ], true);
 
     suite.run( t.end );
   });
@@ -114,14 +137,14 @@ module.exports.tests.unicode = function(test, common){
 
     // Chambéry (both forms appear the same)
     var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
 
     assertAnalysis( 'composed', composed, ['chambery'] );
     assertAnalysis( 'decomposed', decomposed, ['chambery'] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n";
 
     assertAnalysis( 'composed', composed, ['een'] );
     assertAnalysis( 'decomposed', decomposed, ['een'] );
@@ -141,22 +164,22 @@ module.exports.all = function (tape, common) {
   }
 };
 
-function analyze( suite, t, analyzer, comment, text, expected ){
+function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
   suite.assert( function( done ){
     suite.client.indices.analyze({
       index: suite.props.index,
       analyzer: analyzer,
       text: text
     }, function( err, res ){
-      if( err ) console.error( err );
-      t.deepEqual( simpleTokens( res.tokens ), expected, comment );
+      if( err ){ console.error( err ); }
+      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
       done();
     });
   });
 }
 
-function simpleTokens( tokens ){
+function simpleTokens( tokens, includePosition ){
   return tokens.map( function( t ){
-    return t.token;
+    return (!!includePosition ? t.position + ':' : '') + t.token;
   });
 }
