@@ -30,7 +30,7 @@ module.exports.tests.configValidation = function(test, common) {
     t.end();
 
   });
-}
+};
 
 module.exports.tests.compile = function(test, common) {
   test('valid settings file', function(t) {
@@ -81,6 +81,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "icu_folding",
       "trim",
+      "custom_name",
       "full_token_address_suffix_expansion",
       "ampersand",
       "remove_ordinals",
@@ -116,6 +117,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "lowercase",
       "icu_folding",
       "trim",
+      "custom_name",
       "ampersand",
       "street_suffix_contractions",
       "directionals",
@@ -194,7 +196,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 133, 'lots of filters' );
+    t.equal( analyzer.filter.length, 134, 'lots of filters' );
     t.end();
   });
 };
