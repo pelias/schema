@@ -58,6 +58,25 @@ Print a list of which plugins are installed and how to install any that are miss
 node scripts/check_plugins.js;
 ```
 
+#### user customizable synonyms files
+
+You may provide your own custom synonyms by editing files in the `./synonyms/` directory.
+
+```bash
+$ ls -1 synonyms/custom_*
+synonyms/custom_admin.txt
+synonyms/custom_name.txt
+synonyms/custom_street.txt
+```
+
+You must edit the files **before** running `create_index.js`, any changes made to the files will require you to drop and recreate the index before those synonyms are available.
+
+Synonyms are only used at index-time. The filename contains the name of the elasticsearch field which the synonyms will apply. ie. `custom_name` will apply to the `name.*` fields, `custom_street` will apply to the `address_parts.name` field and `custom_admin` will apply to the `parent.*` fields.
+
+see: https://github.com/pelias/schema/pull/273 for more info.
+
+With great power comes great responsibility. Synonyms files are often used as a hammer when a scalpel is required. Please take care with their use and make maintainers aware that you are using custom synonyms when you open support tickets.
+
 ## NPM Module
 
 The `pelias-schema` npm module can be found here:
