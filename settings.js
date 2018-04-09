@@ -8,19 +8,17 @@ var punctuation = require('./punctuation');
 var synonymFile = require('./synonyms/parser');
 
 // load synonyms from disk
-var synonyms = fs.readdirSync('./synonyms')
+var synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
                  .sort()
                  .filter( f => f.match(/\.txt$/) )
                  .reduce(( acc, cur ) => {
                    acc[cur.replace('.txt','')] = synonymFile(
-                     path.join( './synonyms', cur )
+                     path.join(__dirname, 'synonyms', cur)
                    );
                    return acc;
                  }, {});
 
 require('./configValidation').validate(peliasConfig.generate());
-
-var moduleDir = require('path').dirname("../");
 
 function generate(){
   var config = peliasConfig.generate().export();
