@@ -23,3 +23,7 @@
 #   foo => foo bar, baz
 #
 # =============================================================================
+mlk,martin luther king junior
+ml,martin luther
+tvh,tualatin valley highway
+tv,tualatin valley
