@@ -32,3 +32,6 @@ before_script:
   - node scripts/create_index.js -y
 after_success:
   - npm run semantic-release
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
