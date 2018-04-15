@@ -5,11 +5,12 @@ FROM pelias/baseimage
 ENV WORKDIR /code/pelias/schema
 WORKDIR ${WORKDIR}
 
+# copy package.json first to prevent npm install being rerun when only code changes
+COPY ./package.json ${WORK}
+RUN npm install
+
 # add code from local checkout to image
 ADD . ${WORKDIR}
-
-# install npm dependencies
-RUN npm install
 
 # run tests
 RUN npm test
