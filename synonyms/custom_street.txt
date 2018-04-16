@@ -23,7 +23,9 @@
 #   foo => foo bar, baz
 #
 # =============================================================================
-mlk,martin luther king junior
-ml,martin luther
-tvh,tualatin valley highway
-tv,tualatin valley
+mlk => martin luther king junior
+ml => martin luther
+ml king=> martin luther king junior
+tvh => tualatin valley hwy
+sw tvh=>sw tualatin valley hwy
+tv => tualatin valley
