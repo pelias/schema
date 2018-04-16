@@ -50,6 +50,18 @@ module.exports.tests.functional = function(test, common){
       }, done );
     });
 
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index, type: 'test',
+        id: '4', body: { address_parts: {
+          name: 'Mystery Location',
+          number: 300,
+          street: 'east 26th street',
+          zip: '100 10'
+        }}
+      }, done );
+    });
+
     // search by street number
     suite.assert( function( done ){
       suite.client.search({
@@ -71,7 +83,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address_parts.street': 'west 26th street' } }
+          { match_phrase: { 'address_parts.street': 'west 26th street' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -86,7 +98,7 @@ module.exports.tests.functional = function(test, common){
         index: suite.props.index,
         type: 'test',
         body: { query: { bool: { must: [
-          { match: { 'address_parts.street': 'W 26th ST' } }
+          { match_phrase: { 'address_parts.street': 'W 26th ST' } }
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
@@ -105,7 +117,7 @@ module.exports.tests.functional = function(test, common){
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 2, 'match zip - numeric' );
+        t.equal( res.hits.total, 3, 'match zip - numeric' );
         done();
       });
     });
@@ -135,7 +147,7 @@ module.exports.tests.functional = function(test, common){
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 2, 'match zip - numeric - punct' );
+        t.equal( res.hits.total, 3, 'match zip - numeric - punct' );
         done();
       });
     });
@@ -150,7 +162,7 @@ module.exports.tests.functional = function(test, common){
         ]}}}
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 2, 'match zip - numeric - whitespace' );
+        t.equal( res.hits.total, 3, 'match zip - numeric - whitespace' );
         done();
       });
     });

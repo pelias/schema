@@ -115,12 +115,14 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "icu_folding",
       "trim",
-      "custom_name",
+      "remove_duplicate_spaces",
       "ampersand",
-      "street_suffix_contractions",
+      "custom_name",
+      "street_suffix",
       "directionals",
+      "icu_folding",
+      "remove_ordinals",
       "unique",
       "notnull"
     ]);
@@ -196,7 +198,17 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 134, 'lots of filters' );
+    t.deepEqual( analyzer.filter, [
+      "lowercase",
+      "trim",
+      "remove_duplicate_spaces",
+      "custom_street",
+      "street_suffix",
+      "directionals",
+      "icu_folding",
+      "remove_ordinals",
+      "trim"
+    ]);
     t.end();
   });
 };
@@ -302,10 +314,10 @@ module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
 // this filter stems common street suffixes
 // eg. road=>rd and street=>st
 module.exports.tests.streetSynonymFilter = function(test, common) {
-  test('has street_suffix_contractions filter', function(t) {
+  test('has street_suffix filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.street_suffix_contractions, 'object', 'there is an street_suffix_contractions filter');
-    var filter = s.analysis.filter.street_suffix_contractions;
+    t.equal(typeof s.analysis.filter.street_suffix, 'object', 'there is an street_suffix filter');
+    var filter = s.analysis.filter.street_suffix;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 120);

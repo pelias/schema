@@ -17,12 +17,12 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'Max-Beer-Straße', ['max-beer-strasse']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street'] );
-    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road'] );
-    assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo', 'crescent'] );
-    assertAnalysis( 'keyword_compass', 'north foo', ['n', 'foo'] );
-    assertAnalysis( 'keyword_compass', 'SouthWest foo', ['sw', 'foo'] );
-    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['foo', 'sw'] );
+    assertAnalysis( 'keyword_street_suffix', 'foo Street', ['0:foo', '1:street', '1:st'], true );
+    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['0:foo', '1:road', '1:rd'], true );
+    assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['0:foo', '1:crescent', '1:cres'], true );
+    assertAnalysis( 'keyword_compass', 'north foo', ['0:north', '0:n', '1:foo'], true );
+    assertAnalysis( 'keyword_compass', 'SouthWest foo', ['0:southwest', '0:sw', '1:foo'], true );
+    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['0:foo', '1:southwest', '1:sw'], true );
     assertAnalysis( 'remove_ordinals', '1st 2nd 3rd 4th 5th', ['1','2','3','4','5'] );
     assertAnalysis( 'remove_ordinals', 'Ast th 101st', ['ast','th','101'] );
 
@@ -37,11 +37,11 @@ module.exports.tests.functional = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'USA address', 'west 26th street', [ 'w', '26', 'street' ]);
-    assertAnalysis( 'USA address', 'West 26th Street', [ 'w', '26', 'street' ]);
-    assertAnalysis( 'USA address', 'w 26th st', [ 'w', '26', 'st' ]);
-    assertAnalysis( 'USA address', 'WEST 26th STREET', [ 'w', '26', 'street' ]);
-    assertAnalysis( 'USA address', 'WEST 26th ST', [ 'w', '26', 'st' ]);
+    assertAnalysis( 'USA address', 'west 26th street', [ '0:west', '0:w', '1:26', '2:street', '2:st' ], true);
+    assertAnalysis( 'USA address', 'West 26th Street', [ '0:west', '0:w', '1:26', '2:street', '2:st' ], true);
+    assertAnalysis( 'USA address', 'w 26th st', [ '0:w', '0:west', '1:26', '2:st', '2:street' ], true);
+    assertAnalysis( 'USA address', 'WEST 26th STREET', [ '0:west', '0:w', '1:26', '2:street', '2:st' ], true);
+    assertAnalysis( 'USA address', 'WEST 26th ST', [ '0:west', '0:w', '1:26', '2:st', '2:street' ], true);
 
     suite.run( t.end );
   });
@@ -54,10 +54,12 @@ module.exports.tests.normalize_punctuation = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'single space', 'Chapala Street',    [ 'chapala', 'street' ]);
-    assertAnalysis( 'double space', 'Chapala  Street',   [ 'chapala', 'street' ]);
-    assertAnalysis( 'triple space', 'Chapala   Street',  [ 'chapala', 'street' ]);
-    assertAnalysis( 'quad space',   'Chapala    Street', [ 'chapala', 'street' ]);
+    var expected = [ '0:chapala', '1:street', '1:st' ];
+
+    assertAnalysis( 'single space', 'Chapala Street',    expected, true );
+    assertAnalysis( 'double space', 'Chapala  Street',   expected, true );
+    assertAnalysis( 'triple space', 'Chapala   Street',  expected, true );
+    assertAnalysis( 'quad space',   'Chapala    Street', expected, true );
 
     suite.run( t.end );
   });
@@ -144,16 +146,19 @@ module.exports.tests.tokenizer = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave' ];
+    var expected2 = [ '0:bedell', '1:street', '1:st', '102:133', '103:avenue', '103:ave' ];
+
     // specify 2 streets with a delimeter
-    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   expected1, true );
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  expected1, true );
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  expected1, true );
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  expected1, true );
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', expected1, true );
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', expected1, true );
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   expected2, true );
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  expected2, true );
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  expected2, true );
 
     suite.run( t.end );
   });
@@ -202,22 +207,22 @@ module.exports.all = function (tape, common) {
   }
 };
 
-function analyze( suite, t, analyzer, comment, text, expected ){
+function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
   suite.assert( function( done ){
     suite.client.indices.analyze({
       index: suite.props.index,
       analyzer: analyzer,
       text: text
     }, function( err, res ){
-      if( err ) console.error( err );
-      t.deepEqual( simpleTokens( res.tokens ), expected, comment );
+      if( err ){ console.error( err ); }
+      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
       done();
     });
   });
 }
 
-function simpleTokens( tokens ){
+function simpleTokens( tokens, includePosition ){
   return tokens.map( function( t ){
-    return t.token;
+    return (!!includePosition ? t.position + ':' : '') + t.token;
   });
 }
