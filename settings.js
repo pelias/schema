@@ -112,12 +112,14 @@ function generate(){
           "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
             "trim",
-            "custom_name",
+            "remove_duplicate_spaces",
             "ampersand",
-            "street_suffix_contractions",
+            "custom_name",
+            "street_suffix",
             "directionals",
+            "icu_folding",
+            "remove_ordinals",
             "unique",
             "notnull"
           ]
@@ -151,17 +153,15 @@ function generate(){
           "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
+            "trim",
             "remove_duplicate_spaces",
             "custom_street",
-          ].concat( synonyms.street_suffix_contractions.map( function( synonym ){
-            return "keyword_street_suffix_" + synonym.split(' ')[0];
-          })).concat( synonyms.directionals.map( function( synonym ){
-            return "keyword_compass_" + synonym.split(' ')[0];
-          })).concat([
+            "street_suffix",
+            "directionals",
+            "icu_folding",
             "remove_ordinals",
             "trim"
-          ])
+          ]
         }
       },
       "filter" : {
@@ -271,34 +271,6 @@ function generate(){
       "synonyms": !!synonyms[key].length ? synonyms[key] : ['']
     };
   }
-
-  // dynamically create filters which can replace text *inside* a token.
-  // we are not able to re-use the synonym functionality in elasticsearch
-  // because it only matches whole tokens, not strings *within* tokens.
-  // eg. synonyms are capable of ['street'] => ['st'] but not
-  // ['sesame street'] => ['sesame st']
-
-  // street suffix filters (replace text inside tokens)
-  // based off synonym list
-  synonyms.street_suffix_contractions.forEach( function( synonym ){
-    var split = synonym.split(' ');
-    settings.analysis.filter[ "keyword_street_suffix_" + split[0] ] = {
-      "type": "pattern_replace",
-      "pattern": " " + split[0],
-      "replacement": " " + split[2]
-    };
-  });
-
-  // compass prefix filters (replace text inside tokens)
-  // based off directionals list
-  synonyms.directionals.forEach( function( synonym ){
-    var split = synonym.split(' ');
-    settings.analysis.filter[ "keyword_compass_" + split[0] ] = {
-      "type": "pattern_replace",
-      "pattern": split[0],
-      "replacement": split[2]
-    };
-  });
 
   // Merge settings from pelias/config
   if( 'object' === typeof config &&
