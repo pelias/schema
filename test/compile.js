@@ -65,6 +65,7 @@ module.exports.tests.current_schema = function(test, common) {
 
     // code intentionally commented to allow quick debugging of expected.json
     // common.diff(schemaCopy, fixture);
+    console.error( JSON.stringify( schemaCopy, null, 2 ) );
 
     t.deepEqual(schemaCopy, fixture);
     t.end();
