@@ -33,7 +33,7 @@ function generate(){
         },
         "peliasStreetTokenizer": {
           "type": "pattern",
-          "pattern": "[,/\\\\]+"
+          "pattern": "[\\s,/\\\\]+"
         }
       },
       "analyzer": {
