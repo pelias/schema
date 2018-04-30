@@ -164,6 +164,6 @@ The restarted server should now pass the `node scripts/check_plugins.js` check, 
 
 ### Continuous Integration
 
-Travis tests every release against Node.js versions 4` and `6`.
+Travis tests every release against all supported Node.js versions.
 
 [![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
