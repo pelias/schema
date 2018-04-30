@@ -20,7 +20,7 @@ function drop(){
 // check all hosts to see if any is not localhost
 function warnIfNotLocal() {
   if (config.esclient.hosts.some((env) => { return env.host !== 'localhost'; } )) {
-    console.log(colors.red("WARNING: DROPPING SCHEMA NOT ON LOCALHOST"));
+    console.log(colors.red(`WARNING: DROPPING SCHEMA NOT ON LOCALHOST: ${config.esclient.hosts[0].host}`));
   }
 
 }
