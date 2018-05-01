@@ -85,6 +85,7 @@ module.exports.tests.address_analysis = function(test, common) {
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
   var fields = [
+    'continent',      'continent_a',      'continent_id',
     'country',        'country_a',        'country_id',
     'dependency',     'dependency_a',     'dependency_id',
     'macroregion',    'macroregion_a',    'macroregion_id',
