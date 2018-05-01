@@ -22,7 +22,7 @@ var schema = {
     // address data
     address_parts: {
       type: 'object',
-      dynamic: true,
+      dynamic: 'strict',
       properties: {
         name: {
           type: 'string',
@@ -50,7 +50,7 @@ var schema = {
     // hierarchy
     parent: {
       type: 'object',
-      dynamic: true,
+      dynamic: 'strict',
       properties: {
         // https://github.com/whosonfirst/whosonfirst-placetypes#continent
         continent: admin,
@@ -161,7 +161,7 @@ var schema = {
   _all: {
     enabled: false
   },
-  dynamic: 'true'
+  dynamic: 'strict'
 };
 
 module.exports = schema;
