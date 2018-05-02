@@ -43,7 +43,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
       type: 'string',
       analyzer: 'peliasIndexOneEdgeGram',
       fielddata: {
-        loading: 'eager_global_ordinals'
+        format: "disabled"
       }
     });
     t.end();
