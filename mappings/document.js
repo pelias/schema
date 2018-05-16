@@ -51,6 +51,15 @@ var schema = {
       type: 'object',
       dynamic: true,
       properties: {
+        // https://github.com/whosonfirst/whosonfirst-placetypes#continent
+        continent: admin,
+        continent_a: admin,
+        continent_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#empire
+        empire: admin,
+        empire_a: admin,
+        empire_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#country
         country: admin,
