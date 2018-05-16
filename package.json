@@ -1,6 +1,6 @@
 {
   "name": "pelias-schema",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.0-development",
   "author": "mapzen",
   "description": "Elasticsearch schema files and tooling for Pelias",
   "homepage": "https://github.com/pelias/schema",
