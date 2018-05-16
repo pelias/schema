@@ -10,7 +10,7 @@ matrix:
   fast_finish: true
 env:
   matrix:
-    - ES_VERSION=2.3.4
+    - ES_VERSION=2.4.6
 jdk:
   - oraclejdk8
 install:
