@@ -10,7 +10,7 @@ matrix:
   fast_finish: true
 env:
   matrix:
-    - ES_VERSION=2.3.4
+    - ES_VERSION=2.4.6
 jdk:
   - oraclejdk8
 install:
@@ -32,7 +32,7 @@ before_script:
   - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
 after_success:
-  - npm run semantic-release
+  - npx semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
