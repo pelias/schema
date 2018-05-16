@@ -14,7 +14,6 @@
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
     "travis": "npm run check-dependencies && npm run test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "check-dependencies": "node_modules/.bin/npm-check --production"
   },
   "repository": {
@@ -51,5 +50,8 @@
   },
   "pre-commit": [
     "check-dependencies"
-  ]
+  ],
+  "release": {
+    "success": []
+  }
 }
