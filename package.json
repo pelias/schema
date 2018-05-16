@@ -49,6 +49,7 @@
   "pre-commit": [
   ],
   "release": {
+    "branch": "production",
     "success": []
   }
 }
