@@ -1,12 +1,21 @@
-## Installation
+>This repository is part of the [Pelias](https://github.com/pelias/pelias)
+>project. Pelias is an open-source, open-data geocoder originally sponsored by
+>[Mapzen](https://www.mapzen.com/). Our official user documentation is
+>[here](https://github.com/pelias/documentation).
+
+# Pelias Elasticsearch Schema Definition
+
+This package defines the Elasticsearch schema used by Pelias. Pelias requires quite a few settings for performance and accuracy. This repository contains those settings as well as useful tools to ensure they are applied correctly.
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/pelias/schema.svg)](https://greenkeeper.io/)
+[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
+[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
+## Installation
 
 ```bash
 $ npm install pelias-schema
 ```
 
-[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
 
 ## Usage
 
@@ -165,5 +174,3 @@ The restarted server should now pass the `node scripts/check_plugins.js` check, 
 ### Continuous Integration
 
 Travis tests every release against all supported Node.js versions.
-
-[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
