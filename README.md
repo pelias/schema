@@ -1,12 +1,21 @@
-## Installation
+>This repository is part of the [Pelias](https://github.com/pelias/pelias)
+>project. Pelias is an open-source, open-data geocoder originally sponsored by
+>[Mapzen](https://www.mapzen.com/). Our official user documentation is
+>[here](https://github.com/pelias/documentation).
+
+# Pelias Elasticsearch Schema Definition
+
+This package defines the Elasticsearch schema used by Pelias. Pelias requires quite a few settings for performance and accuracy. This repository contains those settings as well as useful tools to ensure they are applied correctly.
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/pelias/schema.svg)](https://greenkeeper.io/)
+[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
+[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
+## Installation
 
 ```bash
 $ npm install pelias-schema
 ```
 
-[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
 
 ## Usage
 
@@ -57,6 +66,25 @@ Print a list of which plugins are installed and how to install any that are miss
 ```bash
 node scripts/check_plugins.js;
 ```
+
+#### user customizable synonyms files
+
+You may provide your own custom synonyms by editing files in the `./synonyms/` directory.
+
+```bash
+$ ls -1 synonyms/custom_*
+synonyms/custom_admin.txt
+synonyms/custom_name.txt
+synonyms/custom_street.txt
+```
+
+You must edit the files **before** running `create_index.js`, any changes made to the files will require you to drop and recreate the index before those synonyms are available.
+
+Synonyms are only used at index-time. The filename contains the name of the elasticsearch field which the synonyms will apply. ie. `custom_name` will apply to the `name.*` fields, `custom_street` will apply to the `address_parts.name` field and `custom_admin` will apply to the `parent.*` fields.
+
+see: https://github.com/pelias/schema/pull/273 for more info.
+
+With great power comes great responsibility. Synonyms files are often used as a hammer when a scalpel is required. Please take care with their use and make maintainers aware that you are using custom synonyms when you open support tickets.
 
 ## NPM Module
 
@@ -145,6 +173,4 @@ The restarted server should now pass the `node scripts/check_plugins.js` check, 
 
 ### Continuous Integration
 
-Travis tests every release against Node.js versions 4` and `6`.
-
-[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
+Travis tests every release against all supported Node.js versions.

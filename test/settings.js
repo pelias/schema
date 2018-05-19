@@ -30,7 +30,7 @@ module.exports.tests.configValidation = function(test, common) {
     t.end();
 
   });
-}
+};
 
 module.exports.tests.compile = function(test, common) {
   test('valid settings file', function(t) {
@@ -81,6 +81,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "icu_folding",
       "trim",
+      "custom_name",
       "full_token_address_suffix_expansion",
       "ampersand",
       "remove_ordinals",
@@ -116,9 +117,10 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "lowercase",
       "icu_folding",
       "trim",
+      "custom_name",
       "ampersand",
-      "street_synonym",
-      "direction_synonym",
+      "street_suffix_contractions",
+      "directionals",
       "unique",
       "notnull"
     ]);
@@ -194,7 +196,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
-    t.equal( analyzer.filter.length, 133, 'lots of filters' );
+    t.equal( analyzer.filter.length, 134, 'lots of filters' );
     t.end();
   });
 };
@@ -297,50 +299,13 @@ module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
   });
 };
 
-// this filter can be used to remove certain common words in order to keep
-// the index size down and the execution speed quick.
-// note: it is not intended to be used with shingles, but useful for ngrams
-module.exports.tests.addressStopFilter = function(test, common) {
-  test('has address_stop filter', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.address_stop, 'object', 'there is an address_stop filter');
-    var filter = s.analysis.filter.address_stop;
-    t.equal(filter.type, 'stop');
-    t.deepEqual(filter.stopwords, [
-      "alley", "annex", "avenue",
-      "bay", "bayou", "beach", "beltway", "bend", "bluff", "bluffs", "boulevard", "bottom", "branch", "bridge", "brook", "bypass",
-      "canyon", "cape", "causeway", "center", "channel", "circle", "cliff", "club", "common", "commons", "connector", "corridor",
-      "course", "cove", "creek", "crescent", "crest", "crossing", "crossroad", "crossroads", "curve",
-      "dale", "dam", "drive",
-      "esplanade", "expressway", "extended",
-      "falls", "ferry", "field", "fields", "flat", "flats", "ford", "forest", "forge", "fork", "forks", "freeway",
-      "garden", "gardens", "gateway", "glen", "glenn", "green", "grove",
-      "harbor", "haven", "heights", "highway", "hill", "hills", "hollow",
-      "isle",
-      "junction",
-      "key", "keys", "knoll", "knolls",
-      "landing", "lane", "light", "lights", "lock", "locks",
-      "manor", "meadow", "meadows", "mews", "mill", "mills", "mountain", "motorway",
-      "neck",
-      "orchard",
-      "parade", "parkway", "passage", "pier", "pike", "pine", "pines", "place", "plaza", "promenade",
-      "ranch", "ridge", "ridges", "river", "road", "route", "row",
-      "shore", "shores", "skyway", "spring", "springs", "square", "street",
-      "terrace", "trail", "trafficway", "tunnel", "turnpike",
-      "valley", "vista", "village", "viaduct",
-      "way"
-    ]);
-    t.end();
-  });
-};
-
 // this filter stems common street suffixes
 // eg. road=>rd and street=>st
 module.exports.tests.streetSynonymFilter = function(test, common) {
-  test('has street_synonym filter', function(t) {
+  test('has street_suffix_contractions filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.street_synonym, 'object', 'there is an street_synonym filter');
-    var filter = s.analysis.filter.street_synonym;
+    t.equal(typeof s.analysis.filter.street_suffix_contractions, 'object', 'there is an street_suffix_contractions filter');
+    var filter = s.analysis.filter.street_suffix_contractions;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 120);
@@ -351,10 +316,10 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
 // this filter stems common directional terms
 // eg. north=>n and south=>s
 module.exports.tests.directionSynonymFilter = function(test, common) {
-  test('has direction_synonym filter', function(t) {
+  test('has directionals filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.direction_synonym, 'object', 'there is an direction_synonym filter');
-    var filter = s.analysis.filter.direction_synonym;
+    t.equal(typeof s.analysis.filter.directionals, 'object', 'there is an directionals filter');
+    var filter = s.analysis.filter.directionals;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 8);

@@ -3,15 +3,14 @@ language: node_js
 notifications:
   email: false
 node_js:
-  - 4
   - 6
+  - 8
+  - 10
 matrix:
   fast_finish: true
 env:
-  global:
-    - BUILD_LEADER_ID=2
   matrix:
-    - ES_VERSION=2.3.4
+    - ES_VERSION=2.4.6
 jdk:
   - oraclejdk8
 install:
@@ -27,12 +26,13 @@ addons:
     packages:
       - oracle-java8-installer
 before_install:
-  - npm i -g npm@^3.0.0
+  - npm i -g npm
 before_script:
-  - npm prune
   - sleep 10
   - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
 after_success:
-  - npm install -g npx
-  - npx -p node@8 npm run semantic-release
+  - npx semantic-release
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
