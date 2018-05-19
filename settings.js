@@ -1,13 +1,24 @@
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
 var merge = require('lodash.merge');
 var peliasConfig = require('pelias-config');
 var punctuation = require('./punctuation');
-var street_suffix = require('./street_suffix');
+var synonymFile = require('./synonyms/parser');
+
+// load synonyms from disk
+var synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
+                 .sort()
+                 .filter( f => f.match(/\.txt$/) )
+                 .reduce(( acc, cur ) => {
+                   acc[cur.replace('.txt','')] = synonymFile(
+                     path.join(__dirname, 'synonyms', cur)
+                   );
+                   return acc;
+                 }, {});
 
 require('./configValidation').validate(peliasConfig.generate());
-
-var moduleDir = require('path').dirname("../");
 
 function generate(){
   var config = peliasConfig.generate().export();
@@ -35,6 +46,7 @@ function generate(){
             "icu_folding",
             "trim",
             "word_delimiter",
+            "custom_admin",
             "notnull"
           ]
         },
@@ -46,6 +58,7 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "full_token_address_suffix_expansion",
             "ampersand",
             "remove_ordinals",
@@ -101,9 +114,10 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
+            "custom_name",
             "ampersand",
-            "street_synonym",
-            "direction_synonym",
+            "street_suffix_contractions",
+            "directionals",
             "unique",
             "notnull"
           ]
@@ -139,9 +153,10 @@ function generate(){
             "lowercase",
             "icu_folding",
             "remove_duplicate_spaces",
-          ].concat( street_suffix.synonyms.map( function( synonym ){
+            "custom_street",
+          ].concat( synonyms.street_suffix_contractions.map( function( synonym ){
             return "keyword_street_suffix_" + synonym.split(' ')[0];
-          })).concat( street_suffix.direction_synonyms.map( function( synonym ){
+          })).concat( synonyms.directionals.map( function( synonym ){
             return "keyword_compass_" + synonym.split(' ')[0];
           })).concat([
             "remove_ordinals",
@@ -150,10 +165,6 @@ function generate(){
         }
       },
       "filter" : {
-        "ampersand" :{
-          "type": "synonym",
-          "synonyms": [ "and => &" ]
-        },
         "notnull" :{
           "type" : "length",
           "min" : 1
@@ -172,30 +183,6 @@ function generate(){
           "type" : "pattern_replace",
           "pattern" : "^(0*)",
           "replacement" : ""
-        },
-        "address_stop": {
-          "type": "stop",
-          "stopwords": street_suffix.terms
-        },
-        "street_synonym": {
-          "type": "synonym",
-          "synonyms": street_suffix.synonyms
-        },
-        "partial_token_address_suffix_expansion": {
-          "type": "synonym",
-          "synonyms": street_suffix.partial_token_safe_expansions
-        },
-        "full_token_address_suffix_expansion": {
-          "type": "synonym",
-          "synonyms": street_suffix.full_token_safe_expansions
-        },
-        "direction_synonym": {
-          "type": "synonym",
-          "synonyms": street_suffix.direction_synonyms
-        },
-        "direction_synonym_contraction_keep_original": {
-          "type": "synonym",
-          "synonyms": street_suffix.direction_synonyms_keep_original
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",
@@ -276,6 +263,15 @@ function generate(){
     }
   };
 
+  // dynamically create filters for all synonym files in the ./synonyms directory.
+  // each filter is given the same name as the file, minus the extension.
+  for( var key in synonyms ){
+    settings.analysis.filter[key] = {
+      "type": "synonym",
+      "synonyms": !!synonyms[key].length ? synonyms[key] : ['']
+    };
+  }
+
   // dynamically create filters which can replace text *inside* a token.
   // we are not able to re-use the synonym functionality in elasticsearch
   // because it only matches whole tokens, not strings *within* tokens.
@@ -284,30 +280,30 @@ function generate(){
 
   // street suffix filters (replace text inside tokens)
   // based off synonym list
-  street_suffix.synonyms.forEach( function( synonym ){
+  synonyms.street_suffix_contractions.forEach( function( synonym ){
     var split = synonym.split(' ');
     settings.analysis.filter[ "keyword_street_suffix_" + split[0] ] = {
       "type": "pattern_replace",
       "pattern": " " + split[0],
       "replacement": " " + split[2]
-    }
+    };
   });
 
   // compass prefix filters (replace text inside tokens)
-  // based off direction_synonyms list
-  street_suffix.direction_synonyms.forEach( function( synonym ){
+  // based off directionals list
+  synonyms.directionals.forEach( function( synonym ){
     var split = synonym.split(' ');
     settings.analysis.filter[ "keyword_compass_" + split[0] ] = {
       "type": "pattern_replace",
       "pattern": split[0],
       "replacement": split[2]
-    }
+    };
   });
 
   // Merge settings from pelias/config
-  if( 'object' == typeof config &&
-      'object' == typeof config.elasticsearch &&
-      'object' == typeof config.elasticsearch.settings ){
+  if( 'object' === typeof config &&
+      'object' === typeof config.elasticsearch &&
+      'object' === typeof config.elasticsearch.settings ){
     return merge({}, settings, config.elasticsearch.settings);
   }
 

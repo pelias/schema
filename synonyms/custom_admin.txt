@@ -1,0 +1,31 @@
+# =============================================================================
+# This file allows users to add their own custom synonyms below.
+#
+#  1. Blank lines and lines starting with '#' are comments.
+#
+#  2. Explicit mappings match any token sequence on the left-hand-side of "=>" and replace with all
+#  alternatives on the right-hand-side.
+#  These types of mappings ignore the expand parameter in the constructor.
+#  Example:
+#   i-pod, i pod => ipod
+#
+#  3. Equivalent synonyms may be separated with commas and give no explicit mapping.
+#  In this case the mapping behavior will be taken from the expand parameter in the constructor.
+#  This allows the same synonym file to be used in different synonym handling strategies.
+#  Example:
+#   ipod, i-pod, i pod
+#
+#  4. Multiple synonym mapping entries are merged.
+#  Example:
+#   foo => foo bar
+#   foo => baz
+#  is equivalent to:
+#   foo => foo bar, baz
+#
+# =============================================================================
+
+saint,st
+sainte,ste
+fort,ft
+mount,mt
+mont,mt
