@@ -36,7 +36,7 @@
     "elasticsearch": "^14.0.0",
     "joi": "^13.1.0",
     "lodash.merge": "^4.6.0",
-    "pelias-config": "2.14.0"
+    "pelias-config": "2.14.1"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
