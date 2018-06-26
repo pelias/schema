@@ -13,7 +13,7 @@
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
-    "travis": "npm run test"
+    "travis": "npm run test && npm run integration"
   },
   "repository": {
     "type": "git",
