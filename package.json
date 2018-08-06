@@ -13,7 +13,7 @@
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
-    "travis": "npm run test"
+    "travis": "npm run test && npm run integration"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "elasticsearch": "^15.0.0",
     "joi": "^13.1.0",
     "lodash.merge": "^4.6.0",
-    "pelias-config": "3.0.2"
+    "pelias-config": "^3.0.2"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
@@ -46,8 +46,7 @@
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"
   },
-  "pre-commit": [
-  ],
+  "pre-commit": [],
   "release": {
     "branch": "production",
     "success": []
