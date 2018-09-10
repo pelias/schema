@@ -21,7 +21,7 @@ var synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
 require('./configValidation').validate(peliasConfig.generate());
 
 function generate(){
-  var config = peliasConfig.generate().export();
+  var config = peliasConfig.generate();
 
   // Default settings
   var settings = {
