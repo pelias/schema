@@ -31,8 +31,12 @@ before_script:
   - sleep 10
   - curl http://127.0.0.1:9200/
   - node scripts/create_index.js -y
-after_success:
-  - npx semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+jobs:
+  include:
+    - stage: release
+      node_js: 10
+      script: curl "https://raw.githubusercontent.com/pelias/ci-tools/master/semantic-release.sh" | bash -
+      if: branch = production
