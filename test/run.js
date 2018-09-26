@@ -9,13 +9,13 @@ var common = {
 };
 
 var tests = [
-  require('./compile.js'),
-  require('./document.js'),
-  require('./partial-centroid.js'),
-  require('./partial-admin.js'),
-  require('./partial-literal.js'),
-  require('./partial-hash.js'),
-  require('./settings.js'),
+  require('./version/2.4/compile.js'),
+  require('./version/2.4/document.js'),
+  require('./version/2.4/partial-centroid.js'),
+  require('./version/2.4/partial-admin.js'),
+  require('./version/2.4/partial-literal.js'),
+  require('./version/2.4/partial-hash.js'),
+  require('./version/2.4/settings.js'),
   require('./configValidation.js'),
   require('./synonyms/parser.js'),
 ];

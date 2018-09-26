@@ -1,4 +1,4 @@
-var schema = require('../mappings/partial/hash');
+var schema = require('../../../version/2.4/mappings/partial/literal');
 
 module.exports.tests = {};
 
@@ -13,16 +13,22 @@ module.exports.tests.compile = function(test, common) {
 // this should never need to change
 module.exports.tests.type = function(test, common) {
   test('correct type', function(t) {
-    t.equal(schema.type, 'object', 'correct value');
+    t.equal(schema.type, 'string', 'correct value');
     t.end();
   });
 };
 
-// if dynamic=false you won't be able to
-// query the properties of the object!
-module.exports.tests.dynamic = function(test, common) {
-  test('dynamic true', function(t) {
-    t.equal(schema.dynamic, true, 'correct value');
+module.exports.tests.store = function(test, common) {
+  test('store enabled', function(t) {
+    t.equal(schema.store, 'yes', 'correct value');
+    t.end();
+  });
+};
+
+// do not perform analysis on categories
+module.exports.tests.analysis = function(test, common) {
+  test('index analysis', function(t) {
+    t.equal(schema.analyzer, 'keyword', 'should be keyword');
     t.end();
   });
 };
@@ -30,7 +36,7 @@ module.exports.tests.dynamic = function(test, common) {
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
-    return tape('hash: ' + name, testFunction);
+    return tape('literal: ' + name, testFunction);
   }
 
   for( var testCase in module.exports.tests ){

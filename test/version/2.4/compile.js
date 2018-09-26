@@ -1,5 +1,5 @@
 var path = require('path'),
-    schema = require('../'),
+    schema = require('../../../version/2.4/schema'),
     fixture = require('./fixtures/expected.json');
 
 module.exports.tests = {};
@@ -60,7 +60,7 @@ module.exports.tests.current_schema = function(test, common) {
 
     // use the pelias config fixture instead of the local config
     process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config.json' );
-    schemaCopy.settings = require('../settings')();
+    schemaCopy.settings = require('../../../version/2.4/settings')();
     delete process.env.PELIAS_CONFIG;
 
     // code intentionally commented to allow quick debugging of expected.json

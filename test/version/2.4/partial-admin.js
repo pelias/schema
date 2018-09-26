@@ -1,4 +1,4 @@
-var schema = require('../mappings/partial/admin');
+var schema = require('../../../version/2.4/mappings/partial/admin');
 
 module.exports.tests = {};
 

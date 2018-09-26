@@ -1,5 +1,5 @@
 
-var schema = require('../mappings/partial/centroid');
+var schema = require('../../../version/2.4/mappings/partial/centroid');
 
 module.exports.tests = {};
 
