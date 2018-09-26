@@ -124,7 +124,7 @@ $ npm run integration
 Download the image and start an elasticsearch docker container:
 
 ```bash
-$ docker run --name elastic-test -p 9200:9200 elasticsearch:2
+$ docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch
 ```
 
 Once the service has started you will need to ensure the plugins are installed, in a new window:
