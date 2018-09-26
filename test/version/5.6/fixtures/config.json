@@ -1,0 +1,11 @@
+{
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "number_of_replicas": "999",
+        "number_of_shards": "5",
+        "refresh_interval": "1m"
+      }
+    }
+  }
+}

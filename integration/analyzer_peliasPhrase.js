@@ -215,6 +215,7 @@ module.exports.tests.slop_query = function(test, common){
         type: 'mytype',
         body: buildQuery('Lake Cayuga')
       }, function( err, res ){
+        console.log(err, res);
         t.equal( res.hits.total, 3 );
         var hits = res.hits.hits;
 

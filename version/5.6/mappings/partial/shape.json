@@ -1,0 +1,5 @@
+{
+  "type": "geo_shape",
+  "tree": "quadtree",
+  "tree_levels": "20"
+}

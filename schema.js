@@ -1,1 +1,1 @@
-module.exports = require('./version/2.4/schema');
+module.exports = require('./version/5.6/schema');

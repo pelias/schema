@@ -1,5 +1,5 @@
 var path = require('path'),
-    settings = require('../../../version/2.4/settings'),
+    settings = require('../../../version/5.6/settings'),
     fs = require('fs');
 
 module.exports.tests = {};
@@ -15,7 +15,7 @@ module.exports.tests.configValidation = function(test, common) {
   test('configValidation throwing error should rethrow', function(t) {
     t.throws(function() {
       const proxyquire = require('proxyquire').noCallThru();
-      proxyquire('../../../version/2.4/settings', {
+      proxyquire('../../../version/5.6/settings', {
         '../../configValidation': {
           validate: () => {
             throw Error('config is not valid');

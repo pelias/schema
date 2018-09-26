@@ -16,6 +16,13 @@ var tests = [
   require('./version/2.4/partial-literal.js'),
   require('./version/2.4/partial-hash.js'),
   require('./version/2.4/settings.js'),
+  require('./version/5.6/compile.js'),
+  require('./version/5.6/document.js'),
+  require('./version/5.6/partial-centroid.js'),
+  require('./version/5.6/partial-admin.js'),
+  require('./version/5.6/partial-literal.js'),
+  require('./version/5.6/partial-hash.js'),
+  require('./version/5.6/settings.js'),
   require('./configValidation.js'),
   require('./synonyms/parser.js'),
 ];

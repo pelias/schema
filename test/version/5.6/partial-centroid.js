@@ -1,4 +1,4 @@
-var schema = require('../../../version/2.4/mappings/partial/centroid');
+var schema = require('../../../version/5.6/mappings/partial/centroid');
 
 module.exports.tests = {};
 
@@ -14,26 +14,6 @@ module.exports.tests.compile = function(test, common) {
 module.exports.tests.type = function(test, common) {
   test('correct type', function(t) {
     t.equal(schema.type, 'geo_point', 'correct value');
-    t.end();
-  });
-};
-
-// this should always be enabled for geo_distance filter
-// queries to execute correctly
-module.exports.tests.latlon = function(test, common) {
-  test('latlon enabled', function(t) {
-    t.equal(schema.lat_lon, true, 'correct value');
-    t.end();
-  });
-};
-
-// this should always be enabled for geohash_cell filter
-// queries to execute correctly
-module.exports.tests.geohash = function(test, common) {
-  test('geohash enabled', function(t) {
-    t.equal(schema.geohash, true, 'correct value');
-    t.equal(schema.geohash_prefix, true, 'correct value');
-    t.equal(schema.geohash_precision, 18, 'correct value');
     t.end();
   });
 };
