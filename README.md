@@ -127,50 +127,6 @@ Download the image and start an elasticsearch docker container:
 $ docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch
 ```
 
-Once the service has started you will need to ensure the plugins are installed, in a new window:
-
-```bash
-$ node scripts/check_plugins.js
-
---------------------------------
- checking elasticsearch plugins
---------------------------------
-
-node 'Nebulon' [x5sGjG6lSc2lWMf_hd6NwA]
- checking plugin 'analysis-icu': ✖
-
-1 required plugin(s) are not installed on the node(s) shown above.
-you must install the plugins before continuing with the installation.
-
-you can install the missing packages on 'Nebulon' [172.17.0.2] with the following command(s):
-
- sudo /usr/share/elasticsearch/bin/plugin install analysis-icu
-
-note: some plugins may require you to restart elasticsearch.
-```
-
-While the docker container is still running, execute this in another window:
-
-```bash
-$ docker exec -it elastic-test /usr/share/elasticsearch/bin/plugin install analysis-icu
--> Installing analysis-icu...
-Trying https://download.elastic.co/elasticsearch/release/org/elasticsearch/plugin/analysis-icu/2.4.5/analysis-icu-2.4.5.zip ...
-Downloading .............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................DONE
-Verifying https://download.elastic.co/elasticsearch/release/org/elasticsearch/plugin/analysis-icu/2.4.5/analysis-icu-2.4.5.zip checksums if available ...
-Downloading .DONE
-Installed analysis-icu into /usr/share/elasticsearch/plugins/analysis-icu
-```
-
-The plugin has been installed, you will now need to restart the elasticsearch service:
-
-```bash
-# use ctrl+c to exit and then:
-
-$ docker start elastic-test
-```
-
-The restarted server should now pass the `node scripts/check_plugins.js` check, you are good to go.
-
 ### Continuous Integration
 
 Travis tests every release against all supported Node.js versions.
