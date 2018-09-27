@@ -1,5 +1,6 @@
 {
   "type": "string",
   "index": "no",
-  "store": "yes"
+  "store": "yes",
+  "norms": { "enabled": false }
 }

@@ -153,6 +153,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.deepEqual(template.mapping, {
       type: 'string',
       analyzer: 'peliasIndexOneEdgeGram',
+      norms: { enabled: false },
       fielddata : {
         format: "disabled"
       }
@@ -167,6 +168,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.deepEqual(template.mapping, {
       type: 'string',
       analyzer: 'peliasPhrase',
+      norms: { enabled: false },
       fielddata : {
         format: "disabled"
       }

@@ -1,5 +1,6 @@
 {
   "type": "string",
   "analyzer": "peliasZip",
-  "store": "yes"
+  "store": "yes",
+  "norms": { "enabled": false }
 }

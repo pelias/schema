@@ -1,5 +1,6 @@
 {
   "type": "string",
   "analyzer": "keyword",
-  "store": "yes"
+  "store": "yes",
+  "norms": { "enabled": false }
 }

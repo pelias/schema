@@ -1,5 +1,6 @@
 {
   "type": "string",
   "analyzer": "peliasAdmin",
-  "store": "yes"
+  "store": "yes",
+  "norms": { "enabled": false }
 }

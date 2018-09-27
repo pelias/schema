@@ -216,8 +216,8 @@ module.exports.tests.slop_query = function(test, common){
         var hits = res.hits.hits;
 
         t.equal( hits[0]._source.name.default, 'Lake Cayuga' );
-        t.equal( hits[1]._source.name.default, 'Cayuga Lake' );
-        t.equal( hits[2]._source.name.default, '7991 Lake Cayuga Dr' );
+        t.equal( hits[1]._source.name.default, '7991 Lake Cayuga Dr' );
+        t.equal( hits[2]._source.name.default, 'Cayuga Lake' );
 
         t.true( hits[0]._score >= hits[1]._score );
         t.true( hits[1]._score >= hits[2]._score );

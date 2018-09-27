@@ -27,22 +27,27 @@ var schema = {
         name: {
           type: 'string',
           analyzer: 'keyword',
+          norms: { enabled: false }
         },
         unit: {
           type: 'string',
           analyzer: 'peliasUnit',
+          norms: { enabled: false }
         },
         number: {
           type: 'string',
           analyzer: 'peliasHousenumber',
+          norms: { enabled: false }
         },
         street: {
           type: 'string',
           analyzer: 'peliasStreet',
+          norms: { enabled: false }
         },
         zip: {
           type: 'string',
           analyzer: 'peliasZip',
+          norms: { enabled: false }
         }
       }
     },
@@ -137,6 +142,7 @@ var schema = {
       mapping: {
         type: 'string',
         analyzer: 'peliasIndexOneEdgeGram',
+        norms: { enabled: false },
         fielddata : {
           format: "disabled"
         }
@@ -149,6 +155,7 @@ var schema = {
       mapping: {
         type: 'string',
         analyzer: 'peliasPhrase',
+        norms: { enabled: false },
         fielddata : {
           format: "disabled"
         }
