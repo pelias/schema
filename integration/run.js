@@ -1,5 +1,13 @@
-var tape = require('tape');
-var common = {};
+const tape = require('tape');
+const config = require('pelias-config').generate();
+
+const common = {
+  clientOpts: {
+    host: 'localhost:9200',
+    keepAlive: true,
+    apiVersion: config.esclient.apiVersion
+  }
+};
 
 var tests = [
   require('./validate.js'),

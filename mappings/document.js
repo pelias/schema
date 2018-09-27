@@ -1,8 +1,9 @@
-var admin = require('./partial/admin');
-var postalcode = require('./partial/postalcode');
-var hash = require('./partial/hash');
-var multiplier = require('./partial/multiplier');
-var literal = require('./partial/literal');
+const admin = require('./partial/admin');
+const postalcode = require('./partial/postalcode');
+const hash = require('./partial/hash');
+const multiplier = require('./partial/multiplier');
+const literal = require('./partial/literal');
+const config = require('pelias-config').generate();
 
 var schema = {
   properties: {

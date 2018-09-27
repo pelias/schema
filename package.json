@@ -36,11 +36,11 @@
     "elasticsearch": "^15.0.0",
     "joi": "^14.0.0",
     "lodash.merge": "^4.6.0",
-    "pelias-config": "^3.0.2"
+    "pelias-config": "^3.5.0"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
-    "elastictest": "^1.2.0",
+    "elastictest": "^2.0.0",
     "proxyquire": "^2.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"

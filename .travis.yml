@@ -8,16 +8,17 @@ node_js:
   - 10
 matrix:
   fast_finish: true
+  allow_failures:
+    - env: ES_VERSION=5.6.12
 env:
   matrix:
     - ES_VERSION=2.4.6
+    - ES_VERSION=5.6.12
 jdk:
   - oraclejdk8
 install:
   - mkdir /tmp/elasticsearch
-  - wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz | tar xz --directory=/tmp/elasticsearch --strip-components=1
-  - /tmp/elasticsearch/bin/plugin install analysis-icu
-  - /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp
+  - ./scripts/setup_ci.sh
   - npm i
 script:
   - npm run travis
