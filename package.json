@@ -7,8 +7,8 @@
   "license": "MIT",
   "main": "schema.js",
   "scripts": {
-    "test": "node test/run.js | tap-spec",
-    "integration": "node integration/run.js | tap-spec",
+    "test": "./bin/test",
+    "integration": "./bin/integration",
     "create_index": "node scripts/create_index",
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
@@ -42,7 +42,6 @@
     "difflet": "^1.0.1",
     "elastictest": "^1.2.0",
     "proxyquire": "^2.0.0",
-    "semantic-release": "^15.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"
   },
