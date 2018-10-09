@@ -137,7 +137,7 @@ var schema = {
         type: 'string',
         analyzer: 'peliasIndexOneEdgeGram',
         fielddata : {
-          loading: 'eager_global_ordinals'
+          format: "disabled"
         }
       }
     },
@@ -149,7 +149,7 @@ var schema = {
         type: 'string',
         analyzer: 'peliasPhrase',
         fielddata : {
-          loading: 'eager_global_ordinals'
+          format: "disabled"
         }
       }
     }
