@@ -1,5 +1,4 @@
 {
   "type": "string",
-  "analyzer": "keyword",
-  "store": "yes"
+  "analyzer": "keyword"
 }
