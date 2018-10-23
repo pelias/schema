@@ -10,7 +10,7 @@ module.exports.tests = {};
 module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -54,7 +54,7 @@ module.exports.tests.analyze = function(test, common){
 module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -97,7 +97,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.tests.tokenizer = function(test, common){
   test( 'tokenizer', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -124,7 +124,7 @@ module.exports.tests.tokenizer = function(test, common){
 module.exports.tests.slop = function(test, common){
   test( 'slop', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -142,7 +142,7 @@ module.exports.tests.slop = function(test, common){
 module.exports.tests.slop_query = function(test, common){
   test( 'slop query', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -179,31 +179,27 @@ module.exports.tests.slop_query = function(test, common){
     function buildQuery( i ){
       return {
         "query": {
-          "filtered": {
-            "query": {
-              "bool": {
-                "must": [
-                  {
-                    "match": {
-                      "name.default": {
-                        "query": i
-                      }
-                    }
+          "bool": {
+            "must": [
+              {
+                "match": {
+                  "name.default": {
+                    "query": i
                   }
-                ],
-                "should": [
-                  {
-                    "match": {
-                      "phrase.default": {
-                        "query": i,
-                        "type": "phrase",
-                        "slop": 2
-                      }
-                    }
-                  }
-                ]
+                }
               }
-            }
+            ],
+            "should": [
+              {
+                "match": {
+                  "phrase.default": {
+                    "query": i,
+                    "type": "phrase",
+                    "slop": 2
+                  }
+                }
+              }
+            ]
           }
         }
       };
@@ -213,6 +209,7 @@ module.exports.tests.slop_query = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'mytype',
+        searchType: 'dfs_query_then_fetch',
         body: buildQuery('Lake Cayuga')
       }, function( err, res ){
         t.equal( res.hits.total, 3 );
@@ -222,8 +219,8 @@ module.exports.tests.slop_query = function(test, common){
         t.equal( hits[1]._source.name.default, 'Cayuga Lake' );
         t.equal( hits[2]._source.name.default, '7991 Lake Cayuga Dr' );
 
-        t.true( hits[0]._score > hits[1]._score );
-        t.true( hits[1]._score > hits[2]._score );
+        t.true( hits[0]._score >= hits[1]._score );
+        t.true( hits[1]._score >= hits[2]._score );
         done();
       });
     });
@@ -236,7 +233,7 @@ module.exports.tests.slop_query = function(test, common){
 module.exports.tests.slop = function(test, common){
   test( 'slop', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document
@@ -257,6 +254,7 @@ module.exports.tests.slop = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
+        searchType: 'dfs_query_then_fetch',
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasPhrase',
@@ -280,7 +278,7 @@ module.exports.tests.slop = function(test, common){
 module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 

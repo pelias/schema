@@ -10,7 +10,7 @@ module.exports.tests = {};
 module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -65,7 +65,7 @@ module.exports.tests.analyze = function(test, common){
 module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -93,7 +93,7 @@ module.exports.tests.address_suffix_expansions = function(test, common){
 module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -112,7 +112,7 @@ module.exports.tests.stop_words = function(test, common){
 module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -135,7 +135,7 @@ module.exports.tests.functional = function(test, common){
 module.exports.tests.address = function(test, common){
   test( 'address', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -159,7 +159,7 @@ module.exports.tests.address = function(test, common){
 module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
-    var suite = new elastictest.Suite( null, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
