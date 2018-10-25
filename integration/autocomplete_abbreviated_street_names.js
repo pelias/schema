@@ -68,7 +68,9 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
   });
 };
 
-// // index the name as 'Grolmanstr.' and then retrieve with 'Grolmanstraße'
+// Note: this test is commented out, it's a behaviour we would like to have but currently
+// do not support.
+// index the name as 'Grolmanstr.' and then retrieve with 'Grolmanstraße'
 // module.exports.tests.index_contracted_form_search_expanded = function(test, common){
 //   test( 'index contracted and search expanded', function(t){
 
@@ -86,47 +88,46 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     });
 
 //     // @note: these tests are commented out, the issue would be better solved
-//     // with https://github.com/pelias/openaddresses/pull/68
+//     // at import time with https://github.com/pelias/openaddresses/pull/68
 
-//     //
-//     // // search using 'peliasQueryPartialToken'
-//     // suite.assert( function( done ){
-//     //   suite.client.search({
-//     //     index: suite.props.index,
-//     //     type: 'test',
-//     //     body: { query: { match: {
-//     //       'name.default': {
-//     //         'analyzer': 'peliasQueryPartialToken',
-//     //         'query': 'Grolmanstraße'
-//     //       }
-//     //     }}}
-//     //   }, function( err, res ){
-//     //     t.equal( err, undefined );
-//     //     t.equal( res.hits.total, 1, 'document found' );
-//     //     done();
-//     //   });
-//     // });
+//     // search using 'peliasQueryPartialToken'
+//     suite.assert( function( done ){
+//       suite.client.search({
+//         index: suite.props.index,
+//         type: 'test',
+//         body: { query: { match: {
+//           'name.default': {
+//             'analyzer': 'peliasQueryPartialToken',
+//             'query': 'Grolmanstraße'
+//           }
+//         }}}
+//       }, function( err, res ){
+//         t.equal( err, undefined );
+//         t.equal( res.hits.total, 1, 'document found' );
+//         done();
+//       });
+//     });
 
 //     // search using 'peliasQueryFullToken'
 //     // @note: this case is currently not supported.
 //     // Please index your data in the expanded form.
 
-//     // suite.assert( function( done ){
-//     //   suite.client.search({
-//     //     index: suite.props.index,
-//     //     type: 'test',
-//     //     body: { query: { match: {
-//     //       'name.default': {
-//     //         'analyzer': 'peliasQueryFullToken',
-//     //         'query': 'Grolmanstraße'
-//     //       }
-//     //     }}}
-//     //   }, function( err, res ){
-//     //     t.equal( err, undefined );
-//     //     t.equal( res.hits.total, 1, 'document found' );
-//     //     done();
-//     //   });
-//     // });
+//     suite.assert( function( done ){
+//       suite.client.search({
+//         index: suite.props.index,
+//         type: 'test',
+//         body: { query: { match: {
+//           'name.default': {
+//             'analyzer': 'peliasQueryFullToken',
+//             'query': 'Grolmanstraße'
+//           }
+//         }}}
+//       }, function( err, res ){
+//         t.equal( err, undefined );
+//         t.equal( res.hits.total, 1, 'document found' );
+//         done();
+//       });
+//     });
 
 //     suite.run( t.end );
 //   });

@@ -189,6 +189,119 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
+
+module.exports.tests.venue_vs_address = function(test, common){
+  test( 'venue_vs_address', function(t){
+    // This test shows that partial matching addresses score higher than exact matching
+    // venues with the same name.
+
+    // I would prefer that the venue scored highest, but this is not possible due to the
+    // addresses matching on all three fields (name,street,phrase) while the venue only
+    // matches on two fields (name,phrase).
+
+    // Unfortunately there seems to be no easy way of fixing this, it's an artifact of us
+    // storing the street names in the name.default field.
+
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // index a venue
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index, type: 'test',
+        id: '1', body: {
+          name: { default: 'Union Square' },
+          phrase: { default: 'Union Square' }
+        }
+      }, done );
+    });
+
+    // index multiple streets, having many in the index is important
+    // because it influences the 'norms' and TF/IDF scoring
+    const testFactory = function(i){
+      return function( done ){
+        let id = i + 100; // id offset
+        suite.client.index({
+          index: suite.props.index, type: 'test',
+          id: String(id),
+          body: {
+            name: { default: `${id} Union Square` },
+            phrase: { default: `${id} Union Square` },
+            address_parts: {
+              number: String(i),
+              street: 'Union Square'
+            }
+          }
+        }, done);
+      };
+    };
+
+    const TOTAL_ADDRESS_DOCS=9;
+    for( var i=0; i<TOTAL_ADDRESS_DOCS; i++ ){
+      suite.action( testFactory(i) );
+    }
+
+    // autocomplete-style query to assert which result is scored higher,
+    // the exact matching venue, or the partial matching address.
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        searchType: 'dfs_query_then_fetch',
+        size: TOTAL_ADDRESS_DOCS+1,
+        body: {
+          'query': {
+            'bool': {
+              'must': [
+                {
+                  'match': {
+                    'name.default': {
+                      'analyzer': 'peliasQueryFullToken',
+                      'type': 'phrase',
+                      'boost': 1,
+                      'slop': 3,
+                      'query': 'union square'
+                    }
+                  }
+                }
+              ],
+              'should': [
+                {
+                  'match': {
+                    'address_parts.street': {
+                      'analyzer': 'peliasStreet',
+                      'boost': 5,
+                      'query': 'union square'
+                    }
+                  }
+                },
+                {
+                  'match': {
+                    'phrase.default': {
+                      'analyzer': 'peliasPhrase',
+                      'type': 'phrase',
+                      'boost': 1,
+                      'slop': 3,
+                      'query': 'union square'
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, TOTAL_ADDRESS_DOCS+1, 'matched all docs' );
+        t.equal( res.hits.hits[TOTAL_ADDRESS_DOCS]._id, '1', 'exact name match first' );
+        done();
+      });
+    });
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
