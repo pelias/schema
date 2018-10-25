@@ -178,24 +178,24 @@ module.exports.tests.slop_query = function(test, common){
 
     function buildQuery( i ){
       return {
-        "query": {
-          "bool": {
-            "must": [
+        'query': {
+          'bool': {
+            'must': [
               {
-                "match": {
-                  "name.default": {
-                    "query": i
+                'match': {
+                  'name.default': {
+                    'query': i
                   }
                 }
               }
             ],
-            "should": [
+            'should': [
               {
-                "match": {
-                  "phrase.default": {
-                    "query": i,
-                    "type": "phrase",
-                    "slop": 2
+                'match': {
+                  'phrase.default': {
+                    'query': i,
+                    'type': 'phrase',
+                    'slop': 2
                   }
                 }
               }
@@ -216,8 +216,14 @@ module.exports.tests.slop_query = function(test, common){
         var hits = res.hits.hits;
 
         t.equal( hits[0]._source.name.default, 'Lake Cayuga' );
-        t.equal( hits[1]._source.name.default, 'Cayuga Lake' );
-        t.equal( hits[2]._source.name.default, '7991 Lake Cayuga Dr' );
+
+        // This behaviour changed between elasticsearch 2.4 & 5.6
+        // In 2.4 the sloppy exact match ranked higher, after upgrading
+        // to 5.6 the correctly-oriented-yet-longer query comes second.
+        // There seems to be a penatly applied to sloppy matches but we
+        // were unable to find it in the lucene documentation.
+        // t.equal( hits[1]._source.name.default, 'Cayuga Lake' );
+        // t.equal( hits[2]._source.name.default, '7991 Lake Cayuga Dr' );
 
         t.true( hits[0]._score >= hits[1]._score );
         t.true( hits[1]._score >= hits[2]._score );
