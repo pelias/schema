@@ -6,6 +6,19 @@ const common = {
     host: 'localhost:9200',
     keepAlive: true,
     apiVersion: config.esclient.apiVersion
+  },
+  summaryMap: (res) => {
+    return res.hits.hits.map(h => {
+      return {
+        _id: h._id,
+        _score: h._score,
+        name: h._source.name
+      };
+    });
+  },
+  summary: (res) => {
+    common.summaryMap( res )
+          .forEach( console.dir );
   }
 };
 
