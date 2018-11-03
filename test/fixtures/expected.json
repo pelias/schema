@@ -1457,7 +1457,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -1483,7 +1483,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -1724,7 +1724,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "venue": {
       "properties": {
@@ -1746,7 +1746,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -1772,7 +1772,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -2013,7 +2013,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "address": {
       "properties": {
@@ -2035,7 +2035,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -2061,7 +2061,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -2302,7 +2302,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "street": {
       "properties": {
@@ -2324,7 +2324,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -2350,7 +2350,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -2591,7 +2591,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "neighbourhood": {
       "properties": {
@@ -2613,7 +2613,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -2639,7 +2639,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -2880,7 +2880,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "borough": {
       "properties": {
@@ -2902,7 +2902,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -2928,7 +2928,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -3169,7 +3169,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "postalcode": {
       "properties": {
@@ -3191,7 +3191,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -3217,7 +3217,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -3458,7 +3458,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "locality": {
       "properties": {
@@ -3480,7 +3480,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -3506,7 +3506,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -3747,7 +3747,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "localadmin": {
       "properties": {
@@ -3769,7 +3769,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -3795,7 +3795,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -4036,7 +4036,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "county": {
       "properties": {
@@ -4058,7 +4058,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -4084,7 +4084,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -4325,7 +4325,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "macrocounty": {
       "properties": {
@@ -4347,7 +4347,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -4373,7 +4373,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -4614,7 +4614,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "region": {
       "properties": {
@@ -4636,7 +4636,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -4662,7 +4662,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -4903,7 +4903,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "macroregion": {
       "properties": {
@@ -4925,7 +4925,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -4951,7 +4951,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -5192,7 +5192,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "dependency": {
       "properties": {
@@ -5214,7 +5214,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -5240,7 +5240,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -5481,7 +5481,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     },
     "country": {
       "properties": {
@@ -5503,7 +5503,7 @@
         },
         "address_parts": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "name": {
               "type": "string",
@@ -5529,7 +5529,7 @@
         },
         "parent": {
           "type": "object",
-          "dynamic": true,
+          "dynamic": "strict",
           "properties": {
             "continent": {
               "type": "string",
@@ -5770,7 +5770,7 @@
       "_all": {
         "enabled": false
       },
-      "dynamic": "true"
+      "dynamic": "strict"
     }
   }
 }

@@ -176,9 +176,10 @@ module.exports.tests.all_disabled = function(test, common) {
 
 // dynamic should be true in order for dynamic_templates to function properly
 // @see: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/mapping-dynamic-mapping.html
+// strict ensures extra fields cannot be added: https://www.elastic.co/guide/en/elasticsearch/guide/current/dynamic-mapping.html
 module.exports.tests.dynamic_disabled = function(test, common) {
-  test('dynamic true', function(t) {
-    t.equal(schema.dynamic, 'true', 'dynamic true');
+  test('dynamic strict', function(t) {
+    t.equal(schema.dynamic, 'strict', 'dynamic true');
     t.end();
   });
 };
