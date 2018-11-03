@@ -13,7 +13,9 @@
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
-    "travis": "npm run test && npm run integration"
+    "travis": "npm run test && npm run integration",
+    "lint": "jshint .",
+    "validate": "npm ls"
   },
   "repository": {
     "type": "git",
@@ -43,11 +45,17 @@
   "devDependencies": {
     "difflet": "^1.0.1",
     "elastictest": "^2.0.0",
+    "precommit-hook": "^3.0.0",
     "proxyquire": "^2.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"
   },
-  "pre-commit": [],
+  "pre-commit": [
+    "lint",
+    "prune",
+    "validate",
+    "test"
+  ],
   "release": {
     "branch": "master",
     "success": []
