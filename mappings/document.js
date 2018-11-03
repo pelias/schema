@@ -12,7 +12,6 @@ var schema = {
     // data partitioning
     source: literal_with_doc_values,
     layer: literal_with_doc_values,
-    alpha3: admin,
 
     // place name (ngram analysis)
     name: hash,

@@ -18,7 +18,6 @@ module.exports.tests.functional = function(test, common){
       suite.client.index({
         index: suite.props.index, type: 'test',
         id: '1', body: { admin: {
-          alpha3: 'TST',
           country: 'Test Country',
           country_a: 'TestCountry',
           country_id: '100',
@@ -39,19 +38,6 @@ module.exports.tests.functional = function(test, common){
           neighbourhood_id: '600',
         }}
       }, done );
-    });
-
-    // search by alpha3
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: 'test',
-        body: { query: { match: { 'admin.alpha3': 'TST' } } }
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
-        done();
-      });
     });
 
     // search by country
