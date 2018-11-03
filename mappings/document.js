@@ -3,14 +3,15 @@ const postalcode = require('./partial/postalcode');
 const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');
 const literal = require('./partial/literal');
+const literal_with_doc_values = require('./partial/literal_with_doc_values');
 const config = require('pelias-config').generate();
 
 var schema = {
   properties: {
 
     // data partitioning
-    source: literal,
-    layer: literal,
+    source: literal_with_doc_values,
+    layer: literal_with_doc_values,
     alpha3: admin,
 
     // place name (ngram analysis)

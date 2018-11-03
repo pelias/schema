@@ -1441,11 +1441,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -1499,7 +1499,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -1511,7 +1512,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -1523,7 +1525,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -1535,7 +1538,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -1547,7 +1551,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -1559,7 +1564,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -1571,7 +1577,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -1583,7 +1590,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -1595,7 +1603,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -1607,7 +1616,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -1619,7 +1629,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -1631,7 +1642,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -1643,7 +1655,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -1661,11 +1674,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -1719,11 +1734,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -1777,7 +1792,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -1789,7 +1805,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -1801,7 +1818,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -1813,7 +1831,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -1825,7 +1844,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -1837,7 +1857,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -1849,7 +1870,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -1861,7 +1883,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -1873,7 +1896,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -1885,7 +1909,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -1897,7 +1922,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -1909,7 +1935,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -1921,7 +1948,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -1939,11 +1967,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -1997,11 +2027,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -2055,7 +2085,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -2067,7 +2098,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -2079,7 +2111,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -2091,7 +2124,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -2103,7 +2137,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -2115,7 +2150,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -2127,7 +2163,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -2139,7 +2176,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -2151,7 +2189,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -2163,7 +2202,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -2175,7 +2215,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -2187,7 +2228,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -2199,7 +2241,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -2217,11 +2260,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -2275,11 +2320,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -2333,7 +2378,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -2345,7 +2391,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -2357,7 +2404,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -2369,7 +2417,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -2381,7 +2430,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -2393,7 +2443,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -2405,7 +2456,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -2417,7 +2469,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -2429,7 +2482,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -2441,7 +2495,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -2453,7 +2508,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -2465,7 +2521,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -2477,7 +2534,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -2495,11 +2553,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -2553,11 +2613,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -2611,7 +2671,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -2623,7 +2684,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -2635,7 +2697,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -2647,7 +2710,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -2659,7 +2723,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -2671,7 +2736,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -2683,7 +2749,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -2695,7 +2762,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -2707,7 +2775,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -2719,7 +2788,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -2731,7 +2801,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -2743,7 +2814,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -2755,7 +2827,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -2773,11 +2846,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -2831,11 +2906,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -2889,7 +2964,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -2901,7 +2977,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -2913,7 +2990,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -2925,7 +3003,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -2937,7 +3016,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -2949,7 +3029,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -2961,7 +3042,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -2973,7 +3055,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -2985,7 +3068,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -2997,7 +3081,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -3009,7 +3094,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -3021,7 +3107,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -3033,7 +3120,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -3051,11 +3139,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -3109,11 +3199,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -3167,7 +3257,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -3179,7 +3270,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -3191,7 +3283,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -3203,7 +3296,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -3215,7 +3309,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -3227,7 +3322,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -3239,7 +3335,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -3251,7 +3348,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -3263,7 +3361,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -3275,7 +3374,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -3287,7 +3387,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -3299,7 +3400,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -3311,7 +3413,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -3329,11 +3432,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -3387,11 +3492,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -3445,7 +3550,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -3457,7 +3563,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -3469,7 +3576,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -3481,7 +3589,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -3493,7 +3602,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -3505,7 +3615,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -3517,7 +3628,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -3529,7 +3641,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -3541,7 +3654,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -3553,7 +3667,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -3565,7 +3680,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -3577,7 +3693,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -3589,7 +3706,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -3607,11 +3725,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -3665,11 +3785,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -3723,7 +3843,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -3735,7 +3856,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -3747,7 +3869,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -3759,7 +3882,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -3771,7 +3895,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -3783,7 +3908,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -3795,7 +3921,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -3807,7 +3934,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -3819,7 +3947,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -3831,7 +3960,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -3843,7 +3973,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -3855,7 +3986,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -3867,7 +3999,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -3885,11 +4018,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -3943,11 +4078,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -4001,7 +4136,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -4013,7 +4149,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -4025,7 +4162,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -4037,7 +4175,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -4049,7 +4188,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -4061,7 +4201,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -4073,7 +4214,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -4085,7 +4227,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -4097,7 +4240,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -4109,7 +4253,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -4121,7 +4266,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -4133,7 +4279,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -4145,7 +4292,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -4163,11 +4311,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -4221,11 +4371,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -4279,7 +4429,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -4291,7 +4442,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -4303,7 +4455,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -4315,7 +4468,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -4327,7 +4481,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -4339,7 +4494,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -4351,7 +4507,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -4363,7 +4520,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -4375,7 +4533,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -4387,7 +4546,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -4399,7 +4559,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -4411,7 +4572,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -4423,7 +4585,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -4441,11 +4604,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -4499,11 +4664,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -4557,7 +4722,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -4569,7 +4735,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -4581,7 +4748,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -4593,7 +4761,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -4605,7 +4774,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -4617,7 +4787,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -4629,7 +4800,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -4641,7 +4813,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -4653,7 +4826,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -4665,7 +4839,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -4677,7 +4852,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -4689,7 +4865,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -4701,7 +4878,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -4719,11 +4897,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -4777,11 +4957,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -4835,7 +5015,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -4847,7 +5028,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -4859,7 +5041,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -4871,7 +5054,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -4883,7 +5067,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -4895,7 +5080,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -4907,7 +5093,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -4919,7 +5106,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -4931,7 +5119,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -4943,7 +5132,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -4955,7 +5145,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -4967,7 +5158,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -4979,7 +5171,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -4997,11 +5190,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -5055,11 +5250,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -5113,7 +5308,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -5125,7 +5321,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -5137,7 +5334,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -5149,7 +5347,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -5161,7 +5360,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -5173,7 +5373,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -5185,7 +5386,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -5197,7 +5399,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -5209,7 +5412,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -5221,7 +5425,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -5233,7 +5438,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -5245,7 +5451,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -5257,7 +5464,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -5275,11 +5483,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
@@ -5333,11 +5543,11 @@
       "properties": {
         "source": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "layer": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed"
         },
         "alpha3": {
           "type": "string",
@@ -5391,7 +5601,8 @@
             },
             "continent_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "empire": {
               "type": "string",
@@ -5403,7 +5614,8 @@
             },
             "empire_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "country": {
               "type": "string",
@@ -5415,7 +5627,8 @@
             },
             "country_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "dependency": {
               "type": "string",
@@ -5427,7 +5640,8 @@
             },
             "dependency_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macroregion": {
               "type": "string",
@@ -5439,7 +5653,8 @@
             },
             "macroregion_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "region": {
               "type": "string",
@@ -5451,7 +5666,8 @@
             },
             "region_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "macrocounty": {
               "type": "string",
@@ -5463,7 +5679,8 @@
             },
             "macrocounty_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "county": {
               "type": "string",
@@ -5475,7 +5692,8 @@
             },
             "county_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "locality": {
               "type": "string",
@@ -5487,7 +5705,8 @@
             },
             "locality_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "borough": {
               "type": "string",
@@ -5499,7 +5718,8 @@
             },
             "borough_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "localadmin": {
               "type": "string",
@@ -5511,7 +5731,8 @@
             },
             "localadmin_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "neighbourhood": {
               "type": "string",
@@ -5523,7 +5744,8 @@
             },
             "neighbourhood_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             },
             "postalcode": {
               "type": "string",
@@ -5535,7 +5757,8 @@
             },
             "postalcode_id": {
               "type": "string",
-              "analyzer": "keyword"
+              "index": "not_analyzed",
+              "doc_values": false
             }
           }
         },
@@ -5553,11 +5776,13 @@
         },
         "source_id": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "category": {
           "type": "string",
-          "analyzer": "keyword"
+          "index": "not_analyzed",
+          "doc_values": false
         },
         "population": {
           "type": "long",
