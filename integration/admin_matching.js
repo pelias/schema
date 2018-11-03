@@ -17,26 +17,28 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index, type: 'test',
-        id: '1', body: { admin: {
-          country: 'Test Country',
-          country_a: 'TestCountry',
-          country_id: '100',
-          region: 'Test Region',
-          region_a: 'TestRegion',
-          region_id: '200',
-          county: 'Test County',
-          county_a: 'TestCounty',
-          county_id: '300',
-          locality: 'Test Locality',
-          locality_a: 'TestLocality',
-          locality_id: '400',
-          localadmin: 'Test LocalAdmin',
-          localadmin_a: 'TestLocalAdmin',
-          localadmin_id: '500',
-          neighbourhood: 'Test Neighbourhood',
-          neighbourhood_a: 'TestNeighbourhood',
-          neighbourhood_id: '600',
-        }}
+        id: '1', body: {
+          parent: {
+            country: 'Test Country',
+            country_a: 'TestCountry',
+            country_id: '100',
+            region: 'Test Region',
+            region_a: 'TestRegion',
+            region_id: '200',
+            county: 'Test County',
+            county_a: 'TestCounty',
+            county_id: '300',
+            locality: 'Test Locality',
+            locality_a: 'TestLocality',
+            locality_id: '400',
+            localadmin: 'Test LocalAdmin',
+            localadmin_a: 'TestLocalAdmin',
+            localadmin_id: '500',
+            neighbourhood: 'Test Neighbourhood',
+            neighbourhood_a: 'TestNeighbourhood',
+            neighbourhood_id: '600',
+          }
+        }
       }, done );
     });
 
@@ -45,7 +47,7 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
-        body: { query: { match: { 'admin.country': 'Test Country' } } }
+        body: { query: { match: { 'parent.country': 'Test Country' } } }
       }, function( err, res ){
         t.equal( err, undefined );
         t.equal( res.hits.total, 1, 'document found' );
@@ -58,7 +60,7 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
-        body: { query: { match: { 'admin.country_a': 'TestCountry' } } }
+        body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
       }, function( err, res ){
         t.equal( err, undefined );
         t.equal( res.hits.total, 1, 'document found' );
@@ -71,7 +73,7 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'test',
-        body: { query: { match: { 'admin.country_id': '100' } } }
+        body: { query: { match: { 'parent.country_id': '100' } } }
       }, function( err, res ){
         t.equal( err, undefined );
         t.equal( res.hits.total, 1, 'document found' );
