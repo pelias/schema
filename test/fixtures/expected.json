@@ -1447,10 +1447,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -1739,10 +1735,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -2033,10 +2025,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -2325,10 +2313,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -2619,10 +2603,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -2911,10 +2891,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -3205,10 +3181,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -3497,10 +3469,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -3791,10 +3759,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -4083,10 +4047,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -4377,10 +4337,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -4669,10 +4625,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",
@@ -4963,10 +4915,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -5256,10 +5204,6 @@
           "type": "string",
           "index": "not_analyzed"
         },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
-        },
         "name": {
           "type": "object",
           "dynamic": true
@@ -5548,10 +5492,6 @@
         "layer": {
           "type": "string",
           "index": "not_analyzed"
-        },
-        "alpha3": {
-          "type": "string",
-          "analyzer": "peliasAdmin"
         },
         "name": {
           "type": "object",

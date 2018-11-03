@@ -20,7 +20,7 @@ module.exports.tests.properties = function(test, common) {
 
 // should contain the correct field definitions
 module.exports.tests.fields = function(test, common) {
-  var fields = ['source', 'layer', 'alpha3', 'name', 'phrase', 'address_parts',
+  var fields = ['source', 'layer', 'name', 'phrase', 'address_parts',
     'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category',
     'population', 'popularity'];
   test('fields specified', function(t) {
@@ -131,15 +131,6 @@ module.exports.tests.parent_analysis = function(test, common) {
     t.equal(prop['postalcode'+'_id'].type, 'string');
     t.equal(prop['postalcode'+'_id'].index, 'not_analyzed');
 
-    t.end();
-  });
-};
-
-module.exports.tests.alpha3_analysis = function(test, common) {
-  var prop = schema.properties.alpha3;
-  test('alpha3', function(t) {
-    t.equal(prop.type, 'string');
-    t.equal(prop.analyzer, 'peliasAdmin');
     t.end();
   });
 };
