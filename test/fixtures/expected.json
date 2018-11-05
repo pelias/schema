@@ -1498,6 +1498,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -1533,6 +1546,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -1787,6 +1813,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -1822,6 +1861,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -2076,6 +2128,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -2111,6 +2176,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -2365,6 +2443,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -2400,6 +2491,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -2654,6 +2758,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -2689,6 +2806,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -2943,6 +3073,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -2978,6 +3121,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -3232,6 +3388,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -3267,6 +3436,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -3521,6 +3703,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -3556,6 +3751,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -3810,6 +4018,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -3845,6 +4066,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -4099,6 +4333,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -4134,6 +4381,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -4388,6 +4648,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -4423,6 +4696,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -4677,6 +4963,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -4712,6 +5011,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -4966,6 +5278,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -5001,6 +5326,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -5255,6 +5593,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -5290,6 +5641,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
@@ -5544,6 +5908,19 @@
               "index": "not_analyzed",
               "doc_values": false
             },
+            "ocean": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "ocean_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
             "empire": {
               "type": "string",
               "analyzer": "peliasAdmin"
@@ -5579,6 +5956,19 @@
               "analyzer": "peliasAdmin"
             },
             "dependency_id": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": false
+            },
+            "marinearea": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_a": {
+              "type": "string",
+              "analyzer": "peliasAdmin"
+            },
+            "marinearea_id": {
               "type": "string",
               "index": "not_analyzed",
               "doc_values": false
