@@ -57,6 +57,11 @@ var schema = {
         continent_a: admin,
         continent_id: literal,
 
+        // https://github.com/whosonfirst/whosonfirst-placetypes#ocean
+        ocean: admin,
+        ocean_a: admin,
+        ocean_id: literal,
+
         // https://github.com/whosonfirst/whosonfirst-placetypes#empire
         empire: admin,
         empire_a: admin,
@@ -71,6 +76,11 @@ var schema = {
         dependency: admin,
         dependency_a: admin,
         dependency_id: literal,
+
+        // https://github.com/whosonfirst/whosonfirst-placetypes#marinearea
+        marinearea: admin,
+        marinearea_a: admin,
+        marinearea_id: literal,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#macroregion
         macroregion: admin,
