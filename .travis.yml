@@ -1,5 +1,6 @@
-sudo: false
 language: node_js
+# Once openjdk/oraclejdk dependencies are resolved, change to dist: xenial
+dist: trusty
 notifications:
   email: false
 node_js:
