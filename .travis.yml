@@ -15,7 +15,6 @@ env:
 jdk:
   - oraclejdk8
 install:
-  - mkdir /tmp/elasticsearch
   - ./scripts/setup_ci.sh
   - npm i
 script:

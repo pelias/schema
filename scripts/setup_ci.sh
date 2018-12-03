@@ -4,29 +4,27 @@ set -e
 # download and install elasticsearch with ICU plugin
 # note: the download servers and plugin install binary changed between versions
 
+# default download and plugin locations
+ES_PLUGIN_BIN="/usr/share/elasticsearch/bin/elasticsearch-plugin"
+ES_DEB_URL="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.deb"
+
+# override if using old Elasticsearch versions
 if [[ "${ES_VERSION}" == "2.4"* ]]; then
-
-  # download from legacy host
-  wget -O - https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.tar.gz \
-    | tar xz --directory=/tmp/elasticsearch --strip-components=1
-
-  # install ICU plugin
-  /tmp/elasticsearch/bin/plugin install analysis-icu
-
-  # start elasticsearch server
-  /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp
-else
-
-  # download from new host
-  wget -O - https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz \
-    | tar xz --directory=/tmp/elasticsearch --strip-components=1
-
-  # install ICU plugin
-  /tmp/elasticsearch/bin/elasticsearch-plugin install analysis-icu
-
-  # start elasticsearch server
-  /tmp/elasticsearch/bin/elasticsearch --daemonize -Epath.data=/tmp -Edefault.path.data=/tmp -Ediscovery.type=single-node
+	ES_PLUGIN_BIN="/usr/share/elasticsearch/bin/plugin"
+	ES_DEB_URL="https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/${ES_VERSION}/elasticsearch-${ES_VERSION}.deb"
 fi
+
+# download correct ES version
+curl -O $ES_DEB_URL
+
+# install debian package
+sudo dpkg -i --force-confnew elasticsearch-${ES_VERSION}.deb
+
+# install ICU plugin
+sudo $ES_PLUGIN_BIN install analysis-icu
+
+# restart elasticsearch server
+sudo service elasticsearch restart
 
 # set the correct esclient.apiVersion in pelias.json
 v=( ${ES_VERSION//./ } ) # split version number on '.'
@@ -37,4 +35,4 @@ echo "--- pelias.json ---"
 cat ~/pelias.json
 
 echo "--- elasticsearch.yml ---"
-cat /tmp/elasticsearch/config/elasticsearch.yml
+sudo cat /etc/elasticsearch/elasticsearch.yml
