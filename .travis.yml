@@ -1,10 +1,11 @@
-sudo: false
 language: node_js
+# Once openjdk/oraclejdk dependencies are resolved, change to dist: xenial
+dist: trusty
 notifications:
   email: false
 node_js:
-  - 8
-  - 10
+  - 8.13.0
+  - 10.13.0
 matrix:
   fast_finish: true
 env:
