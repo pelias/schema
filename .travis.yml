@@ -4,8 +4,8 @@ dist: trusty
 notifications:
   email: false
 node_js:
-  - 8.13.0
-  - 10.13.0
+  - 8
+  - 10
 matrix:
   fast_finish: true
 env:
