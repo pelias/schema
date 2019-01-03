@@ -1,9 +1,13 @@
+const child_process = require('child_process');
+const http = require('http');
+
 const config = require('pelias-config').generate();
 const es = require('elasticsearch');
-const child_process = require('child_process');
-const client = new es.Client(config.esclient);
+
 const cli = require('./cli');
 const schema = require('../schema');
+
+const client = new es.Client(config.esclient);
 
 // check mandatory plugins are installed before continuing
 try {
