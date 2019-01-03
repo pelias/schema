@@ -1,9 +1,9 @@
-var config = require('pelias-config').generate();
-var es = require('elasticsearch');
-var child_process = require('child_process');
-var client = new es.Client(config.esclient);
-var cli = require('./cli');
-var schema = require('../schema');
+const config = require('pelias-config').generate();
+const es = require('elasticsearch');
+const child_process = require('child_process');
+const client = new es.Client(config.esclient);
+const cli = require('./cli');
+const schema = require('../schema');
 
 // check mandatory plugins are installed before continuing
 try {
@@ -14,7 +14,7 @@ try {
 }
 
 cli.header("create index");
-var indexName = config.schema.indexName;
+const indexName = config.schema.indexName;
 
 client.indices.create( { index: indexName, body: schema }, function( err, res ){
   if( err ){
