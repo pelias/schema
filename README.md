@@ -33,7 +33,7 @@ $ npm install pelias-schema
 #### create index
 
 ```bash
-node scripts/create_index.js;               # quick start
+./bin/create_index                          # quick start
 ```
 
 #### drop index
