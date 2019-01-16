@@ -4,4 +4,4 @@
 # see https://github.com/pelias/pelias/issues/744
 set -o pipefail
 
-node integration/run.js | npx tap-spec
+node --max-http-header-size=16384 integration/run.js | npx tap-spec

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# create index, passing needed command line parameters
+node --max-http-header-size=16384 scripts/create_index.js

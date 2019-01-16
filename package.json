@@ -9,7 +9,7 @@
   "scripts": {
     "test": "./bin/test",
     "integration": "./bin/integration",
-    "create_index": "node scripts/create_index",
+    "create_index": "./bin/create_index",
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
@@ -36,7 +36,8 @@
     "elasticsearch": "^15.0.0",
     "joi": "^14.0.0",
     "lodash.merge": "^4.6.0",
-    "pelias-config": "^3.5.0"
+    "pelias-config": "^3.5.0",
+    "pelias-logger": "^1.3.0"
   },
   "devDependencies": {
     "difflet": "^1.0.1",
