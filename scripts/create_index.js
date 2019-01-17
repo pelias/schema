@@ -19,7 +19,7 @@ try {
 }
 
 if (http.maxHeaderSize === undefined) {
-  logger.warning('You are using a version of Node.js that does not support the --max-http-header-size option.' +
+  logger.warn('You are using a version of Node.js that does not support the --max-http-header-size option.' +
     'You may experience issues when using Elasticsearch 5.' +
     'See https://github.com/pelias/schema#compatibility for more details.');
 }
