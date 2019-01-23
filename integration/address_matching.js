@@ -302,6 +302,71 @@ module.exports.tests.venue_vs_address = function(test, common){
   });
 };
 
+module.exports.tests.transliteration = function(test, common){
+  test( 'transliteration', function(t){
+
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // index some docs
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index, type: 'test',
+        id: '1', body: { address_parts: {
+          street: 'זבולון'
+        }}
+      }, done );
+    });
+
+    // search in Hebrew
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        body: { query: { bool: { must: [
+          { match: { 'address_parts.street': 'זבולון' } }
+        ]}}}
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, 1, 'match street name' );
+        done();
+      });
+    });
+
+    // search transliteration
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        body: { query: { bool: { must: [
+          { match: { 'address_parts.street': 'zvulun' } }
+        ]}}}
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, 1, 'match street name' );
+        done();
+      });
+    });
+
+    // search transliteration
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: 'test',
+        body: { query: { bool: { must: [
+          { match: { 'address_parts.street': 'zevulon' } }
+        ]}}}
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( res.hits.total, 1, 'match street name' );
+        done();
+      });
+    });
+
+    suite.run( t.end );
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {

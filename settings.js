@@ -152,6 +152,7 @@ function generate(){
           "filter": [
             "lowercase",
             "icu_folding",
+            "peliasICUTransform",
             "remove_duplicate_spaces",
             "custom_street",
           ].concat( synonyms.street_suffix_contractions.map( function( synonym ){
@@ -165,6 +166,10 @@ function generate(){
         }
       },
       "filter" : {
+        "peliasICUTransform": {
+          "type": "icu_transform",
+          "id": "Any-Latin; NFD; [:Nonspacing Mark:] Remove; NFC" 
+        },
         "notnull" :{
           "type" : "length",
           "min" : 1
