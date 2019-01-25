@@ -138,7 +138,10 @@ var schema = {
     source_id: literal,
     category: literal,
     population: multiplier,
-    popularity: multiplier
+    popularity: multiplier,
+
+    // addendum (non-indexed supplimentary data)
+    addendum: hash
   },
   dynamic_templates: [{
     nameGram: {
@@ -148,7 +151,7 @@ var schema = {
         type: 'string',
         analyzer: 'peliasIndexOneEdgeGram',
         fielddata : {
-          format: "disabled"
+          format: 'disabled'
         }
       }
     },
@@ -160,7 +163,20 @@ var schema = {
         type: 'string',
         analyzer: 'peliasPhrase',
         fielddata : {
-          format: "disabled"
+          format: 'disabled'
+        }
+      }
+    }
+  },{
+    addendum: {
+      path_match: 'addendum.*',
+      match_mapping_type: 'string',
+      mapping: {
+        type: 'string',
+        index: 'no',
+        doc_values: false,
+        fielddata : {
+          format: 'disabled'
         }
       }
     }

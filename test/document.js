@@ -22,7 +22,7 @@ module.exports.tests.properties = function(test, common) {
 module.exports.tests.fields = function(test, common) {
   var fields = ['source', 'layer', 'name', 'phrase', 'address_parts',
     'parent', 'center_point', 'shape', 'bounding_box', 'source_id', 'category',
-    'population', 'popularity'];
+    'population', 'popularity', 'addendum'];
   test('fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties), fields);
     t.end();
