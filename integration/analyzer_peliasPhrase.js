@@ -301,17 +301,17 @@ module.exports.tests.unicode = function(test, common){
 
     // Chambéry (both forms appear the same)
     var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
 
     assertAnalysis( 'composed', composed, ['chambery'] );
     assertAnalysis( 'decomposed', decomposed, ['chambery'] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    var composed2 = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    var decomposed2 = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n";
 
-    assertAnalysis( 'composed', composed, ['een'] );
-    assertAnalysis( 'decomposed', decomposed, ['een'] );
+    assertAnalysis( 'composed', composed2, ['een'] );
+    assertAnalysis( 'decomposed', decomposed2, ['een'] );
 
     suite.run( t.end );
   });

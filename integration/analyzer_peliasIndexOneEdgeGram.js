@@ -172,17 +172,17 @@ module.exports.tests.unicode = function(test, common){
 
     // Chambéry (both forms appear the same)
     var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
 
     assertAnalysis( 'composed', composed, ['c', 'ch', 'cha', 'cham', 'chamb', 'chambe', 'chamber', 'chambery'] );
     assertAnalysis( 'decomposed', decomposed, ['c', 'ch', 'cha', 'cham', 'chamb', 'chambe', 'chamber', 'chambery'] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    var composed2 = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    var decomposed2 = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n";
 
-    assertAnalysis( 'composed', composed, ['e','ee','een'] );
-    assertAnalysis( 'decomposed', decomposed, ['e','ee','een'] );
+    assertAnalysis( 'composed', composed2, ['e','ee','een'] );
+    assertAnalysis( 'decomposed', decomposed2, ['e','ee','een'] );
 
     suite.run( t.end );
   });

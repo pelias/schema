@@ -214,18 +214,18 @@ module.exports.tests.unicode = function(test, common){
     var latin_small_letter_e = String.fromCodePoint(0x0065);
 
     // Chambéry (both forms appear the same)
-    var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    var chambery_composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
+    var chambery_decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
 
-    assertAnalysis( 'composed', composed, ['chambery'] );
-    assertAnalysis( 'decomposed', decomposed, ['chambery'] );
+    assertAnalysis( 'composed', chambery_composed, ['chambery'] );
+    assertAnalysis( 'decomposed', chambery_decomposed, ['chambery'] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    var een_composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    var een_decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n";
 
-    assertAnalysis( 'composed', composed, ['een'] );
-    assertAnalysis( 'decomposed', decomposed, ['een'] );
+    assertAnalysis( 'composed', een_composed, ['een'] );
+    assertAnalysis( 'decomposed', een_decomposed, ['een'] );
 
     suite.run( t.end );
   });

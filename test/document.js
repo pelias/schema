@@ -137,12 +137,12 @@ module.exports.tests.parent_analysis = function(test, common) {
   });
 
   test('postalcode', function(t) {
-    t.equal(prop['postalcode'].type, 'string');
-    t.equal(prop['postalcode'].analyzer, 'peliasZip');
-    t.equal(prop['postalcode'+'_a'].type, 'string');
-    t.equal(prop['postalcode'+'_a'].analyzer, 'peliasZip');
-    t.equal(prop['postalcode'+'_id'].type, 'string');
-    t.equal(prop['postalcode'+'_id'].index, 'not_analyzed');
+    t.equal(prop.postalcode.type, 'string');
+    t.equal(prop.postalcode.analyzer, 'peliasZip');
+    t.equal(prop.postalcode_a.type, 'string');
+    t.equal(prop.postalcode_a.analyzer, 'peliasZip');
+    t.equal(prop.postalcode_id.type, 'string');
+    t.equal(prop.postalcode_id.index, 'not_analyzed');
 
     t.end();
   });
