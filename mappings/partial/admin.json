@@ -1,4 +1,14 @@
 {
   "type": "string",
-  "analyzer": "peliasAdmin"
+  "analyzer": "peliasAdmin",
+  "fields": {
+    "ngram": {
+      "type": "string",
+      "analyzer": "peliasIndexOneEdgeGram",
+      "doc_values": false,
+      "fielddata": {
+        "format": "disabled"
+      }
+    }
+  }
 }
