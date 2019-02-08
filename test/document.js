@@ -85,21 +85,21 @@ module.exports.tests.address_analysis = function(test, common) {
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
   var fields = [
-    'continent',      'continent_a',      'continent_id',
-    'ocean',          'ocean_a',          'ocean_id',
-    'empire',         'empire_a',         'empire_id',
-    'country',        'country_a',        'country_id',
-    'dependency',     'dependency_a',     'dependency_id',
-    'marinearea',     'marinearea_a',     'marinearea_id',
-    'macroregion',    'macroregion_a',    'macroregion_id',
-    'region',         'region_a',         'region_id',
-    'macrocounty',    'macrocounty_a',    'macrocounty_id',
-    'county',         'county_a',         'county_id',
-    'locality',       'locality_a',       'locality_id',
-    'borough',        'borough_a',        'borough_id',
-    'localadmin',     'localadmin_a',     'localadmin_id',
-    'neighbourhood',  'neighbourhood_a',  'neighbourhood_id',
-    'postalcode',     'postalcode_a',     'postalcode_id'
+    'continent',      'continent_a',      'continent_id',     'continent_ngram',
+    'ocean',          'ocean_a',          'ocean_id',         'ocean_ngram',
+    'empire',         'empire_a',         'empire_id',        'empire_ngram',
+    'country',        'country_a',        'country_id',       'country_ngram',
+    'dependency',     'dependency_a',     'dependency_id',    'dependency_ngram',
+    'marinearea',     'marinearea_a',     'marinearea_id',    'marinearea_ngram',
+    'macroregion',    'macroregion_a',    'macroregion_id',   'macroregion_ngram',
+    'region',         'region_a',         'region_id',        'region_ngram',
+    'macrocounty',    'macrocounty_a',    'macrocounty_id',   'macrocounty_ngram',
+    'county',         'county_a',         'county_id',        'county_ngram',
+    'locality',       'locality_a',       'locality_id',      'locality_ngram',
+    'borough',        'borough_a',        'borough_id',       'borough_ngram',
+    'localadmin',     'localadmin_a',     'localadmin_id',    'localadmin_ngram',
+    'neighbourhood',  'neighbourhood_a',  'neighbourhood_id', 'neighbourhood_ngram',
+    'postalcode',     'postalcode_a',     'postalcode_id',    'postalcode_ngram'
   ];
   test('parent fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
@@ -111,15 +111,23 @@ module.exports.tests.parent_fields = function(test, common) {
 // ref: https://github.com/pelias/schema/pull/95
 module.exports.tests.parent_analysis = function(test, common) {
   var prop = schema.properties.parent.properties;
-  var fields = ['country','region','county','locality','localadmin','neighbourhood'];
+  var fields = [
+    'continent', 'ocean', 'empire', 'country', 'dependency', 'marinearea',
+    'macroregion', 'region', 'macrocounty', 'county', 'locality', 'borough',
+    'localadmin', 'neighbourhood'
+  ];
   fields.forEach( function( field ){
     test(field, function(t) {
       t.equal(prop[field].type, 'string');
       t.equal(prop[field].analyzer, 'peliasAdmin');
+      t.equal(prop[field].copy_to, `parent.${field}_ngram`);
       t.equal(prop[field+'_a'].type, 'string');
       t.equal(prop[field+'_a'].analyzer, 'peliasAdmin');
+      t.equal(prop[field+'_a'].copy_to, `parent.${field}_ngram`);
       t.equal(prop[field+'_id'].type, 'string');
       t.equal(prop[field+'_id'].index, 'not_analyzed');
+      t.equal(prop[field+'_ngram'].type, 'string');
+      t.equal(prop[field+'_ngram'].analyzer, 'peliasIndexOneEdgeGram');
 
       t.end();
     });

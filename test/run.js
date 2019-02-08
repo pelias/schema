@@ -13,6 +13,7 @@ var tests = [
   require('./document.js'),
   require('./partial-centroid.js'),
   require('./partial-admin.js'),
+  require('./partial-admin-ngram.js'),
   require('./partial-literal.js'),
   require('./partial-hash.js'),
   require('./settings.js'),
