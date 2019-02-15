@@ -31,7 +31,7 @@ module.exports.tests.fields = function(test, common) {
 
 // should contain the correct address field definitions
 module.exports.tests.address_fields = function(test, common) {
-  var fields = ['name','unit','number','street','zip'];
+  var fields = ['name','unit','number','street','cross_street','zip'];
   test('address fields specified', function(t) {
     t.deepEqual(Object.keys(schema.properties.address_parts.properties), fields);
     t.end();

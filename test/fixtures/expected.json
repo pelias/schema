@@ -712,6 +712,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -1042,6 +1046,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -1378,6 +1386,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -1708,6 +1720,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -2044,6 +2060,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -2374,6 +2394,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -2710,6 +2734,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -3040,6 +3068,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -3376,6 +3408,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -3706,6 +3742,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -4042,6 +4082,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -4372,6 +4416,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
@@ -4708,6 +4756,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -5041,6 +5093,10 @@
               "type": "string",
               "analyzer": "peliasStreet"
             },
+            "cross_street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
             "zip": {
               "type": "string",
               "analyzer": "peliasZip"
@@ -5371,6 +5427,10 @@
               "analyzer": "peliasHousenumber"
             },
             "street": {
+              "type": "string",
+              "analyzer": "peliasStreet"
+            },
+            "cross_street": {
               "type": "string",
               "analyzer": "peliasStreet"
             },
