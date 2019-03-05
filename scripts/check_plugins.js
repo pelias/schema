@@ -1,3 +1,4 @@
+const colors = require('colors/safe');
 const config = require('pelias-config').generate();
 const util = require('util');
 const es = require('elasticsearch');
@@ -10,6 +11,10 @@ const plugins = [ 'analysis-icu' ];
 
 // list of failures
 let failures = [];
+
+// helper strings for output
+const success = colors.green('✔');
+const failure = colors.red('✖');
 
 cli.header("checking elasticsearch plugins");
 client.nodes.info( null, function( err, res ){
@@ -35,7 +40,7 @@ client.nodes.info( null, function( err, res ){
       continue;
     }
 
-    console.log( util.format( "\033[1;37mnode '%s' [%s]\033[0m", node.name, uid ) );
+    console.log( colors.bold(util.format( "node '%s' [%s]", node.name, uid ) ) );
 
     // per node failures
     let node_failures = [];
@@ -49,7 +54,7 @@ client.nodes.info( null, function( err, res ){
       }).length;
 
       // output status to terminal
-      console.log( util.format( " checking plugin '%s': %s", plugin, isInstalled ? '\033[1;32m✔\033[0m' : '\033[1;31m✖\033[0m' ) );
+      console.log( (util.format( " checking plugin '%s': %s", plugin, isInstalled ? success : failure ) ) );
 
       // record this plugin as not installed yet
       if( !isInstalled ){
@@ -65,15 +70,15 @@ client.nodes.info( null, function( err, res ){
 
   // pretty print error message
   if( failures.length ){
-    console.error( util.format( "\n\033[0;31m%s required plugin(s) are not installed on the node(s) shown above.", failures.length ) );
-    console.error( "you must install the plugins before continuing with the installation.\033[0m");
+    console.error( colors.red(util.format( "%s required plugin(s) are not installed on the node(s) shown above.", failures.length ) ) );
+    console.error( "you must install the plugins before continuing with the installation.");
     failures.forEach( function( failure ){
       console.error( util.format( "\nyou can install the missing packages on '%s' [%s] with the following command(s):\n", failure.node.name, failure.node.ip ) );
       failure.plugins.forEach( function( plugin ){
-        console.error( util.format( "\033[0;32m sudo %s/bin/plugin install %s\033[0m", failure.node.settings.path.home, plugin ) );
+        console.error( colors.green(util.format( "sudo %s/bin/plugin install %s", failure.node.settings.path.home, plugin ) ) );
       });
     });
-    console.error( "\n\033[1;37mnote:\033[0m some plugins may require you to restart elasticsearch.\n");
+    console.error( colors.white("\nnote:") + "some plugins may require you to restart elasticsearch.\n");
     process.exit(1)
   }
 
