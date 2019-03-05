@@ -1,6 +1,5 @@
 const colors = require('colors/safe');
 const config = require('pelias-config').generate();
-const util = require('util');
 const es = require('elasticsearch');
 const client = new es.Client(config.esclient);
 const cli = require('./cli');
@@ -40,7 +39,7 @@ client.nodes.info( null, function( err, res ){
       continue;
     }
 
-    console.log( colors.bold(util.format( "node '%s' [%s]", node.name, uid ) ) );
+    console.log( colors.bold(`node '${node.name}' [${uid}]`) );
 
     // per node failures
     let node_failures = [];
@@ -54,7 +53,7 @@ client.nodes.info( null, function( err, res ){
       }).length;
 
       // output status to terminal
-      console.log( (util.format( " checking plugin '%s': %s", plugin, isInstalled ? success : failure ) ) );
+      console.log( ` checking plugin '${plugin}': ${isInstalled ? success : failure}` );
 
       // record this plugin as not installed yet
       if( !isInstalled ){
@@ -70,12 +69,12 @@ client.nodes.info( null, function( err, res ){
 
   // pretty print error message
   if( failures.length ){
-    console.error( colors.red(util.format( "%s required plugin(s) are not installed on the node(s) shown above.", failures.length ) ) );
+    console.error( colors.red(`${failures.length} required plugin(s) are not installed on the node(s) shown above.` ) );
     console.error( "you must install the plugins before continuing with the installation.");
     failures.forEach( function( failure ){
-      console.error( util.format( "\nyou can install the missing packages on '%s' [%s] with the following command(s):\n", failure.node.name, failure.node.ip ) );
+      console.error( `\nyou can install the missing packages on '${failure.node.name}' [${failure.node.ip}] with the following command(s):\n` );
       failure.plugins.forEach( function( plugin ){
-        console.error( colors.green(util.format( "sudo %s/bin/plugin install %s", failure.node.settings.path.home, plugin ) ) );
+        console.error( colors.green( `sudo ${failure.node.settings.path.home}/bin/plugin install ${plugin}`) );
       });
     });
     console.error( colors.white("\nnote:") + "some plugins may require you to restart elasticsearch.\n");
