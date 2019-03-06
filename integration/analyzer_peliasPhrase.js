@@ -21,7 +21,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'stop_words (disabled)', 'a st b ave c', ['0:a', '1:st', '1:street', '2:b', '3:ave', '3:avenue', '4:c'], true );
+    assertAnalysis( 'stop_words (disabled)', 'a st b ave c', ['0:a', '1:st', '1:street', '2:b', '3:ave', '3:avenue', '3:av', '4:c'], true );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
@@ -38,7 +38,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'unique', '1 1 1', ['1'] );
     assertAnalysis( 'notnull', ' ^ ', [] );
 
-    assertAnalysis( 'stem street suffixes', 'streets avenue', ['0:streets', '1:avenue', '1:ave'], true );
+    assertAnalysis( 'stem street suffixes', 'streets avenue', ['0:streets', '1:avenue', '1:ave', '1:av'], true );
     assertAnalysis( 'stem street suffixes', 'boulevard roads', ['0:boulevard', '0:blvd', '1:roads'], true );
 
     assertAnalysis( 'stem direction synonyms', 'south by southwest', ['0:south', '0:s', '1:by', '2:southwest', '2:sw'], true );
@@ -77,8 +77,8 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'address', '325 North 12th Street', expected2, true );
 
     // both terms should map to same tokens
-    var expected3 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '3:s', '3:south', '3:see' ];
-    var expected4 = [ '0:13509', '1:colfax', '2:avenue', '2:ave', '3:south', '3:s' ];
+    var expected3 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '2:av', '3:s', '3:south', '3:see' ];
+    var expected4 = [ '0:13509', '1:colfax', '2:avenue', '2:ave', '2:av', '3:south', '3:s' ];
     assertAnalysis( 'address', '13509 Colfax Ave S', expected3, true );
     assertAnalysis( 'address', '13509 Colfax Avenue South', expected4, true );
 
@@ -105,8 +105,8 @@ module.exports.tests.tokenizer = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasPhrase' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave' ];
-    var expected2 = [ '0:bedell', '1:street', '1:st', '102:133', '103:avenue', '103:ave' ];
+    var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave', '3:av' ];
+    var expected2 = [ '0:bedell', '1:street', '1:st', '102:133', '103:avenue', '103:ave', '103:av' ];
 
     // specify 2 streets with a delimeter
     assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   expected1, true );
