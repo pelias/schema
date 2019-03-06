@@ -1,15 +1,28 @@
-var config = require('pelias-config').generate();
-var util = require('util');
-var es = require('elasticsearch');
-var client = new es.Client(config.esclient);
-var cli = require('./cli');
-var schema = require('../schema');
+const colors = require('colors/safe');
+const config = require('pelias-config').generate();
+const es = require('elasticsearch');
+const client = new es.Client(config.esclient);
+const cli = require('./cli');
+const schema = require('../schema');
 
 // mandatory plugins
-var plugins = [ 'analysis-icu' ];
+const plugins = [ 'analysis-icu' ];
 
 // list of failures
-var failures = [];
+let failures = [];
+
+// helper strings for output
+const success = colors.green('✔');
+const failure = colors.red('✖');
+
+// returns the appropriate plugin name for the configured Elasticsearch version
+function elasticsearchPluginUtility() {
+  if (config.esclient.apiVersion === '2.4') {
+    return 'plugin';
+  } else {
+    return 'elasticsearch-plugin';
+  }
+}
 
 cli.header("checking elasticsearch plugins");
 client.nodes.info( null, function( err, res ){
@@ -25,9 +38,9 @@ client.nodes.info( null, function( err, res ){
   }
 
   // iterate over all nodes in cluster
-  for( var uid in res.nodes ){
+  for( const uid in res.nodes ){
 
-    var node = res.nodes[uid];
+    const node = res.nodes[uid];
 
     // Amazon's hosted Elasticsearch does not have the plugins property
     // but has the plugins we need
@@ -35,21 +48,21 @@ client.nodes.info( null, function( err, res ){
       continue;
     }
 
-    console.log( util.format( "\033[1;37mnode '%s' [%s]\033[0m", node.name, uid ) );
+    console.log( colors.bold(`node '${node.name}' [${uid}]`) );
 
     // per node failures
-    var node_failures = [];
+    let node_failures = [];
 
     // iterate over all installed plugins on this node
     plugins.forEach( function( plugin ){
 
       // bool, is the plugin currently installed?
-      var isInstalled = !!node.plugins.filter( function( installedPlugin ){
+      const isInstalled = !!node.plugins.filter( function( installedPlugin ){
         return installedPlugin.name == plugin;
       }).length;
 
       // output status to terminal
-      console.log( util.format( " checking plugin '%s': %s", plugin, isInstalled ? '\033[1;32m✔\033[0m' : '\033[1;31m✖\033[0m' ) );
+      console.log( ` checking plugin '${plugin}': ${isInstalled ? success : failure}` );
 
       // record this plugin as not installed yet
       if( !isInstalled ){
@@ -65,15 +78,15 @@ client.nodes.info( null, function( err, res ){
 
   // pretty print error message
   if( failures.length ){
-    console.error( util.format( "\n\033[0;31m%s required plugin(s) are not installed on the node(s) shown above.", failures.length ) );
-    console.error( "you must install the plugins before continuing with the installation.\033[0m");
+    console.error( colors.red(`${failures.length} required plugin(s) are not installed on the node(s) shown above.` ) );
+    console.error( "you must install the plugins before continuing with the installation.");
     failures.forEach( function( failure ){
-      console.error( util.format( "\nyou can install the missing packages on '%s' [%s] with the following command(s):\n", failure.node.name, failure.node.ip ) );
+      console.error( `\nyou can install the missing packages on '${failure.node.name}' [${failure.node.ip}] with the following command(s):\n` );
       failure.plugins.forEach( function( plugin ){
-        console.error( util.format( "\033[0;32m sudo %s/bin/plugin install %s\033[0m", failure.node.settings.path.home, plugin ) );
+        console.error( colors.green( `sudo ${failure.node.settings.path.home}/bin/${elasticsearchPluginUtility()} install ${plugin}`) );
       });
     });
-    console.error( "\n\033[1;37mnote:\033[0m some plugins may require you to restart elasticsearch.\n");
+    console.error( colors.white("\nnote:") + "some plugins may require you to restart elasticsearch.\n");
     process.exit(1)
   }
 
