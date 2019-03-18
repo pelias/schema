@@ -77,14 +77,14 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'address', '325 North 12th Street', expected2, true );
 
     // both terms should map to same tokens
-    var expected3 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '3:s', '3:south' ];
+    var expected3 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '3:s', '3:south', '3:see' ];
     var expected4 = [ '0:13509', '1:colfax', '2:avenue', '2:ave', '3:south', '3:s' ];
     assertAnalysis( 'address', '13509 Colfax Ave S', expected3, true );
     assertAnalysis( 'address', '13509 Colfax Avenue South', expected4, true );
 
     // both terms should map to same tokens
-    var expected5 = [ '0:100', '1:s', '1:south', '2:lake', '3:dr', '3:drive' ];
-    var expected6 = [ '0:100', '1:south', '1:s', '2:lake', '3:drive', '3:dr' ];
+    var expected5 = [ '0:100', '1:s', '1:south', '1:see', '2:lake', '2:lk', '3:dr', '3:drive' ];
+    var expected6 = [ '0:100', '1:south', '1:s', '2:lake', '2:lk', '3:drive', '3:dr' ];
     assertAnalysis( 'address', '100 S Lake Dr', expected5, true );
     assertAnalysis( 'address', '100 South Lake Drive', expected6, true );
 
