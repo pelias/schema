@@ -1,4 +1,5 @@
-var schema = require('../mappings/document');
+const schema = require('../mappings/document');
+const has = require('lodash.has');
 
 module.exports.tests = {};
 
@@ -85,24 +86,26 @@ module.exports.tests.address_analysis = function(test, common) {
 // should contain the correct parent field definitions
 module.exports.tests.parent_fields = function(test, common) {
   var fields = [
-    'continent',      'continent_a',      'continent_id',
-    'ocean',          'ocean_a',          'ocean_id',
-    'empire',         'empire_a',         'empire_id',
-    'country',        'country_a',        'country_id',
-    'dependency',     'dependency_a',     'dependency_id',
-    'marinearea',     'marinearea_a',     'marinearea_id',
-    'macroregion',    'macroregion_a',    'macroregion_id',
-    'region',         'region_a',         'region_id',
-    'macrocounty',    'macrocounty_a',    'macrocounty_id',
-    'county',         'county_a',         'county_id',
-    'locality',       'locality_a',       'locality_id',
-    'borough',        'borough_a',        'borough_id',
-    'localadmin',     'localadmin_a',     'localadmin_id',
-    'neighbourhood',  'neighbourhood_a',  'neighbourhood_id',
-    'postalcode',     'postalcode_a',     'postalcode_id'
+    'continent',      'continent_a',      'continent_id',     'continent.fields.ngram',
+    'ocean',          'ocean_a',          'ocean_id',         'ocean.fields.ngram',
+    'empire',         'empire_a',         'empire_id',        'empire.fields.ngram',
+    'country',        'country_a',        'country_id',       'country.fields.ngram',
+    'dependency',     'dependency_a',     'dependency_id',    'dependency.fields.ngram',
+    'marinearea',     'marinearea_a',     'marinearea_id',    'marinearea.fields.ngram',
+    'macroregion',    'macroregion_a',    'macroregion_id',   'macroregion.fields.ngram',
+    'region',         'region_a',         'region_id',        'region.fields.ngram',
+    'macrocounty',    'macrocounty_a',    'macrocounty_id',   'macrocounty.fields.ngram',
+    'county',         'county_a',         'county_id',        'county.fields.ngram',
+    'locality',       'locality_a',       'locality_id',      'locality.fields.ngram',
+    'borough',        'borough_a',        'borough_id',       'borough.fields.ngram',
+    'localadmin',     'localadmin_a',     'localadmin_id',    'localadmin.fields.ngram',
+    'neighbourhood',  'neighbourhood_a',  'neighbourhood_id', 'neighbourhood.fields.ngram',
+    'postalcode',     'postalcode_a',     'postalcode_id',    'postalcode.fields.ngram'
   ];
   test('parent fields specified', function(t) {
-    t.deepEqual(Object.keys(schema.properties.parent.properties), fields);
+    fields.forEach( expected => {
+      t.true( has( schema.properties.parent.properties, expected ), expected );
+    });
     t.end();
   });
 };
@@ -111,7 +114,11 @@ module.exports.tests.parent_fields = function(test, common) {
 // ref: https://github.com/pelias/schema/pull/95
 module.exports.tests.parent_analysis = function(test, common) {
   var prop = schema.properties.parent.properties;
-  var fields = ['country','region','county','locality','localadmin','neighbourhood'];
+  var fields = [
+    'continent', 'ocean', 'empire', 'country', 'dependency', 'marinearea',
+    'macroregion', 'region', 'macrocounty', 'county', 'locality', 'borough',
+    'localadmin', 'neighbourhood'
+  ];
   fields.forEach( function( field ){
     test(field, function(t) {
       t.equal(prop[field].type, 'string');
@@ -120,6 +127,10 @@ module.exports.tests.parent_analysis = function(test, common) {
       t.equal(prop[field+'_a'].analyzer, 'peliasAdmin');
       t.equal(prop[field+'_id'].type, 'string');
       t.equal(prop[field+'_id'].index, 'not_analyzed');
+
+      // subfields
+      t.equal(prop[field].fields.ngram.type, 'string');
+      t.equal(prop[field].fields.ngram.analyzer, 'peliasIndexOneEdgeGram');
 
       t.end();
     });
