@@ -118,3 +118,12 @@ valley, vly
 vista, vis
 village, vlg
 way, wy
+
+# Germanic street suffixes
+straße => strasse, str
+strasse, str
+brücke => bruecke, brucke, br
+bruecke, brucke, br
+bahnhof, bhf, bf
+chaussee, ch
+platz, pl
