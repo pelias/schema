@@ -1,6 +1,6 @@
 alley, aly
 annex, anx
-avenue, ave
+avenue, ave, av
 bayou, byu
 beach, bch
 bend, bnd

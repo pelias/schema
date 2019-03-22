@@ -146,8 +146,8 @@ module.exports.tests.tokenizer = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave' ];
-    var expected2 = [ '0:bedell', '1:street', '1:st', '102:133', '103:avenue', '103:ave' ];
+    var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave', '3:av' ];
+    var expected2 = [ '0:bedell', '1:street', '1:st', '102:133', '103:avenue', '103:ave', '103:av' ];
 
     // specify 2 streets with a delimeter
     assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   expected1, true );
