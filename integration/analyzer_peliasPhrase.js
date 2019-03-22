@@ -67,7 +67,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 geocode pl', [
-      '0:101', '1:geocode', '2:pl', '2:place'
+      '0:101', '1:geocode', '2:pl', '2:place', '2:platz'
     ], true);
 
     // both terms should map to same tokens

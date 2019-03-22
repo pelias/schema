@@ -320,7 +320,7 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
     var filter = s.analysis.filter.street_suffix;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 120);
+    t.equal(filter.synonyms.length, 127);
     t.end();
   });
 };

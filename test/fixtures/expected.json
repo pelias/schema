@@ -471,7 +471,14 @@
             "valley,vly",
             "vista,vis",
             "village,vlg",
-            "way,wy"
+            "way,wy",
+            "straße => strasse,str",
+            "strasse,str",
+            "brücke => bruecke,brucke,br",
+            "bruecke,brucke,br",
+            "bahnhof,bhf,bf",
+            "chaussee,ch",
+            "platz,pl"
           ]
         },
         "partial_token_address_suffix_expansion": {

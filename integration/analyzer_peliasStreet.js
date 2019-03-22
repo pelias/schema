@@ -196,6 +196,28 @@ module.exports.tests.unicode = function(test, common){
   });
 };
 
+module.exports.tests.germanic_street_suffixes = function (test, common) {
+  test('germanic_street_suffixes', function (t) {
+
+    var suite = new elastictest.Suite(common.clientOpts, { schema: schema });
+    var assertAnalysis = analyze.bind(null, suite, t, 'peliasStreet');
+    suite.action(function (done) { setTimeout(done, 500); }); // wait for es to bring some shards up
+
+    // Germanic street suffixes
+    assertAnalysis('straße', 'straße', ['0:strasse', '0:str'], true);
+    assertAnalysis('strasse', 'strasse', ['0:strasse', '0:str'], true);
+    assertAnalysis('str.', 'str.', ['0:str', '0:strasse'], true);
+    assertAnalysis('str', 'str', ['0:str', '0:strasse'], true);
+    assertAnalysis('brücke', 'brücke', [ '0:bruecke', '0:brucke', '0:br' ], true);
+    assertAnalysis('bruecke', 'bruecke', [ '0:bruecke', '0:brucke', '0:br' ], true);
+    assertAnalysis('brucke', 'brucke', ['0:brucke', '0:bruecke', '0:br'], true);
+    assertAnalysis('br.', 'br.', ['0:br', '0:branch', '0:bruecke', '0:brucke'], true);
+    assertAnalysis('br', 'br', ['0:br', '0:branch', '0:bruecke', '0:brucke'], true);
+
+    suite.run(t.end);
+  });
+};
+
 module.exports.all = function (tape, common) {
 
   function test(name, testFunction) {
