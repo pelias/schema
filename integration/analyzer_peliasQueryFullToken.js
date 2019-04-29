@@ -26,9 +26,12 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
-    // full_token_address_suffix_expansion
-    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['road'] );
-    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['center'] );
+    assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street', 'st'], true );
+    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road', 'rd'], true );
+    assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo', 'crescent', 'cres'], true );
+    assertAnalysis( 'keyword_compass', 'north foo', ['north', 'n', 'foo'], true );
+    assertAnalysis( 'keyword_compass', 'SouthWest foo', ['southwest', 'sw', 'foo'], true );
+    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['foo', 'southwest', 'sw'], true );
 
     assertAnalysis( 'peliasQueryFullTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
@@ -49,8 +52,6 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
-// address suffix expansions should only performed in a way that is
-// safe for 'partial tokens'.
 module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
@@ -58,13 +59,13 @@ module.exports.tests.address_suffix_expansions = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'safe expansions', 'aly', [ 'alley' ]);
+    assertAnalysis( 'safe expansions', 'aly', [ 'aly', 'alley' ]);
 
-    assertAnalysis( 'safe expansions', 'xing', [ 'crossing' ]);
+    assertAnalysis( 'safe expansions', 'xing', [ 'xing', 'crossing' ]);
 
-    assertAnalysis( 'safe expansions', 'rd', [ 'road' ]);
+    assertAnalysis( 'safe expansions', 'rd', [ 'rd', 'road' ]);
 
-    assertAnalysis( 'unsafe expansion', 'ct st', [ 'ct', 'st' ]);
+    assertAnalysis( 'safe expansion', 'ct st', [ 'ct', 'court', 'st', 'street' ]);
 
     suite.run( t.end );
   });
@@ -78,9 +79,9 @@ module.exports.tests.stop_words = function(test, common){
     var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'street suffix', 'AB street', [ 'ab', 'street' ]);
+    assertAnalysis( 'street suffix', 'AB street', [ 'ab', 'street', 'st' ]);
 
-    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [ 'ab', 'st' ]);
+    assertAnalysis( 'street suffix (abbreviation)', 'AB st', [ 'ab', 'st', 'street' ]);
 
     suite.run( t.end );
   });
@@ -102,7 +103,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '101', 'mapzen', 'place'
+      '101', 'mapzen', 'place', 'pl'
     ]);
 
     suite.run( t.end );
@@ -117,15 +118,15 @@ module.exports.tests.tokenizer = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // specify 2 streets with a delimeter
-    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
-    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'street', '133', 'avenue' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/133rd Avenue',   [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street /133rd Avenue',  [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'forward slash', 'Bedell Street/ 133rd Avenue',  [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\133rd Avenue',  [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'back slash',    'Bedell Street \\133rd Avenue', [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'back slash',    'Bedell Street\\ 133rd Avenue', [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'comma',         'Bedell Street,133rd Avenue',   [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'comma',         'Bedell Street ,133rd Avenue',  [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
+    assertAnalysis( 'comma',         'Bedell Street, 133rd Avenue',  [ 'bedell', 'street', 'st', '133', 'avenue', 'ave', 'av' ]);
 
     suite.run( t.end );
   });
@@ -183,15 +184,15 @@ module.exports.tests.address = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '101', 'mapzen', 'place'
+      '101', 'mapzen', 'place', 'pl'
     ]);
 
     assertAnalysis( 'address', '30 w 26 st', [
-      '30', 'west', '26', 'st'
+      '30', 'w', 'west', '26', 'st', 'street'
     ]);
 
     assertAnalysis( 'address', '4B 921 83 st', [
-      '4b', '921', '83', 'st'
+      '4b', '921', '83', 'st', 'street'
     ]);
 
     suite.run( t.end );
@@ -241,15 +242,15 @@ module.exports.all = function (tape, common) {
   }
 };
 
-function analyze( suite, t, analyzer, comment, text, expected ){
+function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
   suite.assert( function( done ){
     suite.client.indices.analyze({
       index: suite.props.index,
       analyzer: analyzer,
       text: text
     }, function( err, res ){
-      if( err ) console.error( err );
-      t.deepEqual( simpleTokens( res.tokens ), expected, comment );
+      if( err ){ console.error( err ); }
+      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
       done();
     });
   });
