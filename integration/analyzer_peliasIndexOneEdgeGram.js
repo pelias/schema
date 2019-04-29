@@ -26,9 +26,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
 
-    // full_token_address_suffix_expansion
-    assertAnalysis( 'full_token_address_suffix_expansion', 'rd', ['r','ro','roa','road'] );
-    assertAnalysis( 'full_token_address_suffix_expansion', 'ctr', ['c','ce','cen','cent','cente','center'] );
+    // keyword_street_suffix
+    assertAnalysis( 'keyword_street_suffix', 'rd', ['r','rd','ro','roa','road'] );
+    assertAnalysis( 'keyword_street_suffix', 'ctr', ['c', 'ct', 'ctr', 'ce', 'cen', 'cent', 'cente', 'center'] );
 
     assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
@@ -70,19 +70,19 @@ module.exports.tests.address_suffix_expansions = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
-      'a', 'al', 'all', 'alle', 'alley'
+      'a', 'al', 'aly', 'all', 'alle', 'alley'
     ]);
 
     assertAnalysis( 'safe expansions', 'xing', [
-      'c', 'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
+      'x', 'xi', 'xin', 'xing', 'c', 'cr', 'cro', 'cros', 'cross', 'crossi', 'crossin', 'crossing'
     ]);
 
     assertAnalysis( 'safe expansions', 'rd', [
-      'r', 'ro', 'roa', 'road'
+      'r', 'rd', 'ro', 'roa', 'road'
     ]);
 
     assertAnalysis( 'unsafe expansion', 'ct st', [
-      'c', 'ct', 's', 'st'
+      'c', 'ct', 'co', 'cou', 'cour', 'court', 's', 'st', 'str', 'stre', 'stree', 'street'
     ]);
 
     suite.run( t.end );
@@ -102,7 +102,7 @@ module.exports.tests.stop_words = function(test, common){
     ]);
 
     assertAnalysis( 'street suffix (abbreviation)', 'AB st', [
-      'a', 'ab', 's', 'st'
+      'a', 'ab', 's', 'st', 'str', 'stre', 'stree', 'street'
     ]);
 
     suite.run( t.end );
@@ -144,11 +144,11 @@ module.exports.tests.address = function(test, common){
     ]);
 
     assertAnalysis( 'address', '30 w 26 st', [
-      '30', 'w', 'we', 'wes', 'west', '26', 's', 'st'
+      '30', 'w', 'we', 'wes', 'west', '26', 's', 'st', 'str', 'stre', 'stree', 'street'
     ]);
 
     assertAnalysis( 'address', '4B 921 83 st', [
-      '4b', '921', '83', 's', 'st'
+      '4b', '921', '83', 's', 'st', 'str', 'stre', 'stree', 'street'
     ]);
 
     suite.run( t.end );

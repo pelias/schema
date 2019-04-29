@@ -82,7 +82,8 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "icu_folding",
       "trim",
       "custom_name",
-      "full_token_address_suffix_expansion",
+      "street_suffix",
+      "directionals",
       "ampersand",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
@@ -93,6 +94,35 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "peliasOneEdgeGramFilter",
       "eliminate_tokens_starting_with_word_marker",
       "remove_encapsulating_word_markers",
+      "unique",
+      "notnull"
+    ]);
+    t.end();
+  });
+};
+
+module.exports.tests.peliasQueryFullTokenAnalyzer = function (test, common) {
+  test('has peliasQueryFullToken analyzer', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasQueryFullToken, 'object', 'there is a peliasQueryFullToken analyzer');
+    var analyzer = s.analysis.analyzer.peliasQueryFullToken;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation", "nfkc_normalizer"], 'character filters specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasQueryFullToken token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasQueryFullToken;
+    t.deepEqual(analyzer.filter, [
+      "lowercase",
+      "icu_folding",
+      "trim",
+      "remove_ordinals",
+      "street_suffix",
+      "directionals",
+      "ampersand",
+      "removeAllZeroNumericPrefix",
       "unique",
       "notnull"
     ]);
