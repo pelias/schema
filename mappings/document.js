@@ -39,10 +39,30 @@ var schema = {
         street: {
           type: 'string',
           analyzer: 'peliasStreet',
+          fields: {
+            ngram: {
+              type: 'string',
+              analyzer: 'peliasIndexStreetOneEdgeGram',
+              doc_values: false,
+              fielddata: {
+                format: 'disabled'
+              }
+            }
+          }
         },
         cross_street: {
           type: 'string',
           analyzer: 'peliasStreet',
+          fields: {
+            ngram: {
+              type: 'string',
+              analyzer: 'peliasIndexStreetOneEdgeGram',
+              doc_values: false,
+              fielddata: {
+                format: 'disabled'
+              }
+            }
+          }
         },
         zip: {
           type: 'string',
