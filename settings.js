@@ -164,7 +164,33 @@ function generate(){
             "remove_ordinals",
             "trim"
           ]
-        }
+        },
+        "peliasIndexStreetOneEdgeGram": {
+          "type": "custom",
+          "tokenizer": "peliasStreetTokenizer",
+          "char_filter": ["punctuation", "nfkc_normalizer"],
+          "filter": [
+            "lowercase",
+            "trim",
+            "remove_duplicate_spaces",
+            "custom_street",
+            "street_suffix",
+            "directionals",
+            "icu_folding",
+            "remove_ordinals",
+            "removeAllZeroNumericPrefix",
+            "trim",
+            "surround_single_characters_with_word_markers",
+            "house_number_word_delimiter",
+            "remove_single_characters",
+            "surround_house_numbers_with_word_markers",
+            "peliasOneEdgeGramFilter",
+            "eliminate_tokens_starting_with_word_marker",
+            "remove_encapsulating_word_markers",
+            "unique",
+            "notnull"
+          ]
+        },
       },
       "filter" : {
         "notnull" :{
