@@ -42,6 +42,7 @@ module.exports.tests.analyze = function(test, common){
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
+    assertAnalysis( 'punctuation', 'Hawai‘i', ['h', 'ha', 'haw', 'hawa', 'hawai', 'hawaii'] );
 
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', [
