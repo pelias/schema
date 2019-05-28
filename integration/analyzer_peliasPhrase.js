@@ -46,6 +46,7 @@ module.exports.tests.analyze = function(test, common){
 
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), [ '-&' ] );
+    assertAnalysis( 'punctuation', 'Hawai‘i', ['hawaii'] );
 
     suite.run( t.end );
   });
