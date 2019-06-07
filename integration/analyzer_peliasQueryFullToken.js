@@ -27,7 +27,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street', 'st'] );
-    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road', 'rd']);
+    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road', 'rd'] );
     assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo', 'crescent', 'cres'] );
     assertAnalysis( 'keyword_compass', 'north foo', ['north', 'n', 'foo'] );
     assertAnalysis( 'keyword_compass', 'SouthWest foo', ['southwest', 'sw', 'foo'] );
