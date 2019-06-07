@@ -11,7 +11,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasHousenumber' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasHousenumber' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'keyword', '100 100', ['100','100']);
@@ -25,7 +25,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasHousenumber' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasHousenumber' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'apt no (generic)', '101a', [ '101' ]);
@@ -49,23 +49,3 @@ module.exports.all = function (tape, common) {
     module.exports.tests[testCase](test, common);
   }
 };
-
-function analyze( suite, t, analyzer, comment, text, expected ){
-  suite.assert( function( done ){
-    suite.client.indices.analyze({
-      index: suite.props.index,
-      analyzer: analyzer,
-      text: text
-    }, function( err, res ){
-      if( err ) console.error( err );
-      t.deepEqual( simpleTokens( res.tokens ), expected, comment );
-      done();
-    });
-  });
-}
-
-function simpleTokens( tokens ){
-  return tokens.map( function( t ){
-    return t.token;
-  });
-}

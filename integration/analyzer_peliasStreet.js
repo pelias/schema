@@ -11,7 +11,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
@@ -34,7 +34,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'USA address', 'west 26th street', [ '0:west', '0:w', '1:26', '2:street', '2:st' ], true);
@@ -51,7 +51,7 @@ module.exports.tests.normalize_punctuation = function(test, common){
   test( 'normalize punctuation', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     var expected = [ '0:chapala', '1:street', '1:st' ];
@@ -69,7 +69,7 @@ module.exports.tests.remove_ordinals = function(test, common){
   test( 'remove ordinals', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'ordindals', "1st", ["1"] );
@@ -143,7 +143,7 @@ module.exports.tests.tokenizer = function(test, common){
   test( 'tokenizer', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     var expected1 = [ '0:bedell', '1:street', '1:st', '2:133', '3:avenue', '3:ave', '3:av' ];
@@ -169,7 +169,7 @@ module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasStreet' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
@@ -200,7 +200,7 @@ module.exports.tests.germanic_street_suffixes = function (test, common) {
   test('germanic_street_suffixes', function (t) {
 
     var suite = new elastictest.Suite(common.clientOpts, { schema: schema });
-    var assertAnalysis = analyze.bind(null, suite, t, 'peliasStreet');
+    var assertAnalysis = common.analyze.bind(null, suite, t, 'peliasStreet');
     suite.action(function (done) { setTimeout(done, 500); }); // wait for es to bring some shards up
 
     // Germanic street suffixes
@@ -228,23 +228,3 @@ module.exports.all = function (tape, common) {
     module.exports.tests[testCase](test, common);
   }
 };
-
-function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
-  suite.assert( function( done ){
-    suite.client.indices.analyze({
-      index: suite.props.index,
-      analyzer: analyzer,
-      text: text
-    }, function( err, res ){
-      if( err ){ console.error( err ); }
-      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
-      done();
-    });
-  });
-}
-
-function simpleTokens( tokens, includePosition ){
-  return tokens.map( function( t ){
-    return (!!includePosition ? t.position + ':' : '') + t.token;
-  });
-}

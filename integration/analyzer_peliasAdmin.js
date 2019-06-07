@@ -11,7 +11,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
@@ -35,7 +35,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -73,7 +73,7 @@ module.exports.tests.synonyms = function(test, common){
   test( 'synonyms', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'place', 'Saint-Louis-du-Ha! Ha!', [
@@ -100,7 +100,7 @@ module.exports.tests.tokenizer = function(test, common){
   test( 'tokenizer', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // specify 2 parts with a delimeter
@@ -126,7 +126,7 @@ module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasAdmin' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
@@ -163,23 +163,3 @@ module.exports.all = function (tape, common) {
     module.exports.tests[testCase](test, common);
   }
 };
-
-function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
-  suite.assert( function( done ){
-    suite.client.indices.analyze({
-      index: suite.props.index,
-      analyzer: analyzer,
-      text: text
-    }, function( err, res ){
-      if( err ){ console.error( err ); }
-      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
-      done();
-    });
-  });
-}
-
-function simpleTokens( tokens, includePosition ){
-  return tokens.map( function( t ){
-    return (!!includePosition ? t.position + ':' : '') + t.token;
-  });
-}

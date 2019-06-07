@@ -11,7 +11,7 @@ module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
@@ -26,12 +26,12 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
-    assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street', 'st'], true );
-    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road', 'rd'], true );
-    assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo', 'crescent', 'cres'], true );
-    assertAnalysis( 'keyword_compass', 'north foo', ['north', 'n', 'foo'], true );
-    assertAnalysis( 'keyword_compass', 'SouthWest foo', ['southwest', 'sw', 'foo'], true );
-    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['foo', 'southwest', 'sw'], true );
+    assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street', 'st'] );
+    assertAnalysis( 'keyword_street_suffix', 'foo Road', ['foo', 'road', 'rd']);
+    assertAnalysis( 'keyword_street_suffix', 'foo Crescent', ['foo', 'crescent', 'cres'] );
+    assertAnalysis( 'keyword_compass', 'north foo', ['north', 'n', 'foo'] );
+    assertAnalysis( 'keyword_compass', 'SouthWest foo', ['southwest', 'sw', 'foo'] );
+    assertAnalysis( 'keyword_compass', 'foo SouthWest', ['foo', 'southwest', 'sw'] );
 
     assertAnalysis( 'peliasQueryFullTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
@@ -56,7 +56,7 @@ module.exports.tests.address_suffix_expansions = function(test, common){
   test( 'address suffix expansions', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [ 'aly', 'alley' ]);
@@ -76,7 +76,7 @@ module.exports.tests.stop_words = function(test, common){
   test( 'stop words', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [ 'ab', 'street', 'st' ]);
@@ -91,7 +91,7 @@ module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
@@ -114,7 +114,7 @@ module.exports.tests.tokenizer = function(test, common){
   test( 'tokenizer', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // specify 2 streets with a delimeter
@@ -180,7 +180,7 @@ module.exports.tests.address = function(test, common){
   test( 'address', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'address', '101 mapzen place', [
@@ -204,7 +204,7 @@ module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-    var assertAnalysis = analyze.bind( null, suite, t, 'peliasQueryFullToken' );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryFullToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
@@ -241,23 +241,3 @@ module.exports.all = function (tape, common) {
     module.exports.tests[testCase](test, common);
   }
 };
-
-function analyze( suite, t, analyzer, comment, text, expected, includePosition ){
-  suite.assert( function( done ){
-    suite.client.indices.analyze({
-      index: suite.props.index,
-      analyzer: analyzer,
-      text: text
-    }, function( err, res ){
-      if( err ){ console.error( err ); }
-      t.deepEqual( simpleTokens( res.tokens, includePosition ), expected, comment );
-      done();
-    });
-  });
-}
-
-function simpleTokens( tokens ){
-  return tokens.map( function( t ){
-    return t.token;
-  });
-}

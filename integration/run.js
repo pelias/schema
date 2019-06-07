@@ -19,6 +19,24 @@ const common = {
   summary: (res) => {
     common.summaryMap( res )
           .forEach( console.dir );
+  },
+  simpleTokens: ( tokens, includePosition ) => {
+    return tokens.map( t => {
+      return (!!includePosition ? t.position + ':' : '') + t.token;
+    });
+  },
+  analyze: ( suite, t, analyzer, comment, text, expected, includePosition ) => {
+    suite.assert( done => {
+      suite.client.indices.analyze({
+        index: suite.props.index,
+        analyzer: analyzer,
+        text: text
+      }, ( err, res ) => {
+        if( err ){ console.error( err ); }
+        t.deepEqual( common.simpleTokens( res.tokens, includePosition ), expected, comment );
+        done();
+      });
+    });
   }
 };
 
