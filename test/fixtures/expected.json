@@ -52,7 +52,7 @@
             "peliasOneEdgeGramFilter",
             "eliminate_tokens_starting_with_word_marker",
             "remove_encapsulating_word_markers",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -71,7 +71,7 @@
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -91,7 +91,7 @@
             "directionals",
             "ampersand",
             "removeAllZeroNumericPrefix",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -112,7 +112,7 @@
             "directionals",
             "icu_folding",
             "remove_ordinals",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -335,6 +335,10 @@
         "notnull": {
           "type": "length",
           "min": 1
+        },
+        "unique_only_same_position": {
+          "type": "unique",
+          "only_on_same_position": "true"
         },
         "peliasOneEdgeGramFilter": {
           "type": "edgeNGram",

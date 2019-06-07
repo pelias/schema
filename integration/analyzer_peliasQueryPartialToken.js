@@ -23,7 +23,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'trim', ' f ', ['f'] );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // partial_token_address_suffix_expansion
@@ -32,7 +32,7 @@ module.exports.tests.analyze = function(test, common){
 
     assertAnalysis( 'peliasQueryPartialTokenFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcdefghij'] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
-    assertAnalysis( 'unique', '1 1 1', ['1'] );
+    assertAnalysis( 'unique', '1 1 1', ['1','1','1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
     assertAnalysis( 'no kstem', 'mcdonalds', ['mcdonalds'] );

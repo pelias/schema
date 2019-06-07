@@ -94,7 +94,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "peliasOneEdgeGramFilter",
       "eliminate_tokens_starting_with_word_marker",
       "remove_encapsulating_word_markers",
-      "unique",
+      "unique_only_same_position",
       "notnull"
     ]);
     t.end();
@@ -123,7 +123,7 @@ module.exports.tests.peliasQueryFullTokenAnalyzer = function (test, common) {
       "directionals",
       "ampersand",
       "removeAllZeroNumericPrefix",
-      "unique",
+      "unique_only_same_position",
       "notnull"
     ]);
     t.end();
@@ -153,7 +153,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "directionals",
       "icu_folding",
       "remove_ordinals",
-      "unique",
+      "unique_only_same_position",
       "notnull"
     ]);
     t.end();
