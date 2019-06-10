@@ -24,7 +24,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'stop_words (disabled)', 'a st b ave c', ['0:a', '1:st', '1:street', '2:b', '3:ave', '3:avenue', '3:av', '4:c'], true );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // @todo: handle multiple consecutive 'and'
@@ -35,7 +35,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'no kstem', 'peoples', ['peoples'] );
 
     assertAnalysis( 'peliasShinglesFilter', '1 a ab abc abcdefghijk', ['1','a','ab','abc','abcdefghijk'] );
-    assertAnalysis( 'unique', '1 1 1', ['1'] );
+    assertAnalysis( 'unique', '1 1 1', ['1','1','1'] );
     assertAnalysis( 'notnull', ' ^ ', [] );
 
     assertAnalysis( 'stem street suffixes', 'streets avenue', ['0:streets', '1:avenue', '1:ave', '1:av'], true );

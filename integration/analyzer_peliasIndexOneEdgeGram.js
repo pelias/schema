@@ -23,17 +23,20 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'trim', ' f ', ['f'] );
     assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
     assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','b'] );
+    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
 
     // keyword_street_suffix
     assertAnalysis( 'keyword_street_suffix', 'rd', ['r','rd','ro','roa','road'] );
     assertAnalysis( 'keyword_street_suffix', 'ctr', ['c', 'ct', 'ctr', 'ce', 'cen', 'cent', 'cente', 'center'] );
 
-    assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', ['1','a','ab','abc','abcd','abcde','abcdef','abcdefg','abcdefgh','abcdefghi','abcdefghij'] );
+    assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', [
+      '1', 'a', 'a', 'ab', 'a', 'ab', 'abc', 'a', 'ab', 'abc', 
+      'abcd', 'abcde', 'abcdef', 'abcdefg', 'abcdefgh', 'abcdefghi', 'abcdefghij'
+    ] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
 
-    assertAnalysis( 'unique', '1 1 1', ['1'] );
+    assertAnalysis( 'unique', '1 1 1', ['1','1','1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
 
     assertAnalysis( 'no kstem', 'mcdonalds', ['m', 'mc', 'mcd', 'mcdo', 'mcdon', 'mcdona', 'mcdonal', 'mcdonald', 'mcdonalds'] );
@@ -118,7 +121,8 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
-      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', '&', 'to', 'tob', 'toba', 'tobag', 'tobago'
+      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', 
+      '&', 't', 'to', 'tob', 'toba', 'tobag', 'tobago'
     ]);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
@@ -128,6 +132,21 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'address', '101 mapzen place', [
       '101', 'm', 'ma', 'map', 'mapz', 'mapze', 'mapzen', 'p', 'pl', 'pla', 'plac', 'place'
     ]);
+
+    suite.run( t.end );
+  });
+};
+
+// unique token filter should only remove duplicate tokens at same position
+module.exports.tests.unique = function(test, common){
+  test( 'unique', function(t){
+
+    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // if 'only_on_same_position' is not used the '1:a' token is erroneously removed
+    assertAnalysis( 'unique', 'a ab', [ '0:a', '1:a', '1:ab' ], true);
 
     suite.run( t.end );
   });

@@ -71,7 +71,7 @@ function generate(){
             "peliasOneEdgeGramFilter",
             "eliminate_tokens_starting_with_word_marker",
             "remove_encapsulating_word_markers",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -87,7 +87,7 @@ function generate(){
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -104,7 +104,7 @@ function generate(){
             "directionals",
             "ampersand",
             "removeAllZeroNumericPrefix",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -122,7 +122,7 @@ function generate(){
             "directionals",
             "icu_folding",
             "remove_ordinals",
-            "unique",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -170,6 +170,10 @@ function generate(){
         "notnull" :{
           "type" : "length",
           "min" : 1
+        },
+        "unique_only_same_position": {
+          "type": "unique",
+          "only_on_same_position": "true"
         },
         "peliasOneEdgeGramFilter": {
           "type" : "edgeNGram",
