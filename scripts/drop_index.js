@@ -7,8 +7,11 @@ var readline = require('readline'),
     schema = require('../schema');
 
 // use -f or --force-yes to skip the prompt
-if( isForced() ) drop();
-else prompt( drop, fail );
+if( isForced() ) {
+  drop();
+} else {
+  prompt( drop, fail );
+}
 
 function drop(){
   client.indices.delete( { index: config.schema.indexName }, function( err, res ){
@@ -28,7 +31,9 @@ function warnIfNotLocal() {
 function prompt( yes, no ){
   warnIfNotLocal();
   rl.question( 'Are you sure you want to drop the ' + config.schema.indexName + ' index and delete ALL records? ', function( answer ){
-    if( !answer.match(/^y(es)?$/i) ) return no();
+    if( !answer.match(/^y(es)?$/i) ) {
+      return no();
+    }
     return yes();
   });
 }

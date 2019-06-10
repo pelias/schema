@@ -443,17 +443,17 @@ module.exports.tests.overrides = function(test, common) {
   test('override defaults', function(t) {
 
     var s = settings();
-    t.equal(s.index['number_of_replicas'], '0', 'unchanged');
+    t.equal(s.index.number_of_replicas, '0', 'unchanged');
 
     // set the PELIAS_CONFIG env var
-    process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/config.json' );
+    process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config.json' );
 
     s = settings();
-    t.equal(s.index['number_of_replicas'], '999', 'changed');
+    t.equal(s.index.number_of_replicas, '999', 'changed');
     t.end();
 
     // unset the PELIAS_CONFIG env var
-    delete process.env['PELIAS_CONFIG'];
+    delete process.env.PELIAS_CONFIG;
   });
 };
 
