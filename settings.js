@@ -75,6 +75,20 @@ function generate(){
             "notnull"
           ]
         },
+        "peliasQuery": {
+          "type": "custom",
+          "tokenizer": "peliasNameTokenizer",
+          "char_filter": ["punctuation", "nfkc_normalizer"],
+          "filter": [
+            "icu_folding",
+            "lowercase",
+            "trim",
+            "remove_ordinals",
+            "removeAllZeroNumericPrefix",
+            "unique_only_same_position",
+            "notnull"
+          ]
+        },
         "peliasQueryPartialToken" : {
           "type": "custom",
           "tokenizer" : "peliasNameTokenizer",
