@@ -329,7 +329,8 @@
         "ampersand": {
           "type": "synonym",
           "synonyms": [
-            "and => &"
+            "&,and",
+            "&,und"
           ]
         },
         "notnull": {

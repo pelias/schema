@@ -297,7 +297,10 @@ module.exports.tests.ampersandFilter = function(test, common) {
     t.equal(typeof s.analysis.filter.ampersand, 'object', 'there is a ampersand filter');
     var filter = s.analysis.filter.ampersand;
     t.equal(filter.type, 'synonym');
-    t.deepEqual(filter.synonyms, [ "and => &" ]);
+    t.deepEqual(filter.synonyms, [
+      "&,and",
+      "&,und"
+    ]);
     t.end();
   });
 };

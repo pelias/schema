@@ -21,9 +21,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
+    assertAnalysis('ampersand', 'a and b', ['a', 'and', '&', 'b']);
+    assertAnalysis('ampersand', 'a & b', ['a', '&', 'and', 'und', 'b']);
+    assertAnalysis('ampersand', 'a and & and b', ['a', 'and', '&', '&', 'and', 'und', 'and', '&', 'b']);
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     assertAnalysis( 'keyword_street_suffix', 'foo Street', ['foo', 'street', 'st'] );
@@ -95,8 +95,8 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
-      'trinidad', '&', 'tobago'
-    ]);
+      '0:trinidad', '1:and', '1:&', '2:tobago'
+    ], true);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
       'toys', 'r', 'us'
