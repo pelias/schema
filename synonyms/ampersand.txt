@@ -1,1 +1,22 @@
-and => &
+# It seems that ampersand is not used much outside of Western European languages
+# with the exception of business names such as 'Johnson & Johnson'.
+# In most European languages other than the Germanic ones and French,
+# the 'and' word is one letter long (y, i, e, a),
+# so no need for an abbreviation made itself felt in the first place.
+# Catalan: i
+# Danish: og
+# German: und
+# English: and
+# Spanish: y
+# French: et
+# Italian: e
+# Dutch: en
+# Norwegian: og
+# Portuguese: e
+# Swedish: och
+
+# English
+&,and
+
+# German
+&,und

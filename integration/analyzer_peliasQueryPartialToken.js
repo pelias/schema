@@ -21,9 +21,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
+    assertAnalysis( 'ampersand', 'a and b', ['a','and','&','b'] );
+    assertAnalysis( 'ampersand', 'a & b', ['a','&','and','und','b'] );
+    assertAnalysis( 'ampersand', 'a and & and b', ['a','and','&','&','and','und','and','&','b'] );
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // partial_token_address_suffix_expansion
@@ -90,7 +90,7 @@ module.exports.tests.functional = function(test, common){
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'country', 'Trinidad and Tobago', [ 'trinidad', '&', 'tobago' ]);
+    assertAnalysis( 'country', 'Trinidad and Tobago', [ '0:trinidad', '1:and', '1:&', '2:tobago' ], true);
     assertAnalysis( 'place', 'Toys "R" Us!', [ 'toys', 'r', 'us' ]);
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 

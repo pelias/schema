@@ -21,9 +21,23 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'ampersand', 'a and b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a & b', ['a','&','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','&','&','&','b'] );
+    assertAnalysis( 'ampersand', 'a and b', [
+      '0:a',
+      '1:a', '1:an', '1:and', '1:&',
+      '2:b'
+    ], true );
+    assertAnalysis( 'ampersand', 'a & b', [
+      '0:a',
+      '1:&', '1:a', '1:an', '1:and', '1:u', '1:un', '1:und',
+      '2:b'
+    ], true );
+    assertAnalysis( 'ampersand', 'a and & and b', [
+      '0:a',
+      '1:a', '1:an', '1:and', '1:&',
+      '2:&', '2:a', '2:an', '2:and', '2:u', '2:un', '2:und',
+      '3:a', '3:an', '3:and', '3:&',
+      '4:b'
+    ], true );
     assertAnalysis( 'ampersand', 'land', ['l','la','lan','land'] ); // should not replace inside tokens
 
     // keyword_street_suffix
@@ -121,8 +135,9 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
-      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad', 
-      '&', 't', 'to', 'tob', 'toba', 'tobag', 'tobago'
+      't', 'tr', 'tri', 'trin', 'trini', 'trinid', 'trinida', 'trinidad',
+      'a', 'an', 'and', '&',
+      't', 'to', 'tob', 'toba', 'tobag', 'tobago'
     ]);
 
     assertAnalysis( 'place', 'Toys "R" Us!', [
