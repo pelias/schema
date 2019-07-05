@@ -1245,7 +1245,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -1762,7 +1762,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -2279,7 +2279,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -2796,7 +2796,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -3313,7 +3313,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -3830,7 +3830,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -4347,7 +4347,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -4864,7 +4864,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -5381,7 +5381,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -5898,7 +5898,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -6415,7 +6415,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -6932,7 +6932,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -7449,7 +7449,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -7966,7 +7966,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
@@ -8483,7 +8483,7 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "keyword",
-              "index": "no",
+              "index": false,
               "doc_values": false
             }
           }
