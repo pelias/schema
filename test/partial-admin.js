@@ -13,7 +13,7 @@ module.exports.tests.compile = function(test, common) {
 // this should never need to change
 module.exports.tests.type = function(test, common) {
   test('correct type', function(t) {
-    t.equal(schema.type, 'string', 'correct value');
+    t.equal(schema.type, 'text', 'set to text field for full text search');
     t.end();
   });
 };
@@ -34,7 +34,7 @@ module.exports.tests.index = function(test, common) {
 };
 
 // pelias analysis does not ensure that we get ['Great Britain'] instead of ['Great','Britain']
-// TODO this needs to be addressed 
+// TODO this needs to be addressed
 module.exports.tests.analysis = function(test, common) {
   test('index analysis', function(t) {
     t.equal(schema.analyzer, 'peliasAdmin', 'should be peliasAdmin');
