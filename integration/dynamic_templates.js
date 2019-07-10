@@ -129,19 +129,12 @@ function addendumAssertion( type, namespace, value, common ){
         var addendumProperties = properties.addendum.properties;
 
         t.true([
-          'string', // elasticsearch 2.4
           'keyword' // elasticsearch 5.6
         ].includes( addendumProperties[namespace].type ));
 
         t.true([
-          'no', // elasticsearch 2.4
           false // elasticsearch 5.6
         ].includes( addendumProperties[namespace].index ));
-
-        // elasticsearch 2.4
-        if( addendumProperties[namespace].fielddata ){
-          t.equal( addendumProperties[namespace].fielddata.format, 'disabled' );
-        }
 
         // elasticsearch 5.6
         if( addendumProperties[namespace].doc_values ){

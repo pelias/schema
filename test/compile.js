@@ -40,11 +40,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.equal(template.path_match, 'name.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
-      type: 'string',
-      analyzer: 'peliasIndexOneEdgeGram',
-      fielddata : {
-        format: "disabled"
-      }
+      type: 'text',
+      analyzer: 'peliasIndexOneEdgeGram'
     });
     t.end();
   });

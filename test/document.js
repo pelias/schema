@@ -47,28 +47,28 @@ module.exports.tests.address_analysis = function(test, common) {
   // $name analysis is pretty basic, work can be done to improve this, although
   // at time of writing this field was not used by any API queries.
   test('name', function(t) {
-    t.equal(prop.name.type, 'string');
+    t.equal(prop.name.type, 'text');
     t.equal(prop.name.analyzer, 'keyword');
     t.end();
   });
 
   // $unit analysis
   test('unit', function(t) {
-    t.equal(prop.unit.type, 'string');
-    t.equal(prop.unit.analyzer, 'peliasUnit');
+    t.equal(prop.unit.type, 'text', 'unit has full text type');
+    t.equal(prop.unit.analyzer, 'peliasUnit', 'unit analyzer is peliasUnit');
     t.end();
   });
 
   // $number analysis is discussed in: https://github.com/pelias/schema/pull/77
   test('number', function(t) {
-    t.equal(prop.number.type, 'string');
+    t.equal(prop.number.type, 'text');
     t.equal(prop.number.analyzer, 'peliasHousenumber');
     t.end();
   });
 
   // $street analysis is discussed in: https://github.com/pelias/schema/pull/77
   test('street', function(t) {
-    t.equal(prop.street.type, 'string');
+    t.equal(prop.street.type, 'text');
     t.equal(prop.street.analyzer, 'peliasStreet');
     t.end();
   });
@@ -77,7 +77,7 @@ module.exports.tests.address_analysis = function(test, common) {
   // note: this is a poor name, it would be better to rename this field to a more
   // generic term such as $postalcode as it is not specific to the USA.
   test('zip', function(t) {
-    t.equal(prop.zip.type, 'string');
+    t.equal(prop.zip.type, 'text');
     t.equal(prop.zip.analyzer, 'peliasZip');
     t.end();
   });
@@ -121,28 +121,28 @@ module.exports.tests.parent_analysis = function(test, common) {
   ];
   fields.forEach( function( field ){
     test(field, function(t) {
-      t.equal(prop[field].type, 'string');
-      t.equal(prop[field].analyzer, 'peliasAdmin');
-      t.equal(prop[field+'_a'].type, 'string');
-      t.equal(prop[field+'_a'].analyzer, 'peliasAdmin');
-      t.equal(prop[field+'_id'].type, 'string');
-      t.equal(prop[field+'_id'].index, 'not_analyzed');
+      t.equal(prop[field].type, 'text', `${field} is set to text type`);
+      t.equal(prop[field].analyzer, 'peliasAdmin', `${field} analyzer is peliasAdmin`);
+      t.equal(prop[field+'_a'].type, 'text', `${field}_a type is text`);
+      t.equal(prop[field+'_a'].analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+      t.equal(prop[field+'_id'].type, 'keyword', `${field}_id type is keyword`);
+      t.equal(prop[field+'_id'].index, undefined, `${field}_id index left at default`);
 
       // subfields
-      t.equal(prop[field].fields.ngram.type, 'string');
-      t.equal(prop[field].fields.ngram.analyzer, 'peliasIndexOneEdgeGram');
+      t.equal(prop[field].fields.ngram.type, 'text', `${field}.ngram type is full text`);
+      t.equal(prop[field].fields.ngram.analyzer, 'peliasIndexOneEdgeGram', `${field}.ngram analyzer is peliasIndexOneEdgeGram`);
 
       t.end();
     });
   });
 
   test('postalcode', function(t) {
-    t.equal(prop['postalcode'].type, 'string');
-    t.equal(prop['postalcode'].analyzer, 'peliasZip');
-    t.equal(prop['postalcode'+'_a'].type, 'string');
-    t.equal(prop['postalcode'+'_a'].analyzer, 'peliasZip');
-    t.equal(prop['postalcode'+'_id'].type, 'string');
-    t.equal(prop['postalcode'+'_id'].index, 'not_analyzed');
+    t.equal(prop['postalcode'].type, 'text', 'postalcode is full text field');
+    t.equal(prop['postalcode'].analyzer, 'peliasZip', 'postalcode analyzer is peliasZip');
+    t.equal(prop['postalcode'+'_a'].type, 'text', 'postalcode_a is full text field');
+    t.equal(prop['postalcode'+'_a'].analyzer, 'peliasZip', 'postalcode_a analyzer is peliasZip');
+    t.equal(prop['postalcode'+'_id'].type, 'keyword', 'postalcode_id field is keyword type');
+    t.equal(prop['postalcode'+'_id'].index, undefined, 'postalcode_id index left at default');
 
     t.end();
   });
@@ -154,13 +154,9 @@ module.exports.tests.dynamic_templates = function(test, common) {
     var template = schema.dynamic_templates[0].nameGram;
     t.equal(template.path_match, 'name.*');
     t.equal(template.match_mapping_type, 'string');
-    t.deepEqual(template.mapping, {
-      type: 'string',
-      analyzer: 'peliasIndexOneEdgeGram',
-      fielddata : {
-        format: "disabled"
-      }
-    });
+    t.equal(template.mapping.type, 'text', 'set to full text type');
+    t.equal(template.mapping.fielddata, undefined, 'fielddata is left to default (disabled)');
+    t.equal(template.mapping.analyzer, 'peliasIndexOneEdgeGram', 'analyzer set');
     t.end();
   });
   test('dynamic_templates: phrase', function(t) {
@@ -168,13 +164,9 @@ module.exports.tests.dynamic_templates = function(test, common) {
     var template = schema.dynamic_templates[1].phrase;
     t.equal(template.path_match, 'phrase.*');
     t.equal(template.match_mapping_type, 'string');
-    t.deepEqual(template.mapping, {
-      type: 'string',
-      analyzer: 'peliasPhrase',
-      fielddata : {
-        format: "disabled"
-      }
-    });
+    t.equal(template.mapping.type, 'text', 'set to full text type');
+    t.equal(template.mapping.fielddata, undefined, 'fielddata is left to default (disabled)');
+    t.equal(template.mapping.analyzer, 'peliasPhrase', 'analyzer set');
     t.end();
   });
 };

@@ -18,20 +18,6 @@ try {
   process.exit(1);
 }
 
-if (http.maxHeaderSize === undefined) {
-  logger.warn('You are using a version of Node.js that does not support the --max-http-header-size option.' +
-    'You may experience issues when using Elasticsearch 5.' +
-    'See https://github.com/pelias/schema#compatibility for more details.');
-}
-
-if (http.maxHeaderSize < 16384) {
-  logger.error('Max header size is below 16384 bytes. ' +
-    'Be sure to use the provided wrapper script in \'./bin\' rather than calling this script directly.' +
-    'Otherwise, you may experience issues when using Elasticsearch 5.' +
-    'See https://github.com/pelias/schema#compatibility for more details.');
-  process.exit(1);
-}
-
 cli.header("create index");
 const indexName = config.schema.indexName;
 
