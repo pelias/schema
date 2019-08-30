@@ -1,6 +1,6 @@
 'use strict';
 
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
 // Schema Configuration
 // schema.indexName: populated by defaults if not overridden
