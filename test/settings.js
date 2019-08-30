@@ -1,5 +1,3 @@
-'use strict';
-
 var path = require('path'),
     settings = require('../settings'),
     fs = require('fs');
