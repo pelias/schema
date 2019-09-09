@@ -45,7 +45,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'stem direction synonyms', '20 bear road northeast', ['0:20', '1:bear', '2:road', '2:rd', '3:northeast', '3:ne'], true );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), [ '-&' ] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['&', 'and', 'und'] );
     assertAnalysis( 'punctuation', 'Hawai‘i', ['hawaii'] );
 
     suite.run( t.end );

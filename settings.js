@@ -27,11 +27,11 @@ function generate(){
       "tokenizer": {
         "peliasNameTokenizer": {
           "type": "pattern",
-          "pattern": "[\\s,/\\\\]+"
+          "pattern": "[\\s,/\\\\-]+"
         },
         "peliasStreetTokenizer": {
           "type": "pattern",
-          "pattern": "[\\s,/\\\\]+"
+          "pattern": "[\\s,/\\\\-]+"
         }
       },
       "analyzer": {

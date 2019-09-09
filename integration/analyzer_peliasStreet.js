@@ -15,7 +15,7 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
-    assertAnalysis( 'asciifolding', 'Max-Beer-Straße', ['max-beer-strasse']);
+    assertAnalysis( 'asciifolding', 'Max-Beer-Straße', ['max', 'beer', 'strasse', 'str']);
     assertAnalysis( 'trim', ' f ', ['f'] );
     assertAnalysis( 'keyword_street_suffix', 'foo Street', ['0:foo', '1:street', '1:st'], true );
     assertAnalysis( 'keyword_street_suffix', 'foo Road', ['0:foo', '1:road', '1:rd'], true );

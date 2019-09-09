@@ -45,7 +45,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'keyword_street_suffix', 'ctr', ['c', 'ct', 'ctr', 'ce', 'cen', 'cent', 'cente', 'center'] );
 
     assertAnalysis( 'peliasIndexOneEdgeGramFilter', '1 a ab abc abcdefghij', [
-      '1', 'a', 'a', 'ab', 'a', 'ab', 'abc', 'a', 'ab', 'abc', 
+      '1', 'a', 'a', 'ab', 'a', 'ab', 'abc', 'a', 'ab', 'abc',
       'abcd', 'abcde', 'abcdef', 'abcdefg', 'abcdefgh', 'abcdefghi', 'abcdefghij'
     ] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
@@ -58,7 +58,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'no kstem', 'peoples', ['p', 'pe', 'peo', 'peop', 'peopl', 'people', 'peoples'] );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), ['-','-&'] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['&', 'a', 'an', 'and', 'u', 'un', 'und'] );
     assertAnalysis( 'punctuation', 'Hawai‘i', ['h', 'ha', 'haw', 'hawa', 'hawai', 'hawaii'] );
 
     // ensure that very large grams are created
