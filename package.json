@@ -32,7 +32,7 @@
     "elasticsearch": ">=1.1.1"
   },
   "dependencies": {
-    "@hapi/joi": "^15.1.1",
+    "@hapi/joi": "^16.1.8",
     "colors": "^1.1.2",
     "elasticsearch": "^16.0.0",
     "lodash": "^4.17.15",
