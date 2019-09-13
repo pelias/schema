@@ -16,7 +16,7 @@ module.exports.tests.functional = function(test, common){
     // index a document with all admin values
     suite.action( function( done ){
       suite.client.index({
-        index: suite.props.index, type: 'test',
+        index: suite.props.index, type: 'doc',
         id: '1', body: {
           parent: {
             country: 'Test Country',
@@ -46,7 +46,7 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: { match: { 'parent.country': 'Test Country' } } }
       }, function( err, res ){
         t.equal( err, undefined );
@@ -59,7 +59,7 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
       }, function( err, res ){
         t.equal( err, undefined );
@@ -72,7 +72,7 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: { match: { 'parent.country_id': '100' } } }
       }, function( err, res ){
         t.equal( err, undefined );

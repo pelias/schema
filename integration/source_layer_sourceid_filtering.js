@@ -16,28 +16,28 @@ module.exports.tests.source_filter = function(test, common){
     // index some docs
     suite.action( function( done ){
       suite.client.index({
-        index: suite.props.index, type: 'test',
+        index: suite.props.index, type: 'doc',
         id: '1', body: { source: 'osm', layer: 'node', source_id: 'dataset/1' }
       }, done );
     });
 
     suite.action( function( done ){
       suite.client.index({
-        index: suite.props.index, type: 'test',
+        index: suite.props.index, type: 'doc',
         id: '2', body: { source: 'osm', layer: 'address', source_id: 'dataset/2' }
       }, done );
     });
 
     suite.action( function( done ){
       suite.client.index({
-        index: suite.props.index, type: 'test',
+        index: suite.props.index, type: 'doc',
         id: '3', body: { source: 'geonames', layer: 'address', source_id: 'dataset/1' }
       }, done );
     });
 
     suite.action( function( done ){
       suite.client.index({
-        index: suite.props.index, type: 'test',
+        index: suite.props.index, type: 'doc',
         id: '4', body: { source: 'foo bar baz' }
       }, done );
     });
@@ -46,7 +46,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             source: 'osm'
@@ -62,7 +62,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             layer: 'address'
@@ -78,7 +78,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             source_id: 'dataset/1'
@@ -94,7 +94,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: { bool: { must: [
           { term: { source: 'osm' } },
           { term: { source_id: 'dataset/1' } }
@@ -109,7 +109,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             source: 'OSM'
@@ -125,7 +125,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             source: 'foo'
@@ -141,7 +141,7 @@ module.exports.tests.source_filter = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: {
           term: {
             source: 'foo bar baz'
