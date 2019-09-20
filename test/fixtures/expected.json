@@ -46,13 +46,7 @@
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "surround_single_characters_with_word_markers",
-            "house_number_word_delimiter",
-            "remove_single_characters",
-            "surround_house_numbers_with_word_markers",
             "peliasOneEdgeGramFilter",
-            "eliminate_tokens_starting_with_word_marker",
-            "remove_encapsulating_word_markers",
             "unique_only_same_position",
             "notnull"
           ]
@@ -219,41 +213,6 @@
           "type": "pattern_replace",
           "pattern": " +",
           "replacement": " "
-        },
-        "surround_single_characters_with_word_markers": {
-          "description": "wraps single characters with markers, needed to protect valid single characters and not those extracted from house numbers (14a creates an 'a' token)",
-          "type": "pattern_replace",
-          "pattern": "^(.{1})$",
-          "replacement": "\u0002$1\u0003"
-        },
-        "house_number_word_delimiter": {
-          "description": "splits on letter-to-number transition and vice versa, splits 14a -> [14, 14a, a]",
-          "type": "word_delimiter",
-          "split_on_numerics": "true",
-          "preserve_original": "true"
-        },
-        "remove_single_characters": {
-          "description": "removes single characters created from house_number_word_delimiter, removes the letter portion of a house number",
-          "type": "length",
-          "min": 2
-        },
-        "surround_house_numbers_with_word_markers": {
-          "description": "surrounds house numbers with markers, needed to protect whole house numbers from elimination step after prefix n-gramming",
-          "type": "pattern_replace",
-          "pattern": "^([0-9]+[a-z]?)$",
-          "replacement": "\u0002$1\u0003"
-        },
-        "eliminate_tokens_starting_with_word_marker": {
-          "description": "remove tokens starting but not ending with markers, saves whole house numbers wrapped in markers",
-          "type": "pattern_replace",
-          "pattern": "^\u0002(.*[^\u0003])?$",
-          "replacement": ""
-        },
-        "remove_encapsulating_word_markers": {
-          "description": "extract the stuff between the markers, extract 14 from \u000214\u0003 since we're done the prefix n-gramming step",
-          "type": "pattern_replace",
-          "pattern": "^\u0002(.*)\u0003$",
-          "replacement": "$1"
         },
         "ampersand": {
           "type": "synonym",
