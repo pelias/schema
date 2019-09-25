@@ -192,11 +192,6 @@ function generate(){
           "min_gram" : 1,
           "max_gram" : 24
         },
-        "peliasTwoEdgeGramFilter": {
-          "type" : "edgeNGram",
-          "min_gram" : 2,
-          "max_gram" : 24
-        },
         "removeAllZeroNumericPrefix" :{
           "type" : "pattern_replace",
           "pattern" : "^(0*)",
