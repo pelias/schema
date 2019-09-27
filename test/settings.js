@@ -348,7 +348,7 @@ module.exports.tests.ampersandFilter = function(test, common) {
     var s = settings();
     t.equal(typeof s.analysis.filter.ampersand, 'object', 'there is a ampersand filter');
     var filter = s.analysis.filter.ampersand;
-    t.equal(filter.type, 'synonym');
+    t.equal(filter.type, 'synonym_graph');
     t.deepEqual(filter.synonyms, [
       "&,and",
       "&,und"
@@ -403,7 +403,7 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
     var s = settings();
     t.equal(typeof s.analysis.filter.street_suffix, 'object', 'there is an street_suffix filter');
     var filter = s.analysis.filter.street_suffix;
-    t.equal(filter.type, 'synonym');
+    t.equal(filter.type, 'synonym_graph');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 127);
     t.end();
@@ -417,7 +417,7 @@ module.exports.tests.directionSynonymFilter = function(test, common) {
     var s = settings();
     t.equal(typeof s.analysis.filter.directionals, 'object', 'there is an directionals filter');
     var filter = s.analysis.filter.directionals;
-    t.equal(filter.type, 'synonym');
+    t.equal(filter.type, 'synonym_graph');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 8);
     t.end();

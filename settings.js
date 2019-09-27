@@ -280,7 +280,7 @@ function generate(){
   // each filter is given the same name as the file, minus the extension.
   for( var key in synonyms ){
     settings.analysis.filter[key] = {
-      "type": "synonym",
+      "type": "synonym_graph",
       "synonyms": !!synonyms[key].length ? synonyms[key] : ['']
     };
   }

@@ -247,14 +247,14 @@
           "replacement": "$1"
         },
         "ampersand": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "&,and",
             "&,und"
           ]
         },
         "custom_admin": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "saint,st",
             "sainte,ste",
@@ -264,7 +264,7 @@
           ]
         },
         "custom_name": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "brothers,bros",
             "cape,cpe,cp",
@@ -410,13 +410,13 @@
           ]
         },
         "custom_street": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             ""
           ]
         },
         "directionals": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "southwest,sw",
             "southeast,se",
@@ -429,7 +429,7 @@
           ]
         },
         "partial_token_address_suffix_expansion": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "aly => alley",
             "anx => annex",
@@ -530,7 +530,7 @@
           ]
         },
         "street_suffix": {
-          "type": "synonym",
+          "type": "synonym_graph",
           "synonyms": [
             "alley,aly",
             "annex,anx",
