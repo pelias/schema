@@ -143,7 +143,7 @@ module.exports.tests.slop = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         id: '1',
         body: { name: { default: '52 Görlitzer Straße' } }
       }, done);
@@ -156,7 +156,7 @@ module.exports.tests.slop = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'test',
+        type: 'doc',
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',

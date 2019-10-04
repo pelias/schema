@@ -6,22 +6,16 @@ var tape = require('tape'),
 
 module.exports.tests = {};
 
-// 'admin' mappings have a different 'name' dynamic_template to the other types
 module.exports.tests.dynamic_templates_name = function(test, common){
-  test( 'admin->name', nameAssertion( 'country', 'peliasIndexOneEdgeGram', common ) );
-  test( 'document->name', nameAssertion( 'myType', 'peliasIndexOneEdgeGram', common ) );
+  test( 'document->name', nameAssertion( 'peliasIndexOneEdgeGram', common ) );
 };
 
-// all types share the same phrase mapping
 module.exports.tests.dynamic_templates_phrase = function(test, common){
-  test( 'admin->phrase', phraseAssertion( 'country', 'peliasPhrase', common ) );
-  test( 'document->phrase', phraseAssertion( 'myType', 'peliasPhrase', common ) );
+  test( 'document->phrase', phraseAssertion( 'peliasPhrase', common ) );
 };
 
-// all types share the same addendum mapping
 module.exports.tests.dynamic_templates_addendum = function(test, common){
-  test( 'addendum', addendumAssertion( 'country', 'example', JSON.stringify({ example: 100 }), common ) );
-  test( 'addendum', addendumAssertion( 'myType', 'wikipedia', JSON.stringify({ slug: 'Wikipedia' }), common ) );
+  test( 'addendum', addendumAssertion( 'wikipedia', JSON.stringify({ slug: 'Wikipedia' }), common ) );
 };
 
 module.exports.all = function (tape, common) {
@@ -35,10 +29,12 @@ module.exports.all = function (tape, common) {
   }
 };
 
-function nameAssertion( type, analyzer, common ){
+function nameAssertion( analyzer, common ){
   return function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+
+    const type = 'doc';
 
     // index a document from a normal document layer
     suite.action( function( done ){
@@ -69,10 +65,12 @@ function nameAssertion( type, analyzer, common ){
   };
 }
 
-function phraseAssertion( type, analyzer, common ){
+function phraseAssertion( analyzer, common ){
   return function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+
+    const type = 'doc';
 
     // index a document from a normal document layer
     suite.action( function( done ){
@@ -103,10 +101,12 @@ function phraseAssertion( type, analyzer, common ){
   };
 }
 
-function addendumAssertion( type, namespace, value, common ){
+function addendumAssertion( namespace, value, common ){
   return function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+
+    const type = 'doc';
 
     // index a document including the addendum
     suite.action( function( done ){
