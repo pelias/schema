@@ -23,8 +23,13 @@ const indexName = config.schema.indexName;
 
 client.indices.create( { index: indexName, body: schema }, function( err, res ){
   if( err ){
-    console.error( err.message || err, '\n' );
-    process.exit(1);
+    if( err.message.indexOf('index_already_exists_exception') > -1){
+      console.log( '[put mapping]: Index Already Exists', '\t', indexName, '\n' );
+      process.exit(0);
+    } else {
+      console.error( err.message || err, '\n' );
+      process.exit(1);
+    }
   }
   console.log( '[put mapping]', '\t', indexName, res, '\n' );
   process.exit( !!err );
