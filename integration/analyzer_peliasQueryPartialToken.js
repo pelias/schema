@@ -21,9 +21,23 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'ampersand', 'a and b', ['a','and','&','b'] );
-    assertAnalysis( 'ampersand', 'a & b', ['a','&','and','und','b'] );
-    assertAnalysis( 'ampersand', 'a and & and b', ['a','and','&','&','and','und','and','&','b'] );
+    assertAnalysis('ampersand', 'a and b', [
+      '0:a',
+      '1:and', '1:&',
+      '2:b'
+    ]);
+    assertAnalysis('ampersand', 'a & b', [
+      '0:a',
+      '1:&', '1:and', '1:und',
+      '2:b'
+    ]);
+    assertAnalysis('ampersand', 'a and & and b', [
+      '0:a',
+      '1:and', '1:&',
+      '2:&', '2:and', '2:und',
+      '3:and', '3:&',
+      '4:b'
+    ]);
     assertAnalysis( 'ampersand', 'land', ['land'] ); // should not replace inside tokens
 
     // partial_token_address_suffix_expansion
@@ -40,7 +54,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'no kstem', 'peoples', ['peoples'] );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), ['&', 'and', 'und'] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['0:&', '0:and', '0:und'] );
 
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', ['grolmanstrasse']);
@@ -90,7 +104,7 @@ module.exports.tests.functional = function(test, common){
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQueryPartialToken' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    assertAnalysis( 'country', 'Trinidad and Tobago', [ '0:trinidad', '1:and', '1:&', '2:tobago' ], true);
+    assertAnalysis( 'country', 'Trinidad and Tobago', [ '0:trinidad', '1:and', '1:&', '2:tobago' ]);
     assertAnalysis( 'place', 'Toys "R" Us!', [ 'toys', 'r', 'us' ]);
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 
