@@ -1149,9 +1149,6 @@
         "phrase"
       ]
     },
-    "_all": {
-      "enabled": false
-    },
     "dynamic": "strict"
   }
 }
