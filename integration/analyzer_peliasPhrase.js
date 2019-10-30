@@ -195,10 +195,9 @@ module.exports.tests.slop_query = function(test, common){
             ],
             'should': [
               {
-                'match': {
+                'match_phrase': {
                   'phrase.default': {
                     'query': i,
-                    'type': 'phrase',
                     'slop': 2
                   }
                 }
@@ -265,11 +264,10 @@ module.exports.tests.slop = function(test, common){
         index: suite.props.index,
         type: 'doc',
         searchType: 'dfs_query_then_fetch',
-        body: { query: { match: {
+        body: { query: { match_phrase: {
           'name.default': {
             'analyzer': 'peliasPhrase',
             'query': 'Görlitzer Straße 52',
-            'type': 'phrase',
             'slop': 3,
           }
         }}}

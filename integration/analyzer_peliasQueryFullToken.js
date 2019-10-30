@@ -165,11 +165,10 @@ module.exports.tests.slop = function(test, common){
       suite.client.search({
         index: suite.props.index,
         type: 'doc',
-        body: { query: { match: {
+        body: { query: { match_phrase: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',
             'query': 'Görlitzer Straße 52',
-            'type': 'phrase',
             'slop': 3,
           }
         }}}
