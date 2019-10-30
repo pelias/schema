@@ -266,10 +266,9 @@ module.exports.tests.venue_vs_address = function(test, common){
             'bool': {
               'must': [
                 {
-                  'match': {
+                  'match_phrase': {
                     'name.default': {
                       'analyzer': 'peliasQueryFullToken',
-                      'type': 'phrase',
                       'boost': 1,
                       'slop': 3,
                       'query': 'union square'
@@ -288,10 +287,9 @@ module.exports.tests.venue_vs_address = function(test, common){
                   }
                 },
                 {
-                  'match': {
+                  'match_phrase': {
                     'phrase.default': {
                       'analyzer': 'peliasPhrase',
-                      'type': 'phrase',
                       'boost': 1,
                       'slop': 3,
                       'query': 'union square'
