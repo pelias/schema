@@ -72,28 +72,24 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     // both terms should map to same tokens
-    var expected1 = [ '0:325', '1:n', '1:north', '2:12', '3:st', '3:street' ];
-    var expected2 = [ '0:325', '1:north', '1:n', '2:12', '3:street', '3:st' ];
-    assertAnalysis( 'address', '325 N 12th St', expected1 );
-    assertAnalysis( 'address', '325 North 12th Street', expected2 );
+    var expected1 = ['0:325', '1:n', '1:north', '2:12', '3:st', '3:street'];
+    assertAnalysis('address', '325 N 12th St', expected1);
+    assertAnalysis('address', '325 North 12th Street', expected1);
 
     // both terms should map to same tokens
-    var expected3 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '2:av', '3:s', '3:south', '3:see' ];
-    var expected4 = [ '0:13509', '1:colfax', '2:avenue', '2:ave', '2:av', '3:south', '3:s' ];
-    assertAnalysis( 'address', '13509 Colfax Ave S', expected3 );
-    assertAnalysis( 'address', '13509 Colfax Avenue South', expected4 );
+    var expected2 = [ '0:13509', '1:colfax', '2:ave', '2:avenue', '2:av', '3:s', '3:south', '3:see' ];
+    assertAnalysis('address', '13509 Colfax Ave S', expected2 );
+    assertAnalysis('address', '13509 Colfax Avenue South', expected2 );
 
     // both terms should map to same tokens
-    var expected5 = [ '0:100', '1:s', '1:south', '1:see', '2:lake', '2:lk', '3:dr', '3:drive' ];
-    var expected6 = [ '0:100', '1:south', '1:s', '2:lake', '2:lk', '3:drive', '3:dr' ];
-    assertAnalysis( 'address', '100 S Lake Dr', expected5 );
-    assertAnalysis( 'address', '100 South Lake Drive', expected6 );
+    var expected3 = ['0:100', '1:s', '1:south', '1:see', '2:lake', '2:lk', '3:dr', '3:drive'];
+    assertAnalysis('address', '100 S Lake Dr', expected3 );
+    assertAnalysis('address', '100 South Lake Drive', expected3 );
 
     // both terms should map to same tokens
-    var expected7 = [ '0:100', '1:northwest', '1:nw', '2:highway', '2:hwy' ];
-    var expected8 = [ '0:100', '1:nw', '1:northwest', '2:hwy', '2:highway' ];
-    assertAnalysis( 'address', '100 northwest highway', expected7 );
-    assertAnalysis( 'address', '100 nw hwy', expected8 );
+    var expected4 = ['0:100', '1:northwest', '1:nw', '2:highway', '2:hwy'];
+    assertAnalysis('address', '100 northwest highway', expected4 );
+    assertAnalysis('address', '100 nw hwy', expected4 );
 
     suite.run( t.end );
   });
@@ -195,10 +191,9 @@ module.exports.tests.slop_query = function(test, common){
             ],
             'should': [
               {
-                'match': {
+                'match_phrase': {
                   'phrase.default': {
                     'query': i,
-                    'type': 'phrase',
                     'slop': 2
                   }
                 }
@@ -265,11 +260,10 @@ module.exports.tests.slop = function(test, common){
         index: suite.props.index,
         type: 'doc',
         searchType: 'dfs_query_then_fetch',
-        body: { query: { match: {
+        body: { query: { match_phrase: {
           'name.default': {
             'analyzer': 'peliasPhrase',
             'query': 'Görlitzer Straße 52',
-            'type': 'phrase',
             'slop': 3,
           }
         }}}
