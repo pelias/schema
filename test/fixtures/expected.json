@@ -1156,9 +1156,7 @@
           "type": "geo_point"
         },
         "shape": {
-          "type": "geo_shape",
-          "tree": "quadtree",
-          "tree_levels": "20"
+          "type": "geo_shape"
         },
         "bounding_box": {
           "type": "keyword",
@@ -1223,9 +1221,6 @@
           "shape",
           "phrase"
         ]
-      },
-      "_all": {
-        "enabled": false
       },
       "dynamic": "strict"
     }

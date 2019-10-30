@@ -174,7 +174,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
 // _all should be disabled
 module.exports.tests.all_disabled = function(test, common) {
   test('_all disabled', function(t) {
-    t.equal(schema._all.enabled, false, '_all disabled');
+    t.false(schema._all, '_all undefined');
     t.end();
   });
 };
