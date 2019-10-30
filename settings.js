@@ -1,12 +1,12 @@
-var fs = require('fs');
-var path = require('path');
-var merge = require('lodash.merge');
-var peliasConfig = require('pelias-config');
-var punctuation = require('./punctuation');
-var synonymFile = require('./synonyms/parser');
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
+const peliasConfig = require('pelias-config');
+const punctuation = require('./punctuation');
+const synonymFile = require('./synonyms/parser');
 
 // load synonyms from disk
-var synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
+const synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
                  .sort()
                  .filter( f => f.match(/\.txt$/) )
                  .reduce(( acc, cur ) => {
@@ -289,7 +289,7 @@ function generate(){
   if( 'object' === typeof config &&
       'object' === typeof config.elasticsearch &&
       'object' === typeof config.elasticsearch.settings ){
-    return merge({}, settings, config.elasticsearch.settings);
+    return _.merge({}, settings, config.elasticsearch.settings);
   }
 
   return settings;

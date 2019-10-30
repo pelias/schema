@@ -78,19 +78,19 @@ module.exports.tests.synonyms = function(test, common){
 
     assertAnalysis( 'place', 'Saint-Louis-du-Ha! Ha!', [
       '0:saint', '0:st', '1:louis', '2:du', '3:ha', '4:ha'
-    ], true);
+    ]);
 
     assertAnalysis( 'place', 'Sainte-Chapelle', [
       '0:sainte', '0:ste', '1:chapelle'
-    ], true);
+    ]);
 
     assertAnalysis( 'place', 'Mount Everest', [
       '0:mount', '0:mt', '1:everest'
-    ], true);
+    ]);
 
     assertAnalysis( 'place', 'Mont Blanc', [
       '0:mont', '0:mt', '1:blanc'
-    ], true);
+    ]);
 
     suite.run( t.end );
   });
@@ -103,19 +103,21 @@ module.exports.tests.tokenizer = function(test, common){
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    const expected = ['0:trinidad', '1:tobago'];
+
     // specify 2 parts with a delimeter
-    assertAnalysis( 'forward slash', 'Trinidad/Tobago',   [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'forward slash', 'Trinidad /Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'forward slash', 'Trinidad/ Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'back slash',    'Trinidad\\Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'back slash',    'Trinidad \\Tobago', [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'back slash',    'Trinidad\\ Tobago', [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'comma',         'Trinidad,Tobago',   [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'comma',         'Trinidad ,Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'comma',         'Trinidad, Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'space',         'Trinidad,Tobago',   [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'space',         'Trinidad ,Tobago',  [ 'trinidad', 'tobago' ]);
-    assertAnalysis( 'space',         'Trinidad, Tobago',  [ 'trinidad', 'tobago' ]);
+    assertAnalysis( 'forward slash', 'Trinidad/Tobago',   expected);
+    assertAnalysis( 'forward slash', 'Trinidad /Tobago',  expected);
+    assertAnalysis( 'forward slash', 'Trinidad/ Tobago',  expected);
+    assertAnalysis( 'back slash',    'Trinidad\\Tobago',  expected);
+    assertAnalysis( 'back slash',    'Trinidad \\Tobago', expected);
+    assertAnalysis( 'back slash',    'Trinidad\\ Tobago', expected);
+    assertAnalysis( 'comma',         'Trinidad,Tobago',   expected);
+    assertAnalysis( 'comma',         'Trinidad ,Tobago',  expected);
+    assertAnalysis( 'comma',         'Trinidad, Tobago',  expected);
+    assertAnalysis( 'space',         'Trinidad,Tobago',   expected);
+    assertAnalysis( 'space',         'Trinidad ,Tobago',  expected);
+    assertAnalysis( 'space',         'Trinidad, Tobago',  expected);
 
     suite.run( t.end );
   });

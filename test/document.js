@@ -1,5 +1,5 @@
+const _ = require('lodash');
 const schema = require('../mappings/document');
-const has = require('lodash.has');
 
 module.exports.tests = {};
 
@@ -104,7 +104,7 @@ module.exports.tests.parent_fields = function(test, common) {
   ];
   test('parent fields specified', function(t) {
     fields.forEach( expected => {
-      t.true( has( schema.properties.parent.properties, expected ), expected );
+      t.true( _.has( schema.properties.parent.properties, expected ), expected );
     });
     t.end();
   });

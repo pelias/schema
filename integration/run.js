@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const tape = require('tape');
 const config = require('pelias-config').generate();
 
@@ -20,20 +21,45 @@ const common = {
     common.summaryMap( res )
           .forEach( console.dir );
   },
-  simpleTokens: ( tokens, includePosition ) => {
-    return tokens.map( t => {
-      return (!!includePosition ? t.position + ':' : '') + t.token;
+  bucketTokens: tokens => {
+    const positions = {};
+    tokens.forEach((t, i) => {
+      // format returned by elasticsearch
+      if (_.isPlainObject(t)) {
+        const pos = '@pos' + t.position;
+        if (!positions[pos]) { positions[pos] = []; }
+        positions[pos].push(t.token);
+      }
+      // 'simple tokens' format
+      // eg '1:foo'
+      else if (_.isString(t)) {
+        const match = t.match(/^(\d+):(.+)$/);
+        let pos = '@pos' + i;
+        if (match) {
+          pos = '@pos' + match[1];
+          t = match[2];
+        }
+        if (!positions[pos]) { positions[pos] = []; }
+        positions[pos].push(t);
+      }
     });
+    // sort all the arrays so that order is irrelevant
+    for (var attr in positions){
+      positions[attr] = positions[attr].sort();
+    }
+    return positions;
   },
-  analyze: ( suite, t, analyzer, comment, text, expected, includePosition ) => {
-    suite.assert( done => {
+  analyze: (suite, t, analyzer, comment, text, expected) => {
+    suite.assert(done => {
       suite.client.indices.analyze({
         index: suite.props.index,
-        analyzer: analyzer,
-        text: text
-      }, ( err, res ) => {
-        if( err ){ console.error( err ); }
-        t.deepEqual( common.simpleTokens( res.tokens, includePosition ), expected, comment );
+        body: {
+          analyzer: analyzer,
+          text: text.toString()
+        }
+      }, (err, res) => {
+        if (err) { console.error(err); }
+        t.deepEqual(common.bucketTokens(res.tokens), common.bucketTokens(expected), comment);
         done();
       });
     });
