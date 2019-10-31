@@ -46,7 +46,8 @@ function generate(){
             "word_delimiter",
             "custom_admin",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasIndexOneEdgeGram" : {
@@ -65,7 +66,8 @@ function generate(){
             "removeAllZeroNumericPrefix",
             "peliasOneEdgeGramFilter",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasQuery": {
@@ -130,7 +132,8 @@ function generate(){
             "icu_folding",
             "remove_ordinals",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasZip": {
@@ -177,7 +180,8 @@ function generate(){
             "remove_ordinals",
             "trim",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         }
       },

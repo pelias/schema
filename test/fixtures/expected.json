@@ -26,7 +26,8 @@
             "word_delimiter",
             "custom_admin",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasIndexOneEdgeGram": {
@@ -48,7 +49,8 @@
             "removeAllZeroNumericPrefix",
             "peliasOneEdgeGramFilter",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasQuery": {
@@ -125,7 +127,8 @@
             "icu_folding",
             "remove_ordinals",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         },
         "peliasZip": {
@@ -181,7 +184,8 @@
             "remove_ordinals",
             "trim",
             "unique_only_same_position",
-            "notnull"
+            "notnull",
+            "flatten_graph"
           ]
         }
       },

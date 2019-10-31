@@ -87,7 +87,8 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "removeAllZeroNumericPrefix",
       "peliasOneEdgeGramFilter",
       "unique_only_same_position",
-      "notnull"
+      "notnull",
+      "flatten_graph"
     ]);
     t.end();
   });
@@ -200,7 +201,8 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "icu_folding",
       "remove_ordinals",
       "unique_only_same_position",
-      "notnull"
+      "notnull",
+      "flatten_graph"
     ]);
     t.end();
   });
@@ -291,7 +293,8 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "remove_ordinals",
       "trim",
       "unique_only_same_position",
-      "notnull"
+      "notnull",
+      "flatten_graph"
     ]);
     t.end();
   });
@@ -300,7 +303,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
 // cycle through all analyzers and ensure the corrsponding token filters are globally defined
 module.exports.tests.allTokenFiltersPresent = function(test, common) {
   var ES_INBUILT_FILTERS = [
-    'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique'
+    'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique', 'flatten_graph'
   ];
   test('all token filters present', function(t) {
     var s = settings();
