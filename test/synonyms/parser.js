@@ -27,30 +27,30 @@ module.exports.tests.parse = function(test, common) {
   });
   test('lowercase', function(t) {
     t.deepEqual( parser.parse(`
-Foo => BaR
+Foo=>BaR
 Foo,Bar,Baz
 `), [
-  'foo => bar',
+  'foo=>bar',
   'foo,bar,baz'
 ] );
     t.end();
   });
   test('squash spaces', function(t) {
     t.deepEqual( parser.parse(`
-foo  bar => foo
+foo  bar=>foo
 Foo  Bar, Foo
 `), [
-  'foo bar => foo',
+  'foo bar=>foo',
   'foo bar,foo'
 ] );
     t.end();
   });
   test('trim commas', function(t) {
     t.deepEqual( parser.parse(`
-,foo => bar
+,foo=>bar
 ,foo, bar,
 `), [
-  'foo => bar',
+  'foo=>bar',
   'foo,bar'
 ] );
     t.end();
@@ -65,9 +65,9 @@ Foo  Bar, Foo
   });
   test('trim around arrows', function(t) {
     t.deepEqual( parser.parse(`
-  foo  =>   bar
+  foo =>  bar
 `), [
-  'foo => bar'
+  'foo=>bar'
 ] );
     t.end();
   });
