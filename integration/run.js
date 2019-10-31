@@ -84,7 +84,8 @@ var tests = [
   require('./bounding_box.js'),
   require('./autocomplete_street_synonym_expansion.js'),
   require('./autocomplete_directional_synonym_expansion.js'),
-  require('./autocomplete_abbreviated_street_names.js')
+  require('./autocomplete_abbreviated_street_names.js'),
+  require('./multi_token_synonyms.js')
 ];
 
 tests.map(function(t) {
