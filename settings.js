@@ -11,7 +11,8 @@ const synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
                  .filter( f => f.match(/\.txt$/) )
                  .reduce(( acc, cur ) => {
                    acc[cur.replace('.txt','')] = synonymFile(
-                     path.join(__dirname, 'synonyms', cur)
+                     path.join(__dirname, 'synonyms', cur),
+                     { throw_on_multi_token_synonyms: true }
                    );
                    return acc;
                  }, {});
