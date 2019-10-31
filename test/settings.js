@@ -227,7 +227,10 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasZip;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "trim"
+      "icu_folding",
+      "trim",
+      "unique_only_same_position",
+      "notnull"
     ]);
     t.end();
   });
@@ -248,7 +251,10 @@ module.exports.tests.peliasUnitAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasUnit;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "trim"
+      "icu_folding",
+      "trim",
+      "unique_only_same_position",
+      "notnull"
     ]);
     t.end();
   });
@@ -289,13 +295,15 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "directionals",
       "icu_folding",
       "remove_ordinals",
-      "trim"
+      "trim",
+      "unique_only_same_position",
+      "notnull"
     ]);
     t.end();
   });
 };
 
-// cycle through all analyzers and ensure the corrsponding token filters are defined
+// cycle through all analyzers and ensure the corrsponding token filters are globally defined
 module.exports.tests.allTokenFiltersPresent = function(test, common) {
   var ES_INBUILT_FILTERS = [
     'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique'
@@ -306,11 +314,33 @@ module.exports.tests.allTokenFiltersPresent = function(test, common) {
       var analyzer = s.analysis.analyzer[analyzerName];
       if( Array.isArray( analyzer.filter ) ){
         analyzer.filter.forEach( function( tokenFilterName ){
-          var filterExists = s.analysis.filter.hasOwnProperty( tokenFilterName );
-          if( !filterExists && -1 < ES_INBUILT_FILTERS.indexOf( tokenFilterName ) ){
-            filterExists = true;
-          }
+          var filterExists = (
+            s.analysis.filter.hasOwnProperty( tokenFilterName ) ||
+            ES_INBUILT_FILTERS.includes( tokenFilterName )
+          );
           t.true( filterExists, 'token filter exists: ' + tokenFilterName );
+        });
+      }
+    }
+    t.end();
+  });
+};
+
+// cycle through all analyzers and ensure the mandatory token filters are defined on each
+module.exports.tests.mandatoryTokenFiltersPresent = function (test, common) {
+  var MANDATORY_FILTERS = [
+    'lowercase', 'icu_folding', 'trim', 'unique_only_same_position', 'notnull'
+  ];
+  test('mandatory filters present', function (t) {
+    var s = settings();
+    for (var analyzerName in s.analysis.analyzer) {
+      var analyzer = s.analysis.analyzer[analyzerName];
+      if (Array.isArray(analyzer.filter)) {
+        MANDATORY_FILTERS.forEach(function (filterName) {
+          t.true(
+            analyzer.filter.includes(filterName),
+            `mandatory token filter ${filterName} not defined on ${analyzerName}`
+          );
         });
       }
     }
