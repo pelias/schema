@@ -25,6 +25,7 @@
             "trim",
             "word_delimiter",
             "custom_admin",
+            "unique_only_same_position",
             "notnull"
           ]
         },
@@ -141,7 +142,10 @@
           ],
           "filter": [
             "lowercase",
-            "trim"
+            "icu_folding",
+            "trim",
+            "unique_only_same_position",
+            "notnull"
           ]
         },
         "peliasUnit": {
@@ -152,7 +156,10 @@
           ],
           "filter": [
             "lowercase",
-            "trim"
+            "icu_folding",
+            "trim",
+            "unique_only_same_position",
+            "notnull"
           ]
         },
         "peliasHousenumber": {
@@ -178,7 +185,9 @@
             "directionals",
             "icu_folding",
             "remove_ordinals",
-            "trim"
+            "trim",
+            "unique_only_same_position",
+            "notnull"
           ]
         }
       },
