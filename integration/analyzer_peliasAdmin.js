@@ -24,7 +24,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'notnull', ' ^ ', [] );
 
     // remove punctuation (handled by the char_filter)
-    assertAnalysis( 'punctuation', punctuation.all.join(''), [] );
+    assertAnalysis( 'punctuation', punctuation.all.join(''), ['0:&'] );
 
     suite.run( t.end );
   });
