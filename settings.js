@@ -63,13 +63,7 @@ function generate(){
             "ampersand",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
-            "surround_single_characters_with_word_markers",
-            "house_number_word_delimiter",
-            "remove_single_characters",
-            "surround_house_numbers_with_word_markers",
             "peliasOneEdgeGramFilter",
-            "eliminate_tokens_starting_with_word_marker",
-            "remove_encapsulating_word_markers",
             "unique_only_same_position",
             "notnull"
           ]
@@ -216,47 +210,6 @@ function generate(){
           "pattern": " +",
           "replacement": " "
         },
-
-        // START OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
-        // @see: https://github.com/pelias/schema/pull/133
-        // note: we use \x02 (start-of-text) and \x03 (end-of-text) characters to mark word borders
-        "surround_single_characters_with_word_markers":{
-          "description": "wraps single characters with markers, needed to protect valid single characters and not those extracted from house numbers (14a creates an 'a' token)",
-          "type": "pattern_replace",
-          "pattern": "^(.{1})$",
-          "replacement": "\x02$1\x03"
-        },
-        "house_number_word_delimiter": {
-          "description": "splits on letter-to-number transition and vice versa, splits 14a -> [14, 14a, a]",
-          "type": "word_delimiter",
-          "split_on_numerics": "true",
-          "preserve_original": "true"
-        },
-        "remove_single_characters": {
-          "description": "removes single characters created from house_number_word_delimiter, removes the letter portion of a house number",
-          "type": "length",
-          "min": 2
-        },
-        "surround_house_numbers_with_word_markers": {
-          "description": "surrounds house numbers with markers, needed to protect whole house numbers from elimination step after prefix n-gramming",
-          "type": "pattern_replace",
-          "pattern": "^([0-9]+[a-z]?)$",
-          "replacement": "\x02$1\x03"
-        },
-        "eliminate_tokens_starting_with_word_marker": {
-          "description": "remove tokens starting but not ending with markers, saves whole house numbers wrapped in markers",
-          "type": "pattern_replace",
-          "pattern": "^\x02(.*[^\x03])?$",
-          "replacement": ""
-        },
-        "remove_encapsulating_word_markers": {
-          "description": "extract the stuff between the markers, extract 14 from \x0214\x03 since we're done the prefix n-gramming step",
-          "type": "pattern_replace",
-          "pattern": "^\x02(.*)\x03$",
-          "replacement": "$1"
-        }
-        // END OF COMPLICATED FILTERS TO ANALYZE HOUSE NUMBERS
-
         // more generated below
       },
       "char_filter": {

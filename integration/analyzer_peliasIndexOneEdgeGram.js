@@ -159,7 +159,7 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis('address', '101 mapzen place', [
-      '0:101', '1:m', '1:ma', '1:map', '1:mapz', '1:mapze', '1:mapzen', '2:p', '2:pl', '2:pla', '2:plac', '2:place'
+      '0:1', '0:10', '0:101', '1:m', '1:ma', '1:map', '1:mapz', '1:mapze', '1:mapzen', '2:p', '2:pl', '2:pla', '2:plac', '2:place'
     ]);
 
     suite.run( t.end );
@@ -189,23 +189,23 @@ module.exports.tests.address = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'address', '101 mapzen place', [
-      '0:101',
+      '0:1', '0:10', '0:101',
       '1:m', '1:ma', '1:map', '1:mapz', '1:mapze', '1:mapzen',
       '2:p', '2:pl', '2:pla', '2:plac', '2:place'
     ]);
 
     assertAnalysis( 'address', '30 w 26 st', [
-      '0:30',
+      '0:3', '0:30',
       '1:w', '1:we', '1:wes', '1:west',
-      '2:26',
+      '2:2', '2:26',
       '3:s', '3:st', '3:str', '3:stre', '3:stree', '3:street'
     ]);
 
     assertAnalysis( 'address', '4B 921 83 st', [
-      '0:4b',
-      '2:921', // @todo: this token position is incorrect
-      '3:83',
-      '4:s', '4:st', '4:str', '4:stre', '4:stree', '4:street'
+      '0:4', '0:4b',
+      '1:9', '1:92', '1:921',
+      '2:8', '2:83',
+      '3:s', '3:st', '3:str', '3:stre', '3:stree', '3:street'
     ]);
 
     suite.run( t.end );
