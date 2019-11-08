@@ -127,3 +127,48 @@ bruecke, brucke, br
 bahnhof, bhf, bf
 chaussee, ch
 platz, pl
+
+# Spanish street suffixes
+antic cami,ant cami
+antiga carretera,actra,actra
+autopista,auto,autop,autp,auto,autop,autp
+autovia,autov,autv,autov,autv
+avenida,av
+avinguda,av,avd,avda,avgda,agda,avgda
+baixada,bda,bajada,bda,bajada
+barranc,bnc,barranco,bnc,barranco
+calçada,cda,calzada,cda,calzada
+cami,camino
+carrer,carr,c,car,cl,calle
+carrera,carra,ctra,crt,crta,crtra,carret,cra,carra,ctra,crt,crta,crtra,carret
+carrerada,ca
+carrero,cro,carro,carr,carrero,carro,carr
+carretera,ctra,ctra
+cinturo,cint,cinto
+circumval lacio,cval,circunvalacion,circunvalacion
+corredor,cdor
+corriol,crol
+costa,cos,cuesta
+diagonal,diag,diag
+drecera,drec
+eix,eje
+entrada,entr
+gran via,gv,g v
+passadis,pdis,pasadizo
+passatge,ptge,ptg,pge,pstg,pasage,ptge,ptg,pge,pstg,pasage
+psg,passeig,pg,pje,paseo,passeig,pg,pje,paseo
+passera,psera
+placa,pl,pca,plca,plaza,pza,plza,placa
+placeta,plta
+portal,ptal
+pujada,pda
+rambla,rbla,rbl
+rambleta,rblt
+riera,ra
+ronda,rda
+rotonda,rtda
+sortida,sort,salida,slda,sort,salida,slda
+transversal,trval,trvsal,trval,trvsal
+travessera,trav,travesera,trav,travesera
+travessia,trv,trav,travesia
+via,v

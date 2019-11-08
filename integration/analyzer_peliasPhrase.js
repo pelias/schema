@@ -21,7 +21,6 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'asciifolding', 'ł', ['l']);
     assertAnalysis( 'asciifolding', 'ɰ', ['m']);
     assertAnalysis( 'trim', ' f ', ['f'] );
-    assertAnalysis( 'stop_words (disabled)', 'a st b ave c', ['0:a', '1:st', '1:street', '2:b', '3:ave', '3:avenue', '3:av', '4:c'] );
     assertAnalysis( 'ampersand', 'a and b', ['0:a', '1:and', '1:&', '2:b']);
     assertAnalysis( 'ampersand', 'a & b', ['0:a', '1:&', '1:and', '1:und', '2:b']);
     assertAnalysis( 'ampersand', 'a and & and b', ['0:a', '1:and', '1:&', '2:&', '2:and', '2:und', '3:and', '3:&', '4:b']);
@@ -68,7 +67,10 @@ module.exports.tests.functional = function(test, common){
     ]);
 
     assertAnalysis( 'address', '101 geocode pl', [
-      '0:101', '1:geocode', '2:pl', '2:place', '2:platz'
+      '0:101',
+      '1:geocode',
+      '2:pca', '2:pl', '2:placa', '2:place', '2:platz',
+      '2:plaza', '2:plca', '2:plza', '2:pza'
     ]);
 
     // both terms should map to same tokens
