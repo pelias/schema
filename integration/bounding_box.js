@@ -9,7 +9,10 @@ module.exports.tests = {};
 module.exports.tests.index_and_retrieve = function(test, common){
   test( 'index and retrieve', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a bbox

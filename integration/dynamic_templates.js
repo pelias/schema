@@ -32,7 +32,10 @@ module.exports.all = function (tape, common) {
 function nameAssertion( analyzer, common ){
   return function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    const suite = new elastictest.Suite( common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     const _type = config.schema.typeName;
 
     // index a document from a normal document layer
@@ -51,7 +54,8 @@ function nameAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-        type: _type
+        type: _type,
+        include_type_name: true
       }, (err, res) => {
 
         const properties = res[suite.props.index].mappings[_type].properties;
@@ -71,7 +75,10 @@ function nameAssertion( analyzer, common ){
 function phraseAssertion( analyzer, common ){
   return function(t){
 
-    const suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    const suite = new elastictest.Suite( common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     const _type = config.schema.typeName;
 
     // index a document from a normal document layer
@@ -90,7 +97,8 @@ function phraseAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-        type: _type
+        type: _type,
+        include_type_name: true
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings[_type].properties;
@@ -110,7 +118,10 @@ function phraseAssertion( analyzer, common ){
 function addendumAssertion( namespace, value, common ){
   return function(t){
 
-    const suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    const suite = new elastictest.Suite( common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     const _type = config.schema.typeName;
 
     // index a document including the addendum
@@ -128,7 +139,8 @@ function addendumAssertion( namespace, value, common ){
     suite.assert( done => {
       suite.client.indices.getMapping({
         index: suite.props.index,
-        type: _type
+        type: _type,
+        include_type_name: true
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings[_type].properties;

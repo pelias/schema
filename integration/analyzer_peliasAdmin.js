@@ -10,7 +10,10 @@ module.exports.tests = {};
 module.exports.tests.analyze = function(test, common){
   test( 'analyze', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -34,7 +37,10 @@ module.exports.tests.analyze = function(test, common){
 module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -72,7 +78,10 @@ module.exports.tests.functional = function(test, common){
 module.exports.tests.synonyms = function(test, common){
   test( 'synonyms', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -99,7 +108,10 @@ module.exports.tests.synonyms = function(test, common){
 module.exports.tests.tokenizer = function(test, common){
   test( 'tokenizer', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
@@ -127,7 +139,10 @@ module.exports.tests.tokenizer = function(test, common){
 module.exports.tests.unicode = function(test, common){
   test( 'normalization', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite(common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 

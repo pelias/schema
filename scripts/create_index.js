@@ -17,14 +17,17 @@ try {
 
 cli.header("create index");
 
-const indexName = config.schema.indexName;
-const req = { index: indexName, body: schema };
+const req = {
+  index: config.schema.indexName,
+  body: schema,
+  include_type_name: true
+};
 
 client.indices.create(req, (err, res) => {
   if (err) {
     console.error(err.message || err, '\n');
     process.exit(1);
   }
-  console.log('[put mapping]', '\t', indexName, res, '\n');
+  console.log('[put mapping]', '\t', config.schema.indexName, res, '\n');
   process.exit(!!err);
 });

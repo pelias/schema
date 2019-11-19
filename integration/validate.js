@@ -9,7 +9,10 @@ module.exports.tests = {};
 module.exports.tests.validate = function(test, common){
   test( 'schema', t => {
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, {
+      schema: schema,
+      create: { include_type_name: true }
+    });
 
     suite.assert( done => {
       suite.client.info({}, ( err, res, status ) => {
