@@ -37,7 +37,7 @@ fi
 # wait for server to boot up
 # logs show that on travis-ci it can take ~17s to boot an ES6 server
 source "${BASH_SOURCE%/*}/elastic_wait.sh"
-elastic_wait
+(elastic_wait)
 
 # set the correct esclient.apiVersion in pelias.json
 v=( ${ES_VERSION//./ } ) # split version number on '.'
