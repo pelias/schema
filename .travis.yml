@@ -1,6 +1,5 @@
 language: node_js
-# Once openjdk/oraclejdk dependencies are resolved, change to dist: xenial
-dist: trusty
+dist: bionic
 notifications:
   email: false
 node_js:
@@ -11,23 +10,21 @@ matrix:
   fast_finish: true
 env:
   matrix:
-    - ES_VERSION=5.6.12
+    - ES_VERSION=5.6.12 JDK_VERSION=oraclejdk8
+    - ES_VERSION=5.6.12 JDK_VERSION=oraclejdk11
+    - ES_VERSION=6.8.4 JDK_VERSION=oraclejdk8
+    - ES_VERSION=6.8.4 JDK_VERSION=oraclejdk11
 jdk:
   - oraclejdk8
+  - oraclejdk11
 install:
-  - mkdir /tmp/elasticsearch
   - ./scripts/setup_ci.sh
   - npm i
 script:
   - npm run travis
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
 before_install:
   - npm i -g npm
 before_script:
-  - sleep 10
   - curl http://127.0.0.1:9200/
   - ./bin/create_index
 branches:
