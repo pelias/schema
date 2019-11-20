@@ -1,5 +1,11 @@
+set -e
+
 function elastic_status(){
-  curl --output /dev/null --silent --write-out "%{http_code}" "http://${ELASTIC_HOST:-localhost:9200}" || true;
+  curl \
+    --output /dev/null \
+    --silent \
+    --write-out "%{http_code}" \
+    "http://${ELASTIC_HOST:-localhost:9200}" || true;
 }
 
 function elastic_wait(){
@@ -9,7 +15,7 @@ function elastic_wait(){
   i=1
   while [[ "$i" -le "$retry_count" ]]; do
     if [[ $(elastic_status) -eq 200 ]]; then
-      echo "Elasticsearch up!"
+      echo
       exit 0
     fi
     sleep 2
