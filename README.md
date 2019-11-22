@@ -15,12 +15,6 @@ This package defines the Elasticsearch schema used by Pelias. Pelias requires qu
 
 See [Pelias Software requirements](https://github.com/pelias/documentation/blob/master/requirements.md) for general Pelias requirements.
 
-### Compatibility
-
-If using Elasticsearch 5, ensure you are using Node.js 8.15+ or Node.js 10.15+.
-
-Versions 8.14 and 10.14 fixed a security issue, but in the process [caused issues combined with deprecation headers sent by ES5](https://github.com/pelias/schema/pull/339). This precaution will no longer be necessary once Elasticsearch 2 support is removed.
-
 ## Installation
 
 ```bash
