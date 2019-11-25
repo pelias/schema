@@ -1,9 +1,9 @@
-var doc = require('./mappings/document');
+const config = require('pelias-config').generate();
 
-var schema = {
+const schema = {
   settings: require('./settings')(),
   mappings: {
-    doc: doc,
+    [config.schema.typeName]: require('./mappings/document'),
   }
 };
 

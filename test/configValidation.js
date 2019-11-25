@@ -19,7 +19,7 @@ module.exports.tests.interface = function(test, common) {
 
   test('config without schema.indexName should throw error', function(t) {
     var config = {
-      schema: {},
+      schema: { typeName: 'example_type' },
       esclient: {}
     };
 
@@ -30,11 +30,25 @@ module.exports.tests.interface = function(test, common) {
 
   });
 
+  test('config without schema.typeName should throw error', function (t) {
+    var config = {
+      schema: { indexName: 'example_index' },
+      esclient: {}
+    };
+
+    t.throws(function () {
+      configValidation.validate(config);
+    }, /"typeName" is required/, 'schema.typeName should exist');
+    t.end();
+
+  });
+
   test('config with non-string schema.indexName should throw error', function(t) {
     [null, 17, {}, [], false].forEach((value) => {
       var config = {
         schema: {
-          indexName: value
+          indexName: value,
+          typeName: 'example_type'
         },
         esclient: {}
       };
@@ -49,11 +63,32 @@ module.exports.tests.interface = function(test, common) {
 
   });
 
+  test('config with non-string schema.typeName should throw error', function (t) {
+    [null, 17, {}, [], false].forEach((value) => {
+      var config = {
+        schema: {
+          indexName: 'example_index',
+          typeName: value
+        },
+        esclient: {}
+      };
+
+      t.throws(function () {
+        configValidation.validate(config);
+      }, /"typeName" must be a string/, 'schema.typeName should be a string');
+
+    });
+
+    t.end();
+
+  });
+
   test('config with non-object esclient should throw error', function(t) {
     [null, 17, [], 'string', true].forEach((value) => {
       var config = {
         schema: {
-          indexName: 'index name'
+          indexName: 'example_index',
+          typeName: 'example_type'
         },
         esclient: value
       };
@@ -71,7 +106,8 @@ module.exports.tests.interface = function(test, common) {
   test('config with string schema.indexName and object esclient should not throw error', function(t) {
     var config = {
       schema: {
-        indexName: 'index name'
+        indexName: 'example_index',
+        typeName: 'example_type'
       },
       esclient: {}
     };
