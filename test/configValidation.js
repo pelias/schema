@@ -25,7 +25,7 @@ module.exports.tests.interface = function(test, common) {
 
     t.throws(function() {
       configValidation.validate(config);
-    }, /"indexName" is required/, 'schema.indexName should exist');
+    }, /"schema.indexName" is required/, 'schema.indexName should exist');
     t.end();
 
   });
@@ -38,7 +38,7 @@ module.exports.tests.interface = function(test, common) {
 
     t.throws(function () {
       configValidation.validate(config);
-    }, /"typeName" is required/, 'schema.typeName should exist');
+    }, /"schema.typeName" is required/, 'schema.typeName should exist');
     t.end();
 
   });
@@ -55,7 +55,7 @@ module.exports.tests.interface = function(test, common) {
 
       t.throws(function() {
         configValidation.validate(config);
-      }, /"indexName" must be a string/, 'schema.indexName should be a string');
+      }, /"schema.indexName" must be a string/, 'schema.indexName should be a string');
 
     });
 
@@ -75,7 +75,7 @@ module.exports.tests.interface = function(test, common) {
 
       t.throws(function () {
         configValidation.validate(config);
-      }, /"typeName" must be a string/, 'schema.typeName should be a string');
+      }, /"schema.typeName" must be a string/, 'schema.typeName should be a string');
 
     });
 
@@ -95,7 +95,7 @@ module.exports.tests.interface = function(test, common) {
 
       t.throws(function() {
         configValidation.validate(config);
-      }, /"esclient" must be an object/, 'esclient should be an object');
+      }, /"esclient" must be of type object/, 'esclient should be an object');
 
     });
 
