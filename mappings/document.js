@@ -4,7 +4,6 @@ const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');
 const keyword = require('./partial/keyword');
 const keyword_with_doc_values = require('./partial/keyword_with_doc_values');
-const config = require('pelias-config').generate();
 
 var schema = {
   properties: {

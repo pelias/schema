@@ -5,18 +5,20 @@ const Joi = require('@hapi/joi');
 // esclient: object, validation performed by elasticsearch module
 const schema = Joi.object().keys({
   schema: {
-    indexName: Joi.string()
+    indexName: Joi.string(),
+    typeName: Joi.string()
   },
   esclient: Joi.object()
-}).requiredKeys('schema', 'schema.indexName', 'esclient').unknown(true);
+}).requiredKeys(
+  'schema', 'schema.indexName', 'schema.typeName', 'esclient'
+).unknown(true);
 
 module.exports = {
   validate: function validate(config) {
-    Joi.validate(config, schema, (err, value) => {
+    Joi.validate(config, schema, err => {
       if (err) {
         throw new Error(err.details[0].message);
       }
     });
   }
-
 };
