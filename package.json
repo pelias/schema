@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "difflet": "^1.0.1",
-    "elastictest": "^2.0.0",
+    "elastictest": "^3.0.0",
     "proxyquire": "^2.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"
