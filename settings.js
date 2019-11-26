@@ -43,8 +43,8 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
-            "word_delimiter",
             "custom_admin",
+            "word_delimiter",
             "unique_only_same_position",
             "notnull",
             "flatten_graph"

@@ -23,8 +23,8 @@
             "lowercase",
             "icu_folding",
             "trim",
-            "word_delimiter",
             "custom_admin",
+            "word_delimiter",
             "unique_only_same_position",
             "notnull",
             "flatten_graph"
@@ -1156,9 +1156,7 @@
           "type": "geo_point"
         },
         "shape": {
-          "type": "geo_shape",
-          "tree": "quadtree",
-          "tree_levels": "20"
+          "type": "geo_shape"
         },
         "bounding_box": {
           "type": "keyword",
