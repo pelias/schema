@@ -4,10 +4,9 @@
 // The greater issue is descriped in: https://github.com/pelias/pelias/issues/211
 // The cases tested here are described in: https://github.com/pelias/schema/issues/105
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema'),
-    punctuation = require('../punctuation');
+const elastictest = require('elastictest');
+const schema = require('../schema');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -22,7 +21,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'north' } }
       }, done);
@@ -32,7 +31,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryPartialToken',
@@ -50,7 +49,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',
@@ -79,7 +78,7 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'n' } }
       }, done);
@@ -89,7 +88,7 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryPartialToken',
@@ -107,7 +106,7 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',
@@ -136,7 +135,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'n' } }
       }, done);
@@ -146,7 +145,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryPartialToken',
@@ -164,7 +163,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',
@@ -193,7 +192,7 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'north' } }
       }, done);
@@ -203,7 +202,7 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryPartialToken',
@@ -221,7 +220,7 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',

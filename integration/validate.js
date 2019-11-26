@@ -1,19 +1,18 @@
 // simply validate that the schema doesn't error when inserted in to
 // your local elasticsearch server, useful to sanity check version upgrades.
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema');
+const elastictest = require('elastictest');
+const schema = require('../schema');
 
 module.exports.tests = {};
 
 module.exports.tests.validate = function(test, common){
-  test( 'schema', function(t){
+  test( 'schema', t => {
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
 
-    suite.assert( function( done ){
-      suite.client.info({}, function( err, res, status ){
+    suite.assert( done => {
+      suite.client.info({}, ( err, res, status ) => {
         t.equal( status, 200 );
         done();
       });

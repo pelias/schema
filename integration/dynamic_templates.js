@@ -1,8 +1,8 @@
 // http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-root-object-type.html#_dynamic_templates
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema');
+const elastictest = require('elastictest');
+const schema = require('../schema');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -33,14 +33,13 @@ function nameAssertion( analyzer, common ){
   return function(t){
 
     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-
-    const type = 'doc';
+    const _type = config.schema.typeName;
 
     // index a document from a normal document layer
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: type,
+        type: _type,
         id: '1',
         body: { name: { default: 'foo', alt: 'bar' } }
       }, done );
@@ -48,13 +47,17 @@ function nameAssertion( analyzer, common ){
 
     // check dynamically created mapping has
     // inherited from the dynamic_template
-    suite.assert( function( done ){
-      suite.client.indices.getMapping({ index: suite.props.index, type: type }, function( err, res ){
+    suite.assert( done => {
 
-        var properties = res[suite.props.index].mappings[type].properties;
+      suite.client.indices.getMapping({
+        index: suite.props.index,
+        type: _type
+      }, (err, res) => {
+
+        const properties = res[suite.props.index].mappings[_type].properties;
         t.equal( properties.name.dynamic, 'true' );
 
-        var nameProperties = properties.name.properties;
+        const nameProperties = properties.name.properties;
         t.equal( nameProperties.default.analyzer, analyzer );
         t.equal( nameProperties.alt.analyzer, analyzer );
         done();
@@ -68,15 +71,14 @@ function nameAssertion( analyzer, common ){
 function phraseAssertion( analyzer, common ){
   return function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-
-    const type = 'doc';
+    const suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    const _type = config.schema.typeName;
 
     // index a document from a normal document layer
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: type,
+        type: _type,
         id: '1',
         body: { phrase: { default: 'foo', alt: 'bar' } }
       }, done );
@@ -84,13 +86,17 @@ function phraseAssertion( analyzer, common ){
 
     // check dynamically created mapping has
     // inherited from the dynamic_template
-    suite.assert( function( done ){
-      suite.client.indices.getMapping({ index: suite.props.index, type: type }, function( err, res ){
+    suite.assert( done => {
 
-        var properties = res[suite.props.index].mappings[type].properties;
+      suite.client.indices.getMapping({
+        index: suite.props.index,
+        type: _type
+      }, ( err, res ) => {
+
+        const properties = res[suite.props.index].mappings[_type].properties;
         t.equal( properties.phrase.dynamic, 'true' );
 
-        var phraseProperties = properties.phrase.properties;
+        const phraseProperties = properties.phrase.properties;
         t.equal( phraseProperties.default.analyzer, analyzer );
         t.equal( phraseProperties.alt.analyzer, analyzer );
         done();
@@ -104,15 +110,14 @@ function phraseAssertion( analyzer, common ){
 function addendumAssertion( namespace, value, common ){
   return function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
-
-    const type = 'doc';
+    const suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    const _type = config.schema.typeName;
 
     // index a document including the addendum
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: type,
+        type: _type,
         id: '1',
         body: { addendum: { [namespace]: value } },
       }, done );
@@ -120,13 +125,16 @@ function addendumAssertion( namespace, value, common ){
 
     // check dynamically created mapping has
     // inherited from the dynamic_template
-    suite.assert( function( done ){
-      suite.client.indices.getMapping({ index: suite.props.index, type: type }, function( err, res ){
+    suite.assert( done => {
+      suite.client.indices.getMapping({
+        index: suite.props.index,
+        type: _type
+      }, ( err, res ) => {
 
-        var properties = res[suite.props.index].mappings[type].properties;
+        const properties = res[suite.props.index].mappings[_type].properties;
         t.equal( properties.addendum.dynamic, 'true' );
 
-        var addendumProperties = properties.addendum.properties;
+        const addendumProperties = properties.addendum.properties;
 
         t.true([
           'keyword' // elasticsearch 5.6
@@ -146,12 +154,12 @@ function addendumAssertion( namespace, value, common ){
     });
 
     // retrieve document and check addendum was stored verbatim
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.get({
         index: suite.props.index,
-        type: type,
+        type: _type,
         id: 1
-      }, function( err, res ){
+      }, ( err, res ) => {
         t.false( err );
         t.equal( res._source.addendum[namespace], value );
         done();

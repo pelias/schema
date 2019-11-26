@@ -1,9 +1,9 @@
 // validate analyzer is behaving as expected
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema'),
-    punctuation = require('../punctuation');
+const elastictest = require('elastictest');
+const schema = require('../schema');
+const punctuation = require('../punctuation');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -154,7 +154,7 @@ module.exports.tests.slop_query = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'Lake Cayuga' }, phrase: { default: 'Lake Cayuga' } }
       }, done );
@@ -164,7 +164,7 @@ module.exports.tests.slop_query = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '2',
         body: { name: { default: 'Cayuga Lake' }, phrase: { default: 'Cayuga Lake' } }
       }, done );
@@ -174,7 +174,7 @@ module.exports.tests.slop_query = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '3',
         body: { name: { default: '7991 Lake Cayuga Dr' }, phrase: { default: '7991 Lake Cayuga Dr' } }
       }, done );
@@ -211,7 +211,7 @@ module.exports.tests.slop_query = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: buildQuery('Lake Cayuga')
       }, function( err, res ){
@@ -249,7 +249,7 @@ module.exports.tests.slop = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: '52 Görlitzer Straße' } }
       }, done);
@@ -262,7 +262,7 @@ module.exports.tests.slop = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: { query: { match_phrase: {
           'name.default': {
