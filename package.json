@@ -27,9 +27,7 @@
     "url": "https://github.com/pelias/schema/issues"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "npm": ">=1.4.3",
-    "elasticsearch": ">=1.1.1"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.8",
