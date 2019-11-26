@@ -129,7 +129,7 @@ $ npm run integration
 Download the image and start an elasticsearch docker container:
 
 ```bash
-$ docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch:5.6.12
+$ docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch:6.8.5
 ```
 
 ### Continuous Integration
