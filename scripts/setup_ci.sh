@@ -23,15 +23,22 @@ if [[ "${ES_VERSION}" == "2.4"* ]]; then
   /tmp/elasticsearch/bin/elasticsearch --daemonize --path.data /tmp
 else
   FILENAME="elasticsearch-${ES_VERSION}-linux-x86_64.tar.gz"
+  STRIP_COMPONENTS=1
 
   # prior to ES7 the architecture was not included in the filename
   if [[ "${ES_VERSION}" == "5"* || "${ES_VERSION}" == "6"* ]]; then
     FILENAME="elasticsearch-${ES_VERSION}.tar.gz"
   fi
 
+  # the 6.8.5 release is inconsisent with the others
+  # https://github.com/elastic/elasticsearch/issues/49599
+  if [[ "${ES_VERSION}" == "6.8.5" ]]; then
+    STRIP_COMPONENTS=2
+  fi
+
   # download from new host
   wget -O - "https://artifacts.elastic.co/downloads/elasticsearch/${FILENAME}" \
-    | tar xz --directory=/tmp/elasticsearch --strip-components=1
+    | tar xz --directory=/tmp/elasticsearch --strip-components="${STRIP_COMPONENTS}"
 
   # install ICU plugin
   /tmp/elasticsearch/bin/elasticsearch-plugin install analysis-icu
