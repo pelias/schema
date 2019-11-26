@@ -1,9 +1,9 @@
 // validate analyzer is behaving as expected
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema'),
-    punctuation = require('../punctuation');
+const elastictest = require('elastictest');
+const schema = require('../schema');
+const punctuation = require('../punctuation');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -151,7 +151,7 @@ module.exports.tests.slop = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: '52 Görlitzer Straße' } }
       }, done);
@@ -164,7 +164,7 @@ module.exports.tests.slop = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match_phrase: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',

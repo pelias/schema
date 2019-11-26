@@ -2,6 +2,7 @@
 
 const elastictest = require('elastictest');
 const schema = require('../schema');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -18,7 +19,8 @@ module.exports.tests.functional = function (test, common) {
     // not supported on ES6+
     suite.action(function (done) {
       suite.client.index({
-        index: suite.props.index, type: 'doc',
+        index: suite.props.index,
+        type: config.schema.typeName,
         id: '1', body: {
           name: { default: 'set' },
           phrase: { default: 'set' },

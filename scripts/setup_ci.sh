@@ -41,7 +41,24 @@ source "${BASH_SOURCE%/*}/elastic_wait.sh"
 
 # set the correct esclient.apiVersion in pelias.json
 v=( ${ES_VERSION//./ } ) # split version number on '.'
-echo "{\"esclient\":{\"apiVersion\":\"${v[0]}.${v[1]}\"}}" > ~/pelias.json
+
+# generate a pelias.json config
+PELIAS_CONFIG=$(
+  jq -n \
+    --arg apiVersion "${v[0]}.${v[1]}" \
+    --arg typeName "${ES_TYPE}" \
+    '{
+      esclient: {
+        apiVersion: $apiVersion
+      },
+      schema: {
+        typeName: $typeName
+      }
+    } | del(.. | select(. == ""))'
+);
+
+# write to filesystem
+echo "${PELIAS_CONFIG}" > ~/pelias.json
 
 # debugging
 echo "--- pelias.json ---"

@@ -4,10 +4,9 @@
 // The greater issue is descriped in: https://github.com/pelias/pelias/issues/211
 // The cases tested here are described in: https://github.com/pelias/schema/issues/105
 
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema'),
-    punctuation = require('../punctuation');
+const elastictest = require('elastictest');
+const schema = require('../schema');
+const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -22,7 +21,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'Grolmanstraße' } }
       }, done);
@@ -32,7 +31,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryPartialToken',
@@ -50,7 +49,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: 'doc',
+        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQueryFullToken',
@@ -81,7 +80,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.action( function( done ){
 //       suite.client.index({
 //         index: suite.props.index,
-//         type: 'doc',
+//         type: config.schema.typeName,
 //         id: '1',
 //         body: { name: { default: 'Grolmanstr.' } }
 //       }, done);
@@ -94,7 +93,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.assert( function( done ){
 //       suite.client.search({
 //         index: suite.props.index,
-//         type: 'doc',
+//         type: config.schema.typeName,
 //         body: { query: { match: {
 //           'name.default': {
 //             'analyzer': 'peliasQueryPartialToken',
@@ -115,7 +114,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.assert( function( done ){
 //       suite.client.search({
 //         index: suite.props.index,
-//         type: 'doc',
+//         type: config.schema.typeName,
 //         body: { query: { match: {
 //           'name.default': {
 //             'analyzer': 'peliasQueryFullToken',
