@@ -45,14 +45,14 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
       });
     });
 
-    // search using 'peliasQueryFullToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryFullToken',
+            'analyzer': 'peliasQuery',
             'query': 'Grolmanstr.'
           }
         }}}
@@ -107,7 +107,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //       });
 //     });
 
-//     // search using 'peliasQueryFullToken'
+//     // search using 'peliasQuery'
 //     // @note: this case is currently not supported.
 //     // Please index your data in the expanded form.
 
@@ -117,7 +117,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //         type: config.schema.typeName,
 //         body: { query: { match: {
 //           'name.default': {
-//             'analyzer': 'peliasQueryFullToken',
+//             'analyzer': 'peliasQuery',
 //             'query': 'Grolmanstraße'
 //           }
 //         }}}
