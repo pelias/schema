@@ -273,7 +273,7 @@ module.exports.tests.venue_vs_address = function(test, common){
                 {
                   'match_phrase': {
                     'name.default': {
-                      'analyzer': 'peliasQueryFullToken',
+                      'analyzer': 'peliasQuery',
                       'boost': 1,
                       'slop': 3,
                       'query': 'union square'

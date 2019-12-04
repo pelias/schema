@@ -45,14 +45,14 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
       });
     });
 
-    // search using 'peliasQueryFullToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryFullToken',
+            'analyzer': 'peliasQuery',
             'query': 'center'
           }
         }}}
@@ -102,14 +102,14 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
       });
     });
 
-    // search using 'peliasQueryFullToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryFullToken',
+            'analyzer': 'peliasQuery',
             'query': 'ctr'
           }
         }}}
@@ -159,14 +159,14 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
       });
     });
 
-    // search using 'peliasQueryFullToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryFullToken',
+            'analyzer': 'peliasQuery',
             'query': 'center'
           }
         }}}
@@ -216,14 +216,14 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
       });
     });
 
-    // search using 'peliasQueryFullToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryFullToken',
+            'analyzer': 'peliasQuery',
             'query': 'ctr'
           }
         }}}
