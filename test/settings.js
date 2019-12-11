@@ -120,34 +120,6 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
   });
 };
 
-module.exports.tests.peliasQueryPartialTokenAnalyzer = function (test, common) {
-  test('has peliasQueryPartialToken analyzer', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasQueryPartialToken, 'object', 'there is a peliasQueryPartialToken analyzer');
-    var analyzer = s.analysis.analyzer.peliasQueryPartialToken;
-    t.equal(analyzer.type, 'custom', 'custom analyzer');
-    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation", "nfkc_normalizer"], 'character filters specified');
-    t.true(Array.isArray(analyzer.filter), 'filters specified');
-    t.end();
-  });
-  test('peliasQueryPartialToken token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasQueryPartialToken;
-    t.deepEqual(analyzer.filter, [
-      "lowercase",
-      "icu_folding",
-      "trim",
-      "partial_token_address_suffix_expansion",
-      "ampersand",
-      "remove_ordinals",
-      "removeAllZeroNumericPrefix",
-      "unique_only_same_position",
-      "notnull"
-    ]);
-    t.end();
-  });
-};
-
 module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
   test('has peliasPhrase analyzer', function(t) {
     var s = settings();

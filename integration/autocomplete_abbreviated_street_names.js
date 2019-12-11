@@ -27,24 +27,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
       }, done);
     });
 
-    // search using 'peliasQueryPartialToken'
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: { query: { match: {
-          'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
-            'query': 'Grolmanstr.'
-          }
-        }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
-        done();
-      });
-    });
-
     // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({

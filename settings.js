@@ -84,22 +84,6 @@ function generate(){
             "notnull"
           ]
         },
-        "peliasQueryPartialToken" : {
-          "type": "custom",
-          "tokenizer" : "peliasNameTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
-          "filter": [
-            "lowercase",
-            "icu_folding",
-            "trim",
-            "partial_token_address_suffix_expansion",
-            "ampersand",
-            "remove_ordinals",
-            "removeAllZeroNumericPrefix",
-            "unique_only_same_position",
-            "notnull"
-          ]
-        },
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"peliasNameTokenizer",

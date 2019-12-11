@@ -27,14 +27,14 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
       }, done);
     });
 
-    // search using 'peliasQueryPartialToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
+            'analyzer': 'peliasQuery',
             'query': 'cent'
           }
         }}}
@@ -84,24 +84,6 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
       }, done);
     });
 
-    // search using 'peliasQueryPartialToken'
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: { query: { match: {
-          'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
-            'query': 'ctr'
-          }
-        }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
-        done();
-      });
-    });
-
     // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
@@ -141,14 +123,14 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
       }, done);
     });
 
-    // search using 'peliasQueryPartialToken'
+    // search using 'peliasQuery'
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
+            'analyzer': 'peliasQuery',
             'query': 'cent'
           }
         }}}
@@ -196,24 +178,6 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
         id: '1',
         body: { name: { default: 'center' } }
       }, done);
-    });
-
-    // search using 'peliasQueryPartialToken'
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: { query: { match: {
-          'name.default': {
-            'analyzer': 'peliasQueryPartialToken',
-            'query': 'ctr'
-          }
-        }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
-        done();
-      });
     });
 
     // search using 'peliasQuery'
