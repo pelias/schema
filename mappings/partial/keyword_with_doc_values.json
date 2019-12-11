@@ -1,3 +1,4 @@
 {
-  "type": "keyword"
+  "type": "keyword",
+  "index_options": "docs"
 }

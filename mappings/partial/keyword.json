@@ -1,4 +1,5 @@
 {
   "type": "keyword",
-  "doc_values": false
+  "doc_values": false,
+  "index_options": "docs"
 }

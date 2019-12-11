@@ -715,10 +715,12 @@
     "doc": {
       "properties": {
         "source": {
-          "type": "keyword"
+          "type": "keyword",
+          "index_options": "docs"
         },
         "layer": {
-          "type": "keyword"
+          "type": "keyword",
+          "index_options": "docs"
         },
         "name": {
           "type": "object",
@@ -786,7 +788,8 @@
             },
             "continent_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "ocean": {
               "type": "text",
@@ -812,7 +815,8 @@
             },
             "ocean_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "empire": {
               "type": "text",
@@ -838,7 +842,8 @@
             },
             "empire_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "country": {
               "type": "text",
@@ -864,7 +869,8 @@
             },
             "country_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "dependency": {
               "type": "text",
@@ -890,7 +896,8 @@
             },
             "dependency_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "marinearea": {
               "type": "text",
@@ -916,7 +923,8 @@
             },
             "marinearea_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "macroregion": {
               "type": "text",
@@ -942,7 +950,8 @@
             },
             "macroregion_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "region": {
               "type": "text",
@@ -968,7 +977,8 @@
             },
             "region_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "macrocounty": {
               "type": "text",
@@ -994,7 +1004,8 @@
             },
             "macrocounty_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "county": {
               "type": "text",
@@ -1020,7 +1031,8 @@
             },
             "county_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "locality": {
               "type": "text",
@@ -1046,7 +1058,8 @@
             },
             "locality_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "borough": {
               "type": "text",
@@ -1072,7 +1085,8 @@
             },
             "borough_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "localadmin": {
               "type": "text",
@@ -1098,7 +1112,8 @@
             },
             "localadmin_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "neighbourhood": {
               "type": "text",
@@ -1124,7 +1139,8 @@
             },
             "neighbourhood_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             },
             "postalcode": {
               "type": "text",
@@ -1148,7 +1164,8 @@
             },
             "postalcode_id": {
               "type": "keyword",
-              "doc_values": false
+              "doc_values": false,
+              "index_options": "docs"
             }
           }
         },
@@ -1164,11 +1181,13 @@
         },
         "source_id": {
           "type": "keyword",
-          "doc_values": false
+          "doc_values": false,
+          "index_options": "docs"
         },
         "category": {
           "type": "keyword",
-          "doc_values": false
+          "doc_values": false,
+          "index_options": "docs"
         },
         "population": {
           "type": "long",
