@@ -71,7 +71,6 @@ var tests = [
   require('./dynamic_templates.js'),
   require('./analyzer_peliasIndexOneEdgeGram.js'),
   require('./analyzer_peliasQuery.js'),
-  require('./analyzer_peliasQueryPartialToken.js'),
   require('./analyzer_peliasPhrase.js'),
   require('./analyzer_peliasAdmin.js'),
   require('./analyzer_peliasHousenumber.js'),
