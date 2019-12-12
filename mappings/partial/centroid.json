@@ -1,3 +1,4 @@
 {
-  "type": "geo_point"
+  "type": "geo_point",
+  "index_options": "docs"
 }

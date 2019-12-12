@@ -1,4 +1,5 @@
 {
   "type" : "long",
-  "null_value": 0
+  "null_value": 0,
+  "index_options": "docs"
 }

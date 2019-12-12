@@ -1153,7 +1153,8 @@
           }
         },
         "center_point": {
-          "type": "geo_point"
+          "type": "geo_point",
+          "index_options": "docs"
         },
         "shape": {
           "type": "geo_shape"
@@ -1172,11 +1173,13 @@
         },
         "population": {
           "type": "long",
-          "null_value": 0
+          "null_value": 0,
+          "index_options": "docs"
         },
         "popularity": {
           "type": "long",
-          "null_value": 0
+          "null_value": 0,
+          "index_options": "docs"
         },
         "addendum": {
           "type": "object",
