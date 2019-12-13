@@ -48,6 +48,23 @@ module.exports.tests.analysis = function(test, common) {
   });
 };
 
+// -- normalizers --
+
+module.exports.tests.peliasKeywordNormalizer = function (test, common) {
+  test('has pelias keyword normalizer', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.normalizer.peliasKeywordNormalizer, 'object', 'there is a pelias keyword normalizer');
+    var normalizer = s.analysis.normalizer.peliasKeywordNormalizer;
+    t.equal(normalizer.type, 'custom', 'custom normalizer');
+    t.deepEqual(normalizer.filter, [
+      "lowercase",
+      "icu_folding",
+      "trim"
+    ]);
+    t.end();
+  });
+};
+
 // -- analyzers --
 
 module.exports.tests.peliasAdminAnalyzer = function(test, common) {

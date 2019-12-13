@@ -11,6 +11,16 @@
           "pattern": "[\\s,/\\\\-]+"
         }
       },
+      "normalizer": {
+        "peliasKeywordNormalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "trim"
+          ]
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
@@ -575,10 +585,12 @@
     "doc": {
       "properties": {
         "source": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer"
         },
         "layer": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer"
         },
         "name": {
           "type": "object",
@@ -594,27 +606,33 @@
           "properties": {
             "name": {
               "type": "text",
-              "analyzer": "keyword"
+              "analyzer": "keyword",
+              "search_analyzer": "keyword"
             },
             "unit": {
               "type": "text",
-              "analyzer": "peliasUnit"
+              "analyzer": "peliasUnit",
+              "search_analyzer": "peliasUnit"
             },
             "number": {
               "type": "text",
-              "analyzer": "peliasHousenumber"
+              "analyzer": "peliasHousenumber",
+              "search_analyzer": "peliasHousenumber"
             },
             "street": {
               "type": "text",
-              "analyzer": "peliasStreet"
+              "analyzer": "peliasStreet",
+              "search_analyzer": "peliasStreet"
             },
             "cross_street": {
               "type": "text",
-              "analyzer": "peliasStreet"
+              "analyzer": "peliasStreet",
+              "search_analyzer": "peliasStreet"
             },
             "zip": {
               "type": "text",
-              "analyzer": "peliasZip"
+              "analyzer": "peliasZip",
+              "search_analyzer": "peliasZip"
             }
           }
         },
@@ -625,10 +643,12 @@
             "continent": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -636,25 +656,30 @@
             "continent_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "continent_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "ocean": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -662,25 +687,30 @@
             "ocean_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "ocean_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "empire": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -688,25 +718,30 @@
             "empire_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "empire_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "country": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -714,25 +749,30 @@
             "country_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "country_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "dependency": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -740,25 +780,30 @@
             "dependency_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "dependency_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "marinearea": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -766,25 +811,30 @@
             "marinearea_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "marinearea_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "macroregion": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -792,25 +842,30 @@
             "macroregion_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "macroregion_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "region": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -818,25 +873,30 @@
             "region_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "region_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "macrocounty": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -844,25 +904,30 @@
             "macrocounty_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "macrocounty_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "county": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -870,25 +935,30 @@
             "county_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "county_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "locality": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -896,25 +966,30 @@
             "locality_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "locality_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "borough": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -922,25 +997,30 @@
             "borough_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "borough_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "localadmin": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -948,25 +1028,30 @@
             "localadmin_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "localadmin_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "neighbourhood": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
@@ -974,40 +1059,48 @@
             "neighbourhood_a": {
               "type": "text",
               "analyzer": "peliasAdmin",
+              "search_analyzer": "peliasAdmin",
               "fields": {
                 "ngram": {
                   "type": "text",
                   "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasAdmin",
                   "doc_values": false
                 }
               }
             },
             "neighbourhood_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "postalcode": {
               "type": "text",
               "analyzer": "peliasZip",
+              "search_analyzer": "peliasZip",
               "fields": {
                 "ngram": {
                   "type": "text",
-                  "analyzer": "peliasIndexOneEdgeGram"
+                  "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasZip"
                 }
               }
             },
             "postalcode_a": {
               "type": "text",
               "analyzer": "peliasZip",
+              "search_analyzer": "peliasZip",
               "fields": {
                 "ngram": {
                   "type": "text",
-                  "analyzer": "peliasIndexOneEdgeGram"
+                  "analyzer": "peliasIndexOneEdgeGram",
+                  "search_analyzer": "peliasZip"
                 }
               }
             },
             "postalcode_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             }
           }
@@ -1024,10 +1117,12 @@
         },
         "source_id": {
           "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer",
           "doc_values": false
         },
         "category": {
           "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer",
           "doc_values": false
         },
         "population": {
@@ -1050,7 +1145,8 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "text",
-              "analyzer": "peliasIndexOneEdgeGram"
+              "analyzer": "peliasIndexOneEdgeGram",
+              "search_analyzer": "peliasQuery"
             }
           }
         },
@@ -1060,7 +1156,8 @@
             "match_mapping_type": "string",
             "mapping": {
               "type": "text",
-              "analyzer": "peliasPhrase"
+              "analyzer": "peliasPhrase",
+              "search_analyzer": "peliasQuery"
             }
           }
         },

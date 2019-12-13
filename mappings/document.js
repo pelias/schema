@@ -26,26 +26,32 @@ var schema = {
         name: {
           type: 'text',
           analyzer: 'keyword',
+          search_analyzer: 'keyword'
         },
         unit: {
           type: 'text',
           analyzer: 'peliasUnit',
+          search_analyzer: 'peliasUnit'
         },
         number: {
           type: 'text',
           analyzer: 'peliasHousenumber',
+          search_analyzer: 'peliasHousenumber'
         },
         street: {
           type: 'text',
           analyzer: 'peliasStreet',
+          search_analyzer: 'peliasStreet'
         },
         cross_street: {
           type: 'text',
           analyzer: 'peliasStreet',
+          search_analyzer: 'peliasStreet'
         },
         zip: {
           type: 'text',
           analyzer: 'peliasZip',
+          search_analyzer: 'peliasZip'
         },
       }
     },
@@ -152,7 +158,8 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'text',
-        analyzer: 'peliasIndexOneEdgeGram'
+        analyzer: 'peliasIndexOneEdgeGram',
+        search_analyzer: 'peliasQuery'
       }
     },
   },{
@@ -161,7 +168,8 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'text',
-        analyzer: 'peliasPhrase'
+        analyzer: 'peliasPhrase',
+        search_analyzer: 'peliasQuery'
       }
     }
   },{
