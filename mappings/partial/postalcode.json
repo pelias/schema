@@ -1,10 +1,12 @@
 {
   "type": "text",
   "analyzer": "peliasZip",
+  "search_analyzer": "peliasZip",
   "fields": {
     "ngram": {
       "type": "text",
-      "analyzer": "peliasIndexOneEdgeGram"
+      "analyzer": "peliasIndexOneEdgeGram",
+      "search_analyzer": "peliasZip"
     }
   }
 }
