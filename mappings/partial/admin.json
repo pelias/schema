@@ -1,10 +1,12 @@
 {
   "type": "text",
   "analyzer": "peliasAdmin",
+  "search_analyzer": "peliasAdmin",
   "fields": {
     "ngram": {
       "type": "text",
       "analyzer": "peliasIndexOneEdgeGram",
+      "search_analyzer": "peliasAdmin",
       "doc_values": false
     }
   }
