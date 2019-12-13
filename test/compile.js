@@ -99,6 +99,29 @@ module.exports.tests.analyzers = function (test, common) {
   });
 };
 
+// note: this test is commented out for now because it's valid for some keyword
+// fields such as bounding_box and addendum to use the null normalizer, but it's
+// not easy to test because it's not possible to specify them as null in the mapping.
+
+// ensure "normalizer" is set for keyword fields
+// module.exports.tests.normalizers = function (test, common) {
+//   test('normalizers: ensure "normalizer" is set', function (t) {
+//     const keywordFields = [];
+
+//     forEachDeep(schema, (value, key) => {
+//       if (!_.isPlainObject(value)) { return; }
+//       if (_.get(value, 'type', '') !== 'keyword') { return; }
+//       keywordFields.push({ key: key, value: value });
+//     });
+
+//     keywordFields.forEach(field => {
+//       t.true(_.has(field.value, 'normalizer'), `normalizer not set on ${field.key}`)
+//     })
+
+//     t.end();
+//   });
+// };
+
 // current schema (compiled) - requires schema to be copied and settings to
 // be regenerated from a fixture in order to pass in CI environments.
 module.exports.tests.current_schema = function(test, common) {
