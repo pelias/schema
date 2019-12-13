@@ -39,7 +39,8 @@ function generate(){
           "type": "custom",
           "filter": [
             "lowercase",
-            "icu_folding"
+            "icu_folding",
+            "trim"
           ]
         }
       },

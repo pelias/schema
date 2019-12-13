@@ -58,7 +58,8 @@ module.exports.tests.peliasKeywordNormalizer = function (test, common) {
     t.equal(normalizer.type, 'custom', 'custom normalizer');
     t.deepEqual(normalizer.filter, [
       "lowercase",
-      "icu_folding"
+      "icu_folding",
+      "trim"
     ]);
     t.end();
   });
