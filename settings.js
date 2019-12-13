@@ -34,6 +34,15 @@ function generate(){
           "pattern": "[\\s,/\\\\-]+"
         }
       },
+      "normalizer": {
+        "peliasKeywordNormalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase",
+            "icu_folding"
+          ]
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",

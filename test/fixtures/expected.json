@@ -11,6 +11,15 @@
           "pattern": "[\\s,/\\\\-]+"
         }
       },
+      "normalizer": {
+        "peliasKeywordNormalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase",
+            "icu_folding"
+          ]
+        }
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
@@ -575,10 +584,12 @@
     "doc": {
       "properties": {
         "source": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer"
         },
         "layer": {
-          "type": "keyword"
+          "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer"
         },
         "name": {
           "type": "object",
@@ -656,6 +667,7 @@
             },
             "continent_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "ocean": {
@@ -686,6 +698,7 @@
             },
             "ocean_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "empire": {
@@ -716,6 +729,7 @@
             },
             "empire_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "country": {
@@ -746,6 +760,7 @@
             },
             "country_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "dependency": {
@@ -776,6 +791,7 @@
             },
             "dependency_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "marinearea": {
@@ -806,6 +822,7 @@
             },
             "marinearea_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "macroregion": {
@@ -836,6 +853,7 @@
             },
             "macroregion_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "region": {
@@ -866,6 +884,7 @@
             },
             "region_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "macrocounty": {
@@ -896,6 +915,7 @@
             },
             "macrocounty_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "county": {
@@ -926,6 +946,7 @@
             },
             "county_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "locality": {
@@ -956,6 +977,7 @@
             },
             "locality_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "borough": {
@@ -986,6 +1008,7 @@
             },
             "borough_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "localadmin": {
@@ -1016,6 +1039,7 @@
             },
             "localadmin_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "neighbourhood": {
@@ -1046,6 +1070,7 @@
             },
             "neighbourhood_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             },
             "postalcode": {
@@ -1074,6 +1099,7 @@
             },
             "postalcode_id": {
               "type": "keyword",
+              "normalizer": "peliasKeywordNormalizer",
               "doc_values": false
             }
           }
@@ -1090,10 +1116,12 @@
         },
         "source_id": {
           "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer",
           "doc_values": false
         },
         "category": {
           "type": "keyword",
+          "normalizer": "peliasKeywordNormalizer",
           "doc_values": false
         },
         "population": {
