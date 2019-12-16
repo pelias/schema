@@ -57,6 +57,22 @@ module.exports.tests.source_filter = function(test, common){
       });
     });
 
+    // case insensitive
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        body: { query: {
+          term: {
+            source: 'OSM'
+          }
+        }}
+      }, function( err, res ){
+        t.equal( res.hits.total, 2 );
+        done();
+      });
+    });
+
     // find all 'address' layers
     suite.assert( function( done ){
       suite.client.search({
@@ -100,22 +116,6 @@ module.exports.tests.source_filter = function(test, common){
         ]}}}
       }, function( err, res ){
         t.equal( res.hits.total, 1 );
-        done();
-      });
-    });
-
-    // case sensitive
-    suite.assert( function( done ){
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: { query: {
-          term: {
-            source: 'OSM'
-          }
-        }}
-      }, function( err, res ){
-        t.equal( res.hits.total, 0 );
         done();
       });
     });

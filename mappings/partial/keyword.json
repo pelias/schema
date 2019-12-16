@@ -1,4 +1,5 @@
 {
   "type": "keyword",
+  "normalizer": "peliasKeywordNormalizer",
   "doc_values": false
 }
