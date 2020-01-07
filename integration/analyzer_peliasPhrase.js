@@ -4,6 +4,7 @@ const elastictest = require('elastictest');
 const schema = require('../schema');
 const punctuation = require('../punctuation');
 const config = require('pelias-config').generate();
+const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
@@ -215,7 +216,7 @@ module.exports.tests.slop_query = function(test, common){
         searchType: 'dfs_query_then_fetch',
         body: buildQuery('Lake Cayuga')
       }, function( err, res ){
-        t.equal( res.hits.total, 3 );
+        t.equal( getTotalHits(res.hits), 3 );
         var hits = res.hits.hits;
 
         t.equal( hits[0]._source.name.default, 'Lake Cayuga' );
@@ -273,7 +274,7 @@ module.exports.tests.slop = function(test, common){
         }}}
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
       });
     });

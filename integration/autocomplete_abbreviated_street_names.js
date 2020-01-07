@@ -7,6 +7,7 @@
 const elastictest = require('elastictest');
 const schema = require('../schema');
 const config = require('pelias-config').generate();
+const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
@@ -40,7 +41,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
         }}}
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
       });
     });
@@ -84,7 +85,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //         }}}
 //       }, function( err, res ){
 //         t.equal( err, undefined );
-//         t.equal( res.hits.total, 1, 'document found' );
+//         t.equal( getTotalHits(res.hits), 1, 'document found' );
 //         done();
 //       });
 //     });
@@ -105,7 +106,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //         }}}
 //       }, function( err, res ){
 //         t.equal( err, undefined );
-//         t.equal( res.hits.total, 1, 'document found' );
+//         t.equal( getTotalHits(res.hits), 1, 'document found' );
 //         done();
 //       });
 //     });

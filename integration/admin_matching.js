@@ -3,6 +3,7 @@
 const elastictest = require('elastictest');
 const schema = require('../schema');
 const config = require('pelias-config').generate();
+const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
@@ -50,7 +51,7 @@ module.exports.tests.functional = function(test, common){
         body: { query: { match: { 'parent.country': 'Test Country' } } }
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
       });
     });
@@ -63,7 +64,7 @@ module.exports.tests.functional = function(test, common){
         body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
       });
     });
@@ -76,7 +77,7 @@ module.exports.tests.functional = function(test, common){
         body: { query: { match: { 'parent.country_id': '100' } } }
       }, function( err, res ){
         t.equal( err, undefined );
-        t.equal( res.hits.total, 1, 'document found' );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
       });
     });
