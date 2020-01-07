@@ -3,6 +3,7 @@
 const elastictest = require('elastictest');
 const schema = require('../schema');
 const config = require('pelias-config').generate();
+const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
@@ -52,7 +53,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 2 );
+        t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
@@ -68,7 +69,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 2 );
+        t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
@@ -84,7 +85,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 2 );
+        t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
@@ -99,7 +100,7 @@ module.exports.tests.source_filter = function(test, common){
           { term: { source_id: 'dataset/1' } }
         ]}}}
       }, function( err, res ){
-        t.equal( res.hits.total, 1 );
+        t.equal( getTotalHits(res.hits), 1 );
         done();
       });
     });
@@ -115,7 +116,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 0 );
+        t.equal( getTotalHits(res.hits), 0 );
         done();
       });
     });
@@ -131,7 +132,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 0 );
+        t.equal( getTotalHits(res.hits), 0 );
         done();
       });
     });
@@ -147,7 +148,7 @@ module.exports.tests.source_filter = function(test, common){
           }
         }}
       }, function( err, res ){
-        t.equal( res.hits.total, 1 );
+        t.equal( getTotalHits(res.hits), 1 );
         done();
       });
     });
