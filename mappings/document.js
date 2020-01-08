@@ -186,9 +186,6 @@ var schema = {
   _source: {
     excludes : ['shape','phrase']
   },
-  _all: {
-    enabled: false
-  },
   dynamic: 'strict'
 };
 
