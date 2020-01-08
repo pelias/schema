@@ -2,14 +2,13 @@
 // your local elasticsearch server, useful to sanity check version upgrades.
 
 const elastictest = require('elastictest');
-const schema = require('../schema');
 
 module.exports.tests = {};
 
 module.exports.tests.validate = function(test, common){
   test( 'schema', t => {
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, common.create );
 
     suite.assert( done => {
       suite.client.info({}, ( err, res, status ) => {

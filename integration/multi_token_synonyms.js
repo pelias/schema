@@ -1,7 +1,6 @@
 // validate analyzer is behaving as expected
 
 const elastictest = require('elastictest');
-const schema = require('../schema');
 const config = require('pelias-config').generate();
 
 module.exports.tests = {};
@@ -11,7 +10,7 @@ module.exports.tests = {};
 module.exports.tests.functional = function (test, common) {
   test('functional', function (t) {
 
-    var suite = new elastictest.Suite(common.clientOpts, { schema: schema });
+    var suite = new elastictest.Suite(common.clientOpts, common.create);
     suite.action(function (done) { setTimeout(done, 500); }); // wait for es to bring some shards up
 
     // index a document with all admin values

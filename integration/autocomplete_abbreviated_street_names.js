@@ -5,7 +5,6 @@
 // The cases tested here are described in: https://github.com/pelias/schema/issues/105
 
 const elastictest = require('elastictest');
-const schema = require('../schema');
 const config = require('pelias-config').generate();
 const getTotalHits = require('./_hits_total_helper');
 
@@ -15,7 +14,7 @@ module.exports.tests = {};
 module.exports.tests.index_expanded_form_search_contracted = function(test, common){
   test( 'index expanded and retrieve contracted form', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, common.create );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
@@ -56,7 +55,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 // module.exports.tests.index_contracted_form_search_expanded = function(test, common){
 //   test( 'index contracted and search expanded', function(t){
 
-//     var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+//     var suite = new elastictest.Suite( common.clientOpts, common.create );
 //     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
 //     // index a document with a name which contains a synonym (center)

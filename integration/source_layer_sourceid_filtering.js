@@ -1,7 +1,6 @@
 // validate analyzer is behaving as expected
 
 const elastictest = require('elastictest');
-const schema = require('../schema');
 const config = require('pelias-config').generate();
 const getTotalHits = require('./_hits_total_helper');
 
@@ -10,7 +9,7 @@ module.exports.tests = {};
 module.exports.tests.source_filter = function(test, common){
   test( 'source filter', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, { schema: schema } );
+    var suite = new elastictest.Suite( common.clientOpts, common.create );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index some docs
