@@ -27,9 +27,8 @@ module.exports.tests.compile = function(test, common) {
 // the api codebase against an index without admin data
 module.exports.tests.indices = function(test, common) {
   test('explicitly specify some admin indices and their analyzer', function(t) {
-    const _type = config.schema.typeName;
-    t.equal(typeof schema.mappings[_type], 'object', 'mappings present');
-    t.equal(schema.mappings[_type].dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
+    t.equal(typeof schema.mappings, 'object', 'mappings present');
+    t.equal(schema.mappings.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
     t.end();
   });
 };
@@ -37,9 +36,8 @@ module.exports.tests.indices = function(test, common) {
 // some 'admin' types allow single edgeNGrams and so have a different dynamic_template
 module.exports.tests.dynamic_templates = function(test, common) {
   test('dynamic_templates: nameGram', function(t) {
-    const _type = config.schema.typeName;
-    t.equal(typeof schema.mappings[_type].dynamic_templates[0].nameGram, 'object', 'nameGram template specified');
-    var template = schema.mappings[_type].dynamic_templates[0].nameGram;
+    t.equal(typeof schema.mappings.dynamic_templates[0].nameGram, 'object', 'nameGram template specified');
+    var template = schema.mappings.dynamic_templates[0].nameGram;
     t.equal(template.path_match, 'name.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -50,9 +48,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.end();
   });
   test('dynamic_templates: phrase', function (t) {
-    const _type = config.schema.typeName;
-    t.equal(typeof schema.mappings[_type].dynamic_templates[1].phrase, 'object', 'phrase template specified');
-    var template = schema.mappings[_type].dynamic_templates[1].phrase;
+    t.equal(typeof schema.mappings.dynamic_templates[1].phrase, 'object', 'phrase template specified');
+    var template = schema.mappings.dynamic_templates[1].phrase;
     t.equal(template.path_match, 'phrase.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -63,9 +60,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.end();
   });
   test('dynamic_templates: addendum', function (t) {
-    const _type = config.schema.typeName;
-    t.equal(typeof schema.mappings[_type].dynamic_templates[2].addendum, 'object', 'addendum template specified');
-    var template = schema.mappings[_type].dynamic_templates[2].addendum;
+    t.equal(typeof schema.mappings.dynamic_templates[2].addendum, 'object', 'addendum template specified');
+    var template = schema.mappings.dynamic_templates[2].addendum;
     t.equal(template.path_match, 'addendum.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -106,16 +102,6 @@ module.exports.tests.current_schema = function(test, common) {
 
     // copy schema
     var schemaCopy = JSON.parse( JSON.stringify( schema ) );
-
-    // the fixture contains a _type named 'doc'.
-    // this code allows the generated schema to match the fixture if the
-    // type name is defined named differently in pelias.json, the rest of
-    // the settings still apply verbatim.
-    const _type = config.schema.typeName;
-    if(_type && _type !== 'doc'){
-      schemaCopy.mappings.doc = schemaCopy.mappings[_type];
-      delete schemaCopy.mappings[_type];
-    }
 
     // use the pelias config fixture instead of the local config
     process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config.json' );
