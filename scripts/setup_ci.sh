@@ -16,12 +16,6 @@ if [[ "${ES_VERSION}" == "5"* || "${ES_VERSION}" == "6"* ]]; then
   FILENAME="elasticsearch-${ES_VERSION}.tar.gz"
 fi
 
-# the 6.8.5 release is inconsisent with the others
-# https://github.com/elastic/elasticsearch/issues/49599
-if [[ "${ES_VERSION}" == "6.8.5" ]]; then
-  STRIP_COMPONENTS=2
-fi
-
 # download from new host
 wget -O - "https://artifacts.elastic.co/downloads/elasticsearch/${FILENAME}" \
   | tar xz --directory=/tmp/elasticsearch --strip-components="${STRIP_COMPONENTS}"
