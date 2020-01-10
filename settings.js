@@ -23,6 +23,15 @@ function generate(){
 
   // Default settings
   var settings = {
+    "index": {
+      "similarity": {
+        "peliasDefaultSimilarity": {
+          "type": "BM25",
+          "k1": 1.2,
+          "b": 0.75
+        }
+      }
+    },
     "analysis": {
       "tokenizer": {
         "peliasNameTokenizer": {
@@ -211,19 +220,15 @@ function generate(){
 
   // dynamically create filters for all synonym files in the ./synonyms directory.
   // each filter is given the same name as the file, minus the extension.
-  for( var key in synonyms ){
+  _.each(synonyms, (synonym, key) => {
     settings.analysis.filter[key] = {
       "type": "synonym",
-      "synonyms": !!synonyms[key].length ? synonyms[key] : ['']
+      "synonyms": !_.isEmpty(synonym) ? synonym : ['']
     };
-  }
+  })
 
   // Merge settings from pelias/config
-  if( 'object' === typeof config &&
-      'object' === typeof config.elasticsearch &&
-      'object' === typeof config.elasticsearch.settings ){
-    return _.merge({}, settings, config.elasticsearch.settings);
-  }
+  settings = _.merge({}, settings, _.get(config, 'elasticsearch.settings', {}));
 
   return settings;
 }

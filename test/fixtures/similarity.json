@@ -1,0 +1,13 @@
+{
+  "elasticsearch": {
+    "settings": {
+      "index": {
+        "similarity": {
+          "peliasDefaultSimilarity": {
+            "k1": 0
+          }
+        }
+      }
+    }
+  }
+}

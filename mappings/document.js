@@ -26,32 +26,38 @@ var schema = {
         name: {
           type: 'text',
           analyzer: 'keyword',
-          search_analyzer: 'keyword'
+          search_analyzer: 'keyword',
+          similarity: 'peliasDefaultSimilarity'
         },
         unit: {
           type: 'text',
           analyzer: 'peliasUnit',
-          search_analyzer: 'peliasUnit'
+          search_analyzer: 'peliasUnit',
+          similarity: 'peliasDefaultSimilarity'
         },
         number: {
           type: 'text',
           analyzer: 'peliasHousenumber',
-          search_analyzer: 'peliasHousenumber'
+          search_analyzer: 'peliasHousenumber',
+          similarity: 'peliasDefaultSimilarity'
         },
         street: {
           type: 'text',
           analyzer: 'peliasStreet',
-          search_analyzer: 'peliasStreet'
+          search_analyzer: 'peliasStreet',
+          similarity: 'peliasDefaultSimilarity'
         },
         cross_street: {
           type: 'text',
           analyzer: 'peliasStreet',
-          search_analyzer: 'peliasStreet'
+          search_analyzer: 'peliasStreet',
+          similarity: 'peliasDefaultSimilarity'
         },
         zip: {
           type: 'text',
           analyzer: 'peliasZip',
-          search_analyzer: 'peliasZip'
+          search_analyzer: 'peliasZip',
+          similarity: 'peliasDefaultSimilarity'
         },
       }
     },
@@ -159,7 +165,8 @@ var schema = {
       mapping: {
         type: 'text',
         analyzer: 'peliasIndexOneEdgeGram',
-        search_analyzer: 'peliasQuery'
+        search_analyzer: 'peliasQuery',
+        similarity: 'peliasDefaultSimilarity'
       }
     },
   },{
@@ -169,7 +176,8 @@ var schema = {
       mapping: {
         type: 'text',
         analyzer: 'peliasPhrase',
-        search_analyzer: 'peliasQuery'
+        search_analyzer: 'peliasQuery',
+        similarity: 'peliasDefaultSimilarity'
       }
     }
   },{

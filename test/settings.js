@@ -467,6 +467,8 @@ module.exports.tests.index = function(test, common) {
 module.exports.tests.overrides = function(test, common) {
   test('override defaults', function(t) {
 
+    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
+
     var s = settings();
     t.equal(s.index['number_of_replicas'], '0', 'unchanged');
 
@@ -475,6 +477,24 @@ module.exports.tests.overrides = function(test, common) {
 
     s = settings();
     t.equal(s.index['number_of_replicas'], '999', 'changed');
+    t.end();
+
+    // unset the PELIAS_CONFIG env var
+    delete process.env['PELIAS_CONFIG'];
+  });
+  test('override similarity', function (t) {
+
+    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
+
+    var s = settings();
+    t.equal(s.index.similarity.peliasDefaultSimilarity.k1, 1.2, 'unchanged');
+
+    // set the PELIAS_CONFIG env var
+    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/similarity.json');
+
+    s = settings();
+    t.equal(s.index.similarity.peliasDefaultSimilarity.k1, 0, 'changed');
+    t.equal(s.index.similarity.peliasDefaultSimilarity.b, 0.75, 'changed');
     t.end();
 
     // unset the PELIAS_CONFIG env var

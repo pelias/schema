@@ -2,11 +2,13 @@
   "type": "text",
   "analyzer": "peliasZip",
   "search_analyzer": "peliasZip",
+  "similarity": "peliasDefaultSimilarity",
   "fields": {
     "ngram": {
       "type": "text",
       "analyzer": "peliasIndexOneEdgeGram",
-      "search_analyzer": "peliasZip"
+      "search_analyzer": "peliasZip",
+      "similarity": "peliasDefaultSimilarity"
     }
   }
 }
