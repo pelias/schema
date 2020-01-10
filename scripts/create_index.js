@@ -1,11 +1,22 @@
 const child_process = require('child_process');
 const config = require('pelias-config').generate();
 const es = require('elasticsearch');
+const SUPPORTED_ES_VERSIONS = '>=6.8.5 || >=7.5.1';
 
 const cli = require('./cli');
 const schema = require('../schema');
 
+cli.header("create index");
+
 const client = new es.Client(config.esclient);
+
+// check minimum elasticsearch versions before continuing
+try {
+  child_process.execSync(`node ${__dirname}/check_version.js "${SUPPORTED_ES_VERSIONS}"`);
+} catch (e) {
+  console.error(`unsupported elasticsearch version. try: ${SUPPORTED_ES_VERSIONS}\n`);
+  process.exit(1);
+}
 
 // check mandatory plugins are installed before continuing
 try {
@@ -14,8 +25,6 @@ try {
   console.error("please install mandatory plugins before continuing.\n");
   process.exit(1);
 }
-
-cli.header("create index");
 
 const indexName = config.schema.indexName;
 const req = {

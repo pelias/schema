@@ -3,7 +3,6 @@ const config = require('pelias-config').generate();
 const es = require('elasticsearch');
 const client = new es.Client(config.esclient);
 const cli = require('./cli');
-const schema = require('../schema');
 
 // mandatory plugins
 const plugins = [ 'analysis-icu' ];
