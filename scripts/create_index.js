@@ -1,7 +1,7 @@
 const child_process = require('child_process');
 const config = require('pelias-config').generate();
 const es = require('elasticsearch');
-const SUPPORTED_ES_VERSIONS = '>=6.8.5 || >=7.5.1';
+const SUPPORTED_ES_VERSIONS = '>=6.5.4 || >=7.4.2';
 
 const cli = require('./cli');
 const schema = require('../schema');
