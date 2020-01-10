@@ -43,7 +43,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.deepEqual(template.mapping, {
       type: 'text',
       analyzer: 'peliasIndexOneEdgeGram',
-      search_analyzer: 'peliasQuery'
+      search_analyzer: 'peliasQuery',
+      similarity: 'peliasDefaultSimilarity'
     });
     t.end();
   });
@@ -55,7 +56,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.deepEqual(template.mapping, {
       type: 'text',
       analyzer: 'peliasPhrase',
-      search_analyzer: 'peliasQuery'
+      search_analyzer: 'peliasQuery',
+      similarity: 'peliasDefaultSimilarity'
     });
     t.end();
   });

@@ -1,5 +1,17 @@
 {
   "settings": {
+    "index": {
+      "similarity": {
+        "peliasDefaultSimilarity": {
+          "type": "BM25",
+          "k1": 1.2,
+          "b": 0.75
+        }
+      },
+      "number_of_replicas": "999",
+      "number_of_shards": "5",
+      "refresh_interval": "1m"
+    },
     "analysis": {
       "tokenizer": {
         "peliasNameTokenizer": {
@@ -564,11 +576,6 @@
           "mode": "compose"
         }
       }
-    },
-    "index": {
-      "number_of_replicas": "999",
-      "number_of_shards": "5",
-      "refresh_interval": "1m"
     }
   },
   "mappings": {
@@ -594,32 +601,38 @@
           "name": {
             "type": "text",
             "analyzer": "keyword",
-            "search_analyzer": "keyword"
+            "search_analyzer": "keyword",
+            "similarity": "peliasDefaultSimilarity"
           },
           "unit": {
             "type": "text",
             "analyzer": "peliasUnit",
-            "search_analyzer": "peliasUnit"
+            "search_analyzer": "peliasUnit",
+            "similarity": "peliasDefaultSimilarity"
           },
           "number": {
             "type": "text",
             "analyzer": "peliasHousenumber",
-            "search_analyzer": "peliasHousenumber"
+            "search_analyzer": "peliasHousenumber",
+            "similarity": "peliasDefaultSimilarity"
           },
           "street": {
             "type": "text",
             "analyzer": "peliasStreet",
-            "search_analyzer": "peliasStreet"
+            "search_analyzer": "peliasStreet",
+            "similarity": "peliasDefaultSimilarity"
           },
           "cross_street": {
             "type": "text",
             "analyzer": "peliasStreet",
-            "search_analyzer": "peliasStreet"
+            "search_analyzer": "peliasStreet",
+            "similarity": "peliasDefaultSimilarity"
           },
           "zip": {
             "type": "text",
             "analyzer": "peliasZip",
-            "search_analyzer": "peliasZip"
+            "search_analyzer": "peliasZip",
+            "similarity": "peliasDefaultSimilarity"
           }
         }
       },
@@ -631,11 +644,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -644,11 +659,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -661,11 +678,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -674,11 +693,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -691,11 +712,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -704,11 +727,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -721,11 +746,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -734,11 +761,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -751,11 +780,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -764,11 +795,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -781,11 +814,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -794,11 +829,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -811,11 +848,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -824,11 +863,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -841,11 +882,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -854,11 +897,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -871,11 +916,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -884,11 +931,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -901,11 +950,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -914,11 +965,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -931,11 +984,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -944,11 +999,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -961,11 +1018,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -974,11 +1033,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -991,11 +1052,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -1004,11 +1067,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -1021,11 +1086,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -1034,11 +1101,13 @@
             "type": "text",
             "analyzer": "peliasAdmin",
             "search_analyzer": "peliasAdmin",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
+                "similarity": "peliasDefaultSimilarity",
                 "doc_values": false
               }
             }
@@ -1051,11 +1120,13 @@
             "type": "text",
             "analyzer": "peliasZip",
             "search_analyzer": "peliasZip",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
-                "search_analyzer": "peliasZip"
+                "search_analyzer": "peliasZip",
+                "similarity": "peliasDefaultSimilarity"
               }
             }
           },
@@ -1063,11 +1134,13 @@
             "type": "text",
             "analyzer": "peliasZip",
             "search_analyzer": "peliasZip",
+            "similarity": "peliasDefaultSimilarity",
             "fields": {
               "ngram": {
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
-                "search_analyzer": "peliasZip"
+                "search_analyzer": "peliasZip",
+                "similarity": "peliasDefaultSimilarity"
               }
             }
           },
@@ -1116,7 +1189,8 @@
           "mapping": {
             "type": "text",
             "analyzer": "peliasIndexOneEdgeGram",
-            "search_analyzer": "peliasQuery"
+            "search_analyzer": "peliasQuery",
+            "similarity": "peliasDefaultSimilarity"
           }
         }
       },
@@ -1127,7 +1201,8 @@
           "mapping": {
             "type": "text",
             "analyzer": "peliasPhrase",
-            "search_analyzer": "peliasQuery"
+            "search_analyzer": "peliasQuery",
+            "similarity": "peliasDefaultSimilarity"
           }
         }
       },
