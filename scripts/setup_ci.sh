@@ -59,13 +59,9 @@ v=( ${ES_VERSION//./ } ) # split version number on '.'
 PELIAS_CONFIG=$(
   jq -n \
     --arg apiVersion "${v[0]}.${v[1]}" \
-    --arg typeName "${ES_TYPE}" \
     '{
       esclient: {
         apiVersion: $apiVersion
-      },
-      schema: {
-        typeName: $typeName
       }
     } | del(.. | select(. == ""))'
 );
