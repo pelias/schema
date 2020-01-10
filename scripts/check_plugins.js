@@ -3,17 +3,12 @@ const config = require('pelias-config').generate();
 const es = require('elasticsearch');
 const client = new es.Client(config.esclient);
 const cli = require('./cli');
-const schema = require('../schema');
 
 // mandatory plugins
-const plugins = [ 'analysis-icu' ];
+const required = ['analysis-icu'];
 
 // list of failures
 let failures = [];
-
-// helper strings for output
-const success = colors.green('✔');
-const failure = colors.red('✖');
 
 // returns the appropriate plugin name for the configured Elasticsearch version
 function elasticsearchPluginUtility() {
@@ -25,7 +20,7 @@ function elasticsearchPluginUtility() {
 }
 
 cli.header("checking elasticsearch plugins");
-client.nodes.info( null, function( err, res ){
+client.nodes.info(null, (err, res) => {
 
   if( err ){
     console.error(err);
@@ -53,16 +48,14 @@ client.nodes.info( null, function( err, res ){
     // per node failures
     let node_failures = [];
 
-    // iterate over all installed plugins on this node
-    plugins.forEach( function( plugin ){
+    // iterate over all required plugins
+    required.forEach(plugin => {
 
       // bool, is the plugin currently installed?
-      const isInstalled = !!node.plugins.filter( function( installedPlugin ){
-        return installedPlugin.name == plugin;
-      }).length;
+      const isInstalled = node.plugins.some(installed => installed.name === plugin);
 
       // output status to terminal
-      console.log( ` checking plugin '${plugin}': ${isInstalled ? success : failure}` );
+      console.log( ` checking plugin '${plugin}': ${isInstalled ? cli.status.success : cli.status.failure}` );
 
       // record this plugin as not installed yet
       if( !isInstalled ){
@@ -80,9 +73,9 @@ client.nodes.info( null, function( err, res ){
   if( failures.length ){
     console.error( colors.red(`${failures.length} required plugin(s) are not installed on the node(s) shown above.` ) );
     console.error( "you must install the plugins before continuing with the installation.");
-    failures.forEach( function( failure ){
+    failures.forEach(failure => {
       console.error( `\nyou can install the missing packages on '${failure.node.name}' [${failure.node.ip}] with the following command(s):\n` );
-      failure.plugins.forEach( function( plugin ){
+      failure.plugins.forEach(plugin => {
         console.error( colors.green( `sudo ${failure.node.settings.path.home}/bin/${elasticsearchPluginUtility()} install ${plugin}`) );
       });
     });
