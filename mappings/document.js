@@ -166,7 +166,15 @@ var schema = {
         type: 'text',
         analyzer: 'peliasIndexOneEdgeGram',
         search_analyzer: 'peliasQuery',
-        similarity: 'peliasDefaultSimilarity'
+        similarity: 'peliasDefaultSimilarity',
+        fields: {
+          phrase: {
+            type: 'text',
+            analyzer: 'peliasPhrase',
+            search_analyzer: 'peliasQuery',
+            similarity: 'peliasDefaultSimilarity'
+          }
+        }
       }
     },
   },{
