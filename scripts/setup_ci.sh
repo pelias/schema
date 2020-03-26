@@ -37,7 +37,7 @@ v=( ${ES_VERSION//./ } ) # split version number on '.'
 # generate a pelias.json config
 PELIAS_CONFIG=$(
   jq -n \
-    --arg apiVersion "${v[0]}.${v[1]}" \
+    --arg apiVersion "${v[0]}.x" \
     '{
       esclient: {
         apiVersion: $apiVersion
