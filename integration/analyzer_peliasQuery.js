@@ -22,6 +22,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('trim', ' f ', ['f']);
     assertAnalysis('remove_ordinals', '26t', ['26']);
     assertAnalysis('remove_ordinals', '26th', ['26']);
+    assertAnalysis('remove_alpha_ordinals', 'fifth', ['5']);
+    assertAnalysis('remove_alpha_ordinals', 'twenty-fifth', ['25']);
+    assertAnalysis('remove_alpha_ordinals', 'twenty fifth', ['25']);
     assertAnalysis('removeAllZeroNumericPrefix', '00001', ['1']);
     assertAnalysis('unique', '1 1 1', ['1','1','1']);
     assertAnalysis('notnull', ' / / ', []);

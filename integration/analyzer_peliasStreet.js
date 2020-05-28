@@ -25,6 +25,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'keyword_compass', 'foo SouthWest', ['0:foo', '1:southwest', '1:sw'] );
     assertAnalysis( 'remove_ordinals', '1st 2nd 3rd 4th 5th', ['1','2','3','4','5'] );
     assertAnalysis( 'remove_ordinals', 'Ast th 101st', ['ast','th','101'] );
+    assertAnalysis( 'remove_alpha_ordinals', 'first second third fourth fifth', ['1','2','3','4','5'] );
 
     suite.run( t.end );
   });
@@ -60,6 +61,28 @@ module.exports.tests.normalize_punctuation = function(test, common){
     assertAnalysis( 'double space', 'Chapala  Street',   expected );
     assertAnalysis( 'triple space', 'Chapala   Street',  expected );
     assertAnalysis( 'quad space',   'Chapala    Street', expected );
+
+    suite.run( t.end );
+  });
+};
+
+module.exports.tests.remove_alpha_ordinals = function(test, common){
+  test( 'remove alpha ordinals', function(t){
+
+    var suite = new elastictest.Suite( common.clientOpts, common.create );
+    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasStreet' );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    assertAnalysis( 'ordindals', "first", ["1"] );
+
+    var alphaOrdinals = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth",
+     "eleventh", "twelfth", "thirteenth", "fourteenth", "fifteenth", "sixteenth", "seventeenth", "eighteenth", "nineteenth"];
+    alphaOrdinals.forEach((token, position) => {
+      assertAnalysis( 'ordindals', token, [(position + 1).toString()] );
+    })
+
+    assertAnalysis( 'ordindals', 'twenty first', '21');
+    assertAnalysis( 'ordindals', 'twenty-first', '21');
 
     suite.run( t.end );
   });
