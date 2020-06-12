@@ -3,18 +3,22 @@ const fs = require('fs');
 const path = require('path');
 const peliasConfig = require('pelias-config');
 const punctuation = require('./punctuation');
-const synonymFile = require('./synonyms/parser');
+const synonymParser = require('./synonyms/parser');
+const synonymLinter = require('./synonyms/linter');
 
 // load synonyms from disk
 const synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
                  .sort()
                  .filter( f => f.match(/\.txt$/) )
                  .reduce(( acc, cur ) => {
-                   acc[cur.replace('.txt','')] = synonymFile(
+                   acc[cur.replace('.txt', '')] = synonymParser(
                      path.join(__dirname, 'synonyms', cur)
                    );
                    return acc;
                  }, {});
+
+// emit synonym warnings
+synonymLinter(synonyms);
 
 require('./configValidation').validate(peliasConfig.generate());
 
