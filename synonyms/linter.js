@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const logger = require('pelias-logger').get('schema');
+const logger = require('pelias-logger').get('schema-synonyms');
 const punctuation = require('../punctuation');
 
 /**
@@ -17,7 +17,8 @@ function linter(synonyms) {
   _.each(synonyms, (lines, filename) => {
     logger.debug(`[lint] ${filename}`);
 
-    _.each(lines, line => {
+    lines.forEach((line, idx) => {
+      const logprefix = `[${filename} line ${idx+1}]`;
       logger.debug(`[line] ${line}`);
 
       // split the lines by delimeter
@@ -27,39 +28,39 @@ function linter(synonyms) {
       // the 'punctuation.blacklist' contains a list of characters which are
       // stripped from the tokens before indexing.
       tokens = _.map(tokens, token => {
-        _.each(punctuation.blacklist, (char) => {
+        punctuation.blacklist.forEach(char => {
           let replacement = token.split(char).join('');
           if(replacement.length != token.length){
-            logger.warn(`punctunation removed: ${token} --> ${replacement}`);
+            logger.warn(`${logprefix} punctunation removed: ${token} --> ${replacement}`);
           }
           token = replacement;
         });
         return token
       });
 
-      letterCasing(line, tokens);
-      tokensSanityCheck(line, tokens);
-      // multiWordCheck(line, tokens);
+      letterCasing(line, logprefix, tokens);
+      tokensSanityCheck(line, logprefix, tokens);
+      // multiWordCheck(line, logprefix, tokens);
     })
   })
 }
 
-function letterCasing(line){
+function letterCasing(line, logprefix){
   if (line.toLowerCase() !== line) {
-    logger.warn(`should be lowercase:`, line);
+    logger.warn(`${logprefix} should be lowercase:`, line);
   }
 }
 
-function tokensSanityCheck(line, tokens) {
+function tokensSanityCheck(line, logprefix, tokens) {
   switch (tokens.length){
     case 0:
-      return logger.warn(`no tokens:`, line);
+      return logger.warn(`${logprefix} no tokens:`, line);
     case 1:
-      return logger.warn(`only one token:`, line);
+      return logger.warn(`${logprefix} only one token:`, line);
     default:
       let dupes = _.filter(tokens, (val, i, t) => _.includes(t, val, i + 1));
       if (dupes.length){
-        logger.warn(`duplicate tokens:`, dupes);
+        logger.warn(`${logprefix} duplicate tokens:`, dupes);
       }
   }
 }
