@@ -80,7 +80,9 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "icu_folding",
       "trim",
       "custom_name",
-      "street_suffix",
+      "street_synonyms_en",
+      "street_synonyms_usps",
+      "street_synonyms_de",
       "directionals",
       "ampersand",
       "remove_ordinals",
@@ -139,7 +141,9 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "remove_duplicate_spaces",
       "ampersand",
       "custom_name",
-      "street_suffix",
+      "street_synonyms_en",
+      "street_synonyms_usps",
+      "street_synonyms_de",
       "directionals",
       "icu_folding",
       "remove_ordinals",
@@ -230,7 +234,9 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "trim",
       "remove_duplicate_spaces",
       "custom_street",
-      "street_suffix",
+      "street_synonyms_en",
+      "street_synonyms_usps",
+      "street_synonyms_de",
       "directionals",
       "icu_folding",
       "remove_ordinals",
@@ -366,16 +372,45 @@ module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
   });
 };
 
-// this filter stems common street suffixes
-// eg. road=>rd and street=>st
-module.exports.tests.streetSynonymFilter = function(test, common) {
-  test('has street_suffix filter', function(t) {
+// this filter provides synonyms for street suffixes
+// eg. road=>rd
+module.exports.tests.streetSynonymEnglishFilter = function(test, common) {
+  test('has street_synonyms_en filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.street_suffix, 'object', 'there is an street_suffix filter');
-    var filter = s.analysis.filter.street_suffix;
+    t.equal(typeof s.analysis.filter.street_synonyms_en, 'object', 'there is an street_synonyms_en filter');
+    var filter = s.analysis.filter.street_synonyms_en;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 127);
+    t.equal(filter.synonyms.length, 379);
+    t.end();
+  });
+};
+
+// this filter provides synonyms for street suffixes
+// data is provided by the USPS to assist in correct mailing
+// eg. road=>rd
+module.exports.tests.streetSynonymUSPSFilter = function (test, common) {
+  test('has street_synonyms_usps filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.street_synonyms_usps, 'object', 'there is an street_synonyms_usps filter');
+    var filter = s.analysis.filter.street_synonyms_usps;
+    t.equal(filter.type, 'synonym');
+    t.true(Array.isArray(filter.synonyms));
+    t.equal(filter.synonyms.length, 191);
+    t.end();
+  });
+};
+
+// this filter provides synonyms for street suffixes
+// eg. strasse=>st
+module.exports.tests.streetSynonymGermanFilter = function (test, common) {
+  test('has street_synonyms_de filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.street_synonyms_de, 'object', 'there is an street_synonyms_de filter');
+    var filter = s.analysis.filter.street_synonyms_de;
+    t.equal(filter.type, 'synonym');
+    t.true(Array.isArray(filter.synonyms));
+    t.equal(filter.synonyms.length, 7);
     t.end();
   });
 };
