@@ -87,9 +87,9 @@ colline,coli
 collines,colis
 enceinte,en
 fleuve,fl
-grand,gd,gr,g
+grand,gd,gr
 mont,mt,mnt
-petite,p,pt
+petite,pt
 porche,pch
 rivière,riviere,riv
 village,vge
@@ -108,7 +108,6 @@ kleines,kl
 kogel,kg
 niedere,nd
 rhein,rh
-see,s
 spitze,sp
 vordere,vd,vord
 wiese,ws
