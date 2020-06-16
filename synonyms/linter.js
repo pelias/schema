@@ -40,7 +40,7 @@ function linter(synonyms) {
 
       letterCasing(line, logprefix, tokens);
       tokensSanityCheck(line, logprefix, tokens);
-      // multiWordCheck(line, logprefix, tokens);
+      multiWordCheck(line, logprefix, tokens);
       // tokenLengthCheck(line, logprefix, tokens);
     })
   })
