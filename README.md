@@ -48,8 +48,8 @@ $ npm install pelias-schema
 #### drop index
 
 ```bash
-node scripts/drop_index.js;                 # drop everything
-node scripts/drop_index.js --force-yes;     # skip warning prompt
+node scripts/drop_index.js                 # drop everything
+node scripts/drop_index.js --force-yes     # skip warning prompt
 ```
 
 #### update settings on an existing index
@@ -59,7 +59,7 @@ This is useful when you want to add a new analyser or filter to an existing inde
 **note:** it is impossible to change the `number_of_shards` for an existing index, this will require a full re-index.
 
 ```bash
-node scripts/update_settings.js;          # update index settings
+node scripts/update_settings.js          # update index settings
 ```
 
 #### output schema file
@@ -67,8 +67,7 @@ node scripts/update_settings.js;          # update index settings
 Use this script to pretty-print the whole schema file or a single mapping to stdout.
 
 ```bash
-node scripts/output_mapping.js mytype;          # single type mapping
-node scripts/output_mapping.js;                 # whole schema file
+node scripts/output_mapping.js
 ```
 
 #### check all mandatory elasticsearch plugins are correctly installed
@@ -76,7 +75,7 @@ node scripts/output_mapping.js;                 # whole schema file
 Print a list of which plugins are installed and how to install any that are missing.
 
 ```bash
-node scripts/check_plugins.js;
+node scripts/check_plugins.js
 ```
 
 #### user customizable synonyms files
