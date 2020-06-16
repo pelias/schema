@@ -52,14 +52,6 @@ node scripts/drop_index.js;                 # drop everything
 node scripts/drop_index.js --force-yes;     # skip warning prompt
 ```
 
-#### reset a single type
-
-This is useful when you want to reset a single `type` without wiping the rest of your `index`.
-
-```bash
-node scripts/reset_type.js mytype;          # reset a single type
-```
-
 #### update settings on an existing index
 
 This is useful when you want to add a new analyser or filter to an existing index.
