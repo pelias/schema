@@ -14,11 +14,7 @@
     },
     "analysis": {
       "tokenizer": {
-        "peliasNameTokenizer": {
-          "type": "pattern",
-          "pattern": "[\\s,/\\\\-]+"
-        },
-        "peliasStreetTokenizer": {
+        "peliasTokenizer": {
           "type": "pattern",
           "pattern": "[\\s,/\\\\-]+"
         }
@@ -26,7 +22,7 @@
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
-          "tokenizer": "peliasNameTokenizer",
+          "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
             "nfkc_normalizer"
@@ -44,7 +40,7 @@
         },
         "peliasIndexOneEdgeGram": {
           "type": "custom",
-          "tokenizer": "peliasNameTokenizer",
+          "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
             "nfkc_normalizer"
@@ -67,7 +63,7 @@
         },
         "peliasQuery": {
           "type": "custom",
-          "tokenizer": "peliasNameTokenizer",
+          "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
             "nfkc_normalizer"
@@ -84,7 +80,7 @@
         },
         "peliasPhrase": {
           "type": "custom",
-          "tokenizer": "peliasNameTokenizer",
+          "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
             "nfkc_normalizer"
@@ -141,7 +137,7 @@
         },
         "peliasStreet": {
           "type": "custom",
-          "tokenizer": "peliasStreetTokenizer",
+          "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
             "nfkc_normalizer"
