@@ -78,7 +78,19 @@ Print a list of which plugins are installed and how to install any that are miss
 node scripts/check_plugins.js
 ```
 
-#### user customizable synonyms files
+## Configuration
+
+### Settings from `pelias.json`
+
+Like the rest of Pelias, the Pelias schema can be configured through a `pelias.json` file read by [pelias-config](https://github.com/pelias/config).
+
+#### `schema.indexName`
+
+This allows configuring the name of the index created in Elasticsearch. The default is `pelias`.
+
+**Note:** All Pelias importers also use this configuration value to determine what index to _write_ to. Additionally, the Pelias API uses the related [`api.indexName`](https://github.com/pelias/api#configuration-via-pelias-config) parameter to determine where to _read_ from.
+
+### user customizable synonyms files
 
 You may provide your own custom synonyms by editing files in the `./synonyms/` directory.
 
