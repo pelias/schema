@@ -26,10 +26,6 @@ We think open data, open source, and open strategy win over proprietary solution
 
 This package defines the Elasticsearch schema used by Pelias. Pelias requires quite a few settings for performance and accuracy. This repository contains those settings as well as useful tools to ensure they are applied correctly.
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/schema.svg)](https://greenkeeper.io/)
-[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
-[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
-
 ## Requirements
 
 See [Pelias Software requirements](https://github.com/pelias/documentation/blob/master/requirements.md) for general Pelias requirements.
