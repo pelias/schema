@@ -291,6 +291,7 @@ round, rnd
 route, rt, rte
 row, rw
 run, rn
+saint, st
 serviceway, swy, svwy, svcwy
 shoal, shl
 shoals, shls

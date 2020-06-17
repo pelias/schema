@@ -381,7 +381,7 @@ module.exports.tests.streetSynonymEnglishFilter = function(test, common) {
     var filter = s.analysis.filter.street_synonyms_en;
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 373);
+    t.equal(filter.synonyms.length, 374);
     t.end();
   });
 };
