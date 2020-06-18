@@ -102,3 +102,4 @@ subteniente, subte, stn
 teniente, tn, tte
 vizconde, vde
 vizcondesa, vdesa
+junior, iunior, jr

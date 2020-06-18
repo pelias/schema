@@ -31,3 +31,5 @@ representative, rep
 representatives, reps
 senator, sen
 senators, sens
+junior, jr, jnr
+senior, sr, snr
