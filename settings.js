@@ -139,6 +139,7 @@ function generate(){
             "trim",
             "remove_duplicate_spaces",
             "synonyms/custom_street",
+            "synonyms/personal_titles",
             "synonyms/streets",
             "synonyms/directionals",
             "icu_folding",
