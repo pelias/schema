@@ -79,12 +79,12 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "icu_folding",
       "trim",
-      "custom_name",
-      "street_synonyms_en",
-      "street_synonyms_usps",
-      "street_synonyms_de",
-      "directionals",
-      "ampersand",
+      "synonyms/custom_name",
+      "synonyms/personal_titles",
+      "synonyms/place_names",
+      "synonyms/streets",
+      "synonyms/directionals",
+      "synonyms/punctuation",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
       "peliasOneEdgeGramFilter",
@@ -139,12 +139,12 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
-      "ampersand",
-      "custom_name",
-      "street_synonyms_en",
-      "street_synonyms_usps",
-      "street_synonyms_de",
-      "directionals",
+      "synonyms/punctuation",
+      "synonyms/custom_name",
+      "synonyms/personal_titles",
+      "synonyms/place_names",
+      "synonyms/streets",
+      "synonyms/directionals",
       "icu_folding",
       "remove_ordinals",
       "unique_only_same_position",
@@ -233,11 +233,9 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
-      "custom_street",
-      "street_synonyms_en",
-      "street_synonyms_usps",
-      "street_synonyms_de",
-      "directionals",
+      "synonyms/custom_street",
+      "synonyms/streets",
+      "synonyms/directionals",
       "icu_folding",
       "remove_ordinals",
       "trim",
@@ -319,11 +317,11 @@ module.exports.tests.allCharacterFiltersPresent = function(test, common) {
 
 // note: pattern/replace should not have surrounding whitespace
 // we convert and->& rather than &->and to save memory/disk
-module.exports.tests.ampersandFilter = function(test, common) {
-  test('has ampersand filter', function(t) {
+module.exports.tests.punctuationFilter = function(test, common) {
+  test('has punctuation filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.ampersand, 'object', 'there is a ampersand filter');
-    var filter = s.analysis.filter.ampersand;
+    t.equal(typeof s.analysis.filter['synonyms/punctuation'], 'object', 'there is a punctuation filter');
+    var filter = s.analysis.filter['synonyms/punctuation'];
     t.equal(filter.type, 'synonym');
     t.deepEqual(filter.synonyms, [
       "&,and",
@@ -374,57 +372,56 @@ module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
 
 // this filter provides synonyms for street suffixes
 // eg. road=>rd
-module.exports.tests.streetSynonymEnglishFilter = function(test, common) {
-  test('has street_synonyms_en filter', function(t) {
+module.exports.tests.streetSynonymFilter = function(test, common) {
+  test('has synonyms/streets filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.street_synonyms_en, 'object', 'there is an street_synonyms_en filter');
-    var filter = s.analysis.filter.street_synonyms_en;
+    t.equal(typeof s.analysis.filter['synonyms/streets'], 'object', 'there is a synonyms/streets filter');
+    var filter = s.analysis.filter['synonyms/streets'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 373);
-    t.end();
-  });
-};
-
-// this filter provides synonyms for street suffixes
-// data is provided by the USPS to assist in correct mailing
-// eg. road=>rd
-module.exports.tests.streetSynonymUSPSFilter = function (test, common) {
-  test('has street_synonyms_usps filter', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.street_synonyms_usps, 'object', 'there is an street_synonyms_usps filter');
-    var filter = s.analysis.filter.street_synonyms_usps;
-    t.equal(filter.type, 'synonym');
-    t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 191);
-    t.end();
-  });
-};
-
-// this filter provides synonyms for street suffixes
-// eg. strasse=>st
-module.exports.tests.streetSynonymGermanFilter = function (test, common) {
-  test('has street_synonyms_de filter', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.street_synonyms_de, 'object', 'there is an street_synonyms_de filter');
-    var filter = s.analysis.filter.street_synonyms_de;
-    t.equal(filter.type, 'synonym');
-    t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 7);
+    t.equal(filter.synonyms.length, 817);
     t.end();
   });
 };
 
 // this filter stems common directional terms
 // eg. north=>n and south=>s
-module.exports.tests.directionSynonymFilter = function(test, common) {
+module.exports.tests.directionalSynonymFilter = function(test, common) {
   test('has directionals filter', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.filter.directionals, 'object', 'there is an directionals filter');
-    var filter = s.analysis.filter.directionals;
+    t.equal(typeof s.analysis.filter['synonyms/directionals'], 'object', 'there is a synonyms/directionals filter');
+    var filter = s.analysis.filter['synonyms/directionals'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 8);
+    t.equal(filter.synonyms.length, 69);
+    t.end();
+  });
+};
+
+// this filter provides common synonyms for personal titles
+// eg. doctor=>dr
+module.exports.tests.personalTitleSynonymFilter = function (test, common) {
+  test('has personal_titles filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter['synonyms/personal_titles'], 'object', 'there is a synonyms/personal_titles filter');
+    var filter = s.analysis.filter['synonyms/personal_titles'];
+    t.equal(filter.type, 'synonym');
+    t.true(Array.isArray(filter.synonyms));
+    t.equal(filter.synonyms.length, 188);
+    t.end();
+  });
+};
+
+// this filter provides common synonyms for place names
+// eg. park=>pk
+module.exports.tests.placeNameSynonymFilter = function (test, common) {
+  test('has place_names filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter['synonyms/place_names'], 'object', 'there is a synonyms/place_names filter');
+    var filter = s.analysis.filter['synonyms/place_names'];
+    t.equal(filter.type, 'synonym');
+    t.true(Array.isArray(filter.synonyms));
+    t.equal(filter.synonyms.length, 314);
     t.end();
   });
 };

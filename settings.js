@@ -1,24 +1,7 @@
 const _ = require('lodash');
-const fs = require('fs');
-const path = require('path');
 const peliasConfig = require('pelias-config');
 const punctuation = require('./punctuation');
-const synonymParser = require('./synonyms/parser');
-const synonymLinter = require('./synonyms/linter');
-
-// load synonyms from disk
-const synonyms = fs.readdirSync(path.join(__dirname, 'synonyms'))
-                 .sort()
-                 .filter( f => f.match(/\.txt$/) )
-                 .reduce(( acc, cur ) => {
-                   acc[cur.replace('.txt', '')] = synonymParser(
-                     path.join(__dirname, 'synonyms', cur)
-                   );
-                   return acc;
-                 }, {});
-
-// emit synonym warnings
-synonymLinter(synonyms);
+const synonyms = require('./synonyms/loader').load();
 
 require('./configValidation').validate(peliasConfig.generate());
 
@@ -52,7 +35,9 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
-            "custom_admin",
+            "synonyms/custom_admin",
+            "synonyms/personal_titles",
+            "synonyms/place_names",
             "word_delimiter",
             "unique_only_same_position",
             "notnull",
@@ -67,12 +52,12 @@ function generate(){
             "lowercase",
             "icu_folding",
             "trim",
-            "custom_name",
-            "street_synonyms_en",
-            "street_synonyms_usps",
-            "street_synonyms_de",
-            "directionals",
-            "ampersand",
+            "synonyms/custom_name",
+            "synonyms/personal_titles",
+            "synonyms/place_names",
+            "synonyms/streets",
+            "synonyms/directionals",
+            "synonyms/punctuation",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "peliasOneEdgeGramFilter",
@@ -103,12 +88,12 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
-            "ampersand",
-            "custom_name",
-            "street_synonyms_en",
-            "street_synonyms_usps",
-            "street_synonyms_de",
-            "directionals",
+            "synonyms/punctuation",
+            "synonyms/custom_name",
+            "synonyms/personal_titles",
+            "synonyms/place_names",
+            "synonyms/streets",
+            "synonyms/directionals",
             "icu_folding",
             "remove_ordinals",
             "unique_only_same_position",
@@ -153,11 +138,9 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
-            "custom_street",
-            "street_synonyms_en",
-            "street_synonyms_usps",
-            "street_synonyms_de",
-            "directionals",
+            "synonyms/custom_street",
+            "synonyms/streets",
+            "synonyms/directionals",
             "icu_folding",
             "remove_ordinals",
             "trim",
@@ -225,13 +208,14 @@ function generate(){
   };
 
   // dynamically create filters for all synonym files in the ./synonyms directory.
-  // each filter is given the same name as the file, minus the extension.
-  _.each(synonyms, (synonym, key) => {
-    settings.analysis.filter[key] = {
+  // each filter is given the same name as the file, paths separators are replaced with
+  // underscores and the file extension is removed.
+  _.each(synonyms, (synonym, name) => {
+    settings.analysis.filter[`synonyms/${name}`] = {
       "type": "synonym",
       "synonyms": !_.isEmpty(synonym) ? synonym : ['']
     };
-  })
+  });
 
   // Merge settings from pelias/config
   settings = _.merge({}, settings, _.get(config, 'elasticsearch.settings', {}));

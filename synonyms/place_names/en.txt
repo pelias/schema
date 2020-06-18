@@ -1,0 +1,119 @@
+abbey, abby
+airport, aprt
+amphitheatre, amphitheater
+annex, anex, annx, anx
+apartments, apts
+barbecue, barbeque, bbq
+barracks, barrack, baracks
+beach, bch
+boardwalk, bwk, bwlk
+cafe, café
+cape, cpe, cp
+castle, cst
+church, chr
+circus, crcs, crc
+city, cty
+club, clb
+community, cmnty, cmty
+cottage, cott, cottg
+cottages, cotts, cottgs
+county, co, cty
+creek, cr, crk
+dam, dm
+deli, delicatessen
+department, dept
+detention, det, detn
+distributor, dstr, distrib, dstrb
+district, dist
+dormitories, dorms
+dormitory, dorm
+downs, downes, dwns
+factory, fcty, fty, fy
+farm, frm
+flats, flts
+fords, frds
+forest, frst, fst
+forge, frg
+forges, frgs
+fork, frk
+forks, frks
+fort, ft
+glens, glns
+great, grt, gt
+greater, grtr, gtr
+green, grn, gn
+greens, grns
+groves, grvs
+gym, gymnasium
+heights, hghts, hgts, hieghts, ht, hts, hgths
+home, hm, hme, hom
+hospital, hos, hosp, hospice, hosptl, hsp, hsptl
+hostel, host, hostl, hstel, hstl
+hotel, hot, hotl, htel
+houses, hses
+institute, inst
+international, intl
+jetty, jtty, jty
+lake, lk
+lakes, lks
+little, ltl, lttl, littl, litl
+lock, lck
+locks, lcks
+lodge, ldge, lodg, ldg
+lower, low, lwr, lr
+mall, mll
+manor, mnr
+manors, mnrs
+market, mkt, mrkt
+marketplace, mktpl, mktplc
+medical, med
+memorial, mem
+middle, mid, midl
+military, mil
+mission, msn
+monastery, monastry
+motel, mot, motl, mtel
+mount, mt, mnt
+mountain, mtn
+mountains, mtns
+municipal, mun, mpal
+museum, mus
+national, natl
+neck, nck
+office, ofc
+offices, ofcs
+orchard, orch
+paradise, pde, pdse
+park, pk, prk
+pharmacy, pharm
+po, postoffice
+port, pt, prt
+precinct, pct
+reservation, res, resrv, resv, rsrv, rserv, rs
+reserve, res, resrv, resv, rsrv, rserv, rserve, rsrve
+reservoir, res
+retreat, rtt
+river, riv, rvr, rivr
+rotary, rty
+sanctuary, sanct
+service, svc
+services, svcs, svc
+shop, shp
+slope, slpe, slp
+springs, spgs, sprngs
+station, sta, stn
+store, stor
+stream, strm, stm
+terminal, term
+tower, twr
+towers, twrs
+triangle, tri
+university, uni, univ, univers, unvrsty
+upper, up, upr, uppr
+villa, vll, vla
+village, vil, vge, vill, villag, villg, vlg, vlge, vllg, vilg, vilge
+villages, vlgs
+villas, vlls, vlas
+ville, vl
+wood, wd
+woods, wds

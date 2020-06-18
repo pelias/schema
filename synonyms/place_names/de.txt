@@ -1,0 +1,61 @@
+abteilung, abt
+altstoffsammelzentrum, asz
+bücherei, bucherei, buecherei
+bundesgymnasium, bg
+bundesrealgymnasium, brg
+büro, buro, buero
+bustenhalter, bh
+café, cafe
+denkmal, dkm
+deutsch, dt
+ehemalige, ehem
+fabrik, fb
+fachhochschule, fh
+fähranlegestelle, fahranlegestelle, faehranlegestelle
+gebruder, gebr
+gasthaus, gh
+gaststätte, gaststatte, gaststaette
+gasthof, ghf
+gefängnis, gefangnis, gefaengnis
+geschäft, geschaft, geschaeft
+haltestelle, hst
+handelsakademie, hak
+handelsschule, hasch
+hauptbahnhof, hbf
+hinter, hint, ht
+höhle, hohle
+hörsäle, horsale, hoersaele
+hütte, hutte, huette, htt
+internationale, int
+jagdhutte, jhtt
+jungenherberge, jh
+kapelle, kap, kpl
+kläranlage, ka, klaranlage, klaeranlage
+kleine, kl
+kleiner, kl
+kleines, kl
+kogel, kg
+konzentrationslager, kz, kl
+magistratsabteilung, ma
+markt, mkt
+marktplatz, marktpl
+nationalpark, np
+naturschutzgebiet, nsg
+niedere, nd
+resevoir, res
+rhein, rh
+schloss, schl
+schutzhütte, schutzhutte, schutzhuette
+spitze, sp
+sportplatz, sportpl
+steinbruch, stb
+supermarkt, supermkt
+truppenubüngsplatz, tüpl, tupl, truppenubungsplatz, truppenubuengsplatz
+universität, uni, universitat, universitaet
+universitätsbibliothek, universitatsbibliothek, universitaetsbibliothek
+volksschule, vs
+vordere, vd, vord
+warenhäuser, warenhauser, warenhaeuser
+wasserfall, wsf, wssf
+wiese, ws
+wirtshaus, wh
