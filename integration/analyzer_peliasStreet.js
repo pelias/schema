@@ -1,9 +1,5 @@
 // validate analyzer is behaving as expected
-
-var tape = require('tape'),
-    elastictest = require('elastictest'),
-    schema = require('../schema'),
-    punctuation = require('../punctuation');
+const elastictest = require('elastictest')
 
 module.exports.tests = {};
 
