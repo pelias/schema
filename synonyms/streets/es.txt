@@ -15,7 +15,7 @@ barriada, barda
 boulevard, blvd, bvd
 brazal, brzal
 bulevar, bulev, blev, blv, bv, bl
-calle, c, cl, cll, ca, call
+calle, cl, cll, ca, call
 calleja, cllja
 callejón, callejon, callej, cjón, cjon, cllon, cllón, cj
 callejuela, cjla
@@ -48,7 +48,7 @@ explanada, expla
 extensión, ext, extension
 extramuros, extrm
 galería, galeria, gale
-glorieta, gta, g
+glorieta, gta
 hacienda, hda
 ladera, ldera
 laderas, lderas
@@ -63,7 +63,7 @@ particular, parti
 partida, ptda
 pasadizo, pzo
 pasaje, psaje, psj
-paseo, pº, p°, po, pso, pseo, pas, ps, p
+paseo, pº, p°, po, pso, pseo, pas, ps
 pasillo, psllo
 peatonal, peat
 periferico, perif
@@ -93,5 +93,4 @@ trasera, tras
 travesía, travesia, trva, trvsía, trvsia
 vereda, vreda, ver
 viaducto, vcto, vd
-via, v
 vista, vst, vsta, vist

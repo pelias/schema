@@ -105,7 +105,6 @@ roquet, roqt
 rotonde, rtd, rtnd, rtde, rtnde
 route, rt, rte
 routes, rts, rtes
-rue, r
 ruelle, rle
 ruelles, rles
 rues, rs

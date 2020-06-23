@@ -1,18 +1,14 @@
-allee, a, al
+allee, al
 bahnhof, bhf, bf
 boulevard, bd
 brücke, br, brucke, bruecke
 bühl, buhl, buehl
 chaussee, ch
-damm, d
 forsthaus, fh
-gasse, g
 graben, gr
 großser, grosser
-große, grosse, gr, g
+große, grosse, gr
 großes, grosses
-hof, h
-kamp, k
 obere, ob
 oberer, ob
 platz, pl
@@ -21,6 +17,4 @@ rundwanderweg, rww
 siedlung, sdlg
 stiege, stg
 straße, str, strasse
-untere, u
-weg, w
 wiese, ws
