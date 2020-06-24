@@ -33,11 +33,9 @@ function generate(){
           "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
             "trim",
-            "synonyms/custom_admin",
-            "synonyms/personal_titles",
-            "synonyms/place_names",
+            "admin_synonyms_multiplexer",
+            "icu_folding",
             "word_delimiter",
             "unique_only_same_position",
             "notnull",
@@ -50,14 +48,9 @@ function generate(){
           "char_filter" : ["punctuation", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
             "trim",
-            "synonyms/custom_name",
-            "synonyms/personal_titles",
-            "synonyms/place_names",
-            "synonyms/streets",
-            "synonyms/directionals",
-            "synonyms/punctuation",
+            "name_synonyms_multiplexer",
+            "icu_folding",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "peliasOneEdgeGramFilter",
@@ -71,9 +64,9 @@ function generate(){
           "tokenizer": "peliasTokenizer",
           "char_filter": ["punctuation", "nfkc_normalizer"],
           "filter": [
-            "icu_folding",
             "lowercase",
             "trim",
+            "icu_folding",
             "remove_ordinals",
             "removeAllZeroNumericPrefix",
             "unique_only_same_position",
@@ -88,12 +81,7 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
-            "synonyms/punctuation",
-            "synonyms/custom_name",
-            "synonyms/personal_titles",
-            "synonyms/place_names",
-            "synonyms/streets",
-            "synonyms/directionals",
+            "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
             "unique_only_same_position",
@@ -104,11 +92,11 @@ function generate(){
         "peliasZip": {
           "type": "custom",
           "tokenizer":"keyword",
-          "char_filter" : ["alphanumeric"],
+          "char_filter": ["alphanumeric", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
             "trim",
+            "icu_folding",
             "unique_only_same_position",
             "notnull"
           ]
@@ -116,11 +104,11 @@ function generate(){
         "peliasUnit": {
           "type": "custom",
           "tokenizer":"keyword",
-          "char_filter" : ["alphanumeric"],
+          "char_filter": ["alphanumeric", "nfkc_normalizer"],
           "filter": [
             "lowercase",
-            "icu_folding",
             "trim",
+            "icu_folding",
             "unique_only_same_position",
             "notnull"
           ]
@@ -138,10 +126,7 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
-            "synonyms/custom_street",
-            "synonyms/personal_titles",
-            "synonyms/streets",
-            "synonyms/directionals",
+            "street_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
             "trim",
@@ -152,6 +137,37 @@ function generate(){
         }
       },
       "filter" : {
+        "street_synonyms_multiplexer": {
+          "type": "multiplexer",
+          "preserve_original": false,
+          "filters": [
+            "synonyms/custom_street",
+            "synonyms/personal_titles",
+            "synonyms/streets",
+            "synonyms/directionals"
+          ]
+        },
+        "name_synonyms_multiplexer": {
+          "type": "multiplexer",
+          "preserve_original": false,
+          "filters": [
+            "synonyms/custom_name",
+            "synonyms/personal_titles",
+            "synonyms/place_names",
+            "synonyms/streets",
+            "synonyms/directionals",
+            "synonyms/punctuation"
+          ]
+        },
+        "admin_synonyms_multiplexer": {
+          "type": "multiplexer",
+          "preserve_original": false,
+          "filters": [
+            "synonyms/custom_admin",
+            "synonyms/personal_titles",
+            "synonyms/place_names"
+          ]
+        },
         "notnull" :{
           "type" : "length",
           "min" : 1

@@ -50,6 +50,23 @@ module.exports.tests.analysis = function(test, common) {
 
 // -- analyzers --
 
+// this multiplexer filter provides all the synonyms used by the peliasAdmin analyzer
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
+  test('has admin_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.admin_synonyms_multiplexer, 'object', 'there is a admin_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.admin_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_admin',
+      'synonyms/personal_titles',
+      'synonyms/place_names'
+    ]);
+    t.end();
+  });
+};
+
 module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   test('has pelias admin analyzer', function(t) {
     var s = settings();
@@ -57,7 +74,42 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasAdmin token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasAdmin;
+    t.deepEqual(analyzer.filter, [
+      "lowercase",
+      "trim",
+      "admin_synonyms_multiplexer",
+      "icu_folding",
+      "word_delimiter",
+      "unique_only_same_position",
+      "notnull",
+      "flatten_graph"
+    ]);
+    t.end();
+  });
+};
+
+// this multiplexer filter provides all the synonyms used by the peliasPhrase and peliasIndexOneEdgeGram analyzers
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
+  test('has name_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.name_synonyms_multiplexer, 'object', 'there is a name_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.name_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_name',
+      'synonyms/personal_titles',
+      'synonyms/place_names',
+      'synonyms/streets',
+      'synonyms/directionals',
+      'synonyms/punctuation'
+    ]);
     t.end();
   });
 };
@@ -77,14 +129,9 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "icu_folding",
       "trim",
-      "synonyms/custom_name",
-      "synonyms/personal_titles",
-      "synonyms/place_names",
-      "synonyms/streets",
-      "synonyms/directionals",
-      "synonyms/punctuation",
+      "name_synonyms_multiplexer",
+      "icu_folding",
       "remove_ordinals",
       "removeAllZeroNumericPrefix",
       "peliasOneEdgeGramFilter",
@@ -110,9 +157,9 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
   test('peliasQuery token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasQuery;
     t.deepEqual(analyzer.filter, [
-      'icu_folding',
       'lowercase',
       'trim',
+      'icu_folding',
       'remove_ordinals',
       'removeAllZeroNumericPrefix',
       'unique_only_same_position',
@@ -139,12 +186,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
-      "synonyms/punctuation",
-      "synonyms/custom_name",
-      "synonyms/personal_titles",
-      "synonyms/place_names",
-      "synonyms/streets",
-      "synonyms/directionals",
+      "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
       "unique_only_same_position",
@@ -162,7 +204,7 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasZip;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["alphanumeric"], 'alphanumeric filter specified');
+    t.deepEqual(analyzer.char_filter, ['alphanumeric', 'nfkc_normalizer'], 'alphanumeric filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -170,8 +212,8 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasZip;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "icu_folding",
       "trim",
+      "icu_folding",
       "unique_only_same_position",
       "notnull"
     ]);
@@ -186,7 +228,7 @@ module.exports.tests.peliasUnitAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasUnit;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["alphanumeric"], 'alphanumeric filter specified');
+    t.deepEqual(analyzer.char_filter, ['alphanumeric', 'nfkc_normalizer'], 'alphanumeric filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -194,8 +236,8 @@ module.exports.tests.peliasUnitAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasUnit;
     t.deepEqual( analyzer.filter, [
       "lowercase",
-      "icu_folding",
       "trim",
+      "icu_folding",
       "unique_only_same_position",
       "notnull"
     ]);
@@ -216,6 +258,24 @@ module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
   });
 };
 
+// this multiplexer filter provides all the synonyms used by the peliasStreet analyzer
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
+  test('has street_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.street_synonyms_multiplexer, 'object', 'there is a street_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.street_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_street',
+      'synonyms/personal_titles',
+      'synonyms/streets',
+      'synonyms/directionals'
+    ]);
+    t.end();
+  });
+};
+
 module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   test('has peliasStreet analyzer', function(t) {
     var s = settings();
@@ -223,7 +283,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
@@ -233,10 +293,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
-      "synonyms/custom_street",
-      "synonyms/personal_titles",
-      "synonyms/streets",
-      "synonyms/directionals",
+      "street_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
       "trim",
