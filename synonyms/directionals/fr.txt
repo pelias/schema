@@ -1,5 +1,5 @@
 central, ctrl
-centre, c, ctre, cntre
+centre, ctre, cntre
 est, e
 nord, n
 ouest, o

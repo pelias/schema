@@ -1,6 +1,6 @@
-center, c, ctr
-central, c, cn, ctrl, cntrl
-centre, c, ctr
+center, ctr
+central, cn, ctrl, cntrl
+centre, ctr
 east, e
 eastern, eastrn, estrn, estn
 lower, lowr, lwr

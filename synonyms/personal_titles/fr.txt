@@ -26,7 +26,7 @@ marquis, mis
 marquise, mise
 messieurs, mm, mrs
 monseigneur, mgr
-monsieur, m, mr
+monsieur, mr
 père, pere
 professeur, prof, pr
 professeure, profe, pre
