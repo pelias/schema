@@ -70,10 +70,19 @@ module.exports.tests.address_analysis = function(test, common) {
   });
 
   // $street analysis is discussed in: https://github.com/pelias/schema/pull/77
+  // and https://github.com/pelias/api/pull/1444
   test('street', function(t) {
     t.equal(prop.street.type, 'text');
     t.equal(prop.street.analyzer, 'peliasStreet');
-    t.equal(prop.street.search_analyzer, 'peliasStreet');
+    t.equal(prop.street.search_analyzer, 'peliasQuery');
+    t.end();
+  });
+
+  // $cross_street analysis
+  test('cross_street', function (t) {
+    t.equal(prop.cross_street.type, 'text');
+    t.equal(prop.cross_street.analyzer, 'peliasStreet');
+    t.equal(prop.cross_street.search_analyzer, 'peliasQuery');
     t.end();
   });
 

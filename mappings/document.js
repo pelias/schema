@@ -44,13 +44,13 @@ var schema = {
         street: {
           type: 'text',
           analyzer: 'peliasStreet',
-          search_analyzer: 'peliasStreet',
+          search_analyzer: 'peliasQuery',
           similarity: 'peliasDefaultSimilarity'
         },
         cross_street: {
           type: 'text',
           analyzer: 'peliasStreet',
-          search_analyzer: 'peliasStreet',
+          search_analyzer: 'peliasQuery',
           similarity: 'peliasDefaultSimilarity'
         },
         zip: {
