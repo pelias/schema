@@ -1,0 +1,35 @@
+colonel, col
+commander, cmdr
+corporal, cpl
+captain, capt, cpt
+czar, tsar
+doctor, dr, doc
+doctors, drs, docs
+brother, br
+brothers, bros
+father, fr
+sister, sr
+general, gen
+honorable, honourable, hon
+king, kg
+major, maj
+mr, mister
+mrs, misses
+ms, miss
+officer, ofcr
+president, pres
+professor, prof
+professors, profs
+reverend, rev
+saint, st
+saints, ss
+sainte, ste
+santa, sta
+sargeant, sgt
+secretary, sec
+representative, rep
+representatives, reps
+senator, sen
+senators, sens
+junior, jr, jnr
+senior, sr, snr

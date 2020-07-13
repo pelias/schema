@@ -40,7 +40,8 @@ function linter(synonyms) {
 
       letterCasing(line, logprefix, tokens);
       tokensSanityCheck(line, logprefix, tokens);
-      // multiWordCheck(line, logprefix, tokens);
+      multiWordCheck(line, logprefix, tokens);
+      // tokenLengthCheck(line, logprefix, tokens);
     })
   })
 }
@@ -65,10 +66,18 @@ function tokensSanityCheck(line, logprefix, tokens) {
   }
 }
 
-function multiWordCheck(line, tokens) {
+function multiWordCheck(line, logprefix, tokens) {
   _.each(tokens, token => {
     if (/\s/.test(token)){
-      logger.warn(`multi word synonyms may cause issues with phrase queries:`, token);
+      logger.warn(`${logprefix} multi word synonyms may cause issues with phrase queries:`, token);
+    }
+  });
+}
+
+function tokenLengthCheck(line, logprefix, tokens) {
+  _.each(tokens, token => {
+    if (token.length <= 1) {
+      logger.warn(`${logprefix} short token:`, token);
     }
   });
 }

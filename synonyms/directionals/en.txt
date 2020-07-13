@@ -1,0 +1,20 @@
+center, ctr
+central, cn, ctrl, cntrl
+centre, ctr
+east, e
+eastern, eastrn, estrn, estn
+lower, lowr, lwr
+middle, mdl, midle, mddl
+north, n, nrt, nrth, nth, norh, nort, no
+northeast, northe, neast, ne
+northeastern, northeastrn, northestrn, northestn, neastern
+northwest, northw, northwst, nwest, nw
+northwestern, northwestrn, northwstrn, northwstn
+south, s, so, sth
+southeast, southe, seast, se
+southeastern, southeastrn, southestrn, southestn, seastern
+southwest, southw, southwst, swest, sw
+southwestern, southwestrn, southwstrn, southwstn, swestern
+upper, uppr, upr, up
+west, w, wst
+western, westrn, wstrn, wstn

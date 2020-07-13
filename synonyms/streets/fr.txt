@@ -1,0 +1,129 @@
+allée, allee, all
+allées, alls, allees
+arcade, arc
+autoroute, aut
+avenue, av, ave, aven, avenu, avn, avnu, avnue
+avenues, avs, aves, avens, avenus, avns, avnus, avnues
+barriêre, barriere, bre
+barriêres, barrieres, bres
+berge, ber
+berges, bers
+boucle, bcle
+boulevard, bd, bde, blv, blvd, blvde, blvrd, boulavard, boul, boulv, bvd, boulevarde, bld
+butte, but
+côte, cote
+côteau, coteau
+campagne, cgne
+carreau, cau, carru
+carrefour, carf, carref
+carrière, carriere, care
+carrières, carrieres, cares
+carré, carre, carr, car
+cavée, cavee, cav
+cercle, cercl
+chalet, chl
+chaussée, chaussee, chs, chee
+chaussées, chaussees, chss, chees
+chemin, ch, che
+cheminement, chem
+chemins, ches
+château, chateau, cht
+cloître, cloitre, cloi
+contour, ctr
+corniche, cor
+corniches, cors
+cours, crs
+degré, degre, deg
+degrés, degres, degs
+descente, dsg
+descentes, dsgs
+digue, dig
+digues, digs
+échangeur, éch
+écluse, ecluse, ecl, écl
+écluses, ecluses, ecls, écls
+enclave, env
+enclos, enc
+espace, espa
+esplanade, esp
+esplanades, esps
+fosse, fos
+fosses, fos, foss
+foyer, foyr
+galerie, gal
+galeries, gals
+garenne, garn
+gbd, grbd, grdbd, gdbd
+gch, grch, gdch, grdch
+gden, gdens
+grandrue, gr, grdr, gdr
+gdsen, gdsens
+grille, gri
+grimpette, grim
+hameau, ham
+hchs, hschs
+impasse, imp
+impasses, imps
+jetée, jetee, jte
+jetées, jetees, jtes
+levée, levee, leve, lve
+montée, montee, mte
+montées, montees, mtes
+métro, metro, mét, met
+parc, prc
+parcs, prcs
+parvis, prv
+passage, pas, psg
+passe, pass
+passerelle, ple
+passerelles, ples
+patio, pat
+périphérique, peripherique, peri, péri
+place, pl
+placis, plci
+plage, plag
+plages, plags
+plaine, pln
+plateau, plt, plat
+plateaux, pltx, platx
+pointe, pte, pnte
+portique, porq, portq
+portiques, porqs, portqs
+pourtour, pour
+presquîle, presquile, prq, prql
+promenade, prom
+peripherique, peri
+quai, au
+raccourci, rac, racc
+raidillon, raid
+rampe, rpe, rmpe, rmp
+rempart, rem, remp
+rocade, rocd
+ronde, rnde
+rdpt, rpt
+roquet, roqt
+rotonde, rtd, rtnd, rtde, rtnde
+route, rt, rte
+routes, rts, rtes
+ruelle, rle
+ruelles, rles
+rues, rs
+residence, res
+residences, ress
+sente, sen
+sentes, sens
+sentier, sent
+sentiers, sents
+square, sq
+terrain, terr, trn
+terrasse, tsse
+terrasses, tsses
+terte, trt
+tertes, trts
+traverse, tra, trvs, trvrs
+vallon, val
+valée, vallee, val
+venelle, ven
+venelles, vens
+voie, voi
+voies, voiss

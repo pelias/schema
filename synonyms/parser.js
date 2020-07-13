@@ -1,4 +1,4 @@
-var fs = require('fs');
+const fs = require('fs');
 
 // https://www.elastic.co/guide/en/elasticsearch/reference/2.4/analysis-synonym-tokenfilter.html
 

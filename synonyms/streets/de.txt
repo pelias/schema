@@ -1,0 +1,20 @@
+allee, al
+bahnhof, bhf, bf
+boulevard, bd
+brücke, br, brucke, bruecke
+bühl, buhl, buehl
+chaussee, ch
+forsthaus, fh
+graben, gr
+großser, grosser
+große, grosse, gr
+großes, grosses
+obere, ob
+oberer, ob
+platz, pl
+quelle, qu
+rundwanderweg, rww
+siedlung, sdlg
+stiege, stg
+straße, str, strasse
+wiese, ws

@@ -1,0 +1,195 @@
+# USPS C1 Street Suffix Abbreviations
+# https://pe.usps.com/text/pub28/28apc_002.htm
+# https://gist.github.com/mick-io/26db11e4c7f7aee6646b07d9f858eb9c
+
+aly, alley, allee, ally
+anx, anex, annex, annx
+arc, arcade
+ave, avenue, av, aven, avenu, avn, avnue
+byu, bayou, bayoo
+bch, beach
+bnd, bend
+blf, bluff, bluf
+blfs, bluffs
+btm, bottom, bot, bottm
+blvd, boulevard, boul, boulv
+br, branch, brnch
+brg, bridge, brdge
+brk, brook
+brks, brooks
+bg, burg
+bgs, burgs
+byp, bypass, bypa, bypas, byps
+cp, camp, cmp
+cyn, canyon, canyn, cnyn
+cpe, cape
+cswy, causeway, causwa
+ctr, center, cen, cent, centr, centre, cnter, cntr
+ctrs, centers
+cir, circle, circ, circl, crcl, crcle
+cirs, circles
+clf, cliff
+clfs, cliffs
+clb, club
+cmn, common
+cmns, commons
+cor, corner
+cors, corners
+crse, course
+ct, court
+cts, courts
+cv, cove
+cvs, coves
+crk, creek
+cres, crescent, crsent, crsnt
+crst, crest
+xing, crossing, crssng
+xrd, crossroad
+xrds, crossroads
+curv, curve
+dl, dale
+dm, dam
+dv, divide, div, dvd
+dr, drive, driv, drv
+drs, drives
+est, estate
+ests, estates
+expy, expressway, exp, expr, express, expw
+ext, extension, extn, extnsn
+exts, extensions
+fls, falls
+fry, ferry, frry
+fld, field
+flds, fields
+flt, flat
+flts, flats
+frd, ford
+frds, fords
+frst, forest, forests
+frg, forge, forg
+frgs, forges
+frk, fork
+frks, forks
+ft, fort, frt
+fwy, freeway, freewy, frway, frwy
+gdn, garden, gardn, grden, grdn
+gdns, gardens, grdns
+gtwy, gateway, gatewy, gatway, gtway
+gln, glen
+glns, glens
+grn, green
+grns, greens
+grv, grove, grov
+grvs, groves
+hbr, harbor, harb, harbr, hrbor
+hbrs, harbors
+hvn, haven
+hts, heights, ht
+hwy, highway, highwy, hiway, hiwy, hway
+hl, hill
+hls, hills
+holw, hollow, hllw, hollows, holws
+inlt, inlet
+is, island, islnd
+iss, islands, islnds
+isle, isles
+jct, junction, jction, jctn, junctn, juncton
+jcts, junctions, jctns
+ky, key
+kys, keys
+knl, knoll, knol
+knls, knolls
+lk, lake
+lks, lakes
+lndg, landing, lndng
+ln, lane
+lgt, light
+lgts, lights
+lf, loaf
+lck, lock
+lcks, locks
+ldg, lodge, ldge, lodg
+loop, loops
+mnr, manor
+mnrs, manors
+mdw, meadow
+mdws, meadows, mdw, medows
+ml, mill
+mls, mills
+msn, mission, missn, mssn
+mtwy, motorway
+mt, mount, mnt
+mtn, mountain, mntain, mntn, mountin, mtin
+mtns, mountains, mntns
+nck, neck
+orch, orchard, orchrd
+oval, ovl
+opas, overpass
+park, parks
+pkwy, parkway, parkwy, pkway, pky, parkways, pkwys
+psge, passage
+path, paths
+pike, pikes
+pne, pine
+pnes, pines
+pl, place
+pln, plain
+plns, plains
+plz, plaza, plza
+pt, point
+pts, points
+prt, port
+prts, ports
+pr, prairie, prr
+radl, radial, rad, radiel
+rnch, ranch, ranches, rnchs
+rpd, rapid
+rpds, rapids
+rst, rest
+rdg, ridge, rdge
+rdgs, ridges
+riv, river, rvr, rivr
+rd, road
+rds, roads
+rte, route
+shl, shoal
+shls, shoals
+shr, shore, shoar
+shrs, shores, shoars
+skwy, skyway
+spg, spring, spng, sprng
+spgs, springs, spngs, sprngs
+spur, spurs
+sq, square, sqr, sqre, squ
+sqs, squares, sqrs
+sta, station, statn, stn
+stra, stravenue, strav, straven, stravn, strvn, strvnue
+strm, stream, streme
+st, street, strt, str
+sts, streets
+smt, summit, sumit, sumitt
+ter, terrace, terr
+trwy, throughway
+trce, trace, traces
+trak, track, tracks, trk, trks
+trfy, trafficway
+trl, trail, trails, trls
+trlr, trailer, trlrs
+tunl, tunnel, tunel, tunls, tunnels, tunnl
+tpke, turnpike, trnpk, turnpk
+upas, underpass
+un, union
+uns, unions
+vly, valley, vally, vlly
+vlys, valleys
+via, viaduct, vdct, viadct
+vw, view
+vws, views
+vlg, village, vill, villag, villg, villiage
+vlgs, villages
+vl, ville
+vis, vista, vist, vst, vsta
+walk, walks
+way, wy
+wl, well
+wls, wells

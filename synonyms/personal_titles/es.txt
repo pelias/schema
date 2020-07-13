@@ -1,0 +1,105 @@
+abad, abd
+abogada, abga, abgda
+abogado, abg, abgdo
+administrador, admor, admr
+administradora, admora, admra
+agrimensor, agrim
+alcalde, alcde
+alférez, alf, alferez, alfz
+almirante, alm, almte, alte
+arquitecto, arq
+arquitecta, arqa
+arquitectors, arqs, arqos
+arzobispo, arz
+barón, baron, bar
+brigadier, brg, bg, brig
+caballero, cab
+cacique, cque
+capitán, cap, capt, ctn, cptn, capitan
+cardenal, card, cnal
+clérigo, clg, clerigo
+comandante, cmdt, cmte, comte, cte
+comisario, cmro
+conde, cde
+condesa, cdesa
+consejal, cjal
+consejero, cons, consejo
+contralmirante, contralmte
+coronel, cnel, col, crn
+diacono, diac
+diacona, diaca
+diputado, dip
+director, dir
+directora, dira
+doctor, dr
+doctora, dra
+dragoneante, dg
+duque, dq
+duquesa, dqsa, dqa
+embajador, emb
+enfermera, enf, enfa
+excelencia, exca
+excelentisima, excma
+excelentisimo, excmo
+fray, fr
+gendarme, gdme
+general, gral, genl, gnal, gn
+gobernadora, gdora, goba
+gobernador, gdor, gob
+hermana, hna
+hermanas, hnas
+hermano, hno
+hermanos, hnos
+infanta, infa, infta
+infante, inf, infte
+ingeniera, inga
+ingeniero, ing, ingo
+inspector, insp
+intendente, int
+jefe, jf
+juez, jz
+licenciada, lda, lica
+licenciado, ldo, lic, lico
+locutor, loc
+maestro, mstro, mtro
+mariscal, mscal
+marques, mq, marqs
+marquesa, mqa, marqsa
+mayor, my, may
+ministerio, min
+ministro, mtro
+monseñor, monsenor, mons, msnr
+notario, not
+obispo, ob
+presidenta, pdta, presa, presida, pta
+presidente, pdte, pres, presid, pte
+príncipe, principe
+principal, pral
+procurador, proc
+profesor, prof, profr
+profesora, profª, profa, profrª, profra
+reina, ra
+reverendo, rvdo, rdo, rvd, rev
+reverendo, rvdo, rdo, rvd, rev
+reverendisima, rma, rvdma
+reverendisimo, rmo, rvdmo
+san, s
+santa, stª, sta
+sant, st
+santo, stº, st°, sto
+sargento, sarg, sgto, sargto
+secretario, secreto, secto
+secretaria, secreta, secta
+senador, sen
+señor, sr, senor
+señora, sª, srª, sra, senora
+señores, srs, sres, senores
+señorita, srta, senorita
+serenisima, serma
+serenisimo, sermo
+soldado, sold
+subteniente, subte, stn
+teniente, tn, tte
+vizconde, vde
+vizcondesa, vdesa
+junior, iunior, jr

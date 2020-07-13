@@ -1,0 +1,76 @@
+abbaye, abe
+auto-école, autoécole, autoecole
+aéroport, aeroport
+bastide, bstd
+baston, bast
+bibliothèque, bibliotheque
+bourg, brg
+béguinage, beguinage, begi
+béguinages, beguinages, begis
+café, cafe
+camping, cpg
+castel, cst
+chapelle, chp
+charmille, chi
+château, chateau
+cimetière, cimetiere
+cinéma, cinema
+colline, coli
+collines, colis
+cottage, cott
+cottages, cott, cotts
+crématorium, crematorium
+darse, dars
+département, dept, departement
+enceinte, en
+escaliers, escs
+ferme, frm
+fermes, frms
+fleuve, fl
+fontaine, fon
+fort, ft
+forum, form
+grand, gd, gr
+halle, hle
+halles, hles, hls
+hippodrome, hip
+hôpital, hopital
+hôtel, hotel
+jardin, jard, jrd
+jardins, jards, jrds
+manoir, man
+marché, marche, mar
+marchés, marches, mars
+mont, mt, mnt
+mont, mt, mnt, montagne
+moulin, mln
+moulins, mlns
+musée, musee, mus
+médecin, medecin
+mémorial, memorial
+palais, pal
+parc, prc
+parking, pkg
+pavillon, pav
+pavillons, pavs
+petite, pt
+porche, pch
+poterne, pot, potrn
+préscolaire, prescolaire
+péristyle, peristyle, psty
+rivière, riviere, riv
+résidence, rés, residence, res
+résidences, residences
+stade, stde
+station, sta
+supermarché, supermarche
+théâtre, theatre
+université, universite, univ, uni
+villa, vla
+village, vge
+villages, vges
+villas, vlas
+vétérinaire, veterinaire
+école, ecole
+église, eglise, egl, égl
+étang, etang
