@@ -1,0 +1,96 @@
+acceso, acces
+alameda, alam
+alquería, alqueria, alque
+andador, andad
+angosta, angta
+apeadero, apdro
+autopista, auto, autop, aut, ap
+autovía, autovia, autov
+avenida, av, avd, avda
+bajada, bjada
+banda, bda
+barranco, branc
+barranquillo, bqllo
+barriada, barda
+boulevard, blvd, bvd
+brazal, brzal
+bulevar, bulev, blev, blv, bv, bl
+calle, cl, cll, ca, call
+calleja, cllja
+callejón, callejon, callej, cjón, cjon, cllon, cllón, cj
+callejuela, cjla
+callizo, cllzo
+calzada, czada, calz
+camino, cno, cmo, cmno, cm
+caminito, cmt
+camping, campg
+cantera, cantr
+cantón, canton, cant
+carrera, cra, carra, carr, cr, kra, kr
+carretera, ctra, cr, ct
+carreterín, carreterin, ctrin
+carretil, crtil
+carril, crril
+cerrada, cda, cer
+cinturón, cinturon, cint
+circular, cq
+circuito, cto
+circunvalar, cv, crv, cirv
+circunvalación, circunvalacion, ccvcn
+corredor, crrdo
+costanilla, cstan
+cuesta, custa
+diagonal, diag, dg
+diseminado, disem
+espalda, eslda
+estrada, estda
+explanada, expla
+extensión, ext, extension
+extramuros, extrm
+galería, galeria, gale
+glorieta, gta
+hacienda, hda
+ladera, ldera
+laderas, lderas
+llanura, llnra
+malecón, malecon, malec
+mirador, mrdor
+muelle, meull
+pantano, pant
+paraje, praje
+parque, pque, parq, pq, pqe
+particular, parti
+partida, ptda
+pasadizo, pzo
+pasaje, psaje, psj
+paseo, pº, p°, po, pso, pseo, pas, ps
+pasillo, psllo
+peatonal, peat
+periferico, perif
+plaza, pl, plza, pza, pz
+plazoleta, pzta, plzta, plta
+plazuela, plzla
+poblado, pbdo
+prolongación, prolongacion, prol
+puebla, pbla
+pueblo, pblo
+puente, pnte
+rambla, rbla
+rampla, rampa, rpla
+retorno, ret, rt
+rincón, rincon, rcon, rin, rncn, rncon
+rinconada, rcda, rcnda
+ronda, rda
+rotonda, rtda
+ruta, rta
+sector, sect
+sendera, sedra
+sendero, send, sedro
+subida, sbida
+tránsito, transito, trans
+transversal, trval, trvsal, tv, tr
+trasera, tras
+travesía, travesia, trva, trvsía, trvsia
+vereda, vreda, ver
+viaducto, vcto, vd
+vista, vst, vsta, vist

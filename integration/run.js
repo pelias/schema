@@ -57,6 +57,12 @@ const common = {
     }
     return positions;
   },
+  // the 'analyze' assertion indexes $text using the analyzer specified
+  // in the $analyzer var and then checks that all of the tokens in
+  // $expected are contained within the index.
+  // note: previously it asserted that $expected was deeply equal to the
+  // tokens in the index, now it only asserts that they are all intersect, the
+  // index may however contain additional tokens not specified in $expected.
   analyze: (suite, t, analyzer, comment, text, expected) => {
     suite.assert(done => {
       suite.client.indices.analyze({
@@ -67,12 +73,25 @@ const common = {
         }
       }, (err, res) => {
         if (err) { console.error(err); }
-        t.deepEqual(common.bucketTokens(res.tokens), common.bucketTokens(expected), comment);
+        t.deepEqual({}, removeIndexTokensFromExpectedTokens(
+          common.bucketTokens(res.tokens),
+          common.bucketTokens(expected)
+        ), comment);
         done();
       });
     });
   }
 };
+
+function removeIndexTokensFromExpectedTokens(index, expected){
+  for (var pos in index) {
+    if (!_.isArray(expected[pos])) { continue; }
+    expected[pos] = expected[pos].filter(token => !index[pos].includes(token));
+    if (_.isEmpty(expected[pos])) { delete expected[pos]; }
+  }
+
+  return expected;
+}
 
 var tests = [
   require('./validate.js'),

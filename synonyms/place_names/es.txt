@@ -1,0 +1,58 @@
+abril, abr, abl
+agosto, ag, agto, agt
+altura, alt
+alturas, alts
+arboleda, arb
+arrabal, arral
+bosque, bsq
+brigada, brig
+cabo, cbo
+campo, cpo, cmpo
+campos, cpos, cmpos
+canal, cnl
+centro, cntro, ctro
+cerro, crro
+corral, crral
+corralillo, crrlo
+diseminado, disem
+enero, en, eno, ene
+diciembre, dic, dicbre, dice, dbre, 10bre, xbre
+febrero, febo, febro, febr, feb
+gobierno, gob, gobno
+grande, gr
+guerra, ga
+independencia, indep
+infantería, infanteria, infa, ynfa, ynfanta
+jardín, jdin, jard, jardin
+jardínes, jdins, jards, jardines
+junio, jun, jn
+julio, jul, jl
+lago, lg
+lagos, lgs
+laguna, lgna
+llanura, llnra
+llanuras, llnras
+marzo, mzo, mar
+mayo, my, may
+militar, milr
+monte, mt, mte, mnte
+montes, mts, mtes, mntes, mnts
+nacional, nal, nacl
+noviembre, nbre, nvre, nove, novre, novbre, 9bre
+octubre, oct, octbre, octe, 8bre
+portillo, ptilo, ptllo
+prado, prdo
+primeros, pros
+privada, priv
+punta, pnta
+quebrada, qbda
+real, rl
+republica, rep
+revolucion, rev
+ribera, ribr
+río, rio
+septiembre, setbre, sepe, sepbre, 7bre, 7re, sep, set
+sierra, srra
+valle, vlle
+volcan, vlcn
+voluntarios, voluntos

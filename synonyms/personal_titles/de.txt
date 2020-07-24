@@ -1,0 +1,12 @@
+doktor, dr
+bürgermeister, buergermeister, burgermeister, bgm
+direktor, dir
+frau, fr
+fraulein, fri
+heilige, hl
+herr, hr
+herrn, hrn
+ingnieur, ing
+oberburgermeister, ob, obgm
+professor, prof
+sankt, st, skt

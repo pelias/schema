@@ -1,15 +1,30 @@
->This repository is part of the [Pelias](https://github.com/pelias/pelias)
->project. Pelias is an open-source, open-data geocoder originally sponsored by
->[Mapzen](https://www.mapzen.com/). Our official user documentation is
->[here](https://github.com/pelias/documentation).
+<p align="center">
+  <img height="100" src="https://raw.githubusercontent.com/pelias/design/master/logo/pelias_github/Github_markdown_hero.png">
+</p>
+<h3 align="center">A modular, open-source search engine for our world.</h3>
+<p align="center">Pelias is a geocoder powered completely by open data, available freely to everyone.</p>
+<p align="center">
+<a href="https://en.wikipedia.org/wiki/MIT_License"><img src="https://img.shields.io/github/license/pelias/api?style=flat&color=orange" /></a>
+<a href="https://hub.docker.com/u/pelias"><img src="https://img.shields.io/docker/pulls/pelias/api?style=flat&color=informational" /></a>
+<a href="https://gitter.im/pelias/pelias"><img src="https://img.shields.io/gitter/room/pelias/pelias?style=flat&color=yellow" /></a>
+</p>
+<p align="center">
+	<a href="https://github.com/pelias/docker">Local Installation</a> ·
+        <a href="https://geocode.earth">Cloud Webservice</a> ·
+	<a href="https://github.com/pelias/documentation">Documentation</a> ·
+	<a href="https://gitter.im/pelias/pelias">Community Chat</a>
+</p>
+<details open>
+<summary>What is Pelias?</summary>
+<br />
+Pelias is a search engine for places worldwide, powered by open data. It turns addresses and place names into geographic coordinates, and turns geographic coordinates into places and addresses. With Pelias, you’re able to turn your users’ place searches into actionable geodata and transform your geodata into real places.
+<br /><br />
+We think open data, open source, and open strategy win over proprietary solutions at any part of the stack and we want to ensure the services we offer are in line with that vision. We believe that an open geocoder improves over the long-term only if the community can incorporate truly representative local knowledge.
+</details>
 
 # Pelias Elasticsearch Schema Definition
 
 This package defines the Elasticsearch schema used by Pelias. Pelias requires quite a few settings for performance and accuracy. This repository contains those settings as well as useful tools to ensure they are applied correctly.
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/pelias/schema.svg)](https://greenkeeper.io/)
-[![NPM](https://nodei.co/npm/pelias-schema.png?downloads=true&stars=true)](https://nodei.co/npm/pelias-schema)
-[![Build Status](https://travis-ci.org/pelias/schema.png?branch=master)](https://travis-ci.org/pelias/schema)
 
 ## Requirements
 
@@ -33,16 +48,8 @@ $ npm install pelias-schema
 #### drop index
 
 ```bash
-node scripts/drop_index.js;                 # drop everything
-node scripts/drop_index.js --force-yes;     # skip warning prompt
-```
-
-#### reset a single type
-
-This is useful when you want to reset a single `type` without wiping the rest of your `index`.
-
-```bash
-node scripts/reset_type.js mytype;          # reset a single type
+node scripts/drop_index.js                 # drop everything
+node scripts/drop_index.js --force-yes     # skip warning prompt
 ```
 
 #### update settings on an existing index
@@ -52,7 +59,7 @@ This is useful when you want to add a new analyser or filter to an existing inde
 **note:** it is impossible to change the `number_of_shards` for an existing index, this will require a full re-index.
 
 ```bash
-node scripts/update_settings.js;          # update index settings
+node scripts/update_settings.js          # update index settings
 ```
 
 #### output schema file
@@ -60,8 +67,7 @@ node scripts/update_settings.js;          # update index settings
 Use this script to pretty-print the whole schema file or a single mapping to stdout.
 
 ```bash
-node scripts/output_mapping.js mytype;          # single type mapping
-node scripts/output_mapping.js;                 # whole schema file
+node scripts/output_mapping.js
 ```
 
 #### check all mandatory elasticsearch plugins are correctly installed
@@ -69,10 +75,22 @@ node scripts/output_mapping.js;                 # whole schema file
 Print a list of which plugins are installed and how to install any that are missing.
 
 ```bash
-node scripts/check_plugins.js;
+node scripts/check_plugins.js
 ```
 
-#### user customizable synonyms files
+## Configuration
+
+### Settings from `pelias.json`
+
+Like the rest of Pelias, the Pelias schema can be configured through a `pelias.json` file read by [pelias-config](https://github.com/pelias/config).
+
+#### `schema.indexName`
+
+This allows configuring the name of the index created in Elasticsearch. The default is `pelias`.
+
+**Note:** All Pelias importers also use this configuration value to determine what index to _write_ to. Additionally, the Pelias API uses the related [`api.indexName`](https://github.com/pelias/api#configuration-via-pelias-config) parameter to determine where to _read_ from.
+
+### user customizable synonyms files
 
 You may provide your own custom synonyms by editing files in the `./synonyms/` directory.
 

@@ -16,7 +16,7 @@
 # Swedish: och
 
 # English
-&,and
+&, and
 
 # German
-&,und
+&, und
