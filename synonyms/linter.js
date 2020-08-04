@@ -2,6 +2,11 @@ const _ = require('lodash');
 const logger = require('pelias-logger').get('schema-synonyms');
 const punctuation = require('../punctuation');
 
+// same tokenizer regex as the schema
+const TOKENIZER_REGEX = new RegExp('[\\s,/\\\\-]+');
+const DEMIMETER_REGEX = /,|=>/g
+const REPLACEMENT_REGEX = /=>/
+
 /**
  * The synonyms linter attempts to warn the user when making
  * common mistakes with synonyms.
@@ -22,7 +27,7 @@ function linter(synonyms) {
       logger.debug(`[line] ${line}`);
 
       // split the lines by delimeter
-      let tokens = line.split(/,|=>/g).map(t => t.trim());
+      let tokens = line.split(DEMIMETER_REGEX).map(t => t.trim());
 
       // strip blacklisted punctuation from synonyms
       // the 'punctuation.blacklist' contains a list of characters which are
@@ -69,14 +74,14 @@ function tokensSanityCheck(line, logprefix, tokens) {
 
 function multiWordCheck(line, logprefix, tokens) {
   _.each(tokens, token => {
-    if (/\s/.test(token)){
+    if (TOKENIZER_REGEX.test(token)){
       logger.warn(`${logprefix} multi word synonyms may cause issues with phrase queries:`, token);
     }
   });
 }
 
 function tokenReplacementCheck(line, logprefix) {
-  if (/=>/.test(line)) {
+  if (REPLACEMENT_REGEX.test(line)) {
     logger.warn(`${logprefix} synonym rule '=>' is not supported, use ',' instead`);
   }
 }

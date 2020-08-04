@@ -235,8 +235,11 @@ function generate(){
   // containing an empty space to avoid elasticsearch schema parsing errors.
   _.each(synonyms, (entries, name) => {
 
-    const singleWordEntries = entries.filter(e => !/\s/.test(e))
-    const multiWordEntries = entries.filter(e => /\s/.test(e))
+    // same tokenizer regex as above except without comma
+    // (which is a delimeter within the synonym files)
+    const tokenizerRegex = new RegExp('[\\s/\\\\-]+');
+    const singleWordEntries = entries.filter(e => !tokenizerRegex.test(e))
+    const multiWordEntries = entries.filter(e => tokenizerRegex.test(e))
 
     // generate a filter containing single-word synonyms
     settings.analysis.filter[`synonyms/${name}`] = {

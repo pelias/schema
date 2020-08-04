@@ -1,5 +1,5 @@
 abbaye, abe
-auto-école, autoécole, autoecole
+autoécole, autoecole
 aéroport, aeroport
 bastide, bstd
 baston, bast
