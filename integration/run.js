@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const tape = require('tape');
-const config = require('pelias-config').generate();
+const _ = require('lodash')
+const tape = require('tape')
+const config = require('pelias-config').generate()
 
-const schema = require('../schema');
+const schema = require('../schema')
 
 const common = {
   clientOpts: {
@@ -22,40 +22,40 @@ const common = {
         _id: h._id,
         _score: h._score,
         name: h._source.name
-      };
-    });
+      }
+    })
   },
   summary: (res) => {
-    common.summaryMap( res )
-          .forEach( console.dir );
+    common.summaryMap(res)
+      .forEach(console.dir)
   },
   bucketTokens: tokens => {
-    const positions = {};
+    const positions = {}
     tokens.forEach((t, i) => {
       // format returned by elasticsearch
       if (_.isPlainObject(t)) {
-        const pos = '@pos' + t.position;
-        if (!positions[pos]) { positions[pos] = []; }
-        positions[pos].push(t.token);
-      }
+        const pos = '@pos' + t.position
+        if (!positions[pos]) { positions[pos] = [] }
+        positions[pos].push(t.token)
+
       // 'simple tokens' format
       // eg '1:foo'
-      else if (_.isString(t)) {
-        const match = t.match(/^(\d+):(.+)$/);
-        let pos = '@pos' + i;
+      } else if (_.isString(t)) {
+        const match = t.match(/^(\d+):(.+)$/)
+        let pos = '@pos' + i
         if (match) {
-          pos = '@pos' + match[1];
-          t = match[2];
+          pos = '@pos' + match[1]
+          t = match[2]
         }
-        if (!positions[pos]) { positions[pos] = []; }
-        positions[pos].push(t);
+        if (!positions[pos]) { positions[pos] = [] }
+        positions[pos].push(t)
       }
-    });
+    })
     // sort all the arrays so that order is irrelevant
-    for (var attr in positions){
-      positions[attr] = positions[attr].sort();
+    for (var attr in positions) {
+      positions[attr] = positions[attr].sort()
     }
-    return positions;
+    return positions
   },
   // the 'analyze' assertion indexes $text using the analyzer specified
   // in the $analyzer var and then checks that all of the tokens in
@@ -72,25 +72,25 @@ const common = {
           text: text.toString()
         }
       }, (err, res) => {
-        if (err) { console.error(err); }
+        if (err) { console.error(err) }
         t.deepEqual({}, removeIndexTokensFromExpectedTokens(
           common.bucketTokens(res.tokens),
           common.bucketTokens(expected)
-        ), comment);
-        done();
-      });
-    });
+        ), comment)
+        done()
+      })
+    })
   }
-};
+}
 
-function removeIndexTokensFromExpectedTokens(index, expected){
+function removeIndexTokensFromExpectedTokens (index, expected) {
   for (var pos in index) {
-    if (!_.isArray(expected[pos])) { continue; }
-    expected[pos] = expected[pos].filter(token => !index[pos].includes(token));
-    if (_.isEmpty(expected[pos])) { delete expected[pos]; }
+    if (!_.isArray(expected[pos])) { continue }
+    expected[pos] = expected[pos].filter(token => !index[pos].includes(token))
+    if (_.isEmpty(expected[pos])) { delete expected[pos] }
   }
 
-  return expected;
+  return expected
 }
 
 var tests = [
@@ -111,8 +111,8 @@ var tests = [
   require('./autocomplete_directional_synonym_expansion.js'),
   require('./autocomplete_abbreviated_street_names.js'),
   require('./multi_token_synonyms.js')
-];
+]
 
-tests.map(function(t) {
-  t.all(tape, common);
-});
+tests.map(function (t) {
+  t.all(tape, common)
+})

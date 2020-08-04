@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require('lodash')
 
 /**
  * The way hits are defined in ES7 changed
@@ -9,12 +9,12 @@ const _ = require('lodash');
  * { value: 1, relation: 'eq' }
  */
 
- function helper(hits){
-   let totalHits = 0;
-   if (_.has(hits, 'total')) {
-     totalHits = _.isPlainObject(hits.total) ? hits.total.value : hits.total;
-   }
-   return totalHits;
- }
+function helper (hits) {
+  let totalHits = 0
+  if (_.has(hits, 'total')) {
+    totalHits = _.isPlainObject(hits.total) ? hits.total.value : hits.total
+  }
+  return totalHits
+}
 
- module.exports = helper;
+module.exports = helper

@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('@hapi/joi')
 
 // Schema Configuration
 // schema.indexName: populated by defaults if not overridden
@@ -9,13 +9,13 @@ const schema = Joi.object().required().keys({
     typeName: Joi.string().required()
   }),
   esclient: Joi.object().required()
-}).unknown(true);
+}).unknown(true)
 
 module.exports = {
-  validate: function validate(config) {
-    const validated = schema.validate(config);
+  validate: function validate (config) {
+    const validated = schema.validate(config)
     if (validated.error) {
-      throw new Error(validated.error.details[0].message);
+      throw new Error(validated.error.details[0].message)
     }
   }
-};
+}

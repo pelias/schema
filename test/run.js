@@ -1,12 +1,13 @@
-var tape = require('tape'),
-    diff = require('difflet')({ indent : 2, comment : true });
+var tape = require('tape')
+
+var diff = require('difflet')({ indent: 2, comment: true })
 
 var common = {
   // a visual deep diff rendered using console.error()
-  diff: function( actual, expected ){
-    console.error( diff.compare( actual, expected ) );
+  diff: function (actual, expected) {
+    console.error(diff.compare(actual, expected))
   }
-};
+}
 
 var tests = [
   require('./compile.js'),
@@ -17,9 +18,9 @@ var tests = [
   require('./partial-hash.js'),
   require('./settings.js'),
   require('./configValidation.js'),
-  require('./synonyms/parser.js'),
-];
+  require('./synonyms/parser.js')
+]
 
-tests.map(function(t) {
-  t.all(tape, common);
-});
+tests.map(function (t) {
+  t.all(tape, common)
+})

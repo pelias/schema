@@ -1,16 +1,16 @@
-const admin = require('./partial/admin');
-const postalcode = require('./partial/postalcode');
-const hash = require('./partial/hash');
-const multiplier = require('./partial/multiplier');
-const keyword = require('./partial/keyword');
-const keyword_with_doc_values = require('./partial/keyword_with_doc_values');
+const admin = require('./partial/admin')
+const postalcode = require('./partial/postalcode')
+const hash = require('./partial/hash')
+const multiplier = require('./partial/multiplier')
+const keyword = require('./partial/keyword')
+const keywordWithDocValues = require('./partial/keyword_with_doc_values')
 
 var schema = {
   properties: {
 
     // data partitioning
-    source: keyword_with_doc_values,
-    layer: keyword_with_doc_values,
+    source: keywordWithDocValues,
+    layer: keywordWithDocValues,
 
     // place name (ngram analysis)
     name: hash,
@@ -58,7 +58,7 @@ var schema = {
           analyzer: 'peliasZip',
           search_analyzer: 'peliasZip',
           similarity: 'peliasDefaultSimilarity'
-        },
+        }
       }
     },
 
@@ -168,8 +168,8 @@ var schema = {
         search_analyzer: 'peliasQuery',
         similarity: 'peliasDefaultSimilarity'
       }
-    },
-  },{
+    }
+  }, {
     phrase: {
       path_match: 'phrase.*',
       match_mapping_type: 'string',
@@ -180,7 +180,7 @@ var schema = {
         similarity: 'peliasDefaultSimilarity'
       }
     }
-  },{
+  }, {
     addendum: {
       path_match: 'addendum.*',
       match_mapping_type: 'string',
@@ -192,9 +192,9 @@ var schema = {
     }
   }],
   _source: {
-    excludes : ['shape','phrase']
+    excludes: ['shape', 'phrase']
   },
   dynamic: 'strict'
-};
+}
 
-module.exports = schema;
+module.exports = schema
