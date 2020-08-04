@@ -41,6 +41,7 @@ function linter(synonyms) {
       letterCasing(line, logprefix, tokens);
       tokensSanityCheck(line, logprefix, tokens);
       multiWordCheck(line, logprefix, tokens);
+      tokenReplacementCheck(line, logprefix);
       // tokenLengthCheck(line, logprefix, tokens);
     })
   })
@@ -72,6 +73,12 @@ function multiWordCheck(line, logprefix, tokens) {
       logger.warn(`${logprefix} multi word synonyms may cause issues with phrase queries:`, token);
     }
   });
+}
+
+function tokenReplacementCheck(line, logprefix) {
+  if (/=>/.test(line)) {
+    logger.warn(`${logprefix} synonym rule '=>' is not supported, use ',' instead`);
+  }
 }
 
 function tokenLengthCheck(line, logprefix, tokens) {

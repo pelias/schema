@@ -30,6 +30,7 @@
           "filter": [
             "lowercase",
             "trim",
+            "synonyms/custom_admin/multiword",
             "admin_synonyms_multiplexer",
             "icu_folding",
             "word_delimiter",
@@ -48,6 +49,7 @@
           "filter": [
             "lowercase",
             "trim",
+            "synonyms/custom_name/multiword",
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -86,6 +88,7 @@
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
+            "synonyms/custom_name/multiword",
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -142,6 +145,7 @@
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
+            "synonyms/custom_street/multiword",
             "street_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -218,13 +222,31 @@
             ""
           ]
         },
+        "synonyms/custom_admin/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
+          ]
+        },
         "synonyms/custom_name": {
           "type": "synonym",
           "synonyms": [
             ""
           ]
         },
+        "synonyms/custom_name/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
+          ]
+        },
         "synonyms/custom_street": {
+          "type": "synonym",
+          "synonyms": [
+            ""
+          ]
+        },
+        "synonyms/custom_street/multiword": {
           "type": "synonym",
           "synonyms": [
             ""
@@ -302,6 +324,12 @@
             "nord,n",
             "ouest,o",
             "sud,s"
+          ]
+        },
+        "synonyms/directionals/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
           ]
         },
         "synonyms/personal_titles": {
@@ -498,6 +526,12 @@
             "sainte,ste",
             "sergente,sgt",
             "veuve,vve"
+          ]
+        },
+        "synonyms/personal_titles/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
           ]
         },
         "synonyms/place_names": {
@@ -819,11 +853,23 @@
             "étang,etang"
           ]
         },
+        "synonyms/place_names/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
+          ]
+        },
         "synonyms/punctuation": {
           "type": "synonym",
           "synonyms": [
             "&,and",
             "&,und"
+          ]
+        },
+        "synonyms/punctuation/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
           ]
         },
         "synonyms/streets": {
@@ -1638,6 +1684,12 @@
             "way,wy",
             "wl,well",
             "wls,wells"
+          ]
+        },
+        "synonyms/streets/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
           ]
         }
       },
