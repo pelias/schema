@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const logger = require('pelias-logger').get('schema-synonyms');
-const punctuation = require('../punctuation');
+const _ = require('lodash')
+const logger = require('pelias-logger').get('schema-synonyms')
+const punctuation = require('../punctuation')
 
 /**
  * The synonyms linter attempts to warn the user when making
@@ -13,73 +13,73 @@ const punctuation = require('../punctuation');
  *  - Multi Word: Multi-word synonyms can generate unexpected token positions
  */
 
-function linter(synonyms) {
+function linter (synonyms) {
   _.each(synonyms, (lines, filename) => {
-    logger.debug(`[lint] ${filename}`);
+    logger.debug(`[lint] ${filename}`)
 
     lines.forEach((line, idx) => {
-      const logprefix = `[${filename} line ${idx+1}]`;
-      logger.debug(`[line] ${line}`);
+      const logprefix = `[${filename} line ${idx + 1}]`
+      logger.debug(`[line] ${line}`)
 
       // split the lines by delimeter
-      let tokens = line.split(/,|=>/g).map(t => t.trim());
+      let tokens = line.split(/,|=>/g).map(t => t.trim())
 
       // strip blacklisted punctuation from synonyms
       // the 'punctuation.blacklist' contains a list of characters which are
       // stripped from the tokens before indexing.
       tokens = _.map(tokens, token => {
         punctuation.blacklist.forEach(char => {
-          let replacement = token.split(char).join('');
-          if(replacement.length != token.length){
-            logger.warn(`${logprefix} punctunation removed: ${token} --> ${replacement}`);
+          let replacement = token.split(char).join('')
+          if (replacement.length !== token.length) {
+            logger.warn(`${logprefix} punctunation removed: ${token} --> ${replacement}`)
           }
-          token = replacement;
-        });
+          token = replacement
+        })
         return token
-      });
+      })
 
-      letterCasing(line, logprefix, tokens);
-      tokensSanityCheck(line, logprefix, tokens);
-      multiWordCheck(line, logprefix, tokens);
+      letterCasing(line, logprefix, tokens)
+      tokensSanityCheck(line, logprefix, tokens)
+      multiWordCheck(line, logprefix, tokens)
       // tokenLengthCheck(line, logprefix, tokens);
     })
   })
 }
 
-function letterCasing(line, logprefix){
+function letterCasing (line, logprefix) {
   if (line.toLowerCase() !== line) {
-    logger.warn(`${logprefix} should be lowercase:`, line);
+    logger.warn(`${logprefix} should be lowercase:`, line)
   }
 }
 
-function tokensSanityCheck(line, logprefix, tokens) {
-  switch (tokens.length){
+function tokensSanityCheck (line, logprefix, tokens) {
+  switch (tokens.length) {
     case 0:
-      return logger.warn(`${logprefix} no tokens:`, line);
+      return logger.warn(`${logprefix} no tokens:`, line)
     case 1:
-      return logger.warn(`${logprefix} only one token:`, line);
+      return logger.warn(`${logprefix} only one token:`, line)
     default:
-      let dupes = _.filter(tokens, (val, i, t) => _.includes(t, val, i + 1));
-      if (dupes.length){
-        logger.warn(`${logprefix} duplicate tokens:`, dupes);
+      let dupes = _.filter(tokens, (val, i, t) => _.includes(t, val, i + 1))
+      if (dupes.length) {
+        logger.warn(`${logprefix} duplicate tokens:`, dupes)
       }
   }
 }
 
-function multiWordCheck(line, logprefix, tokens) {
+function multiWordCheck (line, logprefix, tokens) {
   _.each(tokens, token => {
-    if (/\s/.test(token)){
-      logger.warn(`${logprefix} multi word synonyms may cause issues with phrase queries:`, token);
+    if (/\s/.test(token)) {
+      logger.warn(`${logprefix} multi word synonyms may cause issues with phrase queries:`, token)
     }
-  });
+  })
 }
 
-function tokenLengthCheck(line, logprefix, tokens) {
-  _.each(tokens, token => {
-    if (token.length <= 1) {
-      logger.warn(`${logprefix} short token:`, token);
-    }
-  });
-}
+// function tokenLengthCheck (line, logprefix, tokens) {
+//   _.each(tokens, token => {
+//     if (token.length <= 1) {
+//       logger.warn(`${logprefix} short token:`, token)
+//     }
+//   })
+// }
 
 module.exports = linter

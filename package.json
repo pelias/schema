@@ -13,7 +13,10 @@
     "drop_index": "node scripts/drop_index",
     "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings",
-    "travis": "npm run test && npm run integration"
+    "travis": "npm run test && npm run integration",
+    "format_check": "./node_modules/standard/bin/cmd.js",
+    "format_fix": "./node_modules/standard/bin/cmd.js --fix",
+    "validate": "npm ls"
   },
   "repository": {
     "type": "git",
@@ -43,10 +46,13 @@
     "difflet": "^1.0.1",
     "elastictest": "^3.0.0",
     "proxyquire": "^2.0.0",
+    "standard": "^14.3.4",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"
   },
-  "pre-commit": [],
+  "pre-commit": [
+    "format_check"
+  ],
   "release": {
     "branch": "master",
     "success": []
