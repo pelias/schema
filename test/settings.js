@@ -83,6 +83,7 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
     t.deepEqual(analyzer.filter, [
       "lowercase",
       "trim",
+      "synonyms/custom_admin/multiword",
       "admin_synonyms_multiplexer",
       "icu_folding",
       "word_delimiter",
@@ -130,6 +131,7 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "trim",
+      "synonyms/custom_name/multiword",
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
@@ -186,6 +188,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
+      "synonyms/custom_name/multiword",
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
@@ -293,6 +296,7 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
+      "synonyms/custom_street/multiword",
       "street_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",

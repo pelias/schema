@@ -34,6 +34,7 @@ function generate(){
           "filter": [
             "lowercase",
             "trim",
+            "synonyms/custom_admin/multiword",
             "admin_synonyms_multiplexer",
             "icu_folding",
             "word_delimiter",
@@ -49,6 +50,7 @@ function generate(){
           "filter": [
             "lowercase",
             "trim",
+            "synonyms/custom_name/multiword",
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -81,6 +83,7 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
+            "synonyms/custom_name/multiword",
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -126,6 +129,7 @@ function generate(){
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
+            "synonyms/custom_street/multiword",
             "street_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
@@ -227,10 +231,26 @@ function generate(){
   // dynamically create filters for all synonym files in the ./synonyms directory.
   // each filter is given the same name as the file, paths separators are replaced with
   // underscores and the file extension is removed.
-  _.each(synonyms, (synonym, name) => {
+  // note: if no synonym entries are present in the list we use an array
+  // containing an empty space to avoid elasticsearch schema parsing errors.
+  _.each(synonyms, (entries, name) => {
+
+    // same tokenizer regex as above except without comma
+    // (which is a delimeter within the synonym files)
+    const tokenizerRegex = new RegExp('[\\s/\\\\-]+');
+    const singleWordEntries = entries.filter(e => !tokenizerRegex.test(e))
+    const multiWordEntries = entries.filter(e => tokenizerRegex.test(e))
+
+    // generate a filter containing single-word synonyms
     settings.analysis.filter[`synonyms/${name}`] = {
       "type": "synonym",
-      "synonyms": !_.isEmpty(synonym) ? synonym : ['']
+      "synonyms": !_.isEmpty(singleWordEntries) ? singleWordEntries : ['']
+    };
+
+    // generate a filter containing multi-word synonyms
+    settings.analysis.filter[`synonyms/${name}/multiword`] = {
+      "type": "synonym",
+      "synonyms": !_.isEmpty(multiWordEntries) ? multiWordEntries : ['']
     };
   });
 
