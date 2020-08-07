@@ -1861,6 +1861,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "continent_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "ocean": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -1892,6 +1896,10 @@
             }
           },
           "ocean_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "ocean_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -1929,6 +1937,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "empire_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "country": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -1960,6 +1972,10 @@
             }
           },
           "country_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "country_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -1997,6 +2013,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "dependency_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "marinearea": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -2028,6 +2048,10 @@
             }
           },
           "marinearea_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "marinearea_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -2065,6 +2089,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "macroregion_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "region": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -2096,6 +2124,10 @@
             }
           },
           "region_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "region_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -2133,6 +2165,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "macrocounty_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "county": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -2164,6 +2200,10 @@
             }
           },
           "county_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "county_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -2201,6 +2241,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "locality_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "borough": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -2232,6 +2276,10 @@
             }
           },
           "borough_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "borough_source": {
             "type": "keyword",
             "doc_values": false
           },
@@ -2269,6 +2317,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "localadmin_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "neighbourhood": {
             "type": "text",
             "analyzer": "peliasAdmin",
@@ -2303,6 +2355,10 @@
             "type": "keyword",
             "doc_values": false
           },
+          "neighbourhood_source": {
+            "type": "keyword",
+            "doc_values": false
+          },
           "postalcode": {
             "type": "text",
             "analyzer": "peliasZip",
@@ -2332,6 +2388,10 @@
             }
           },
           "postalcode_id": {
+            "type": "keyword",
+            "doc_values": false
+          },
+          "postalcode_source": {
             "type": "keyword",
             "doc_values": false
           }
