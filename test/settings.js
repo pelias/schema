@@ -81,15 +81,15 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   test('peliasAdmin token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasAdmin;
     t.deepEqual(analyzer.filter, [
-      "lowercase",
-      "trim",
-      "synonyms/custom_admin/multiword",
-      "admin_synonyms_multiplexer",
-      "icu_folding",
-      "word_delimiter",
-      "unique_only_same_position",
-      "notnull",
-      "flatten_graph"
+      'lowercase',
+      'trim',
+      'synonyms/custom_admin/multiword',
+      'admin_synonyms_multiplexer',
+      'icu_folding',
+      'word_delimiter',
+      'unique_only_same_position',
+      'notnull',
+      'flatten_graph'
     ]);
     t.end();
   });
@@ -122,24 +122,26 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation','nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasIndexOneEdgeGram token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "trim",
-      "synonyms/custom_name/multiword",
-      "name_synonyms_multiplexer",
-      "icu_folding",
-      "remove_ordinals",
-      "removeAllZeroNumericPrefix",
-      "peliasOneEdgeGramFilter",
-      "unique_only_same_position",
-      "notnull",
-      "flatten_graph"
+      'lowercase',
+      'trim',
+      'synonyms/custom_name/multiword',
+      'name_synonyms_multiplexer',
+      'icu_folding',
+      'synonyms/alpha_ordinals/multiword',
+      'synonyms/alpha_ordinals',
+      'remove_ordinals',
+      'removeAllZeroNumericPrefix',
+      'peliasOneEdgeGramFilter',
+      'unique_only_same_position',
+      'notnull',
+      'flatten_graph'
     ]);
     t.end();
   });
@@ -162,6 +164,8 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
       'lowercase',
       'trim',
       'icu_folding',
+      'synonyms/alpha_ordinals/multiword',
+      'synonyms/alpha_ordinals',
       'remove_ordinals',
       'removeAllZeroNumericPrefix',
       'unique_only_same_position',
@@ -178,23 +182,25 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation','nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasPhrase token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "trim",
-      "remove_duplicate_spaces",
-      "synonyms/custom_name/multiword",
-      "name_synonyms_multiplexer",
-      "icu_folding",
-      "remove_ordinals",
-      "unique_only_same_position",
-      "notnull",
-      "flatten_graph"
+      'lowercase',
+      'trim',
+      'remove_duplicate_spaces',
+      'synonyms/custom_name/multiword',
+      'name_synonyms_multiplexer',
+      'icu_folding',
+      'synonyms/alpha_ordinals/multiword',
+      'synonyms/alpha_ordinals',
+      'remove_ordinals',
+      'unique_only_same_position',
+      'notnull',
+      'flatten_graph'
     ]);
     t.end();
   });
@@ -214,11 +220,11 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
   test('peliasZip token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasZip;
     t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "trim",
-      "icu_folding",
-      "unique_only_same_position",
-      "notnull"
+      'lowercase',
+      'trim',
+      'icu_folding',
+      'unique_only_same_position',
+      'notnull'
     ]);
     t.end();
   });
@@ -238,11 +244,11 @@ module.exports.tests.peliasUnitAnalyzer = function(test, common) {
   test('peliasUnit token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasUnit;
     t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "trim",
-      "icu_folding",
-      "unique_only_same_position",
-      "notnull"
+      'lowercase',
+      'trim',
+      'icu_folding',
+      'unique_only_same_position',
+      'notnull'
     ]);
     t.end();
   });
@@ -255,7 +261,7 @@ module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasHousenumber;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["numeric"], 'numeric filter specified');
+    t.deepEqual(analyzer.char_filter, ['numeric'], 'numeric filter specified');
     t.false(Array.isArray(analyzer.filter), 'no filters specified');
     t.end();
   });
@@ -293,17 +299,19 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
     t.deepEqual( analyzer.filter, [
-      "lowercase",
-      "trim",
-      "remove_duplicate_spaces",
-      "synonyms/custom_street/multiword",
-      "street_synonyms_multiplexer",
-      "icu_folding",
-      "remove_ordinals",
-      "trim",
-      "unique_only_same_position",
-      "notnull",
-      "flatten_graph"
+      'lowercase',
+      'trim',
+      'remove_duplicate_spaces',
+      'synonyms/custom_street/multiword',
+      'street_synonyms_multiplexer',
+      'icu_folding',
+      'synonyms/alpha_ordinals/multiword',
+      'synonyms/alpha_ordinals',
+      'remove_ordinals',
+      'trim',
+      'unique_only_same_position',
+      'notnull',
+      'flatten_graph'
     ]);
     t.end();
   });
@@ -386,8 +394,8 @@ module.exports.tests.punctuationFilter = function(test, common) {
     var filter = s.analysis.filter['synonyms/punctuation'];
     t.equal(filter.type, 'synonym');
     t.deepEqual(filter.synonyms, [
-      "&,and",
-      "&,und"
+      '&,and',
+      '&,und'
     ]);
     t.end();
   });
@@ -551,8 +559,8 @@ module.exports.tests.index = function(test, common) {
   test('has index settings', function(t) {
     var s = settings();
     t.equal(typeof s.index, 'object', 'index specified');
-    t.equal(s.index.number_of_replicas, "0", 'replicas will increase index time');
-    t.equal(s.index.number_of_shards, "5", 'sharding value should use the elasticsearch default');
+    t.equal(s.index.number_of_replicas, '0', 'replicas will increase index time');
+    t.equal(s.index.number_of_shards, '5', 'sharding value should use the elasticsearch default');
     t.end();
   });
 };

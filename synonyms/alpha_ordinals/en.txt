@@ -1,0 +1,59 @@
+# note: more descriptive tokens must come before less descriptive ones
+# eg: 'southwest' must come before 'west' else 'southwest foo' -> 'southw foo'
+
+# if anyone ever needs to regenerate these
+# var s = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth"]
+# var f = ['twenty', 'thirty', 'forty']
+# f.forEach((f1, fn) =>  s.forEach((s2, sn) => console.log(`${f1}-${s2},${f1} ${s2},${(fn+2)*10 + sn + 1}`)))
+
+twenty-first,twenty first,21
+twenty-second,twenty second,22
+twenty-third,twenty third,23
+twenty-fourth,twenty fourth,24
+twenty-fifth,twenty fifth,25
+twenty-sixth,twenty sixth,26
+twenty-seventh,twenty seventh,27
+twenty-eighth,twenty eighth,28
+twenty-ninth,twenty ninth,29
+thirty-first,thirty first,31
+thirty-second,thirty second,32
+thirty-third,thirty third,33
+thirty-fourth,thirty fourth,34
+thirty-fifth,thirty fifth,35
+thirty-sixth,thirty sixth,36
+thirty-seventh,thirty seventh,37
+thirty-eighth,thirty eighth,38
+thirty-ninth,thirty ninth,39
+forty-first,forty first,41
+forty-second,forty second,42
+forty-third,forty third,43
+forty-fourth,forty fourth,44
+forty-fifth,forty fifth,45
+forty-sixth,forty sixth,46
+forty-seventh,forty seventh,47
+forty-eighth,forty eighth,48
+forty-ninth,forty ninth,49
+
+# teens
+nineteenth, 19
+eighteenth, 18
+seventeenth, 17
+sixteenth, 16
+fifteenth, 15
+fourteenth, 14
+thirteenth, 13
+twelfth, 12
+eleventh, 11
+
+# 1-10
+tenth, 10
+ninth, 9
+eighth, 8
+seventh, 7
+sixth, 6
+fifth, 5
+fourth, 4
+third, 3
+second, 2
+first, 1
+zeroth, 0
