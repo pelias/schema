@@ -7,7 +7,6 @@ node_js:
   - 12
 env:
   matrix:
-    - ES_VERSION=6.8.6 JDK_VERSION=oraclejdk11
     - ES_VERSION=7.6.1 JDK_VERSION=oraclejdk11
 jdk:
   - oraclejdk11
