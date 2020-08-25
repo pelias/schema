@@ -31,6 +31,10 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('no kstem', 'McDonald\'s', ['mcdonalds']);
     assertAnalysis('no kstem', 'peoples', ['peoples']);
 
+    assertAnalysis('synonyms/alpha_ordinals', 'fifth', ['5']);
+    assertAnalysis('synonyms/alpha_ordinals/multiword', 'twenty fifth', ['25']);
+    assertAnalysis('synonyms/alpha_ordinals/multiword', 'twenty-fifth', ['25']);
+
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['&'] );
 
