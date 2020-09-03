@@ -11,7 +11,8 @@ env:
 jdk:
   - oraclejdk11
 install:
-  - ./scripts/setup_ci.sh
+  - ./scripts/install_deps.sh
+  - ./scripts/run_server.sh
   - npm i
 script:
   - npm run travis
