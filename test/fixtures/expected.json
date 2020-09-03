@@ -44,7 +44,8 @@
           "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
-            "nfkc_normalizer"
+            "nfkc_normalizer",
+            "ampersand_splitter"
           ],
           "filter": [
             "lowercase",
@@ -65,7 +66,8 @@
           "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
-            "nfkc_normalizer"
+            "nfkc_normalizer",
+            "ampersand_splitter"
           ],
           "filter": [
             "lowercase",
@@ -82,7 +84,8 @@
           "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
-            "nfkc_normalizer"
+            "nfkc_normalizer",
+            "ampersand_splitter"
           ],
           "filter": [
             "lowercase",
@@ -139,7 +142,8 @@
           "tokenizer": "peliasTokenizer",
           "char_filter": [
             "punctuation",
-            "nfkc_normalizer"
+            "nfkc_normalizer",
+            "ampersand_splitter"
           ],
           "filter": [
             "lowercase",
@@ -1761,6 +1765,11 @@
           "type": "icu_normalizer",
           "name": "nfkc",
           "mode": "compose"
+        },
+        "ampersand_splitter": {
+          "type": "pattern_replace",
+          "pattern": "[^s]&[^s]",
+          "replacement": " & "
         }
       }
     }

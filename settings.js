@@ -46,7 +46,7 @@ function generate(){
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
+          "char_filter" : ["punctuation", "nfkc_normalizer", "ampersand_splitter"],
           "filter": [
             "lowercase",
             "trim",
@@ -64,7 +64,7 @@ function generate(){
         "peliasQuery": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
-          "char_filter": ["punctuation", "nfkc_normalizer"],
+          "char_filter": ["punctuation", "nfkc_normalizer", "ampersand_splitter"],
           "filter": [
             "lowercase",
             "trim",
@@ -78,7 +78,7 @@ function generate(){
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"peliasTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
+          "char_filter" : ["punctuation", "nfkc_normalizer", "ampersand_splitter"],
           "filter": [
             "lowercase",
             "trim",
@@ -124,7 +124,7 @@ function generate(){
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
+          "char_filter" : ["punctuation", "nfkc_normalizer", "ampersand_splitter"],
           "filter": [
             "lowercase",
             "trim",
@@ -223,6 +223,11 @@ function generate(){
           "type": "icu_normalizer",
           "name": "nfkc",
           "mode": "compose"
+        },
+        "ampersand_splitter": {
+          "type": "pattern_replace",
+          "pattern": "([^\s])&([^\s])",
+          "replacement": "$1 & $2"
         }
       }
     }
