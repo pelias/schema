@@ -1,0 +1,27 @@
+# base image
+FROM pelias/baseimage
+
+RUN apt-get update
+RUN apt-get -y install jq
+
+# change working dir
+ENV WORKDIR /code/pelias/schema-harness
+WORKDIR ${WORKDIR}
+
+# copy package.json first to prevent npm install being rerun when only code changes
+COPY ./package.json ${WORKDIR}
+RUN npm install
+
+COPY ./scripts/ ${WORK}/scripts/
+ENV ES_VERSION=7.6.1 
+ENV JDK_VERSION=oraclejdk11
+
+# run as pelias user
+USER pelias
+
+RUN ${WORK}/scripts/install_deps.sh
+
+# add code from local checkout to image
+ADD . ${WORKDIR}
+
+CMD ${WORKDIR}/scripts/run_server.sh && ${WORKDIR}/bin/integration
