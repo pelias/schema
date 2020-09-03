@@ -105,6 +105,8 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
     t.equal(filter.type, 'multiplexer');
     t.deepEqual(filter.filters, [
       'synonyms/custom_name',
+      'synonyms/custom_street',
+      'synonyms/custom_admin',
       'synonyms/personal_titles',
       'synonyms/place_names',
       'synonyms/streets',
@@ -132,6 +134,8 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "lowercase",
       "trim",
       "synonyms/custom_name/multiword",
+      "synonyms/custom_street/multiword",
+      "synonyms/custom_admin/multiword",
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
@@ -189,6 +193,8 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "trim",
       "remove_duplicate_spaces",
       "synonyms/custom_name/multiword",
+      "synonyms/custom_street/multiword",
+      "synonyms/custom_admin/multiword",
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
