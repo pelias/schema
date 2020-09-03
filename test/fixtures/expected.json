@@ -1768,8 +1768,8 @@
         },
         "ampersand_splitter": {
           "type": "pattern_replace",
-          "pattern": "[^s]&[^s]",
-          "replacement": " & "
+          "pattern": "([^s])&([^s])",
+          "replacement": "$1 & $2"
         }
       }
     }
