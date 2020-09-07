@@ -161,7 +161,7 @@ var schema = {
 
     // geography
     center_point: require('./partial/centroid'),
-    shape: require('./partial/shape'),
+    [shapeType]: require('./partial/shape'),
     bounding_box: require('./partial/boundingbox'),
 
     // meta info
@@ -207,7 +207,7 @@ var schema = {
     }
   }],
   _source: {
-    excludes : ['shape','phrase']
+    excludes : [shapeType,'phrase']
   },
   dynamic: 'strict'
 };

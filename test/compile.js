@@ -1,8 +1,20 @@
 const _ = require('lodash');
 const path = require('path');
 const schema = require('../');
-const fixture = require('./fixtures/expected.json');
 const config = require('pelias-config').generate();
+var fixture = require('./fixtures/expected.json');
+
+// Fast fail if the global.shapeType property has not been correctly configured.
+if(shapeType !== 'shape' & shapeType !== 'polygon') {
+  console.error("The global.shapeType property in the schema.js file has not been correctly configured. Please set this value to 'shape' or 'polygon' and try again.");
+  console.error("The property is currently set to: " + shapeType + ".");
+  process.exit(1);
+}
+
+// If the shape type is polygon validate against the expected_polygon.json
+if(shapeType === 'polygon'){
+  fixture = require('./fixtures/expected_polygon.json');
+}
 
 const forEachDeep = (obj, cb) =>
   _.forEach(obj, (val, key) => {

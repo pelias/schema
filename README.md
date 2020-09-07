@@ -109,6 +109,11 @@ see: https://github.com/pelias/schema/pull/273 for more info.
 
 With great power comes great responsibility. Synonyms files are often used as a hammer when a scalpel is required. Please take care with their use and make maintainers aware that you are using custom synonyms when you open support tickets.
 
+### Configuring the geo_shape type key
+
+The geo_shape type key can be set to 'shape' or 'polygon' by editing the global.shapeType property in the schema.js file.
+The default is shape.
+
 ## NPM Module
 
 The `pelias-schema` npm module can be found here:

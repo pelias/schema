@@ -6,6 +6,15 @@ const SUPPORTED_ES_VERSIONS = '>=7.4.2';
 const cli = require('./cli');
 const schema = require('../schema');
 
+// Check that the shape_type property has been defined in the schema.js file
+// This must be set to either 'shape' or 'polygon', if not exit
+if(shapeType === 'shape' || shapeType === 'polygon'){
+  console.log('\n Creating an ES index with schema shape type: ' + shapeType + '.');
+}else {
+  console.error("The global.shapeType property in the schema.js file has not been correctly configured. Please set this value to 'shape' or 'polygon' and try again.");
+  process.exit(1);
+}
+
 cli.header("create index");
 
 const client = new es.Client(config.esclient);
