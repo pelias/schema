@@ -109,7 +109,8 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
       'synonyms/place_names',
       'synonyms/streets',
       'synonyms/directionals',
-      'synonyms/punctuation'
+      'synonyms/punctuation',
+      'synonyms/british_american_english'
     ]);
     t.end();
   });
@@ -273,7 +274,8 @@ module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
       'synonyms/custom_street',
       'synonyms/personal_titles',
       'synonyms/streets',
-      'synonyms/directionals'
+      'synonyms/directionals',
+      'synonyms/british_american_english'
     ]);
     t.end();
   });
@@ -540,6 +542,20 @@ module.exports.tests.numericCharFilter = function(test, common) {
     t.equal(char_filter.type, 'pattern_replace');
     t.equal(char_filter.pattern, '[^0-9]');
     t.equal(char_filter.replacement, ' ');
+    t.end();
+  });
+};
+
+// this filter provides british/american english synonyms
+// eg. center<=>centre
+module.exports.tests.britishAmericanEnglishSynonymFilter = function (test, common) {
+  test('has british_american_english filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter['synonyms/british_american_english'], 'object', 'there is a synonyms/british_american_english filter');
+    var filter = s.analysis.filter['synonyms/british_american_english'];
+    t.equal(filter.type, 'synonym');
+    t.true(Array.isArray(filter.synonyms));
+    t.equal(filter.synonyms.length, 1704);
     t.end();
   });
 };
