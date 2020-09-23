@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@hapi/joi": "^16.1.8",
-    "american-british-english-translator": "^0.1.2",
     "colors": "^1.1.2",
     "elasticsearch": "^16.0.0",
     "glob": "^7.1.6",

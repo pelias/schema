@@ -2,7 +2,6 @@ const _ = require('lodash');
 const peliasConfig = require('pelias-config');
 const punctuation = require('./punctuation');
 const synonyms = require('./synonyms/loader').load();
-const britishAmericanEnglishSynonyms = require('./synonyms/british_american_english').load();
 
 require('./configValidation').validate(peliasConfig.generate());
 
@@ -256,13 +255,6 @@ function generate(){
       "synonyms": !_.isEmpty(multiWordEntries) ? multiWordEntries : ['']
     };
   });
-
-  // dynamically create filters for british/american english from the dictionary in
-  // american-british-english-translator
-  settings.analysis.filter[`synonyms/british_american_english`] = {
-    "type": "synonym",
-    "synonyms": britishAmericanEnglishSynonyms
-  };
 
   // Merge settings from pelias/config
   settings = _.merge({}, settings, _.get(config, 'elasticsearch.settings', {}));

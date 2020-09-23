@@ -555,7 +555,7 @@ module.exports.tests.britishAmericanEnglishSynonymFilter = function (test, commo
     var filter = s.analysis.filter['synonyms/british_american_english'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
-    t.equal(filter.synonyms.length, 1704);
+    t.equal(filter.synonyms.length, 255);
     t.end();
   });
 };
