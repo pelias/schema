@@ -48,6 +48,10 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['0:&', '0:and', '0:und'] );
     assertAnalysis( 'punctuation', 'Hawai‘i', ['hawaii'] );
 
+    assertAnalysis( 'british_american_english', 'town theatre', ['0:town', '1:theatre', '1:theater'] );
+    assertAnalysis( 'british_american_english', 'town theater', ['0:town', '1:theater', '1:theatre'] );
+
+
     suite.run( t.end );
   });
 };

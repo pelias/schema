@@ -140,7 +140,7 @@ function generate(){
             "trim",
             "unique_only_same_position",
             "notnull",
-            "flatten_graph"
+            "flatten_graph",
           ]
         }
       },
@@ -152,7 +152,8 @@ function generate(){
             "synonyms/custom_street",
             "synonyms/personal_titles",
             "synonyms/streets",
-            "synonyms/directionals"
+            "synonyms/directionals",
+            "synonyms/british_american_english",
           ]
         },
         "name_synonyms_multiplexer": {
@@ -166,7 +167,8 @@ function generate(){
             "synonyms/place_names",
             "synonyms/streets",
             "synonyms/directionals",
-            "synonyms/punctuation"
+            "synonyms/punctuation",
+            "synonyms/british_american_english",
           ]
         },
         "admin_synonyms_multiplexer": {
