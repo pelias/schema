@@ -5,6 +5,28 @@ const synonyms = require('./synonyms/loader').load();
 
 require('./configValidation').validate(peliasConfig.generate());
 
+const peliasAdmin = {
+  "type": "custom",
+  "tokenizer": "peliasTokenizer",
+  "char_filter" : ["punctuation", "nfkc_normalizer"],
+  "filter": [
+    "lowercase",
+    "trim",
+    "synonyms/custom_admin/multiword",
+    "admin_synonyms_multiplexer",
+    "icu_folding",
+    "word_delimiter",
+    "unique_only_same_position",
+    "notnull",
+    "flatten_graph"
+  ]
+}
+
+const peliasAdminCountryA = (() => {
+  const partial = {...peliasAdmin};
+  partial.filter.push('synonyms/country_a')
+})
+
 function generate(){
   var config = peliasConfig.generate();
 
@@ -27,22 +49,8 @@ function generate(){
         }
       },
       "analyzer": {
-        "peliasAdmin": {
-          "type": "custom",
-          "tokenizer": "peliasTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
-          "filter": [
-            "lowercase",
-            "trim",
-            "synonyms/custom_admin/multiword",
-            "admin_synonyms_multiplexer",
-            "icu_folding",
-            "word_delimiter",
-            "unique_only_same_position",
-            "notnull",
-            "flatten_graph"
-          ]
-        },
+        "peliasAdmin": peliasAdmin,
+        "peliasAdminCountryA": peliasAdminCountryA,
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasTokenizer",

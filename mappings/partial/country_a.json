@@ -1,0 +1,16 @@
+{
+    "type": "text",
+    "analyzer": "peliasAdmin",
+    "search_analyzer": "peliasAdminCountryA",
+    "similarity": "peliasDefaultSimilarity",
+    "fields": {
+      "ngram": {
+        "type": "text",
+        "analyzer": "peliasIndexOneEdgeGram",
+        "search_analyzer": "peliasAdmin",
+        "similarity": "peliasDefaultSimilarity",
+        "doc_values": false
+      }
+    }
+  }
+  
