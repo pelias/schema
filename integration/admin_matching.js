@@ -100,6 +100,56 @@ module.exports.tests.functional = function(test, common){
 
     suite.run( t.end );
   });
+
+  test( 'GB -> UK alias', function(t){
+
+    var suite = new elastictest.Suite( common.clientOpts, common.create );
+    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+
+    // index a document with all admin values
+    suite.action( function( done ){
+      suite.client.index({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        id: '2', body: {
+          parent: {
+            country: 'Test Country',
+            country_a: 'GBR',
+            country_a2: 'GB',
+            country_id: '100'
+          }
+        }
+      }, done );
+    });
+
+    // search by country_a2
+    suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        body: { query: { match: { 'parent.country_a2': 'GB' } } }
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
+        done();
+      });
+    });
+
+     // search by country_a (UK synonym)
+     suite.assert( function( done ){
+      suite.client.search({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        body: { query: { match: { 'parent.country_a2': 'UK' } } }
+      }, function( err, res ){
+        t.equal( err, undefined );
+        t.equal( getTotalHits(res.hits), 1, 'document found' );
+        done();
+      });
+    });
+
+    suite.run( t.end );
+  });
 };
 
 module.exports.all = function (tape, common) {

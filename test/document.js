@@ -103,7 +103,7 @@ module.exports.tests.parent_fields = function(test, common) {
     'continent',      'continent_a',      'continent_id',     'continent.fields.ngram',
     'ocean',          'ocean_a',          'ocean_id',         'ocean.fields.ngram',
     'empire',         'empire_a',         'empire_id',        'empire.fields.ngram',
-    'country',        'country_a',        'country_a2',        'country_id',       'country.fields.ngram',
+    'country',        'country_a',        'country_a2',       'country_id',       'country.fields.ngram',
     'dependency',     'dependency_a',     'dependency_id',    'dependency.fields.ngram',
     'marinearea',     'marinearea_a',     'marinearea_id',    'marinearea.fields.ngram',
     'macroregion',    'macroregion_a',    'macroregion_id',   'macroregion.fields.ngram',
