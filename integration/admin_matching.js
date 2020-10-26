@@ -21,6 +21,7 @@ module.exports.tests.functional = function(test, common){
           parent: {
             country: 'Test Country',
             country_a: 'TestCountry',
+            country_a2: 'TestCountryISO2',
             country_id: '100',
             region: 'Test Region',
             region_a: 'TestRegion',
@@ -67,6 +68,19 @@ module.exports.tests.functional = function(test, common){
         done();
       });
     });
+
+      // search by country_a2
+      suite.assert( function( done ){
+        suite.client.search({
+          index: suite.props.index,
+          type: config.schema.typeName,
+          body: { query: { match: { 'parent.country_a2': 'TestCountryISO2' } } }
+        }, function( err, res ){
+          t.equal( err, undefined );
+          t.equal( getTotalHits(res.hits), 1, 'document found' );
+          done();
+        });
+      });
 
     // search by country_id
     suite.assert( function( done ){
