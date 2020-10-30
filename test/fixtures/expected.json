@@ -490,6 +490,18 @@
             ""
           ]
         },
+        "synonyms/country_a2": {
+          "type": "synonym",
+          "synonyms": [
+            "gb,uk"
+          ]
+        },
+        "synonyms/country_a2/multiword": {
+          "type": "synonym",
+          "synonyms": [
+            ""
+          ]
+        },
         "synonyms/custom_admin": {
           "type": "synonym",
           "synonyms": [
@@ -499,7 +511,7 @@
         "synonyms/custom_admin/multiword": {
           "type": "synonym",
           "synonyms": [
-            ""
+            "gb => uk"
           ]
         },
         "synonyms/custom_name": {
