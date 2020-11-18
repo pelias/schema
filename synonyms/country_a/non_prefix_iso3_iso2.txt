@@ -1,0 +1,107 @@
+# This is a mapping of just the iso3 to iso2 country codes where the
+# iso2 country code is not an exact prefix of the iso3 code
+# 
+# We use a subset so that we can save space in the index, so not every single USA record
+# gets another string on its record
+#
+# - in autocomplete we need this, otherwise queries like "Beijing CN" and "Puerto Escondido MX" fail
+# - in search, we don't need this because for short queries like "Beijing CN", we first 
+#   query placeholder which does understand iso2s, and for longer queries with streets, slop should
+#   take care of ignoring the country token
+ALA, AX
+AND, AD
+AGO, AO
+ATG, AG
+ARM, AM
+ABW, AW
+AUT, AT
+BHS, BS
+BGD, BD
+BRB, BB
+BLR, BY
+BLZ, BZ
+BEN, BJ
+BES, BQ
+BIH, BA
+BRN, BN
+BDI, BI
+CPV, CV
+CYM, KY
+CAF, CF
+TCD, TD
+CHL, CL
+CHN, CN
+COM, KM
+COG, CG
+ZAR, CD
+COK, CK
+CUW, CW
+DNK, DK
+SLV, SV
+GNQ, GQ
+EST, EE
+FRO, FO
+FLK, FK
+GUF, GF
+PYF, PF
+ATF, TF
+GRL, GL
+GRD, GD
+GLP, GP
+GIN, GN
+GNB, GW
+GUY, GY
+IRQ, IQ
+IRL, IE
+ISR, IL
+JAM, JM
+KAZ, KZ
+LBR, LR
+LBY, LY
+MAC, MO
+MDG, MG
+MDV, MV
+MLT, MT
+MTQ, MQ
+MYT, YT
+MEX, MX
+FSM, FM
+MNE, ME
+MOZ, MZ
+NIU, NU
+PRK, KP
+MNP, MP
+PAK, PK
+PLW, PW
+PNG, PG
+PRY, PY
+PCN, PN
+POL, PL
+PRT, PT
+BES, BQ
+MAF, MF
+SPM, PM
+SEN, SN
+SRB, RS
+SYC, SC
+BES, BQ
+SVK, SK
+SVN, SI
+SLB, SB
+SGS, GS
+KOR, KR
+SUR, SR
+SWZ, SZ
+SWE, SE
+TUN, TN
+TUR, TR
+TKM, TM
+TUV, TV
+UKR, UA
+ARE, AE
+URY, UY
+WLF, WF
+ESH, EH
+
+# semi-unofficial UK alias https://en.wikipedia.org/wiki/ISO_3166-2:GB
+GBR, UK
