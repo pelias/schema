@@ -95,6 +95,36 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   });
 };
 
+
+module.exports.tests.peliasAdminCountryAAnalyzer = function(test, common) {
+  test('has pelias admin country_a analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasAdminCountryA, 'object', 'there is a pelias admin analyzer');
+    var analyzer = s.analysis.analyzer.peliasAdminCountryA;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasAdminCountryA token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasAdminCountryA;
+    t.deepEqual(analyzer.filter, [
+      "synonyms/country_a",
+      "lowercase",
+      "trim",
+      "synonyms/custom_admin/multiword",
+      "admin_synonyms_multiplexer",
+      "icu_folding",
+      "word_delimiter",
+      "unique_only_same_position",
+      "notnull",
+      "flatten_graph",
+    ]);
+    t.end();
+  });
+};
+
 // this multiplexer filter provides all the synonyms used by the peliasPhrase and peliasIndexOneEdgeGram analyzers
 // note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
 module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {

@@ -1,5 +1,14 @@
 #!/bin/bash
 
+ES_RUNNING=`curl localhost:9200 | grep "You Know, for Search" >& /dev/null`
+if [ "$?" -ne "0" ]; then
+  echo
+  echo "Elastic search not running, please run"
+  echo "docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch:7.5.1"
+  echo
+  exit 1
+fi
+
 # run tests with pipefail to avoid false passes
 # see https://github.com/pelias/pelias/issues/744
 set -o pipefail

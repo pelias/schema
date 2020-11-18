@@ -20,12 +20,12 @@ const peliasAdmin = {
     "notnull",
     "flatten_graph"
   ]
-}
+};
 
-const peliasAdminCountryA = (() => {
-  const partial = {...peliasAdmin};
-  partial.filter.push('synonyms/country_a')
-})
+const peliasAdminCountryA = {
+  ...peliasAdmin,
+  filter: ['synonyms/country_a', ...peliasAdmin.filter]
+};
 
 function generate(){
   var config = peliasConfig.generate();
