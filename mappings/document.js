@@ -1,5 +1,5 @@
 const admin = require('./partial/admin');
-const country_a = require('./partial/admin');
+const country_a = require('./partial/country_a');
 const postalcode = require('./partial/postalcode');
 const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');

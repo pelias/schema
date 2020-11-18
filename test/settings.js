@@ -96,21 +96,20 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
 };
 
 
-module.exports.tests.peliasAdminCountryAAnalyzer = function(test, common) {
+module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   test('has pelias admin country_a analyzer', function(t) {
     var s = settings();
-    t.equal(typeof s.analysis.analyzer.peliasAdminCountryA, 'object', 'there is a pelias admin analyzer');
-    var analyzer = s.analysis.analyzer.peliasAdminCountryA;
+    t.equal(typeof s.analysis.analyzer.peliasAdmin, 'object', 'there is a pelias admin analyzer');
+    var analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasAdminCountryA token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasAdminCountryA;
+  test('peliasAdmin token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasAdmin;
     t.deepEqual(analyzer.filter, [
-      "synonyms/country_a",
       "lowercase",
       "trim",
       "synonyms/custom_admin/multiword",
@@ -163,6 +162,40 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       "lowercase",
+      "trim",
+      "synonyms/custom_name/multiword",
+      "synonyms/custom_street/multiword",
+      "synonyms/custom_admin/multiword",
+      "name_synonyms_multiplexer",
+      "icu_folding",
+      "remove_ordinals",
+      "removeAllZeroNumericPrefix",
+      "peliasOneEdgeGramFilter",
+      "unique_only_same_position",
+      "notnull",
+      "flatten_graph"
+    ]);
+    t.end();
+  });
+};
+
+
+module.exports.tests.peliasIndexOneEdgeGramCountryAAnalyzer = function(test, common) {
+  test('has peliasIndexOneEdgeGramCountryA analyzer', function(t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasIndexOneEdgeGramCountryA, 'object', 'there is a peliasIndexOneEdgeGram analyzer');
+    var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGramCountryA;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasIndexOneEdgeGramCountryA token filters', function(t) {
+    var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGramCountryA;
+    t.deepEqual( analyzer.filter, [
+      "lowercase",
+      "synonyms/country_a",
       "trim",
       "synonyms/custom_name/multiword",
       "synonyms/custom_street/multiword",

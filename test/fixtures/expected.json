@@ -39,7 +39,7 @@
             "flatten_graph"
           ]
         },
-        "peliasAdminCountryA": {
+        "peliasIndexOneEdgeGramCountryA": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
@@ -47,13 +47,17 @@
             "nfkc_normalizer"
           ],
           "filter": [
-            "synonyms/country_a",
             "lowercase",
+            "synonyms/country_a",
             "trim",
+            "synonyms/custom_name/multiword",
+            "synonyms/custom_street/multiword",
             "synonyms/custom_admin/multiword",
-            "admin_synonyms_multiplexer",
+            "name_synonyms_multiplexer",
             "icu_folding",
-            "word_delimiter",
+            "remove_ordinals",
+            "removeAllZeroNumericPrefix",
+            "peliasOneEdgeGramFilter",
             "unique_only_same_position",
             "notnull",
             "flatten_graph"
@@ -2364,7 +2368,7 @@
             "fields": {
               "ngram": {
                 "type": "text",
-                "analyzer": "peliasIndexOneEdgeGram",
+                "analyzer": "peliasIndexOneEdgeGramCountryA",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
                 "doc_values": false

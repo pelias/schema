@@ -22,10 +22,31 @@ const peliasAdmin = {
   ]
 };
 
-const peliasAdminCountryA = {
-  ...peliasAdmin,
-  filter: ['synonyms/country_a', ...peliasAdmin.filter]
-};
+const peliasIndexOneEdgeGram =  {
+  "type": "custom",
+  "tokenizer" : "peliasTokenizer",
+  "char_filter" : ["punctuation", "nfkc_normalizer"],
+  "filter": [
+    "lowercase",
+    "trim",
+    "synonyms/custom_name/multiword",
+    "synonyms/custom_street/multiword",
+    "synonyms/custom_admin/multiword",
+    "name_synonyms_multiplexer",
+    "icu_folding",
+    "remove_ordinals",
+    "removeAllZeroNumericPrefix",
+    "peliasOneEdgeGramFilter",
+    "unique_only_same_position",
+    "notnull",
+    "flatten_graph"
+  ]
+}
+
+const peliasIndexOneEdgeGramCountryA = {
+  ...peliasIndexOneEdgeGram,
+  filter: ['lowercase', 'synonyms/country_a', ...peliasIndexOneEdgeGram.filter.filter((f) => f !== 'lowercase')]
+}
 
 function generate(){
   var config = peliasConfig.generate();
@@ -50,27 +71,8 @@ function generate(){
       },
       "analyzer": {
         "peliasAdmin": peliasAdmin,
-        "peliasAdminCountryA": peliasAdminCountryA,
-        "peliasIndexOneEdgeGram" : {
-          "type": "custom",
-          "tokenizer" : "peliasTokenizer",
-          "char_filter" : ["punctuation", "nfkc_normalizer"],
-          "filter": [
-            "lowercase",
-            "trim",
-            "synonyms/custom_name/multiword",
-            "synonyms/custom_street/multiword",
-            "synonyms/custom_admin/multiword",
-            "name_synonyms_multiplexer",
-            "icu_folding",
-            "remove_ordinals",
-            "removeAllZeroNumericPrefix",
-            "peliasOneEdgeGramFilter",
-            "unique_only_same_position",
-            "notnull",
-            "flatten_graph"
-          ]
-        },
+        "peliasIndexOneEdgeGramCountryA": peliasIndexOneEdgeGramCountryA,
+        "peliasIndexOneEdgeGram" : peliasIndexOneEdgeGram,
         "peliasQuery": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",

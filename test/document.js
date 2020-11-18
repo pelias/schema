@@ -138,8 +138,15 @@ module.exports.tests.parent_analysis = function(test, common) {
       t.equal(prop[field].type, 'text', `${field} is set to text type`);
       t.equal(prop[field].analyzer, 'peliasAdmin', `${field} analyzer is peliasAdmin`);
       t.equal(prop[field+'_a'].type, 'text', `${field}_a type is text`);
-      t.equal(prop[field+'_a'].analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+
+      if (field === 'country') {
+        t.equal(prop[field+'_a'].analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+      } else {
+        t.equal(prop[field+'_a'].analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+      }
+
       t.equal(prop[field+'_a'].search_analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+
       t.equal(prop[field+'_id'].type, 'keyword', `${field}_id type is keyword`);
       t.equal(prop[field+'_id'].index, undefined, `${field}_id index left at default`);
 

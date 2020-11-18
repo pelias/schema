@@ -122,12 +122,37 @@ module.exports.tests.functional = function(test, common){
       }, done );
     });
 
+  // search by original of country_a
+  suite.assert( function( done ){
+    suite.client.search({
+      index: suite.props.index,
+      type: config.schema.typeName,
+      body: { query: { match: { 'parent.country_a': 'MEX' } } }
+    }, function( err, res ){
+      t.equal( err, undefined );
+      t.equal( getTotalHits(res.hits), 1, 'document found' );
+      done();
+    });
+  });
+
+  suite.assert( function( done ){
+    suite.client.search({
+      index: suite.props.index,
+      type: config.schema.typeName,
+      body: { query: { match: { 'parent.country_a.ngram': 'ME' } } }
+    }, function( err, res ){
+      t.equal( err, undefined );
+      t.equal( getTotalHits(res.hits), 1, 'document found' );
+      done();
+    });
+  });
+
     // search by alias of country_a
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
         type: config.schema.typeName,
-        body: { query: { match: { 'parent.country_a': 'MX' } } }
+        body: { query: { match: { 'parent.country_a.ngram': 'MX' } } }
       }, function( err, res ){
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
