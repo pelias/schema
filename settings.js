@@ -169,6 +169,7 @@ function generate(){
             "synonyms/directionals",
             "synonyms/punctuation",
             "synonyms/british_american_english",
+            "synonyms/country_codes"
           ]
         },
         "admin_synonyms_multiplexer": {
@@ -177,7 +178,8 @@ function generate(){
           "filters": [
             "synonyms/custom_admin",
             "synonyms/personal_titles",
-            "synonyms/place_names"
+            "synonyms/place_names",
+            "synonyms/country_codes"
           ]
         },
         "notnull" :{

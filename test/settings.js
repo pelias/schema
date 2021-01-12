@@ -52,7 +52,7 @@ module.exports.tests.analysis = function(test, common) {
 
 // this multiplexer filter provides all the synonyms used by the peliasAdmin analyzer
 // note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
+module.exports.tests.adminSynonymsMultiplexerFilter = function (test, common) {
   test('has admin_synonyms_multiplexer filter', function (t) {
     var s = settings();
     t.equal(typeof s.analysis.filter.admin_synonyms_multiplexer, 'object', 'there is a admin_synonyms_multiplexer filter');
@@ -61,7 +61,8 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
     t.deepEqual(filter.filters, [
       'synonyms/custom_admin',
       'synonyms/personal_titles',
-      'synonyms/place_names'
+      'synonyms/place_names',
+      'synonyms/country_codes'
     ]);
     t.end();
   });
@@ -112,7 +113,8 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
       'synonyms/streets',
       'synonyms/directionals',
       'synonyms/punctuation',
-      'synonyms/british_american_english'
+      'synonyms/british_american_english',
+      'synonyms/country_codes'
     ]);
     t.end();
   });
