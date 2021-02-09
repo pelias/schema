@@ -59,6 +59,9 @@ jobs:
       with:
         node-version: 12.x
     - name: Run semantic-release
+      env:
+        GH_TOKEN: ${{ secrets.GH_SEMANTIC_RELEASE_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       run: |
         npm install -g npm
         npm install --production
