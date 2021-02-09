@@ -29,21 +29,7 @@ module.exports.tests.synonyms = function (test, common) {
       }, done);
     });
 
-    // index document 2 with country_a='MX'
-    suite.action(done => {
-      suite.client.index({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        id: '2',
-        body: {
-          parent: {
-            country_a: ['MX']
-          }
-        }
-      }, done);
-    });
-
-    // search for 'MEX' on 'parent.country_a'
+    // search for 'MEX' and 'MX' on 'parent.country_a'
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
@@ -57,33 +43,27 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
-        done();
-      });
-    });
-
-    // search for 'MX' on 'parent.country_a'
-    suite.assert(done => {
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: {
-          query: {
-            match: {
-              'parent.country_a': {
-                'query': 'mx'
+      }, (err1, res1) => {
+        suite.client.search({
+          index: suite.props.index,
+          type: config.schema.typeName,
+          body: {
+            query: {
+              match: {
+                'parent.country_a': {
+                  'query': 'mx'
+                }
               }
             }
           }
-        }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
-        done();
+        }, (err2, res2) => {
+          t.equal(err1, undefined);
+          t.equal(err2, undefined);
+          t.equal(getTotalHits(res1.hits), 1, 'matches document');
+          t.equal(getTotalHits(res2.hits), 1, 'matches document');
+          t.equal(res1.hits.hits[0]._score, res2.hits.hits[0]._score, 'scores match');
+          done();
+        });
       });
     });
 
@@ -103,30 +83,7 @@ module.exports.tests.synonyms = function (test, common) {
         }
       }, (err, res) => {
         t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
-        done();
-      });
-    });
-
-    // search for 'MX' on 'parent.country_a.ngram'
-    suite.assert(done => {
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        body: {
-          query: {
-            match: {
-              'parent.country_a.ngram': {
-                'query': 'mx'
-              }
-            }
-          }
-        }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+        t.equal(getTotalHits(res.hits), 1, 'matches document');
         done();
       });
     });
