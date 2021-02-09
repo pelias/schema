@@ -257,6 +257,74 @@ module.exports.tests.synonyms = function (test, common) {
 
     suite.run(t.end);
   });
+
+  test('synonyms - test if synonyms increase field length', function (t) {
+
+    var suite = new elastictest.Suite(common.clientOpts, common.create);
+    suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
+
+    // index document 1 with country_a='NZL'
+    suite.action(done => {
+      suite.client.index({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        id: '1',
+        body: {
+          parent: {
+            country_a: ['NZL']
+          }
+        }
+      }, done);
+    });
+
+    // index document 2 with country_a='GBR'
+    suite.action(done => {
+      suite.client.index({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        id: '2',
+        body: {
+          parent: {
+            country_a: ['GBR']
+          }
+        }
+      }, done);
+    });
+
+    // search for 'NZL' or 'GBR' on 'parent.country_a.ngram'
+    suite.assert(done => {
+      suite.client.search({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        body: {
+          query: {
+            bool: {
+              should: [{
+                match: {
+                  'parent.country_a.ngram': {
+                    'query': 'nzl'
+                  }
+                }
+              }, {
+                match: {
+                  'parent.country_a.ngram': {
+                    'query': 'gbr'
+                  }
+                }
+              }]
+            }
+          }
+        }
+      }, (err, res) => {
+        t.equal(err, undefined);
+        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
+        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+        done();
+      });
+    });
+
+    suite.run(t.end);
+  });
 };
 
 module.exports.all = (tape, common) => {
