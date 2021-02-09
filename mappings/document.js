@@ -1,5 +1,4 @@
 const admin = require('./partial/admin');
-const admin_abbreviation = require('./partial/admin_abbreviation');
 const postalcode = require('./partial/postalcode');
 const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');
@@ -70,85 +69,85 @@ var schema = {
       properties: {
         // https://github.com/whosonfirst/whosonfirst-placetypes#continent
         continent: admin,
-        continent_a: admin_abbreviation,
+        continent_a: admin,
         continent_id: keyword,
         continent_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#ocean
         ocean: admin,
-        ocean_a: admin_abbreviation,
+        ocean_a: admin,
         ocean_id: keyword,
         ocean_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#empire
         empire: admin,
-        empire_a: admin_abbreviation,
+        empire_a: admin,
         empire_id: keyword,
         empire_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#country
         country: admin,
-        country_a: admin_abbreviation,
+        country_a: admin,
         country_id: keyword,
         country_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#dependency
         dependency: admin,
-        dependency_a: admin_abbreviation,
+        dependency_a: admin,
         dependency_id: keyword,
         dependency_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#marinearea
         marinearea: admin,
-        marinearea_a: admin_abbreviation,
+        marinearea_a: admin,
         marinearea_id: keyword,
         marinearea_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#macroregion
         macroregion: admin,
-        macroregion_a: admin_abbreviation,
+        macroregion_a: admin,
         macroregion_id: keyword,
         macroregion_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#region
         region: admin,
-        region_a: admin_abbreviation,
+        region_a: admin,
         region_id: keyword,
         region_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#macrocounty
         macrocounty: admin,
-        macrocounty_a: admin_abbreviation,
+        macrocounty_a: admin,
         macrocounty_id: keyword,
         macrocounty_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#county
         county: admin,
-        county_a: admin_abbreviation,
+        county_a: admin,
         county_id: keyword,
         county_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#locality
         locality: admin,
-        locality_a: admin_abbreviation,
+        locality_a: admin,
         locality_id: keyword,
         locality_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#borough
         borough: admin,
-        borough_a: admin_abbreviation,
+        borough_a: admin,
         borough_id: keyword,
         borough_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#localadmin
         localadmin: admin,
-        localadmin_a: admin_abbreviation,
+        localadmin_a: admin,
         localadmin_id: keyword,
         localadmin_source: keyword,
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#neighbourhood
         neighbourhood: admin,
-        neighbourhood_a: admin_abbreviation,
+        neighbourhood_a: admin,
         neighbourhood_id: keyword,
         neighbourhood_source: keyword,
 

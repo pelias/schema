@@ -2374,11 +2374,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "continent_a": {
             "type": "text",
@@ -2391,11 +2389,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "continent_id": {
             "type": "keyword",
@@ -2416,11 +2412,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "ocean_a": {
             "type": "text",
@@ -2433,11 +2427,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "ocean_id": {
             "type": "keyword",
@@ -2458,11 +2450,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "empire_a": {
             "type": "text",
@@ -2475,11 +2465,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "empire_id": {
             "type": "keyword",
@@ -2500,11 +2488,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "country_a": {
             "type": "text",
@@ -2517,11 +2503,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "country_id": {
             "type": "keyword",
@@ -2542,11 +2526,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "dependency_a": {
             "type": "text",
@@ -2559,11 +2541,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "dependency_id": {
             "type": "keyword",
@@ -2584,11 +2564,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "marinearea_a": {
             "type": "text",
@@ -2601,11 +2579,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "marinearea_id": {
             "type": "keyword",
@@ -2626,11 +2602,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "macroregion_a": {
             "type": "text",
@@ -2643,11 +2617,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "macroregion_id": {
             "type": "keyword",
@@ -2668,11 +2640,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "region_a": {
             "type": "text",
@@ -2685,11 +2655,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "region_id": {
             "type": "keyword",
@@ -2710,11 +2678,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "macrocounty_a": {
             "type": "text",
@@ -2727,11 +2693,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "macrocounty_id": {
             "type": "keyword",
@@ -2752,11 +2716,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "county_a": {
             "type": "text",
@@ -2769,11 +2731,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "county_id": {
             "type": "keyword",
@@ -2794,11 +2754,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "locality_a": {
             "type": "text",
@@ -2811,11 +2769,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "locality_id": {
             "type": "keyword",
@@ -2836,11 +2792,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "borough_a": {
             "type": "text",
@@ -2853,11 +2807,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "borough_id": {
             "type": "keyword",
@@ -2878,11 +2830,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "localadmin_a": {
             "type": "text",
@@ -2895,11 +2845,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "localadmin_id": {
             "type": "keyword",
@@ -2920,11 +2868,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "neighbourhood_a": {
             "type": "text",
@@ -2937,11 +2883,9 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false,
-                "index_options": "docs"
+                "doc_values": false
               }
-            },
-            "index_options": "docs"
+            }
           },
           "neighbourhood_id": {
             "type": "keyword",

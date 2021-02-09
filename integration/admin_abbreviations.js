@@ -6,17 +6,16 @@ module.exports.tests = {};
 
 /**
  * this test ensures that 'admin_abbreviation' fields
- * are indexed in a way that indexing multiple tokens in the
- * same field does not affect scoring even when the tokens
- * are duplicates or prefixes of each other.
+ * include a synonym mapping for country code abbreviations
+ * which maps between alpha2 and alpha3 variants.
 */
-module.exports.tests.scoring = function (test, common) {
-  test('scoring', function (t) {
+module.exports.tests.synonyms = function (test, common) {
+  test('synonyms - alpha3 does not share a prefix with alpha2', function (t) {
 
     var suite = new elastictest.Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
-    // index document 1 with country_a='NZL'
+    // index document 1 with country_a='MEX'
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
@@ -24,13 +23,13 @@ module.exports.tests.scoring = function (test, common) {
         id: '1',
         body: {
           parent: {
-            country_a: ['NZL']
+            country_a: ['MEX']
           }
         }
       }, done);
     });
 
-    // index document 2 with country_a='NZL' & 'NZ'
+    // index document 2 with country_a='MX'
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
@@ -38,13 +37,13 @@ module.exports.tests.scoring = function (test, common) {
         id: '2',
         body: {
           parent: {
-            country_a: ['NZL', 'NZ']
+            country_a: ['MX']
           }
         }
       }, done);
     });
 
-    // search for 'NZL' on 'parent.country_a' and compare scores
+    // search for 'MEX' on 'parent.country_a'
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
@@ -53,7 +52,7 @@ module.exports.tests.scoring = function (test, common) {
           query: {
             match: {
               'parent.country_a': {
-                'query': 'nzl'
+                'query': 'mex'
               }
             }
           }
@@ -66,7 +65,7 @@ module.exports.tests.scoring = function (test, common) {
       });
     });
 
-    // search for 'NZL' on 'parent.country_a.ngram' and compare scores
+    // search for 'MX' on 'parent.country_a'
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
@@ -74,8 +73,8 @@ module.exports.tests.scoring = function (test, common) {
         body: {
           query: {
             match: {
-              'parent.country_a.ngram': {
-                'query': 'nzl'
+              'parent.country_a': {
+                'query': 'mx'
               }
             }
           }
@@ -88,7 +87,7 @@ module.exports.tests.scoring = function (test, common) {
       });
     });
 
-    // search for 'NZ' on 'parent.country_a.ngram' and compare scores
+    // search for 'MEX' on 'parent.country_a.ngram'
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
@@ -97,7 +96,29 @@ module.exports.tests.scoring = function (test, common) {
           query: {
             match: {
               'parent.country_a.ngram': {
-                'query': 'nz'
+                'query': 'mex'
+              }
+            }
+          }
+        }
+      }, (err, res) => {
+        t.equal(err, undefined);
+        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
+        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+        done();
+      });
+    });
+
+    // search for 'MX' on 'parent.country_a.ngram'
+    suite.assert(done => {
+      suite.client.search({
+        index: suite.props.index,
+        type: config.schema.typeName,
+        body: {
+          query: {
+            match: {
+              'parent.country_a.ngram': {
+                'query': 'mx'
               }
             }
           }
@@ -112,15 +133,8 @@ module.exports.tests.scoring = function (test, common) {
 
     suite.run(t.end);
   });
-};
 
-/**
- * this test ensures that 'admin_abbreviation' fields
- * include a synonym mapping for country code abbreviations
- * which maps between alpha2 and alpha3 variants.
-*/
-module.exports.tests.synonyms = function (test, common) {
-  test('synonyms', function (t) {
+  test('synonyms - alpha3 shares a prefix with alpha2', function (t) {
 
     var suite = new elastictest.Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
