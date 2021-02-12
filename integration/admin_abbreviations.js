@@ -188,34 +188,35 @@ module.exports.tests.synonyms = function (test, common) {
         }
       }, (err, res) => {
         t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+        t.equal(getTotalHits(res.hits), 1, 'matches only one document');
         done();
       });
     });
 
     // search for 'NZ' on 'parent.country_a'
-    suite.assert(done => {
-      suite.client.search({
-        index: suite.props.index,
-        type: config.schema.typeName,
-        searchType: 'dfs_query_then_fetch',
-        body: {
-          query: {
-            match: {
-              'parent.country_a': {
-                'query': 'nz'
-              }
-            }
-          }
-        }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
-        done();
-      });
-    });
+    // note: searching by the alpha2 on the non-ngram field is not currently supported
+    // see: https://github.com/pelias/schema/pull/473
+    // suite.assert(done => {
+    //   suite.client.search({
+    //     index: suite.props.index,
+    //     type: config.schema.typeName,
+    //     searchType: 'dfs_query_then_fetch',
+    //     body: {
+    //       query: {
+    //         match: {
+    //           'parent.country_a': {
+    //             'query': 'nz'
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }, (err, res) => {
+    //     t.equal(err, undefined);
+    //     t.equal(getTotalHits(res.hits), 2, 'matches both documents');
+    //     t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+    //     done();
+    //   });
+    // });
 
     // search for 'NZL' on 'parent.country_a.ngram'
     suite.assert(done => {
@@ -234,8 +235,7 @@ module.exports.tests.synonyms = function (test, common) {
         }
       }, (err, res) => {
         t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+        t.equal(getTotalHits(res.hits), 1, 'matches one document');
         done();
       });
     });
