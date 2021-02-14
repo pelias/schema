@@ -50,24 +50,6 @@ module.exports.tests.analysis = function(test, common) {
 
 // -- analyzers --
 
-// this multiplexer filter provides all the synonyms used by the peliasAdmin analyzer
-// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.adminSynonymsMultiplexerFilter = function (test, common) {
-  test('has admin_synonyms_multiplexer filter', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.admin_synonyms_multiplexer, 'object', 'there is a admin_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.admin_synonyms_multiplexer;
-    t.equal(filter.type, 'multiplexer');
-    t.deepEqual(filter.filters, [
-      'synonyms/custom_admin',
-      'synonyms/personal_titles',
-      'synonyms/place_names',
-      'synonyms/country_codes'
-    ]);
-    t.end();
-  });
-};
-
 module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   test('has pelias admin analyzer', function(t) {
     var s = settings();
@@ -91,30 +73,6 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
       "unique_only_same_position",
       "notnull",
       "flatten_graph"
-    ]);
-    t.end();
-  });
-};
-
-// this multiplexer filter provides all the synonyms used by the peliasPhrase and peliasIndexOneEdgeGram analyzers
-// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
-  test('has name_synonyms_multiplexer filter', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.name_synonyms_multiplexer, 'object', 'there is a name_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.name_synonyms_multiplexer;
-    t.equal(filter.type, 'multiplexer');
-    t.deepEqual(filter.filters, [
-      'synonyms/custom_name',
-      'synonyms/custom_street',
-      'synonyms/custom_admin',
-      'synonyms/personal_titles',
-      'synonyms/place_names',
-      'synonyms/streets',
-      'synonyms/directionals',
-      'synonyms/punctuation',
-      'synonyms/british_american_english',
-      'synonyms/country_codes'
     ]);
     t.end();
   });
@@ -270,25 +228,6 @@ module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
   });
 };
 
-// this multiplexer filter provides all the synonyms used by the peliasStreet analyzer
-// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
-  test('has street_synonyms_multiplexer filter', function (t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.street_synonyms_multiplexer, 'object', 'there is a street_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.street_synonyms_multiplexer;
-    t.equal(filter.type, 'multiplexer');
-    t.deepEqual(filter.filters, [
-      'synonyms/custom_street',
-      'synonyms/personal_titles',
-      'synonyms/streets',
-      'synonyms/directionals',
-      'synonyms/british_american_english'
-    ]);
-    t.end();
-  });
-};
-
 module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   test('has peliasStreet analyzer', function(t) {
     var s = settings();
@@ -314,6 +253,135 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
       "unique_only_same_position",
       "notnull",
       "flatten_graph"
+    ]);
+    t.end();
+  });
+};
+
+module.exports.tests.peliasIndexCountryAbbreviation = function (test, common) {
+  test('has peliasIndexCountryAbbreviation analyzer', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasIndexCountryAbbreviation, 'object', 'there is a peliasIndexCountryAbbreviation analyzer');
+    var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviation;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasIndexCountryAbbreviation token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviation;
+    t.deepEqual(analyzer.filter, [
+      "lowercase",
+      "trim",
+      "icu_folding",
+      "country_abbreviation_synonyms_multiplexer",
+      "unique_only_same_position",
+      "notnull",
+      "flatten_graph"
+    ]);
+    t.end();
+  });
+};
+
+module.exports.tests.peliasIndexCountryAbbreviationOneEdgeGramAnalyzer = function (test, common) {
+  test('has peliasIndexCountryAbbreviationOneEdgeGram analyzer', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram, 'object', 'there is a peliasIndexCountryAbbreviationOneEdgeGram analyzer');
+    var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
+    t.equal(analyzer.type, 'custom', 'custom analyzer');
+    t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
+    t.deepEqual(analyzer.char_filter, ["punctuation", "nfkc_normalizer"], 'character filters specified');
+    t.true(Array.isArray(analyzer.filter), 'filters specified');
+    t.end();
+  });
+  test('peliasIndexCountryAbbreviationOneEdgeGram token filters', function (t) {
+    var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
+    t.deepEqual(analyzer.filter, [
+      "lowercase",
+      "trim",
+      "icu_folding",
+      "country_abbreviation_synonyms_multiplexer",
+      "peliasOneEdgeGramFilter",
+      "unique_only_same_position",
+      "notnull",
+      "flatten_graph"
+    ]);
+    t.end();
+  });
+};
+
+// -- token filters --
+
+// this multiplexer filter provides all the synonyms used by the peliasAdmin analyzer
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.adminSynonymsMultiplexerFilter = function (test, common) {
+  test('has admin_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.admin_synonyms_multiplexer, 'object', 'there is a admin_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.admin_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_admin',
+      'synonyms/personal_titles',
+      'synonyms/place_names'
+    ]);
+    t.end();
+  });
+};
+
+// this multiplexer filter provides all the synonyms for country codes.
+module.exports.tests.countryAbbreviationSynonymsMultiplexerFilter = function (test, common) {
+  test('has country_abbreviation_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.country_abbreviation_synonyms_multiplexer, 'object', 'there is a country_abbreviation_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.country_abbreviation_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/country_codes'
+    ]);
+    t.end();
+  });
+};
+
+// this multiplexer filter provides all the synonyms used by the peliasPhrase and peliasIndexOneEdgeGram analyzers
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
+  test('has name_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.name_synonyms_multiplexer, 'object', 'there is a name_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.name_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_name',
+      'synonyms/custom_street',
+      'synonyms/custom_admin',
+      'synonyms/personal_titles',
+      'synonyms/place_names',
+      'synonyms/streets',
+      'synonyms/directionals',
+      'synonyms/punctuation',
+      'synonyms/british_american_english',
+      'synonyms/country_codes'
+    ]);
+    t.end();
+  });
+};
+
+// this multiplexer filter provides all the synonyms used by the peliasStreet analyzer
+// note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
+module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
+  test('has street_synonyms_multiplexer filter', function (t) {
+    var s = settings();
+    t.equal(typeof s.analysis.filter.street_synonyms_multiplexer, 'object', 'there is a street_synonyms_multiplexer filter');
+    var filter = s.analysis.filter.street_synonyms_multiplexer;
+    t.equal(filter.type, 'multiplexer');
+    t.deepEqual(filter.filters, [
+      'synonyms/custom_street',
+      'synonyms/personal_titles',
+      'synonyms/streets',
+      'synonyms/directionals',
+      'synonyms/british_american_english'
     ]);
     t.end();
   });

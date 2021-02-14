@@ -1,0 +1,15 @@
+{
+  "type": "text",
+  "analyzer": "peliasIndexCountryAbbreviation",
+  "search_analyzer": "peliasQuery",
+  "similarity": "peliasDefaultSimilarity",
+  "fields": {
+    "ngram": {
+      "type": "text",
+      "analyzer": "peliasIndexCountryAbbreviationOneEdgeGram",
+      "search_analyzer": "peliasQuery",
+      "similarity": "peliasDefaultSimilarity",
+      "doc_values": false
+    }
+  }
+}

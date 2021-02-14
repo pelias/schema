@@ -142,7 +142,36 @@ function generate(){
             "notnull",
             "flatten_graph",
           ]
-        }
+        },
+        "peliasIndexCountryAbbreviation": {
+          "type": "custom",
+          "tokenizer": "peliasTokenizer",
+          "char_filter": ["punctuation", "nfkc_normalizer"],
+          "filter": [
+            "lowercase",
+            "trim",
+            "icu_folding",
+            "country_abbreviation_synonyms_multiplexer",
+            "unique_only_same_position",
+            "notnull",
+            "flatten_graph"
+          ]
+        },
+        "peliasIndexCountryAbbreviationOneEdgeGram": {
+          "type": "custom",
+          "tokenizer": "peliasTokenizer",
+          "char_filter": ["punctuation", "nfkc_normalizer"],
+          "filter": [
+            "lowercase",
+            "trim",
+            "icu_folding",
+            "country_abbreviation_synonyms_multiplexer",
+            "peliasOneEdgeGramFilter",
+            "unique_only_same_position",
+            "notnull",
+            "flatten_graph"
+          ]
+        },
       },
       "filter" : {
         "street_synonyms_multiplexer": {
@@ -178,7 +207,13 @@ function generate(){
           "filters": [
             "synonyms/custom_admin",
             "synonyms/personal_titles",
-            "synonyms/place_names",
+            "synonyms/place_names"
+          ]
+        },
+        "country_abbreviation_synonyms_multiplexer": {
+          "type": "multiplexer",
+          "preserve_original": false,
+          "filters": [
             "synonyms/country_codes"
           ]
         },
