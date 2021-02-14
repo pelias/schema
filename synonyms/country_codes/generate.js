@@ -18,9 +18,9 @@ const mapper = (row) => {
   var prefix = '';
 
   // comment-out synonyms where alpha2 is a prefix of alpha3
-  if (row.alpha3.startsWith(row.alpha2)){
-    prefix = '#';
-  }
+  // if (row.alpha3.startsWith(row.alpha2)){
+  //   prefix = '#';
+  // }
 
   // add informal synonyms
   var ns = _.get(nonstandard, columns[0])
