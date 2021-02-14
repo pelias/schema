@@ -361,8 +361,7 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
       'synonyms/streets',
       'synonyms/directionals',
       'synonyms/punctuation',
-      'synonyms/british_american_english',
-      'synonyms/country_codes'
+      'synonyms/british_american_english'
     ]);
     t.end();
   });

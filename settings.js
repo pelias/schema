@@ -197,8 +197,7 @@ function generate(){
             "synonyms/streets",
             "synonyms/directionals",
             "synonyms/punctuation",
-            "synonyms/british_american_english",
-            "synonyms/country_codes"
+            "synonyms/british_american_english"
           ]
         },
         "admin_synonyms_multiplexer": {
