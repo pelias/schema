@@ -1,4 +1,5 @@
 const admin = require('./partial/admin');
+const countryAbbreviation = require('./partial/countryAbbreviation');
 const postalcode = require('./partial/postalcode');
 const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');
@@ -87,7 +88,7 @@ var schema = {
 
         // https://github.com/whosonfirst/whosonfirst-placetypes#country
         country: admin,
-        country_a: admin,
+        country_a: countryAbbreviation,
         country_id: keyword,
         country_source: keyword,
 

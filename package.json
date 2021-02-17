@@ -42,6 +42,7 @@
   "devDependencies": {
     "difflet": "^1.0.1",
     "elastictest": "^3.0.0",
+    "iso3166-1": "^0.5.1",
     "proxyquire": "^2.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.5.0"

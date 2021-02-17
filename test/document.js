@@ -127,26 +127,59 @@ module.exports.tests.parent_fields = function(test, common) {
 // parent field analysis
 // ref: https://github.com/pelias/schema/pull/95
 module.exports.tests.parent_analysis = function(test, common) {
-  var prop = schema.properties.parent.properties;
-  var fields = [
+  const prop = schema.properties.parent.properties;
+  const fields = [
     'continent', 'ocean', 'empire', 'country', 'dependency', 'marinearea',
     'macroregion', 'region', 'macrocounty', 'county', 'locality', 'borough',
     'localadmin', 'neighbourhood'
   ];
+
   fields.forEach( function( field ){
     test(field, function(t) {
-      t.equal(prop[field].type, 'text', `${field} is set to text type`);
-      t.equal(prop[field].analyzer, 'peliasAdmin', `${field} analyzer is peliasAdmin`);
-      t.equal(prop[field+'_a'].type, 'text', `${field}_a type is text`);
-      t.equal(prop[field+'_a'].analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
-      t.equal(prop[field+'_a'].search_analyzer, 'peliasAdmin', `${field}_a analyzer is peliasAdmin`);
+
+      // this is how the *default* analysis is currently set up across admin fields
+      // note: we would like to move away from this to individual analyzers per-admin field.
+      var expectedFullTextIndexAnalyzer = 'peliasAdmin';
+      var expectedFullTextSearchAnalyzer = 'peliasAdmin';
+      var expectedNgramIndexAnalyzer = 'peliasIndexOneEdgeGram';
+      var expectedNgramSearchAnalyzer = 'peliasAdmin';
+
+      // id field
       t.equal(prop[field+'_id'].type, 'keyword', `${field}_id type is keyword`);
       t.equal(prop[field+'_id'].index, undefined, `${field}_id index left at default`);
 
-      // subfields
+      // source field
+      t.equal(prop[field + '_source'].type, 'keyword', `${field}_source type is keyword`);
+      t.equal(prop[field + '_source'].index, undefined, `${field}_source index left at default`);
+
+      // fulltext field eg. parent.region
+      t.equal(prop[field].type, 'text', `${field} is set to text type`);
+      t.equal(prop[field].analyzer, expectedFullTextIndexAnalyzer, `${field} analyzer`);
+      t.equal(prop[field].search_analyzer, expectedFullTextSearchAnalyzer, `${field} analyzer`);
+
+      // ngram subfield
       t.equal(prop[field].fields.ngram.type, 'text', `${field}.ngram type is full text`);
-      t.equal(prop[field].fields.ngram.analyzer, 'peliasIndexOneEdgeGram', `${field}.ngram analyzer is peliasIndexOneEdgeGram`);
-      t.equal(prop[field].fields.ngram.search_analyzer, 'peliasAdmin', `${field}.ngram analyzer is peliasIndexOneEdgeGram`);
+      t.equal(prop[field].fields.ngram.analyzer, expectedNgramIndexAnalyzer, `${field}.ngram analyzer`);
+      t.equal(prop[field].fields.ngram.search_analyzer, expectedNgramSearchAnalyzer, `${field}.ngram analyzer`);
+
+      // country is the first field which has custom analyzers
+      // note: initially only for the `country_a` and `country_a.ngram` fields
+      if (field === 'country') {
+        expectedFullTextIndexAnalyzer = 'peliasIndexCountryAbbreviation';
+        expectedFullTextSearchAnalyzer = 'peliasQuery';
+        expectedNgramIndexAnalyzer = 'peliasIndexCountryAbbreviationOneEdgeGram';
+        expectedNgramSearchAnalyzer = 'peliasQuery';
+      }
+
+      // abbreviaton
+      t.equal(prop[field + '_a'].type, 'text', `${field}_a type is text`);
+      t.equal(prop[field + '_a'].analyzer, expectedFullTextIndexAnalyzer, `${field}_a analyzer`);
+      t.equal(prop[field + '_a'].search_analyzer, expectedFullTextSearchAnalyzer, `${field}_a analyzer`);
+
+      // abbreviaton ngram subfield
+      t.equal(prop[field + '_a'].fields.ngram.type, 'text', `${field}_a.ngram type is full text`);
+      t.equal(prop[field + '_a'].fields.ngram.analyzer, expectedNgramIndexAnalyzer, `${field}_a.ngram analyzer`);
+      t.equal(prop[field + '_a'].fields.ngram.search_analyzer, expectedNgramSearchAnalyzer, `${field}_a.ngram analyzer`);
 
       t.end();
     });
