@@ -159,6 +159,7 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
+      "removeAllZeroNumericPrefix",
       "unique_only_same_position",
       "notnull",
       "flatten_graph"

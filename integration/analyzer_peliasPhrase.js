@@ -51,6 +51,9 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis( 'british_american_english', 'town theatre', ['0:town', '1:theatre', '1:theater'] );
     assertAnalysis( 'british_american_english', 'town theater', ['0:town', '1:theater', '1:theatre'] );
 
+    // remove leading zeros from numeric input
+    assertAnalysis( 'leading_zeros', '01000', ['0:1000'] );
+    assertAnalysis( 'leading_zeros', '09999', ['0:9999'] );
 
     suite.run( t.end );
   });
