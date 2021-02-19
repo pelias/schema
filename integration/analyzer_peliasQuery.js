@@ -31,6 +31,10 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('no kstem', 'McDonald\'s', ['mcdonalds']);
     assertAnalysis('no kstem', 'peoples', ['peoples']);
 
+    assertAnalysis('ampersand_splitter', 'AP Deli', ['ap', 'deli']);
+    assertAnalysis('ampersand_splitter', 'A&P Deli', ['a', '&', 'p', 'deli']);
+    assertAnalysis('ampersand_splitter', 'A & P Deli', ['a', '&', 'p', 'deli']);
+
     // remove punctuation (handled by the char_filter)
     assertAnalysis( 'punctuation', punctuation.all.join(''), ['&'] );
 
@@ -48,6 +52,9 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'country', 'Trinidad and Tobago', [ 'trinidad', 'and', 'tobago' ]);
     assertAnalysis( 'place', 'Toys "R" Us!', [ 'toys', 'r', 'us' ]);
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
+
+    assertAnalysis( 'place', 'A&P Deli', [ 'a', '&', 'p', 'deli' ]);
+    assertAnalysis( 'place', 'A & P Deli', [ 'a', '&', 'p', 'deli' ]);
 
     suite.run( t.end );
   });
