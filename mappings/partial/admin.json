@@ -3,13 +3,15 @@
   "analyzer": "peliasAdmin",
   "search_analyzer": "peliasAdmin",
   "similarity": "peliasDefaultSimilarity",
+  "norms": false,
   "fields": {
     "ngram": {
       "type": "text",
       "analyzer": "peliasIndexOneEdgeGram",
       "search_analyzer": "peliasAdmin",
       "similarity": "peliasDefaultSimilarity",
-      "doc_values": false
+      "doc_values": false,
+      "norms": false
     }
   }
 }

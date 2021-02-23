@@ -225,7 +225,7 @@ module.exports.tests.slop_query = function(test, common){
         t.equal( getTotalHits(res.hits), 3 );
         var hits = res.hits.hits;
 
-        t.equal( hits[0]._source.name.default, 'Lake Cayuga' );
+        t.equal( hits[0]._source.name.default, '7991 Lake Cayuga Dr' );
 
         // This behaviour changed between elasticsearch 2.4 & 5.6
         // In 2.4 the sloppy exact match ranked higher, after upgrading

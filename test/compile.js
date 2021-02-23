@@ -44,7 +44,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
       type: 'text',
       analyzer: 'peliasIndexOneEdgeGram',
       search_analyzer: 'peliasQuery',
-      similarity: 'peliasDefaultSimilarity'
+      similarity: 'peliasDefaultSimilarity',
+      norms: false
     });
     t.end();
   });
@@ -57,7 +58,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
       type: 'text',
       analyzer: 'peliasPhrase',
       search_analyzer: 'peliasQuery',
-      similarity: 'peliasDefaultSimilarity'
+      similarity: 'peliasDefaultSimilarity',
+      norms: false
     });
     t.end();
   });
@@ -69,7 +71,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
     t.deepEqual(template.mapping, {
       type: 'keyword',
       index: false,
-      doc_values: false
+      doc_values: false,
+      norms: false
     });
     t.end();
   });

@@ -28,37 +28,43 @@ var schema = {
           type: 'text',
           analyzer: 'keyword',
           search_analyzer: 'keyword',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
         unit: {
           type: 'text',
           analyzer: 'peliasUnit',
           search_analyzer: 'peliasUnit',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
         number: {
           type: 'text',
           analyzer: 'peliasHousenumber',
           search_analyzer: 'peliasHousenumber',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
         street: {
           type: 'text',
           analyzer: 'peliasStreet',
           search_analyzer: 'peliasQuery',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
         cross_street: {
           type: 'text',
           analyzer: 'peliasStreet',
           search_analyzer: 'peliasQuery',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
         zip: {
           type: 'text',
           analyzer: 'peliasZip',
           search_analyzer: 'peliasZip',
-          similarity: 'peliasDefaultSimilarity'
+          similarity: 'peliasDefaultSimilarity',
+          norms: false
         },
       }
     },
@@ -182,7 +188,8 @@ var schema = {
         type: 'text',
         analyzer: 'peliasIndexOneEdgeGram',
         search_analyzer: 'peliasQuery',
-        similarity: 'peliasDefaultSimilarity'
+        similarity: 'peliasDefaultSimilarity',
+        norms: false
       }
     },
   },{
@@ -193,7 +200,8 @@ var schema = {
         type: 'text',
         analyzer: 'peliasPhrase',
         search_analyzer: 'peliasQuery',
-        similarity: 'peliasDefaultSimilarity'
+        similarity: 'peliasDefaultSimilarity',
+        norms: false
       }
     }
   },{
@@ -203,7 +211,8 @@ var schema = {
       mapping: {
         type: 'keyword',
         index: false,
-        doc_values: false
+        doc_values: false,
+        norms: false
       }
     }
   }],
