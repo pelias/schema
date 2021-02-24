@@ -3,7 +3,6 @@
   "analyzer": "peliasZip",
   "search_analyzer": "peliasZip",
   "similarity": "peliasDefaultSimilarity",
-  "norms": false,
   "fields": {
     "ngram": {
       "type": "text",

@@ -3,7 +3,6 @@
   "analyzer": "peliasIndexCountryAbbreviation",
   "search_analyzer": "peliasQuery",
   "similarity": "peliasDefaultSimilarity",
-  "norms": false,
   "fields": {
     "ngram": {
       "type": "text",

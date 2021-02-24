@@ -58,8 +58,7 @@ module.exports.tests.dynamic_templates = function(test, common) {
       type: 'text',
       analyzer: 'peliasPhrase',
       search_analyzer: 'peliasQuery',
-      similarity: 'peliasDefaultSimilarity',
-      norms: false
+      similarity: 'peliasDefaultSimilarity'
     });
     t.end();
   });

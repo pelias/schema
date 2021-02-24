@@ -3,7 +3,6 @@
   "analyzer": "peliasAdmin",
   "search_analyzer": "peliasAdmin",
   "similarity": "peliasDefaultSimilarity",
-  "norms": false,
   "fields": {
     "ngram": {
       "type": "text",
