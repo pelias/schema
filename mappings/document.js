@@ -182,7 +182,8 @@ var schema = {
         type: 'text',
         analyzer: 'peliasIndexOneEdgeGram',
         search_analyzer: 'peliasQuery',
-        similarity: 'peliasDefaultSimilarity'
+        similarity: 'peliasDefaultSimilarity',
+        norms: false
       }
     },
   },{
@@ -203,7 +204,8 @@ var schema = {
       mapping: {
         type: 'keyword',
         index: false,
-        doc_values: false
+        doc_values: false,
+        norms: false
       }
     }
   }],
