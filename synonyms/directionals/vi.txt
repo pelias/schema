@@ -1,0 +1,9 @@
+cực bắc, cd
+cực nam, cn
+cực tây, ct
+cực đông, cd
+trung tâm, tt
+tây bắc, tb
+tây nam, tn
+đông bắc, db
+đông nam, dn
