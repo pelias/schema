@@ -1,0 +1,52 @@
+biệt thự, bt
+bãi giữ xe, bgx
+bưu điện, bd
+bảo tàng, bt
+bệnh viện, bv
+cao ốc, co
+chung cư, cc
+cung văn hóa, cvh
+cà phê, cp, cf
+câu lạc bộ, clb
+công viên, cv
+căn hộ dịch vụ, chdv
+căn hộ, ch
+cơ sở, cs
+kho bạc, kb
+khách sạn, ks
+ký túc xá, ktx
+lâu đài, ld
+mầm non, mn
+ngân hàng, nh
+nhà hàng, nh
+nhà hát, nh
+nhà máy, nm
+nhà mẫu giáo, nmg
+nhà nghỉ, nn
+nhà thờ, nt
+nhà trẻ, nt
+nhà xã hội, nxh
+phố đi bộ, pdb
+phổ thông, pt
+phụ nữ, pn
+quán bar, bar
+quốc tế, qt
+rạp chiếu phim, rcp
+rạp xiếc, rx
+siêu thị, st
+sân bay, sb
+sân vận động, svd
+tiểu học, th
+trung học, th
+trung tâm thương mại, tttm
+trung tâm, tt
+tòa nhà quốc hội, tnqh
+tòa nhà văn phòng, tnvp
+tòa nhà, tn
+tượng đài, td
+tạp hóa, th
+văn phòng chính phủ, vpcp
+văn phòng, vp
+vũ trường, vt
+đại sứ quán, dsq
+ủy ban nhân dân, ubnd
