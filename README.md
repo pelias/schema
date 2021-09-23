@@ -152,4 +152,4 @@ $ docker run --rm --name elastic-test -p 9200:9200 pelias/elasticsearch:7.5.1
 
 ### Continuous Integration
 
-Travis tests every release against all supported Node.js versions.
+CI tests every release against all supported Node.js versions.
