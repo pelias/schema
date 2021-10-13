@@ -2992,6 +2992,10 @@
         "type": "keyword",
         "doc_values": false
       },
+      "concordance": {
+        "type": "object",
+        "dynamic": true
+      },
       "population": {
         "type": "long",
         "null_value": 0
@@ -3027,6 +3031,16 @@
             "analyzer": "peliasPhrase",
             "search_analyzer": "peliasQuery",
             "similarity": "peliasDefaultSimilarity"
+          }
+        }
+      },
+      {
+        "concordance": {
+          "path_match": "concordance.*",
+          "match_mapping_type": "string",
+          "mapping": {
+            "type": "keyword",
+            "doc_values": false
           }
         }
       },

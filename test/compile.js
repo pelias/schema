@@ -61,9 +61,20 @@ module.exports.tests.dynamic_templates = function(test, common) {
     });
     t.end();
   });
+  test('dynamic_templates: concordance', function (t) {
+    t.equal(typeof schema.mappings.dynamic_templates[2].concordance, 'object', 'concordance template specified');
+    var template = schema.mappings.dynamic_templates[2].concordance;
+    t.equal(template.path_match, 'concordance.*');
+    t.equal(template.match_mapping_type, 'string');
+    t.deepEqual(template.mapping, {
+      type: 'keyword',
+      doc_values: false
+    });
+    t.end();
+  });
   test('dynamic_templates: addendum', function (t) {
-    t.equal(typeof schema.mappings.dynamic_templates[2].addendum, 'object', 'addendum template specified');
-    var template = schema.mappings.dynamic_templates[2].addendum;
+    t.equal(typeof schema.mappings.dynamic_templates[3].addendum, 'object', 'addendum template specified');
+    var template = schema.mappings.dynamic_templates[3].addendum;
     t.equal(template.path_match, 'addendum.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
