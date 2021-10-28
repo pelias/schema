@@ -48,7 +48,7 @@ module.exports.tests.analyze = function(test, common){
       '1:a',
       '2:a', '2:ab',
       '3:a', '3:ab', '3:abc',
-      '4:a', '4:ab', '4:abc', '4:abcd', '4:abcde', '4:abcdef', 
+      '4:a', '4:ab', '4:abc', '4:abcd', '4:abcde', '4:abcdef',
       '4:abcdefg', '4:abcdefgh', '4:abcdefghi', '4:abcdefghij'
     ] );
     assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
@@ -69,7 +69,7 @@ module.exports.tests.analyze = function(test, common){
     // remove punctuation (handled by the char_filter)
     assertAnalysis('punctuation', punctuation.all.join(''), ['0:&', '0:a', '0:an', '0:and', '0:u', '0:un', '0:und'] );
     assertAnalysis( 'punctuation', 'Hawai‘i', ['0:h', '0:ha', '0:haw', '0:hawa', '0:hawai', '0:hawaii'] );
-
+    assertAnalysis( 'punctuation', '„Tip Top”', ['0:t', '0:ti', '0:tip', '1:t', '1:to', '1:top'] );
     // ensure that very large grams are created
     assertAnalysis( 'largeGrams', 'grolmanstrasse', [
       '0:g', '0:gr', '0:gro', '0:grol', '0:grolm', '0:grolma', '0:grolman', '0:grolmans',
