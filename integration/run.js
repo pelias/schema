@@ -13,7 +13,6 @@ const common = {
   create: {
     schema: schema,
     create: {
-      include_type_name: false
     }
   },
   summaryMap: (res) => {

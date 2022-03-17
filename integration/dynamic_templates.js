@@ -49,8 +49,7 @@ function nameAssertion( analyzer, common ){
     suite.assert( done => {
 
       suite.client.indices.getMapping({
-        index: suite.props.index,
-        include_type_name: false
+        index: suite.props.index
       }, (err, res) => {
 
         const properties = res[suite.props.index].mappings.properties;
@@ -88,8 +87,7 @@ function phraseAssertion( analyzer, common ){
     suite.assert( done => {
 
       suite.client.indices.getMapping({
-        index: suite.props.index,
-        include_type_name: false
+        index: suite.props.index
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings.properties;
@@ -126,8 +124,7 @@ function addendumAssertion( namespace, value, common ){
     // inherited from the dynamic_template
     suite.assert( done => {
       suite.client.indices.getMapping({
-        index: suite.props.index,
-        include_type_name: false,
+        index: suite.props.index
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings.properties;
