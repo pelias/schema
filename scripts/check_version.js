@@ -8,7 +8,7 @@ const cli = require('./cli');
 // pass target elastic version semver as the first CLI arg
 const targetVersion = process.argv[2];
 if(!targetVersion){
-  console.error('you must pass a target elasticsearch version semver as the first argument');
+  console.error('you must pass a target elasticsearch version server as the first argument');
   process.exit(1);
 }
 
