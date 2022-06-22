@@ -6,7 +6,7 @@ ENV WORKDIR /code/pelias/schema
 WORKDIR ${WORKDIR}
 
 # copy package.json first to prevent npm install being rerun when only code changes
-COPY ./package.json ${WORK}
+COPY ./package.json ${WORKDIR}
 RUN npm install
 
 # add code from local checkout to image
