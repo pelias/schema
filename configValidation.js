@@ -6,7 +6,8 @@ const Joi = require('@hapi/joi');
 const schema = Joi.object().required().keys({
   schema: Joi.object().required().keys({
     indexName: Joi.string().required(),
-    typeName: Joi.string().required()
+    typeName: Joi.string().required(),
+    indexAddendumField: Joi.boolean()
   }),
   esclient: Joi.object().required()
 }).unknown(true);

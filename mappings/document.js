@@ -5,8 +5,10 @@ const hash = require('./partial/hash');
 const multiplier = require('./partial/multiplier');
 const keyword = require('./partial/keyword');
 const keyword_with_doc_values = require('./partial/keyword_with_doc_values');
+const _ = require("lodash");
+const peliasConfig = require('pelias-config').generate();
 
-var schema = {
+const schema = {
   properties: {
 
     // data partitioning
@@ -202,7 +204,7 @@ var schema = {
       match_mapping_type: 'string',
       mapping: {
         type: 'keyword',
-        index: false,
+        index: _.get(peliasConfig, 'schema.indexAddendumField', false),
         doc_values: false
       }
     }
