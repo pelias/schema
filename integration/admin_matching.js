@@ -16,7 +16,6 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1', body: {
           parent: {
             country: 'Test Country',
@@ -46,7 +45,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: { 'parent.country': 'Test Country' } } }
       }, function( err, res ){
         t.equal( err, undefined );
@@ -59,7 +57,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
       }, function( err, res ){
         t.equal( err, undefined );
@@ -72,7 +69,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: { 'parent.country_id': '100' } } }
       }, function( err, res ){
         t.equal( err, undefined );

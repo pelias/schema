@@ -16,7 +16,6 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1', body: { address_parts: {
           name: 'Mapzen HQ',
           number: 30,
@@ -29,7 +28,6 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '2', body: { address_parts: {
           name: 'Fake Venue',
           number: 300,
@@ -42,7 +40,6 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '3', body: { address_parts: {
           name: 'Mock British Address',
           number: 3000,
@@ -55,7 +52,6 @@ module.exports.tests.functional = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '4', body: { address_parts: {
           name: 'Mystery Location',
           number: 300,
@@ -69,7 +65,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.number': 30 } }
         ]}}}
@@ -84,7 +79,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'west 26th street' } }
         ]}}}
@@ -99,7 +93,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'W 26th ST' } }
         ]}}}
@@ -114,7 +107,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10010' } }
         ]}}}
@@ -129,7 +121,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'e24dn' } }
         ]}}}
@@ -144,7 +135,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '100-10' } }
         ]}}}
@@ -159,7 +149,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10 0 10' } }
         ]}}}
@@ -174,7 +163,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2-4DN' } }
         ]}}}
@@ -189,7 +177,6 @@ module.exports.tests.functional = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2  4DN' } }
         ]}}}
@@ -224,7 +211,6 @@ module.exports.tests.venue_vs_address = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1', body: {
           name: { default: 'Union Square' },
           phrase: { default: 'Union Square' }
@@ -239,7 +225,6 @@ module.exports.tests.venue_vs_address = function(test, common){
         let id = i + 100; // id offset
         suite.client.index({
           index: suite.props.index,
-          type: config.schema.typeName,
           id: String(id),
           body: {
             name: { default: `${id} Union Square` },
@@ -263,7 +248,6 @@ module.exports.tests.venue_vs_address = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         size: TOTAL_ADDRESS_DOCS+1,
         body: {

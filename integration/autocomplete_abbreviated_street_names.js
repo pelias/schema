@@ -21,7 +21,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'Grolmanstraße' } }
       }, done);
@@ -31,7 +30,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -62,7 +60,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.action( function( done ){
 //       suite.client.index({
 //         index: suite.props.index,
-//         type: config.schema.typeName,
 //         id: '1',
 //         body: { name: { default: 'Grolmanstr.' } }
 //       }, done);
@@ -75,7 +72,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.assert( function( done ){
 //       suite.client.search({
 //         index: suite.props.index,
-//         type: config.schema.typeName,
 //         body: { query: { match: {
 //           'name.default': {
 //             'analyzer': 'peliasQueryPartialToken',
@@ -96,7 +92,6 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //     suite.assert( function( done ){
 //       suite.client.search({
 //         index: suite.props.index,
-//         type: config.schema.typeName,
 //         body: { query: { match: {
 //           'name.default': {
 //             'analyzer': 'peliasQuery',

@@ -19,7 +19,6 @@ module.exports.tests.functional = function (test, common) {
     suite.action(function (done) {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1', body: {
           name: { default: 'set' },
           phrase: { default: 'set' },

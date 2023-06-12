@@ -19,7 +19,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: {
           parent: {
@@ -33,7 +32,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '2',
         body: {
           parent: {
@@ -47,7 +45,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -70,7 +67,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -93,7 +89,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -116,7 +111,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -147,7 +141,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: {
           parent: {
@@ -161,7 +154,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '2',
         body: {
           parent: {
@@ -175,7 +167,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -198,7 +189,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -221,7 +211,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -244,7 +233,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
@@ -275,7 +263,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: {
           parent: {
@@ -289,7 +276,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.action(done => {
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '2',
         body: {
           parent: {
@@ -303,7 +289,6 @@ module.exports.tests.synonyms = function (test, common) {
     suite.assert(done => {
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: {
           query: {
