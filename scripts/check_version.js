@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const semver = require('semver');
-const es = require('elasticsearch');
+const es = require('@elastic/elasticsearch');
 const config = require('pelias-config').generate();
 const client = new es.Client(config.esclient);
 const cli = require('./cli');

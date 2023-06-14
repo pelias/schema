@@ -1,6 +1,6 @@
 const child_process = require('child_process');
 const config = require('pelias-config').generate();
-const es = require('elasticsearch');
+const es = require('@elastic/elasticsearch');
 const SUPPORTED_ES_VERSIONS = '>=7.4.2';
 
 const cli = require('./cli');
