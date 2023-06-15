@@ -1,15 +1,9 @@
 const _ = require('lodash');
 const tape = require('tape');
-const config = require('pelias-config').generate();
 
 const schema = require('../schema');
 
 const common = {
-  clientOpts: {
-    host: 'localhost:9200',
-    keepAlive: true,
-    apiVersion: config.esclient.apiVersion
-  },
   create: {
     schema: schema,
     create: { }
