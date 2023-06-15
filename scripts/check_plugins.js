@@ -11,22 +11,22 @@ const required = ['analysis-icu'];
 let failures = [];
 
 cli.header("checking elasticsearch plugins");
-client.nodes.info(null, (err, res) => {
+client.nodes.info((err, { body }) => {
 
   if( err ){
     console.error(err);
     process.exit(1);
   }
 
-  if( !res || !res.nodes ){
+  if( !body || !body.nodes ){
     console.error("no nodes found");
     process.exit(1);
   }
 
   // iterate over all nodes in cluster
-  for( const uid in res.nodes ){
+  for( const uid in body.nodes ){
 
-    const node = res.nodes[uid];
+    const node = body.nodes[uid];
 
     // Amazon's hosted Elasticsearch does not have the plugins property
     // but has the plugins we need
