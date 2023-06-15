@@ -36,9 +36,9 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
             'query': 'Grolmanstr.'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -78,9 +78,9 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //             'query': 'Grolmanstraße'
 //           }
 //         }}}
-//       }, function( err, res ){
-//         t.equal( err, undefined );
-//         t.equal( getTotalHits(res.hits), 1, 'document found' );
+//       }, (err, { body }) => {
+//         t.false(err);
+//         t.equal( getTotalHits(body.hits), 1, 'document found' );
 //         done();
 //       });
 //     });
@@ -98,9 +98,9 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //             'query': 'Grolmanstraße'
 //           }
 //         }}}
-//       }, function( err, res ){
-//         t.equal( err, undefined );
-//         t.equal( getTotalHits(res.hits), 1, 'document found' );
+//       }, (err, { body }) => {
+//         t.false(err);
+//         t.equal( getTotalHits(body.hits), 1, 'document found' );
 //         done();
 //       });
 //     });

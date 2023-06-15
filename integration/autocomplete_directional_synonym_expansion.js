@@ -36,9 +36,9 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
             'query': 'nor'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -53,9 +53,9 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
             'query': 'north'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -90,9 +90,9 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
             'query': 'n'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -127,9 +127,9 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
             'query': 'nor'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -144,9 +144,9 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
             'query': 'north'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -181,9 +181,9 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
             'query': 'n'
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });

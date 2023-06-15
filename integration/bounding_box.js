@@ -29,9 +29,9 @@ module.exports.tests.index_and_retrieve = function(test, common){
           index: suite.props.index,
           id: '1'
         },
-        function (err, res) {
-          t.equal(err, undefined);
-          t.deepEqual(res._source.bounding_box, '{"min_lat":-47.75,"max_lat":-33.9,"min_lon":163.82,"max_lon":179.42}');
+        function (err, { body }) {
+          t.false(err);
+          t.deepEqual(body._source.bounding_box, '{"min_lat":-47.75,"max_lat":-33.9,"min_lon":163.82,"max_lon":179.42}');
           done();
         }
       );
