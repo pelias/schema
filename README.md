@@ -64,7 +64,7 @@ node scripts/update_settings.js          # update index settings
 
 #### output schema file
 
-Use this script to pretty-print the whole schema file or a single mapping to stdout.
+Use this script to pretty-print the schema's mappings to stdout.
 
 ```bash
 node scripts/output_mapping.js
