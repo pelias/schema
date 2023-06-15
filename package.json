@@ -11,7 +11,6 @@
     "integration": "./bin/integration",
     "create_index": "./bin/create_index",
     "drop_index": "node scripts/drop_index",
-    "reset_type": "node scripts/reset_type",
     "update_settings": "node scripts/update_settings"
   },
   "repository": {
