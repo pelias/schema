@@ -30,7 +30,7 @@
   "dependencies": {
     "@hapi/joi": "^16.1.8",
     "colors": "^1.1.2",
-    "@elastic/elasticsearch": "~7.17.0",
+    "pelias-elasticsearch": "https://github.com/michaelkirk-pelias/pelias-elasticsearch#mkirk\/elastic8",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "pelias-config": "https://github.com/michaelkirk-pelias/config#mkirk\/elastic8",

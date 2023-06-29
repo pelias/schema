@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const config = require('pelias-config').generate();
-const es = require('@elastic/elasticsearch');
-const client = new es.Client(config.esclient);
+const buildClient = require('pelias-elasticsearch');
+const client = buildClient(config.esclient);
 const readline = require('readline');
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
