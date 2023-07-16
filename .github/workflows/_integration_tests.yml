@@ -9,7 +9,6 @@ jobs:
           - ubuntu-22.04
         node-version: [18.x, 20.x, 22.x]
         es-version: [7.6.1]
-        jdk-version: [oraclejdk11]
         icuTokenizer: [true, false]
     steps:
     - uses: actions/checkout@v4
@@ -17,10 +16,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Start elasticsearch ${{ matrix.es-version }} (${{ matrix.jdk-version }})
+    - name: Start elasticsearch ${{ matrix.es-version }}
       env:
         ES_VERSION: ${{ matrix.es-version }}
-        JDK_VERSION: ${{ matrix.jdk-version }}
       run: ./scripts/setup_ci.sh
     - name: Run integration tests
       run: |
