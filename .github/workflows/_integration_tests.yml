@@ -1,0 +1,30 @@
+name: Integration Tests
+on: workflow_call
+jobs:
+  integration-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ${{ vars.UBUNTU_VERSION }}
+        node-version: [14.x, 16.x]
+        es-version: [7.6.1]
+        jdk-version: [oraclejdk11]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Start elasticsearch ${{ matrix.es-version }} (${{ matrix.jdk-version }})
+      env:
+        ES_VERSION: ${{ matrix.es-version }}
+        JDK_VERSION: ${{ matrix.jdk-version }}
+      run: ./scripts/setup_ci.sh
+    - name: Run integration tests
+      run: |
+        npm install -g npm
+        npm install
+        curl http://127.0.0.1:9200/
+        ./bin/create_index
+        npm run integration
