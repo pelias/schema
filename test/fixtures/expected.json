@@ -2416,7 +2416,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2431,7 +2432,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2454,7 +2456,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2469,7 +2472,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2492,7 +2496,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2507,7 +2512,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2530,7 +2536,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2545,7 +2552,8 @@
                 "analyzer": "peliasIndexCountryAbbreviationOneEdgeGram",
                 "search_analyzer": "peliasQuery",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2568,7 +2576,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2583,7 +2592,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2606,7 +2616,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2621,7 +2632,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2644,7 +2656,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2659,7 +2672,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2682,7 +2696,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2697,7 +2712,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2720,7 +2736,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2735,7 +2752,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2758,7 +2776,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2773,7 +2792,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2796,7 +2816,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2811,7 +2832,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2834,7 +2856,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2849,7 +2872,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2872,7 +2896,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2887,7 +2912,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2910,7 +2936,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2925,7 +2952,8 @@
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasAdmin",
                 "similarity": "peliasDefaultSimilarity",
-                "doc_values": false
+                "doc_values": false,
+                "norms": false
               }
             }
           },
@@ -2947,7 +2975,8 @@
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasZip",
-                "similarity": "peliasDefaultSimilarity"
+                "similarity": "peliasDefaultSimilarity",
+                "norms": false
               }
             }
           },
@@ -2961,7 +2990,8 @@
                 "type": "text",
                 "analyzer": "peliasIndexOneEdgeGram",
                 "search_analyzer": "peliasZip",
-                "similarity": "peliasDefaultSimilarity"
+                "similarity": "peliasDefaultSimilarity",
+                "norms": false
               }
             }
           },
@@ -3015,7 +3045,8 @@
             "type": "text",
             "analyzer": "peliasIndexOneEdgeGram",
             "search_analyzer": "peliasQuery",
-            "similarity": "peliasDefaultSimilarity"
+            "similarity": "peliasDefaultSimilarity",
+            "norms": false
           }
         }
       },
@@ -3038,7 +3069,8 @@
           "mapping": {
             "type": "keyword",
             "index": false,
-            "doc_values": false
+            "doc_values": false,
+            "norms": false
           }
         }
       }
