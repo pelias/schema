@@ -7,7 +7,7 @@ jobs:
       matrix:
         os:
           - ${{ vars.UBUNTU_VERSION }}
-        node-version: [14.x, 16.x]
+        node-version: [16.x, 18.x]
     steps:
     - uses: actions/checkout@v2
     - name: Install node.js ${{ matrix.node-version }}
@@ -16,6 +16,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Run unit tests
       run: |
-        npm install -g npm
         npm install
         npm run test
