@@ -1,6 +1,6 @@
 // validate analyzer is behaving as expected
 
-const elastictest = require('elastictest');
+const Suite = require('../test/elastictest/Suite');
 const config = require('pelias-config').generate();
 const getTotalHits = require('./_hits_total_helper');
 
@@ -9,7 +9,7 @@ module.exports.tests = {};
 module.exports.tests.functional = function(test, common){
   test( 'functional', function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, common.create );
+    var suite = new Suite( common.clientOpts, common.create );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index some docs
@@ -204,7 +204,7 @@ module.exports.tests.venue_vs_address = function(test, common){
     // Unfortunately there seems to be no easy way of fixing this, it's an artifact of us
     // storing the street names in the name.default field.
 
-    var suite = new elastictest.Suite( common.clientOpts, common.create );
+    var suite = new Suite( common.clientOpts, common.create );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a venue

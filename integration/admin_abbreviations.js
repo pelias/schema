@@ -1,4 +1,4 @@
-const elastictest = require('elastictest');
+const Suite = require('../test/elastictest/Suite');
 const config = require('pelias-config').generate();
 const getTotalHits = require('./_hits_total_helper');
 
@@ -12,7 +12,7 @@ module.exports.tests = {};
 module.exports.tests.synonyms = function (test, common) {
   test('synonyms - alpha3 does not share a prefix with alpha2', function (t) {
 
-    var suite = new elastictest.Suite(common.clientOpts, common.create);
+    var suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='MEX'
@@ -134,7 +134,7 @@ module.exports.tests.synonyms = function (test, common) {
 
   test('synonyms - alpha3 shares a prefix with alpha2', function (t) {
 
-    var suite = new elastictest.Suite(common.clientOpts, common.create);
+    var suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='NZL'
@@ -256,7 +256,7 @@ module.exports.tests.synonyms = function (test, common) {
 
   test('synonyms - additional synonyms do not increase field length', function (t) {
 
-    var suite = new elastictest.Suite(common.clientOpts, common.create);
+    var suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='NZL'
