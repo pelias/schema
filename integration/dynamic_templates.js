@@ -1,6 +1,6 @@
 // http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-root-object-type.html#_dynamic_templates
 
-const elastictest = require('elastictest');
+const Suite = require('../test/elastictest/Suite');
 const config = require('pelias-config').generate();
 
 module.exports.tests = {};
@@ -31,7 +31,7 @@ module.exports.all = function (tape, common) {
 function nameAssertion( analyzer, common ){
   return function(t){
 
-    var suite = new elastictest.Suite( common.clientOpts, common.create );
+    var suite = new Suite( common.clientOpts, common.create );
 
     // index a document from a normal document layer
     suite.action( done => {
@@ -67,7 +67,7 @@ function nameAssertion( analyzer, common ){
 function phraseAssertion( analyzer, common ){
   return function(t){
 
-    const suite = new elastictest.Suite( common.clientOpts, common.create );
+    const suite = new Suite( common.clientOpts, common.create );
 
     // index a document from a normal document layer
     suite.action( done => {
@@ -103,7 +103,7 @@ function phraseAssertion( analyzer, common ){
 function addendumAssertion( namespace, value, common ){
   return function(t){
 
-    const suite = new elastictest.Suite( common.clientOpts, common.create );
+    const suite = new Suite( common.clientOpts, common.create );
 
     // index a document including the addendum
     suite.action( done => {
