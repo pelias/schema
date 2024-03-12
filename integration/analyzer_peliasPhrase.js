@@ -215,12 +215,12 @@ module.exports.tests.slop_query = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         searchType: 'dfs_query_then_fetch',
         body: buildQuery('Lake Cayuga')
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 3 );
-        var hits = res.hits.hits;
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 3 );
+        var hits = body.hits.hits;
 
         t.equal( hits[0]._source.name.default, 'Lake Cayuga' );
 
@@ -273,9 +273,9 @@ module.exports.tests.slop = function(test, common){
             'slop': 3,
           }
         }}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });

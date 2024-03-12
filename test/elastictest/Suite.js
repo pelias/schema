@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const randomstring = require('randomstring')
-const elasticsearch = require('elasticsearch')
+const buildClient = require('pelias-elasticsearch');
 const async = require('async')
 
 function Suite (clientOpts, props) {
@@ -26,7 +26,7 @@ Suite.prototype.assert = function (assert) {
 }
 
 Suite.prototype.start = function (cb) {
-  this.client = new elasticsearch.Client(this.clientOpts)
+  this.client = buildClient(this.clientOpts)
   cb()
 }
 

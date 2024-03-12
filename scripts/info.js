@@ -1,5 +1,5 @@
 var config = require('pelias-config').generate().esclient;
-var es = require('elasticsearch');
-var client = new es.Client(config);
+var buildClient = require('pelias-elasticsearch');
+var client = buildClient(config);
 
 client.info( {}, console.log.bind(console) );

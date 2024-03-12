@@ -68,9 +68,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.number': 30 } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'match street number' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'match street number' );
         done();
       });
     });
@@ -82,9 +82,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'west 26th street' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 2, 'match street name' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 2, 'match street name' );
         done();
       });
     });
@@ -96,9 +96,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'W 26th ST' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 2, 'match street name - abbr' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 2, 'match street name - abbr' );
         done();
       });
     });
@@ -110,9 +110,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10010' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 3, 'match zip - numeric' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 3, 'match zip - numeric' );
         done();
       });
     });
@@ -124,9 +124,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'e24dn' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'match zip - string' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'match zip - string' );
         done();
       });
     });
@@ -138,9 +138,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '100-10' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 3, 'match zip - numeric - punct' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 3, 'match zip - numeric - punct' );
         done();
       });
     });
@@ -152,9 +152,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10 0 10' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 3, 'match zip - numeric - whitespace' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 3, 'match zip - numeric - whitespace' );
         done();
       });
     });
@@ -166,9 +166,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2-4DN' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'match zip - string - punct' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'match zip - string - punct' );
         done();
       });
     });
@@ -180,9 +180,9 @@ module.exports.tests.functional = function(test, common){
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2  4DN' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'match zip - string - whitespace' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'match zip - string - whitespace' );
         done();
       });
     });
@@ -289,10 +289,10 @@ module.exports.tests.venue_vs_address = function(test, common){
             }
           }
         }
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), TOTAL_ADDRESS_DOCS+1, 'matched all docs' );
-        t.equal( res.hits.hits[TOTAL_ADDRESS_DOCS]._id, '1', 'exact name match first' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), TOTAL_ADDRESS_DOCS+1, 'matched all docs' );
+        t.equal( body.hits.hits[TOTAL_ADDRESS_DOCS]._id, '1', 'exact name match first' );
         done();
       });
     });

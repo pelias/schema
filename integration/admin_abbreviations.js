@@ -55,10 +55,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -77,10 +77,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -99,10 +99,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -121,10 +121,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -177,10 +177,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -199,10 +199,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -221,10 +221,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -243,10 +243,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });
@@ -311,10 +311,10 @@ module.exports.tests.synonyms = function (test, common) {
             }
           }
         }
-      }, (err, res) => {
-        t.equal(err, undefined);
-        t.equal(getTotalHits(res.hits), 2, 'matches both documents');
-        t.equal(res.hits.hits[0]._score, res.hits.hits[1]._score, 'scores match');
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal(getTotalHits(body.hits), 2, 'matches both documents');
+        t.equal(body.hits.hits[0]._score, body.hits.hits[1]._score, 'scores match');
         done();
       });
     });

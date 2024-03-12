@@ -1,21 +1,15 @@
 const _ = require('lodash');
 const tape = require('tape');
-const config = require('pelias-config').generate();
 
 const schema = require('../schema');
 
 const common = {
-  clientOpts: {
-    host: 'localhost:9200',
-    keepAlive: true,
-    apiVersion: config.esclient.apiVersion
-  },
   create: {
     schema: schema,
     create: { }
   },
   summaryMap: (res) => {
-    return res.hits.hits.map(h => {
+    return res.body.hits.hits.map(h => {
       return {
         _id: h._id,
         _score: h._score,
@@ -69,10 +63,10 @@ const common = {
           analyzer: analyzer,
           text: text.toString()
         }
-      }, (err, res) => {
+      }, (err, { body }) => {
         if (err) { console.error(err); }
         t.deepEqual({}, removeIndexTokensFromExpectedTokens(
-          common.bucketTokens(res.tokens),
+          common.bucketTokens(body.tokens),
           common.bucketTokens(expected)
         ), comment);
         done();

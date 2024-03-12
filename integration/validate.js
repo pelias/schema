@@ -11,8 +11,8 @@ module.exports.tests.validate = function(test, common){
     var suite = new Suite( common.clientOpts, common.create );
 
     suite.assert( done => {
-      suite.client.info({}, ( err, res, status ) => {
-        t.equal( status, 200 );
+      suite.client.info(( err, { statusCode }) => {
+        t.equal( statusCode, 200 );
         done();
       });
     });
