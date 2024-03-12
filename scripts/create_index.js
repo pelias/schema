@@ -30,7 +30,6 @@ const indexName = config.schema.indexName;
 const req = {
   index: indexName,
   body: schema,
-  include_type_name: false
 };
 
 client.indices.create(req, (err, res) => {

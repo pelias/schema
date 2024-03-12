@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const colors = require('colors')
 const cli = require('./cli');
-const config = require('pelias-config').generate();
 const schema = require('../schema');
 const DEFAULT_ANALYZER = 'standard';
 const NOT_APPLICABLE_ANALYZER = 'n/a';
@@ -54,7 +53,7 @@ const error = function(vals) {
 }
 
 // parse mapping
-const mapping = schema.mappings[config.schema.typeName];
+const mapping = schema.mappings;
 const dynamic = mapping.dynamic_templates.map(t => _.first(_.map(t, v => v)));
 
 // process and single mapping property (recursively)

@@ -226,7 +226,7 @@ function generate(){
           "only_on_same_position": "true"
         },
         "peliasOneEdgeGramFilter": {
-          "type" : "edgeNGram",
+          "type" : "edge_ngram",
           "min_gram" : 1,
           "max_gram" : 24
         },

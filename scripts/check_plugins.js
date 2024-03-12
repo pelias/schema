@@ -10,15 +10,6 @@ const required = ['analysis-icu'];
 // list of failures
 let failures = [];
 
-// returns the appropriate plugin name for the configured Elasticsearch version
-function elasticsearchPluginUtility() {
-  if (config.esclient.apiVersion === '2.4') {
-    return 'plugin';
-  } else {
-    return 'elasticsearch-plugin';
-  }
-}
-
 cli.header("checking elasticsearch plugins");
 client.nodes.info(null, (err, res) => {
 
@@ -76,7 +67,7 @@ client.nodes.info(null, (err, res) => {
     failures.forEach(failure => {
       console.error( `\nyou can install the missing packages on '${failure.node.name}' [${failure.node.ip}] with the following command(s):\n` );
       failure.plugins.forEach(plugin => {
-        console.error( colors.green( `sudo ${failure.node.settings.path.home}/bin/${elasticsearchPluginUtility()} install ${plugin}`) );
+        console.error( colors.green( `sudo ${failure.node.settings.path.home}/bin/elasticsearch-plugin install ${plugin}`) );
       });
     });
     console.error( colors.white("\nnote:") + "some plugins may require you to restart elasticsearch.\n");

@@ -22,7 +22,6 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'center' } }
       }, done);
@@ -32,7 +31,6 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -50,7 +48,6 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -79,7 +76,6 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'ctr' } }
       }, done);
@@ -89,7 +85,6 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -118,7 +113,6 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'ctr' } }
       }, done);
@@ -128,7 +122,6 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -146,7 +139,6 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',
@@ -175,7 +167,6 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     suite.action( function( done ){
       suite.client.index({
         index: suite.props.index,
-        type: config.schema.typeName,
         id: '1',
         body: { name: { default: 'center' } }
       }, done);
@@ -185,7 +176,6 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     suite.assert( function( done ){
       suite.client.search({
         index: suite.props.index,
-        type: config.schema.typeName,
         body: { query: { match: {
           'name.default': {
             'analyzer': 'peliasQuery',

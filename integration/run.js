@@ -12,9 +12,7 @@ const common = {
   },
   create: {
     schema: schema,
-    create: {
-      include_type_name: false
-    }
+    create: { }
   },
   summaryMap: (res) => {
     return res.hits.hits.map(h => {

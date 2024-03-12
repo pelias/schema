@@ -32,13 +32,11 @@ function nameAssertion( analyzer, common ){
   return function(t){
 
     var suite = new Suite( common.clientOpts, common.create );
-    const _type = config.schema.typeName;
 
     // index a document from a normal document layer
     suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: _type,
         id: '1',
         body: { name: { default: 'foo', alt: 'bar' } }
       }, done );
@@ -50,7 +48,6 @@ function nameAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-        include_type_name: false
       }, (err, res) => {
 
         const properties = res[suite.props.index].mappings.properties;
@@ -71,13 +68,11 @@ function phraseAssertion( analyzer, common ){
   return function(t){
 
     const suite = new Suite( common.clientOpts, common.create );
-    const _type = config.schema.typeName;
 
     // index a document from a normal document layer
     suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: _type,
         id: '1',
         body: { phrase: { default: 'foo', alt: 'bar' } }
       }, done );
@@ -89,7 +84,6 @@ function phraseAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-        include_type_name: false
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings.properties;
@@ -110,13 +104,11 @@ function addendumAssertion( namespace, value, common ){
   return function(t){
 
     const suite = new Suite( common.clientOpts, common.create );
-    const _type = config.schema.typeName;
 
     // index a document including the addendum
     suite.action( done => {
       suite.client.index({
         index: suite.props.index,
-        type: _type,
         id: '1',
         body: { addendum: { [namespace]: value } },
       }, done );
@@ -127,7 +119,6 @@ function addendumAssertion( namespace, value, common ){
     suite.assert( done => {
       suite.client.indices.getMapping({
         index: suite.props.index,
-        include_type_name: false,
       }, ( err, res ) => {
 
         const properties = res[suite.props.index].mappings.properties;
@@ -156,7 +147,6 @@ function addendumAssertion( namespace, value, common ){
     suite.assert( done => {
       suite.client.get({
         index: suite.props.index,
-        type: _type,
         id: 1
       }, ( err, res ) => {
         t.false( err );
