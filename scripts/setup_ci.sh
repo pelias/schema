@@ -4,9 +4,6 @@ set -e
 # create elasticsearch directory
 mkdir /tmp/elasticsearch
 
-# allow switching the JDK version
-curl -s https://raw.githubusercontent.com/michaelklishin/jdk_switcher/master/jdk_switcher.sh | bash -s use "${JDK_VERSION}"
-
 # download and install elasticsearch with ICU plugin
 FILENAME="elasticsearch-${ES_VERSION}-linux-x86_64.tar.gz"
 STRIP_COMPONENTS=1
