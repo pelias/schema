@@ -171,6 +171,9 @@ var schema = {
     population: multiplier,
     popularity: multiplier,
 
+    // concordance (indexed foreign key references)
+    concordance: hash,
+
     // addendum (non-indexed supplimentary data)
     addendum: hash
   },
@@ -195,6 +198,12 @@ var schema = {
         search_analyzer: 'peliasQuery',
         similarity: 'peliasDefaultSimilarity'
       }
+    }
+  },{
+    concordance: {
+      path_match: 'concordance.*',
+      match_mapping_type: 'string',
+      mapping: keyword
     }
   },{
     addendum: {
