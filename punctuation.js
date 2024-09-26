@@ -1,23 +1,18 @@
 // These characters will be removed from ngrams/shingles
 // @see: org/apache/lucene/analysis/cn/smart/stopwords.txt
 
-module.exports.all = [
-  ".","`","‘","-","_","=","?","'","|","\"","(",")","{","}","[","]","<",">","*",
-  "#","&","^","$","@","!","~",":",";","+","《","》","—","－","，","。",
-  "、", "：","；","！","·","？","„","“","”","）","（","【","】","［","］","●"
+const all = [
+  ".","`","‘","’","‛","-","_","=","?","'","|","\"","(",")","{","}","[","]","<",">","*",
+  "#","&","^","$","@","!","~",":",";","+","《","》","—","－","，","。","‹","›","⹂","〝","〞",
+  "、", "：","；","！","·","？","„","“","”","‟","）","（","【","】","［","］","●","«","»"
 ];
 
-module.exports.allowed = [
+const allowed = [
   "-", // allow hypens
   "&"  // allow ampersands
 ];
 
-module.exports.blacklist = module.exports.all.slice();
-
 // remove alowed chars from blacklist
-module.exports.allowed.forEach(function(item){
-  var index = module.exports.blacklist.indexOf(item);
-  if( index > -1 ){
-    module.exports.blacklist.splice(index, 1);
-  }
-});
+const blacklist = all.filter(s => !allowed.includes(s));
+
+module.exports = { all, allowed, blacklist };

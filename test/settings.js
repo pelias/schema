@@ -591,7 +591,7 @@ module.exports.tests.punctuationCharFilter = function(test, common) {
     var char_filter = s.analysis.char_filter.punctuation;
     t.equal(char_filter.type, 'mapping');
     t.true(Array.isArray(char_filter.mappings));
-    t.equal(char_filter.mappings.length, 49);
+    t.equal(char_filter.mappings.length, 59);
     t.end();
   });
 };
