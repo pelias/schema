@@ -50,8 +50,8 @@ module.exports.tests.source_filter = function(test, common){
             source: 'osm'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 2 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 2 );
         done();
       });
     });
@@ -65,8 +65,8 @@ module.exports.tests.source_filter = function(test, common){
             layer: 'address'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 2 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 2 );
         done();
       });
     });
@@ -80,8 +80,8 @@ module.exports.tests.source_filter = function(test, common){
             source_id: 'dataset/1'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 2 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 2 );
         done();
       });
     });
@@ -94,8 +94,8 @@ module.exports.tests.source_filter = function(test, common){
           { term: { source: 'osm' } },
           { term: { source_id: 'dataset/1' } }
         ]}}}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 1 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 1 );
         done();
       });
     });
@@ -109,8 +109,8 @@ module.exports.tests.source_filter = function(test, common){
             source: 'OSM'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 0 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 0 );
         done();
       });
     });
@@ -124,8 +124,8 @@ module.exports.tests.source_filter = function(test, common){
             source: 'foo'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 0 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 0 );
         done();
       });
     });
@@ -139,8 +139,8 @@ module.exports.tests.source_filter = function(test, common){
             source: 'foo bar baz'
           }
         }}
-      }, function( err, res ){
-        t.equal( getTotalHits(res.hits), 1 );
+      }, (err, { body }) => {
+        t.equal( getTotalHits(body.hits), 1 );
         done();
       });
     });

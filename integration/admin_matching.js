@@ -46,9 +46,9 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country': 'Test Country' } } }
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -58,9 +58,9 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });
@@ -70,9 +70,9 @@ module.exports.tests.functional = function(test, common){
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country_id': '100' } } }
-      }, function( err, res ){
-        t.equal( err, undefined );
-        t.equal( getTotalHits(res.hits), 1, 'document found' );
+      }, (err, { body }) => {
+        t.false(err);
+        t.equal( getTotalHits(body.hits), 1, 'document found' );
         done();
       });
     });

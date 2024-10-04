@@ -48,9 +48,8 @@ function nameAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-      }, (err, res) => {
-
-        const properties = res[suite.props.index].mappings.properties;
+      }, (err, { body }) => {
+        const properties = body[suite.props.index].mappings.properties;
         t.equal( properties.name.dynamic, 'true' );
 
         const nameProperties = properties.name.properties;
@@ -84,9 +83,9 @@ function phraseAssertion( analyzer, common ){
 
       suite.client.indices.getMapping({
         index: suite.props.index,
-      }, ( err, res ) => {
+      }, ( err, { body }) => {
 
-        const properties = res[suite.props.index].mappings.properties;
+        const properties = body[suite.props.index].mappings.properties;
         t.equal( properties.phrase.dynamic, 'true' );
 
         const phraseProperties = properties.phrase.properties;
@@ -119,9 +118,9 @@ function addendumAssertion( namespace, value, common ){
     suite.assert( done => {
       suite.client.indices.getMapping({
         index: suite.props.index,
-      }, ( err, res ) => {
+      }, ( err, { body }) => {
 
-        const properties = res[suite.props.index].mappings.properties;
+        const properties = body[suite.props.index].mappings.properties;
         t.equal( properties.addendum.dynamic, 'true' );
 
         const addendumProperties = properties.addendum.properties;
@@ -148,9 +147,9 @@ function addendumAssertion( namespace, value, common ){
       suite.client.get({
         index: suite.props.index,
         id: 1
-      }, ( err, res ) => {
+      }, ( err, { body }) => {
         t.false( err );
-        t.equal( res._source.addendum[namespace], value );
+        t.equal( body._source.addendum[namespace], value );
         done();
       });
     });
