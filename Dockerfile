@@ -1,5 +1,5 @@
 # base image
-FROM pelias/baseimage
+FROM pelias/baseimage:nodejs-18
 
 # change working dir
 ENV WORKDIR /code/pelias/schema
