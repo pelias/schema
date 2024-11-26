@@ -57,13 +57,14 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['ampersand_mapper', 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasAdmin token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasAdmin;
     t.deepEqual(analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "synonyms/custom_admin/multiword",
@@ -85,13 +86,14 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ["ampersand_mapper", "punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasIndexOneEdgeGram token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "synonyms/custom_name/multiword",
@@ -117,13 +119,14 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
     var analyzer = s.analysis.analyzer.peliasQuery;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['ampersand_mapper', 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasQuery token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasQuery;
     t.deepEqual(analyzer.filter, [
+      'ampersand_replacer',
       'lowercase',
       'trim',
       'icu_folding',
@@ -143,13 +146,14 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation","nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ["ampersand_mapper", "punctuation", "nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasPhrase token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
@@ -236,13 +240,14 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
     var analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['ampersand_mapper', 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasStreet token filters', function(t) {
     var analyzer = settings().analysis.analyzer.peliasStreet;
     t.deepEqual( analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "remove_duplicate_spaces",
@@ -266,13 +271,14 @@ module.exports.tests.peliasIndexCountryAbbreviation = function (test, common) {
     var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviation;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ['punctuation', 'nfkc_normalizer'], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ['ampersand_mapper', 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasIndexCountryAbbreviation token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviation;
     t.deepEqual(analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "icu_folding",
@@ -292,13 +298,14 @@ module.exports.tests.peliasIndexCountryAbbreviationOneEdgeGramAnalyzer = functio
     var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
-    t.deepEqual(analyzer.char_filter, ["punctuation", "nfkc_normalizer"], 'character filters specified');
+    t.deepEqual(analyzer.char_filter, ["ampersand_mapper", "punctuation", "nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
   test('peliasIndexCountryAbbreviationOneEdgeGram token filters', function (t) {
     var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
     t.deepEqual(analyzer.filter, [
+      "ampersand_replacer",
       "lowercase",
       "trim",
       "icu_folding",
