@@ -9,7 +9,7 @@ jobs:
           - ${{ vars.UBUNTU_VERSION }}
         node-version: [18.x, 20.x, 22.x]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:

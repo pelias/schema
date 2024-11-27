@@ -13,7 +13,7 @@ jobs:
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install Node.js
       uses: actions/setup-node@v4
       with:
@@ -31,7 +31,7 @@ jobs:
     needs: [unit-tests, integration-tests, npm-publish]
     runs-on: ${{ vars.UBUNTU_VERSION }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build Docker images
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
