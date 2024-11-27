@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ${{ vars.UBUNTU_VERSION }}
+          - ubuntu-22.04
         node-version: [18.x, 20.x, 22.x]
         es-version: [7.6.1]
         jdk-version: [oraclejdk11]
