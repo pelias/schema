@@ -1,5 +1,4 @@
 // validate analyzer is behaving as expected
-const { assert } = require('@hapi/joi');
 const Suite = require('../test/elastictest/Suite')
 
 module.exports.tests = {};
