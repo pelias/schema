@@ -14,6 +14,17 @@ module.exports.tests.analyze = function(test, common){
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    assertAnalysis('tokenizer', 'foo-bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo---bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo-bar baz//42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo bar baz 42', ['foo','bar', 'baz', '42']);
+    assertAnalysis('tokenizer', 'foo-bar baz\\42', ['foo', 'bar','baz', '42']);
+    assertAnalysis('thai_digits', '๐๑๒๓๔๕๖๗ ๘๙', ['1234567', '89']); // leading zero removed
+    assertAnalysis('thai_digits', '๑๒๓๔๕๖๗๐ ๘๙', ['12345670', '89']);
+    assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กกกกขขขขคคคคฆฆฆฆ']);
+    assertAnalysis('digit_glued_to_word', 'john doe42', ['john', 'doe42']);
+    assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市朝阳区东三环中路1号国际大厦a座1001室']);
+
     assertAnalysis('asciifolding', 'é', ['e']);
     assertAnalysis('asciifolding', 'ß', ['ss']);
     assertAnalysis('asciifolding', 'æ', ['ae']);
