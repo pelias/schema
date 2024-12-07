@@ -15,7 +15,9 @@ module.exports.tests.analyze = function(test, common){
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis('tokenizer', 'foo-bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo-bar  baz/42', ['foo','bar','baz','42']); // tab instead of space
     assertAnalysis('tokenizer', 'foo---bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo—bar baz/42', ['foobar','baz','42']); // dash is not a hyphen
     assertAnalysis('tokenizer', 'foo-bar baz//42', ['foo','bar','baz','42']);
     assertAnalysis('tokenizer', 'foo bar baz 42', ['foo','bar', 'baz', '42']);
     assertAnalysis('tokenizer', 'foo-bar baz\\42', ['foo', 'bar','baz', '42']);
