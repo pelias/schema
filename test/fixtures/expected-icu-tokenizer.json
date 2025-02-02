@@ -14,7 +14,9 @@
     },
     "analysis": {
       "tokenizer": {
-        "type": "icu_tokenizer"
+        "peliasTokenizer": {
+          "type": "icu_tokenizer"
+        }
       },
       "analyzer": {
         "peliasAdmin": {

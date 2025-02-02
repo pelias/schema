@@ -48,7 +48,9 @@ function generate(){
       }
     },
     "analysis": {
-      "tokenizer": tokenizer(config),
+      "tokenizer": {
+        "peliasTokenizer": tokenizer(config)
+      },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",

@@ -14,8 +14,10 @@
     },
     "analysis": {
       "tokenizer": {
-        "type": "pattern",
-        "pattern": "[\\s,/\\\\-]+"
+        "peliasTokenizer": {
+          "type": "pattern",
+          "pattern": "[\\s,/\\\\-]+"
+        }
       },
       "analyzer": {
         "peliasAdmin": {
