@@ -3,7 +3,7 @@ const path = require('path');
 const schema = require('../');
 const fixture = require('./fixtures/expected.json');
 const fixtureICUTokenizer = require('./fixtures/expected-icu-tokenizer.json');
-const config = require('pelias-config').generate();
+const config = require('pelias-config');
 
 const forEachDeep = (obj, cb) =>
   _.forEach(obj, (val, key) => {
@@ -98,6 +98,19 @@ module.exports.tests.analyzers = function (test, common) {
   });
 };
 
+function overridePeliasConfig(value, cb) {
+  const old_PELIAS_CONFIG = process.env.PELIAS_CONFIG;
+  process.env.PELIAS_CONFIG = value;
+
+  cb();
+
+  if (old_PELIAS_CONFIG) {
+    process.env.PELIAS_CONFIG = old_PELIAS_CONFIG;
+  } else {
+    delete process.env.PELIAS_CONFIG;
+  }
+}
+
 // current schema (compiled) - requires schema to be copied and settings to
 // be regenerated from a fixture in order to pass in CI environments.
 module.exports.tests.current_schema = function(test, common) {
@@ -107,9 +120,9 @@ module.exports.tests.current_schema = function(test, common) {
     var schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
-    process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config.json' );
-    schemaCopy.settings = require('../settings')();
-    delete process.env.PELIAS_CONFIG;
+    overridePeliasConfig(path.resolve( __dirname + '/fixtures/config.json' ), () => {
+      schemaCopy.settings = require('../settings')();
+    });
 
     // code intentionally commented to allow quick debugging of expected.json
     // common.diff(schemaCopy, fixture);
@@ -129,9 +142,9 @@ module.exports.tests.current_schema = function(test, common) {
     var schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
-    process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config-icu-tokenizer.json' );
-    schemaCopy.settings = require('../settings')();
-    delete process.env.PELIAS_CONFIG;
+    overridePeliasConfig(path.resolve( __dirname + '/fixtures/config-icu-tokenizer.json' ), () => {
+      schemaCopy.settings = require('../settings')();
+    });
 
     // code intentionally commented to allow quick debugging of expected.json
     // common.diff(schemaCopy, fixtureICUTokenizer);

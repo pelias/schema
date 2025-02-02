@@ -51,7 +51,7 @@ module.exports.tests.analysis = function(test, common) {
 
 function mayBeAmpersandMapper() {
   if (config.schema.icuTokenizer) {
-    return [...mayBeAmpersandMapper()];
+    return ['ampersand_mapper'];
   }
   return [];
 }
