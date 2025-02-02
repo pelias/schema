@@ -92,7 +92,8 @@ module.exports.tests.analyze = function(test, common){
         '1:เพชรบุรี1', '1:เพชรบุรี', '1:เพชรบุร', '1:เพชรบุ', '1:เพชรบ', '1:เพชร', '1:เพช', '1:เพ', '1:เ', 
         '2:f', '2:fo', '2:foo'] );
     } else {
-      // TODO: ...
+      // no ICU tokenization, so we split only on spaces
+      assertAnalysis('thai_address', 'ซอยเพชรบุรี๑foo', ['0:ซอยเพชรบุรี๑foo']);
     }
 
     suite.run( t.end );

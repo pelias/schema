@@ -34,7 +34,8 @@ module.exports.tests.analyze = function(test, common){
       assertAnalysis('khmer_address', 'ផ្ទះលេខ១២៣ផ្លូវព្រះសីហនុសង្កាត់ទន្លេបាសាក់ខណ្ឌចំការមនរាជធានីភ្នំពេញ', ["ផទះលេខ123ផលូវ", "ពរះសីហនុ", "សងកាត", "ទនលេបាសាក", "ខណឌចំការមន", "រាជធានី", "ភនំពេញ"]);
       assertAnalysis('lao_address', 'ບ້ານເລກທີ່໑໕໕ຖະໜົນທ່ານຊານຂອງເຂດຈັນທະບູລີນະຄອນວຽງຈັນ', ["ບານ", "ເລກ", "ທີ155ຖະຫນົນ", "ທານ", "ຊານ", "ຂອງ", "ເຂດ", "ຈັນທະ", "ບູ", "ລີ", "ນະຄອນ", "ວຽງຈັນ"]);
     } else {
-      // TODO: ...
+      // no ICU tokenization, so we split only on spaces
+      assertAnalysis('thai_address1', 'ซอยเพชรบุรี๑', ['ซอยเพชรบุรี1'] );
     }
     suite.run( t.end );
   });
