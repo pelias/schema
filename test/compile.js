@@ -2,6 +2,7 @@ const _ = require('lodash');
 const path = require('path');
 const schema = require('../');
 const fixture = require('./fixtures/expected.json');
+const fixtureICUTokenizer = require('./fixtures/expected-icu-tokenizer.json');
 const config = require('pelias-config').generate();
 
 const forEachDeep = (obj, cb) =>
@@ -119,6 +120,28 @@ module.exports.tests.current_schema = function(test, common) {
     // fs.writeFileSync(path.resolve( __dirname + '/fixtures/expected.json' ), JSON.stringify(schemaCopy, null, 2));
 
     t.deepEqual(schemaCopy, fixture);
+    t.end();
+  });
+
+  test('current schema vs. fixture with ICU tokenizer', function(t) {
+
+    // copy schema
+    var schemaCopy = JSON.parse( JSON.stringify( schema ) );
+
+    // use the pelias config fixture instead of the local config
+    process.env.PELIAS_CONFIG = path.resolve( __dirname + '/fixtures/config-icu-tokenizer.json' );
+    schemaCopy.settings = require('../settings')();
+    delete process.env.PELIAS_CONFIG;
+
+    // code intentionally commented to allow quick debugging of expected.json
+    // common.diff(schemaCopy, fixtureICUTokenizer);
+    // console.error( JSON.stringify( schemaCopy, null, 2 ) );
+
+    // code to write expected output to the fixture
+    // const fs = require('fs');
+    // fs.writeFileSync(path.resolve( __dirname + '/fixtures/expected-icu-tokenizer.json' ), JSON.stringify(schemaCopy, null, 2));
+
+    t.deepEqual(schemaCopy, fixtureICUTokenizer);
     t.end();
   });
 };
