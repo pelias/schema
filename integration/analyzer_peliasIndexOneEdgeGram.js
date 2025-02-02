@@ -93,7 +93,7 @@ module.exports.tests.analyze = function(test, common){
         '2:f', '2:fo', '2:foo'] );
     } else {
       // no ICU tokenization, so we split only on spaces
-      assertAnalysis('thai_address', 'ซอยเพชรบุรี๑foo', ['0:ซอยเพชรบุรี๑foo']);
+      assertAnalysis('thai_address', 'ซอยเพชรบุรี๑foo', ['0:ซอยเพชรบุรี1foo']);
     }
 
     suite.run( t.end );
