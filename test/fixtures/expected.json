@@ -14,21 +14,18 @@
     },
     "analysis": {
       "tokenizer": {
-        "peliasTokenizer": {
-          "type": "icu_tokenizer"
-        }
+        "type": "pattern",
+        "pattern": "[\\s,/\\\\-]+"
       },
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "synonyms/custom_admin/multiword",
@@ -44,12 +41,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "synonyms/custom_name/multiword",
@@ -69,12 +64,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "icu_folding",
@@ -88,12 +81,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
@@ -150,12 +141,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
@@ -173,12 +162,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "icu_folding",
@@ -192,12 +179,10 @@
           "type": "custom",
           "tokenizer": "peliasTokenizer",
           "char_filter": [
-            "ampersand_mapper",
             "punctuation",
             "nfkc_normalizer"
           ],
           "filter": [
-            "ampersand_replacer",
             "lowercase",
             "trim",
             "icu_folding",

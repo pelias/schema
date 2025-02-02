@@ -5,11 +5,39 @@ const synonyms = require('./synonyms/loader').load();
 
 require('./configValidation').validate(peliasConfig.generate());
 
+
+
 function generate(){
-  var config = peliasConfig.generate();
+  const config = peliasConfig.generate();
+
+  function tokenizer(config) {
+    if (config.schema.icuTokenizer) {
+      return {
+        "type": "icu_tokenizer"
+      };
+    }
+    return {
+      "type": "pattern",
+      "pattern": "[\\s,/\\\\-]+"
+    };
+  }
+
+  function mayBeAmpersandMapper(config) {
+    if (config.schema.icuTokenizer) {
+      return ["ampersand_mapper"];
+    }
+    return [];
+  }
+
+  function mayBeAmpersandReplacer(config) {
+    if (config.schema.icuTokenizer) {
+      return ["ampersand_replacer"];
+    }
+    return [];
+  }
 
   // Default settings
-  var settings = {
+  let settings = {
     "index": {
       "similarity": {
         "peliasDefaultSimilarity": {
@@ -20,18 +48,14 @@ function generate(){
       }
     },
     "analysis": {
-      "tokenizer": {
-        "peliasTokenizer": {
-          "type": "icu_tokenizer"
-        }
-      },
+      "tokenizer": tokenizer(config),
       "analyzer": {
         "peliasAdmin": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
-          "char_filter" : ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter" : [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "synonyms/custom_admin/multiword",
@@ -46,9 +70,9 @@ function generate(){
         "peliasIndexOneEdgeGram" : {
           "type": "custom",
           "tokenizer" : "peliasTokenizer",
-          "char_filter" : ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter" : [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "synonyms/custom_name/multiword",
@@ -67,9 +91,9 @@ function generate(){
         "peliasQuery": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
-          "char_filter": ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter": [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "icu_folding",
@@ -82,9 +106,9 @@ function generate(){
         "peliasPhrase": {
           "type": "custom",
           "tokenizer":"peliasTokenizer",
-          "char_filter" : ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter" : [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
@@ -132,9 +156,9 @@ function generate(){
         "peliasStreet": {
           "type": "custom",
           "tokenizer":"peliasTokenizer",
-          "char_filter" : ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter" : [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "remove_duplicate_spaces",
@@ -151,9 +175,9 @@ function generate(){
         "peliasIndexCountryAbbreviation": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
-          "char_filter": ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter": [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "icu_folding",
@@ -166,9 +190,9 @@ function generate(){
         "peliasIndexCountryAbbreviationOneEdgeGram": {
           "type": "custom",
           "tokenizer": "peliasTokenizer",
-          "char_filter": ["ampersand_mapper", "punctuation", "nfkc_normalizer"],
+          "char_filter": [...mayBeAmpersandMapper(config), "punctuation", "nfkc_normalizer"],
           "filter": [
-            "ampersand_replacer",
+            ...mayBeAmpersandReplacer(config),
             "lowercase",
             "trim",
             "icu_folding",
