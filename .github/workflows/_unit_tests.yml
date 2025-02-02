@@ -8,21 +8,20 @@ jobs:
         os:
           - ubuntu-22.04
         node-version: [18.x, 20.x, 22.x]
+        icuTokenizer: [true, false]
     steps:
     - uses: actions/checkout@v4
     - name: Install node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install dependencies
-      run: npm install
     - name: Run unit tests
       run: |
+        npm install
+        if [ "${{ matrix.icuTokenizer }}" = "true" ]; then
+          jq -n '{ schema: { icuTokenizer: true } }' > $(pwd)/config-icu.json
+          export PELIAS_CONFIG=$(pwd)/config-icu.json
+        fi
         npm run test
-    - name: Run unit tests with icuTokenizer = true
-      run: |
-        jq -n '{ schema: { icuTokenizer: true } }' > $(pwd)/config-icu.json
-        export PELIAS_CONFIG=$(pwd)/config-icu.json
-        npm run test
-        rm $(pwd)/config-icu.json
+  
       

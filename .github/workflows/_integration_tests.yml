@@ -10,6 +10,7 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
         es-version: [7.6.1]
         jdk-version: [oraclejdk11]
+        icuTokenizer: [true, false]
     steps:
     - uses: actions/checkout@v4
     - name: Install node.js ${{ matrix.node-version }}
@@ -23,6 +24,10 @@ jobs:
       run: ./scripts/setup_ci.sh
     - name: Run integration tests
       run: |
+        if [ "${{ matrix.icuTokenizer }}" = "true" ]; then
+          jq -n '{ schema: { icuTokenizer: true } }' > $(pwd)/config-icu.json
+          export PELIAS_CONFIG=$(pwd)/config-icu.json
+        fi
         npm install
         curl http://127.0.0.1:9200/
         ./bin/create_index
