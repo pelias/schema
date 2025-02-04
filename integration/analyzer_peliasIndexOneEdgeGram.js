@@ -1,8 +1,9 @@
 // validate analyzer is behaving as expected
 
-var tape = require('tape'),
+const tape = require('tape'),
     Suite = require('../test/elastictest/Suite'),
-    punctuation = require('../punctuation');
+    punctuation = require('../punctuation'),
+    config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
@@ -85,6 +86,15 @@ module.exports.tests.analyze = function(test, common){
 
     assertAnalysis( 'british_american_english', 'town theatre', ['0:town', '1:theatre', '1:theater'] );
     assertAnalysis( 'british_american_english', 'town theater', ['0:town', '1:theater', '1:theatre'] );
+    if (config.schema.icuTokenizer) {
+      assertAnalysis('thai_address', 'ซอยเพชรบุรี๑foo', [
+        '0:ซ', '0:ซอ', '0:ซอย',
+        '1:เพชรบุรี1', '1:เพชรบุรี', '1:เพชรบุร', '1:เพชรบุ', '1:เพชรบ', '1:เพชร', '1:เพช', '1:เพ', '1:เ',
+        '2:f', '2:fo', '2:foo'] );
+    } else {
+      // no ICU tokenization, so we split only on spaces
+      assertAnalysis('thai_address', 'ซอยเพชรบุรี๑foo', ['0:ซอยเพชรบุรี1foo']);
+    }
 
     suite.run( t.end );
   });

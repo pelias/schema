@@ -2,14 +2,15 @@ const _ = require('lodash');
 const peliasConfig = require('pelias-config');
 const punctuation = require('./punctuation');
 const synonyms = require('./synonyms/loader').load();
+const settingsICU = require('./settings-icu');
 
 require('./configValidation').validate(peliasConfig.generate());
 
 function generate(){
-  var config = peliasConfig.generate();
+  const config = peliasConfig.generate();
 
   // Default settings
-  var settings = {
+  let settings = {
     "index": {
       "similarity": {
         "peliasDefaultSimilarity": {
@@ -298,6 +299,11 @@ function generate(){
       "synonyms": !_.isEmpty(multiWordEntries) ? multiWordEntries : ['']
     };
   });
+
+  // Experimental ICU tokenizer
+  if (config.schema.icuTokenizer) {
+    settings = settingsICU(settings);
+  }
 
   // Merge settings from pelias/config
   settings = _.merge({}, settings, _.get(config, 'elasticsearch.settings', {}));
