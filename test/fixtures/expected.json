@@ -197,11 +197,6 @@
         }
       },
       "filter": {
-        "ampersand_replacer": {
-          "type": "pattern_replace",
-          "pattern": "AMPERSANDPLACEHOLDER",
-          "replacement": "&"
-        },
         "street_synonyms_multiplexer": {
           "type": "multiplexer",
           "preserve_original": false,
@@ -2276,11 +2271,6 @@
         }
       },
       "char_filter": {
-        "ampersand_mapper": {
-          "type": "pattern_replace",
-          "pattern": "&",
-          "replacement": " AMPERSANDPLACEHOLDER "
-        },
         "punctuation": {
           "type": "mapping",
           "mappings": [

@@ -3,7 +3,6 @@ const path = require('path');
 const schema = require('../');
 const fixture = require('./fixtures/expected.json');
 const fixtureICUTokenizer = require('./fixtures/expected-icu-tokenizer.json');
-const config = require('pelias-config');
 
 const forEachDeep = (obj, cb) =>
   _.forEach(obj, (val, key) => {
@@ -99,13 +98,13 @@ module.exports.tests.analyzers = function (test, common) {
 };
 
 function overridePeliasConfig(value, cb) {
-  const old_PELIAS_CONFIG = process.env.PELIAS_CONFIG;
+  const OLD_PELIAS_CONFIG = process.env.PELIAS_CONFIG;
   process.env.PELIAS_CONFIG = value;
 
   cb();
 
-  if (old_PELIAS_CONFIG) {
-    process.env.PELIAS_CONFIG = old_PELIAS_CONFIG;
+  if (OLD_PELIAS_CONFIG) {
+    process.env.PELIAS_CONFIG = OLD_PELIAS_CONFIG;
   } else {
     delete process.env.PELIAS_CONFIG;
   }

@@ -23,5 +23,3 @@ jobs:
           export PELIAS_CONFIG=$(pwd)/config-icu.json
         fi
         npm run test
-  
-      
