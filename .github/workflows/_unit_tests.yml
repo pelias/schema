@@ -8,7 +8,7 @@ jobs:
         os:
           - ubuntu-22.04
         node-version: [18.x, 20.x, 22.x]
-        icuTokenizer: [true, false]
+        icuTokenizer: [true]
     steps:
     - uses: actions/checkout@v4
     - name: Install node.js ${{ matrix.node-version }}

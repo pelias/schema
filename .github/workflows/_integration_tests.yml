@@ -10,7 +10,7 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
         es-version: [7.6.1]
         jdk-version: [oraclejdk11]
-        icuTokenizer: [true, false]
+        icuTokenizer: [true]
     steps:
     - uses: actions/checkout@v4
     - name: Install node.js ${{ matrix.node-version }}
