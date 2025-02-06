@@ -301,7 +301,7 @@ function generate(){
   });
 
   // Experimental ICU tokenizer
-  if (config.schema.icuTokenizer) {
+  if (true) {
     settings = settingsICU(settings);
   }
 
