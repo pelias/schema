@@ -14,6 +14,24 @@ module.exports.tests.analyze = function(test, common){
     var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
     suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
+    assertAnalysis('tokenizer', 'foo-bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo-bar  baz/42', ['foo','bar','baz','42']); // tab instead of space
+    assertAnalysis('tokenizer', 'foo---bar baz/42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo—bar baz/42', ['foobar','baz','42']); // dash is not a hyphen
+    assertAnalysis('tokenizer', 'foo-bar baz//42', ['foo','bar','baz','42']);
+    assertAnalysis('tokenizer', 'foo bar baz 42', ['foo','bar', 'baz', '42']);
+    assertAnalysis('tokenizer', 'foo-bar baz\\42', ['foo', 'bar','baz', '42']);
+    assertAnalysis('thai_digits', '๐๑๒๓๔๕๖๗ ๘๙', ['1234567', '89']); // leading zero removed
+    assertAnalysis('thai_digits', '๑๒๓๔๕๖๗๐ ๘๙', ['12345670', '89']);
+    assertAnalysis('digit_glued_to_word', 'john doe42', ['john', 'doe42']);
+    if (config.schema.icuTokenizer) {
+      assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กก', 'กก', 'ขขขขคคคคฆฆฆฆ']);
+      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市', '朝阳', '区', '东', '三', '环', '中路', '1', '号', '国际', '大厦', 'a', '座', '1001', '室']);  
+    } else {
+      assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กกกกขขขขคคคคฆฆฆฆ']);
+      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市朝阳区东三环中路1号国际大厦a座1001室']);  
+    }
+
     assertAnalysis('asciifolding', 'é', ['e']);
     assertAnalysis('asciifolding', 'ß', ['ss']);
     assertAnalysis('asciifolding', 'æ', ['ae']);
