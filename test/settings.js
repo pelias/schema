@@ -116,7 +116,6 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
-      "removeAllZeroNumericPrefix",
       "peliasOneEdgeGramFilter",
       "unique_only_same_position",
       "notnull",
@@ -145,7 +144,6 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
       'trim',
       'icu_folding',
       'remove_ordinals',
-      'removeAllZeroNumericPrefix',
       'unique_only_same_position',
       'notnull'
     ]);
@@ -177,7 +175,6 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
       "name_synonyms_multiplexer",
       "icu_folding",
       "remove_ordinals",
-      "removeAllZeroNumericPrefix",
       "unique_only_same_position",
       "notnull",
       "flatten_graph"
@@ -512,19 +509,6 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
     t.equal(filter.type, 'edge_ngram');
     t.equal(filter.min_gram, 1);
     t.equal(filter.max_gram, 24);
-    t.end();
-  });
-};
-
-// this filter removed leading 0 characters. eg. 0001 -> 1
-module.exports.tests.removeAllZeroNumericPrefixFilter = function(test, common) {
-  test('has removeAllZeroNumericPrefix filter', function(t) {
-    var s = settings();
-    t.equal(typeof s.analysis.filter.removeAllZeroNumericPrefix, 'object', 'there is a removeAllZeroNumericPrefix filter');
-    var filter = s.analysis.filter.removeAllZeroNumericPrefix;
-    t.equal(filter.type, 'pattern_replace');
-    t.equal(filter.pattern, '^(0*)');
-    t.equal(filter.replacement, '');
     t.end();
   });
 };
