@@ -57,7 +57,6 @@ function generate(){
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
-            "removeAllZeroNumericPrefix",
             "peliasOneEdgeGramFilter",
             "unique_only_same_position",
             "notnull",
@@ -73,7 +72,6 @@ function generate(){
             "trim",
             "icu_folding",
             "remove_ordinals",
-            "removeAllZeroNumericPrefix",
             "unique_only_same_position",
             "notnull"
           ]
@@ -92,7 +90,6 @@ function generate(){
             "name_synonyms_multiplexer",
             "icu_folding",
             "remove_ordinals",
-            "removeAllZeroNumericPrefix",
             "unique_only_same_position",
             "notnull",
             "flatten_graph"
@@ -230,11 +227,6 @@ function generate(){
           "type" : "edge_ngram",
           "min_gram" : 1,
           "max_gram" : 24
-        },
-        "removeAllZeroNumericPrefix" :{
-          "type" : "pattern_replace",
-          "pattern" : "^(0*)",
-          "replacement" : ""
         },
         "remove_ordinals" : {
           "type" : "pattern_replace",

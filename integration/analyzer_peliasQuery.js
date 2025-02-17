@@ -21,7 +21,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('tokenizer', 'foo-bar baz//42', ['foo','bar','baz','42']);
     assertAnalysis('tokenizer', 'foo bar baz 42', ['foo','bar', 'baz', '42']);
     assertAnalysis('tokenizer', 'foo-bar baz\\42', ['foo', 'bar','baz', '42']);
-    assertAnalysis('thai_digits', '๐๑๒๓๔๕๖๗ ๘๙', ['1234567', '89']); // leading zero removed
+    assertAnalysis('thai_digits', '๐๑๒๓๔๕๖๗ ๘๙', ['01234567', '89']); // leading zero remains
     assertAnalysis('thai_digits', '๑๒๓๔๕๖๗๐ ๘๙', ['12345670', '89']);
     assertAnalysis('digit_glued_to_word', 'john doe42', ['john', 'doe42']);
     if (config.schema.icuTokenizer) {
@@ -41,7 +41,6 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('trim', ' f ', ['f']);
     assertAnalysis('remove_ordinals', '26t', ['26']);
     assertAnalysis('remove_ordinals', '26th', ['26']);
-    assertAnalysis('removeAllZeroNumericPrefix', '00001', ['1']);
     assertAnalysis('unique', '1 1 1', ['1','1','1']);
     assertAnalysis('notnull', ' / / ', []);
 

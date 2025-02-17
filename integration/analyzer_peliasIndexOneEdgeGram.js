@@ -52,7 +52,6 @@ module.exports.tests.analyze = function(test, common){
       '4:a', '4:ab', '4:abc', '4:abcd', '4:abcde', '4:abcdef',
       '4:abcdefg', '4:abcdefgh', '4:abcdefghi', '4:abcdefghij'
     ] );
-    assertAnalysis( 'removeAllZeroNumericPrefix', '00001', ['1'] );
 
     assertAnalysis( 'unique', '1 1 1', ['1','1','1'] );
     assertAnalysis( 'notnull', ' / / ', [] );
