@@ -5,6 +5,29 @@ const configValidation = require('../configValidation');
 module.exports.tests = {};
 
 module.exports.tests.interface = function(test, common) {
+
+  test('does not throw on unknown feature flags', function(t) {
+    var config = {
+      schema: {
+        indexName: "pelias"
+      },
+      esclient: {},
+      featureFlags: {
+        unknown_feature_flag: {
+          nested: true
+        },
+        unknown_feature_flag2: true
+      }
+    };
+
+    t.doesNotThrow(function () {
+      configValidation.validate(config);
+    });
+    t.end();
+
+  });
+
+
   test('config without schema should throw error', function(t) {
     var config = {
       esclient: {}
