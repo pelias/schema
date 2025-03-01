@@ -11,7 +11,7 @@ const schema = Joi.object().required().keys({
   esclient: Joi.object().required(),
   featureFlags: Joi.object().optional().keys({
     icuTokenizer: Joi.boolean().optional()
-  }).default({}).unknown(true)
+  }).unknown(true)
 }).unknown(true);
 
 module.exports = {

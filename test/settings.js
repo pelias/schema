@@ -50,14 +50,14 @@ module.exports.tests.analysis = function(test, common) {
 };
 
 function mayBeAmpersandMapper() {
-  if (config.featureFlags.icuTokenizer) {
+  if (config.featureFlags?.icuTokenizer) {
     return ['ampersand_mapper'];
   }
   return [];
 }
 
 function mayBeAmpersandReplacer() {
-  if (config.featureFlags.icuTokenizer) {
+  if (config.featureFlags?.icuTokenizer) {
     return ['ampersand_replacer'];
   }
   return [];

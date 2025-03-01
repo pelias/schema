@@ -9,6 +9,7 @@
       }
     },
     "featureFlags": {
-        "icuTokenizer": true
+        "icuTokenizer": true,
+        "some_another_feature_flag": "just_to_check_that_we_can_have_fields_not_defined_in_schema_here"
     }
 }
