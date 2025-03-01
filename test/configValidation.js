@@ -7,7 +7,7 @@ module.exports.tests = {};
 module.exports.tests.interface = function(test, common) {
 
   test('does not throw on unknown feature flags', function(t) {
-    var config = {
+    const config = {
       schema: {
         indexName: "pelias"
       },
@@ -29,7 +29,7 @@ module.exports.tests.interface = function(test, common) {
 
 
   test('config without schema should throw error', function(t) {
-    var config = {
+    const config = {
       esclient: {}
     };
 
@@ -41,7 +41,7 @@ module.exports.tests.interface = function(test, common) {
   });
 
   test('config without schema.indexName should throw error', function(t) {
-    var config = {
+    const config = {
       schema: {},
       esclient: {}
     };
@@ -55,7 +55,7 @@ module.exports.tests.interface = function(test, common) {
 
   test('config with non-string schema.indexName should throw error', function(t) {
     [null, 17, {}, [], false].forEach((value) => {
-      var config = {
+      const config = {
         schema: {
           indexName: value,
         },
@@ -74,7 +74,7 @@ module.exports.tests.interface = function(test, common) {
 
   test('config with non-object esclient should throw error', function(t) {
     [null, 17, [], 'string', true].forEach((value) => {
-      var config = {
+      const config = {
         schema: {
           indexName: 'example_index',
         },
@@ -92,7 +92,7 @@ module.exports.tests.interface = function(test, common) {
   });
 
   test('config with string schema.indexName and object esclient should not throw error', function(t) {
-    var config = {
+    const config = {
       schema: {
         indexName: 'example_index',
       },
@@ -115,7 +115,7 @@ module.exports.all = function (tape, common) {
     return tape('configValidation: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };
