@@ -1,4 +1,4 @@
-var schema = require('../schema');
+const schema = require('../schema');
 
 console.log( JSON.stringify( schema.mappings, null, 2 ) );
 

@@ -1,14 +1,13 @@
-var tape = require('tape'),
-    diff = require('difflet')({ indent : 2, comment : true });
+const tape = require('tape'), diff = require('difflet')({ indent : 2, comment : true });
 
-var common = {
+const common = {
   // a visual deep diff rendered using console.error()
   diff: function( actual, expected ){
     console.error( diff.compare( actual, expected ) );
   }
 };
 
-var tests = [
+const tests = [
   require('./compile.js'),
   require('./document.js'),
   require('./partial-centroid.js'),
@@ -20,6 +19,6 @@ var tests = [
   require('./synonyms/parser.js'),
 ];
 
-tests.map(function(t) {
+tests.map(t => {
   t.all(tape, common);
 });

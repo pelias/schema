@@ -7,12 +7,12 @@ const tape = require('tape'),
 
 module.exports.tests = {};
 
-module.exports.tests.analyze = function(test, common){
-  test( 'analyze', function(t){
+module.exports.tests.analyze = (test, common) => {
+  test( 'analyze', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'á', ['a']);
@@ -101,12 +101,12 @@ module.exports.tests.analyze = function(test, common){
 
 // address suffix expansions should only performed in a way that is
 // safe for 'partial tokens'.
-module.exports.tests.address_suffix_expansions = function(test, common){
-  test( 'address suffix expansions', function(t){
+module.exports.tests.address_suffix_expansions = (test, common) => {
+  test( 'address suffix expansions', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'safe expansions', 'aly', [
       '0:a', '0:al', '0:aly', '0:all', '0:alle', '0:alley'
@@ -131,12 +131,12 @@ module.exports.tests.address_suffix_expansions = function(test, common){
 };
 
 // stop words should be disabled so that the entire street prefix is indexed as ngrams
-module.exports.tests.stop_words = function(test, common){
-  test( 'stop words', function(t){
+module.exports.tests.stop_words = (test, common) => {
+  test( 'stop words', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'street suffix', 'AB street', [
       '0:a', '0:ab',
@@ -152,12 +152,12 @@ module.exports.tests.stop_words = function(test, common){
   });
 };
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis('country', 'Trinidad and Tobago', [
       '0:t', '0:tr', '0:tri', '0:trin', '0:trini', '0:trinid', '0:trinida', '0:trinidad',
@@ -178,12 +178,12 @@ module.exports.tests.functional = function(test, common){
 };
 
 // unique token filter should only remove duplicate tokens at same position
-module.exports.tests.unique = function(test, common){
-  test( 'unique', function(t){
+module.exports.tests.unique = (test, common) => {
+  test( 'unique', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // if 'only_on_same_position' is not used the '1:a' token is erroneously removed
     assertAnalysis( 'unique', 'a ab', [ '0:a', '1:a', '1:ab' ]);
@@ -192,12 +192,12 @@ module.exports.tests.unique = function(test, common){
   });
 };
 
-module.exports.tests.address = function(test, common){
-  test( 'address', function(t){
+module.exports.tests.address = (test, common) => {
+  test( 'address', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'address', '101 mapzen place', [
       '0:1', '0:10', '0:101',
@@ -224,22 +224,22 @@ module.exports.tests.address = function(test, common){
 };
 
 // @see: https://github.com/pelias/api/issues/600
-module.exports.tests.unicode = function(test, common){
-  test( 'normalization', function(t){
+module.exports.tests.unicode = (test, common) => {
+  test( 'normalization', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasIndexOneEdgeGram' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
-    var latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
-    var combining_acute_accent = String.fromCodePoint(0x0301);
-    var latin_large_letter_e = String.fromCodePoint(0x0045);
-    var latin_small_letter_e = String.fromCodePoint(0x0065);
+    const latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
+    const latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
+    const combining_acute_accent = String.fromCodePoint(0x0301);
+    const latin_large_letter_e = String.fromCodePoint(0x0045);
+    const latin_small_letter_e = String.fromCodePoint(0x0065);
 
     // Chambéry (both forms appear the same)
-    var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    let composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
+    let decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
 
     assertAnalysis( 'composed', composed, [
       '0:c', '0:ch', '0:cha', '0:cham', '0:chamb', '0:chambe', '0:chamber', '0:chambery'
@@ -249,8 +249,8 @@ module.exports.tests.unicode = function(test, common){
     ] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
 
     assertAnalysis('composed', composed, ['0:e', '0:ee', '0:een']);
     assertAnalysis('decomposed', decomposed, ['0:e', '0:ee', '0:een']);
@@ -259,13 +259,13 @@ module.exports.tests.unicode = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('peliasIndexOneEdgeGram: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

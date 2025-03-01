@@ -7,7 +7,7 @@ const NOT_APPLICABLE_ANALYZER = 'n/a';
 const DEFAULT_NORMALIZER = '{none}';
 const NOT_APPLICABLE_NORMALIZER = 'n/a';
 
-const defaultAnalyzerFor = function(mapping){
+const defaultAnalyzerFor = mapping => {
   switch (mapping.type){
     case 'text': return DEFAULT_ANALYZER;
     case 'string': return DEFAULT_ANALYZER;
@@ -15,7 +15,7 @@ const defaultAnalyzerFor = function(mapping){
   return NOT_APPLICABLE_ANALYZER;
 }
 
-const defaultNormalizerFor = function (mapping) {
+const defaultNormalizerFor = mapping => {
   switch (mapping.type) {
     case 'keyword': return DEFAULT_NORMALIZER;
   }
@@ -23,7 +23,7 @@ const defaultNormalizerFor = function (mapping) {
 }
 
 // pretty print a single analyzer/normalizer label
-const pretty = function(analyzer){
+const pretty = analyzer => {
   if (analyzer === DEFAULT_ANALYZER) {
     return colors.blue(analyzer)
   }
@@ -37,7 +37,7 @@ const pretty = function(analyzer){
 }
 
 // pretty print a single line
-const print = function(vals) {
+const print = vals => {
   console.error(
     colors.brightBlue(vals.field.padEnd(32)),
     vals.type.padEnd(32),
@@ -48,7 +48,7 @@ const print = function(vals) {
 }
 
 // pretty print an error
-const error = function(vals) {
+const error = vals => {
   console.error(Object.values(vals).map(v => colors.red(v)).join(' | '));
 }
 
@@ -57,7 +57,7 @@ const mapping = schema.mappings;
 const dynamic = mapping.dynamic_templates.map(t => _.first(_.map(t, v => v)));
 
 // process and single mapping property (recursively)
-const property = function(prop, field){
+const property = (prop, field) => {
   // properties with subfields
   if (prop.type === 'object') {
     // recurse the object properties

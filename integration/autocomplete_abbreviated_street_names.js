@@ -11,14 +11,14 @@ const getTotalHits = require('./_hits_total_helper');
 module.exports.tests = {};
 
 // index the name as 'Grolmanstraße' and then retrieve with partially complete token 'Grolmanstr.'
-module.exports.tests.index_expanded_form_search_contracted = function(test, common){
-  test( 'index expanded and retrieve contracted form', function(t){
+module.exports.tests.index_expanded_form_search_contracted = (test, common) => {
+  test( 'index expanded and retrieve contracted form', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -27,7 +27,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -36,7 +36,7 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
             'query': 'Grolmanstr.'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -109,13 +109,13 @@ module.exports.tests.index_expanded_form_search_contracted = function(test, comm
 //   });
 // };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('autocomplete abbreviated street names: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

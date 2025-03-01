@@ -5,33 +5,33 @@ const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
-module.exports.tests.dynamic_templates_name = function(test, common){
+module.exports.tests.dynamic_templates_name = (test, common) => {
   test( 'document->name', nameAssertion( 'peliasIndexOneEdgeGram', common ) );
 };
 
-module.exports.tests.dynamic_templates_phrase = function(test, common){
+module.exports.tests.dynamic_templates_phrase = (test, common) => {
   test( 'document->phrase', phraseAssertion( 'peliasPhrase', common ) );
 };
 
-module.exports.tests.dynamic_templates_addendum = function(test, common){
+module.exports.tests.dynamic_templates_addendum = (test, common) => {
   test( 'addendum', addendumAssertion( 'wikipedia', JSON.stringify({ slug: 'Wikipedia' }), common ) );
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('dynamic_templates: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };
 
 function nameAssertion( analyzer, common ){
-  return function(t){
+  return t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
+    const suite = new Suite( common.clientOpts, common.create );
 
     // index a document from a normal document layer
     suite.action( done => {
@@ -65,7 +65,7 @@ function nameAssertion( analyzer, common ){
 }
 
 function phraseAssertion( analyzer, common ){
-  return function(t){
+  return t => {
 
     const suite = new Suite( common.clientOpts, common.create );
 
@@ -101,7 +101,7 @@ function phraseAssertion( analyzer, common ){
 }
 
 function addendumAssertion( namespace, value, common ){
-  return function(t){
+  return t => {
 
     const suite = new Suite( common.clientOpts, common.create );
 

@@ -6,14 +6,14 @@ const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index some docs
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1', body: { address_parts: {
@@ -25,7 +25,7 @@ module.exports.tests.functional = function(test, common){
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '2', body: { address_parts: {
@@ -37,7 +37,7 @@ module.exports.tests.functional = function(test, common){
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '3', body: { address_parts: {
@@ -49,7 +49,7 @@ module.exports.tests.functional = function(test, common){
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '4', body: { address_parts: {
@@ -62,13 +62,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by street number
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.number': 30 } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'match street number' );
         done();
@@ -76,13 +76,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by street name - case insensitive
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'west 26th street' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 2, 'match street name' );
         done();
@@ -90,13 +90,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by street name - using abbreviations
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match_phrase: { 'address_parts.street': 'W 26th ST' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 2, 'match street name - abbr' );
         done();
@@ -104,13 +104,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - numeric zip
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10010' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 3, 'match zip - numeric' );
         done();
@@ -118,13 +118,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - string zip
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'e24dn' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'match zip - string' );
         done();
@@ -132,13 +132,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - numeric zip - with punctuation
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '100-10' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 3, 'match zip - numeric - punct' );
         done();
@@ -146,13 +146,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - numeric zip - with whitespace
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': '10 0 10' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 3, 'match zip - numeric - whitespace' );
         done();
@@ -160,13 +160,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - string zip - with punctuation
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2-4DN' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'match zip - string - punct' );
         done();
@@ -174,13 +174,13 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by zip - string zip - with whitespace
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { match: { 'address_parts.zip': 'E2  4DN' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'match zip - string - whitespace' );
         done();
@@ -192,8 +192,8 @@ module.exports.tests.functional = function(test, common){
 };
 
 
-module.exports.tests.venue_vs_address = function(test, common){
-  test( 'venue_vs_address', function(t){
+module.exports.tests.venue_vs_address = (test, common) => {
+  test( 'venue_vs_address', t => {
     // This test shows that partial matching addresses score higher than exact matching
     // venues with the same name.
 
@@ -204,11 +204,11 @@ module.exports.tests.venue_vs_address = function(test, common){
     // Unfortunately there seems to be no easy way of fixing this, it's an artifact of us
     // storing the street names in the name.default field.
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a venue
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1', body: {
@@ -220,32 +220,30 @@ module.exports.tests.venue_vs_address = function(test, common){
 
     // index multiple streets, having many in the index is important
     // because it influences the 'norms' and TF/IDF scoring
-    const testFactory = function(i){
-      return function( done ){
-        let id = i + 100; // id offset
-        suite.client.index({
-          index: suite.props.index,
-          id: String(id),
-          body: {
-            name: { default: `${id} Union Square` },
-            phrase: { default: `${id} Union Square` },
-            address_parts: {
-              number: String(i),
-              street: 'Union Square'
-            }
+    const testFactory = i => done => {
+      let id = i + 100; // id offset
+      suite.client.index({
+        index: suite.props.index,
+        id: String(id),
+        body: {
+          name: { default: `${id} Union Square` },
+          phrase: { default: `${id} Union Square` },
+          address_parts: {
+            number: String(i),
+            street: 'Union Square'
           }
-        }, done);
-      };
+        }
+      }, done);
     };
 
     const TOTAL_ADDRESS_DOCS=9;
-    for( var i=0; i<TOTAL_ADDRESS_DOCS; i++ ){
+    for( let i=0; i<TOTAL_ADDRESS_DOCS; i++ ){
       suite.action( testFactory(i) );
     }
 
     // autocomplete-style query to assert which result is scored higher,
     // the exact matching venue, or the partial matching address.
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         searchType: 'dfs_query_then_fetch',
@@ -289,7 +287,7 @@ module.exports.tests.venue_vs_address = function(test, common){
             }
           }
         }
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), TOTAL_ADDRESS_DOCS+1, 'matched all docs' );
         t.equal( res.hits.hits[TOTAL_ADDRESS_DOCS]._id, '1', 'exact name match first' );
@@ -301,13 +299,13 @@ module.exports.tests.venue_vs_address = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('address matching: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

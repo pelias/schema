@@ -6,14 +6,14 @@ const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with all admin values
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1', body: {
@@ -42,11 +42,11 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by country
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country': 'Test Country' } } }
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -54,11 +54,11 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by country_a
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country_a': 'TestCountry' } } }
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -66,11 +66,11 @@ module.exports.tests.functional = function(test, common){
     });
 
     // search by country_id
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: { 'parent.country_id': '100' } } }
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -84,13 +84,13 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('admin matching: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

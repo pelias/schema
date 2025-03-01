@@ -7,12 +7,12 @@ const tape = require('tape'),
 
 module.exports.tests = {};
 
-module.exports.tests.analyze = function(test, common){
-  test( 'analyze', function(t){
+module.exports.tests.analyze = (test, common) => {
+  test( 'analyze', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis('tokenizer', 'foo-bar baz/42', ['foo','bar','baz','42']);
     assertAnalysis('tokenizer', 'foo-bar  baz/42', ['foo','bar','baz','42']); // tab instead of space
@@ -26,10 +26,10 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('digit_glued_to_word', 'john doe42', ['john', 'doe42']);
     if (config.schema.icuTokenizer) {
       assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กก', 'กก', 'ขขขขคคคคฆฆฆฆ']);
-      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市', '朝阳', '区', '东', '三', '环', '中路', '1', '号', '国际', '大厦', 'a', '座', '1001', '室']);  
+      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市', '朝阳', '区', '东', '三', '环', '中路', '1', '号', '国际', '大厦', 'a', '座', '1001', '室']);
     } else {
       assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กกกกขขขขคคคคฆฆฆฆ']);
-      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市朝阳区东三环中路1号国际大厦a座1001室']);  
+      assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市朝阳区东三环中路1号国际大厦a座1001室']);
     }
 
     assertAnalysis('asciifolding', 'é', ['e']);
@@ -56,12 +56,12 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [ 'trinidad', 'and', 'tobago' ]);
     assertAnalysis( 'place', 'Toys "R" Us!', [ 'toys', 'r', 'us' ]);
@@ -98,12 +98,12 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-module.exports.tests.address = function(test, common){
-  test( 'address', function(t){
+module.exports.tests.address = (test, common) => {
+  test( 'address', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'address', '101 mapzen place', [
       '101', 'mapzen', 'place'
@@ -122,29 +122,29 @@ module.exports.tests.address = function(test, common){
 };
 
 // @see: https://github.com/pelias/api/issues/600
-module.exports.tests.unicode = function(test, common){
-  test( 'normalization', function(t){
+module.exports.tests.unicode = (test, common) => {
+  test( 'normalization', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasQuery' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
-    var latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
-    var combining_acute_accent = String.fromCodePoint(0x0301);
-    var latin_large_letter_e = String.fromCodePoint(0x0045);
-    var latin_small_letter_e = String.fromCodePoint(0x0065);
+    const latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
+    const latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
+    const combining_acute_accent = String.fromCodePoint(0x0301);
+    const latin_large_letter_e = String.fromCodePoint(0x0045);
+    const latin_small_letter_e = String.fromCodePoint(0x0065);
 
     // Chambéry (both forms appear the same)
-    var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
+    let composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
+    let decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry"
 
     assertAnalysis( 'composed', composed, ['chambery'] );
     assertAnalysis( 'decomposed', decomposed, ['chambery'] );
 
     // Één (both forms appear the same)
-    var composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
-    var decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
+    composed = latin_large_letter_e_with_acute + latin_small_letter_e_with_acute + "n";
+    decomposed = combining_acute_accent + latin_large_letter_e + combining_acute_accent + latin_small_letter_e + "n"
 
     assertAnalysis( 'composed', composed, ['een'] );
     assertAnalysis( 'decomposed', decomposed, ['een'] );
@@ -153,13 +153,13 @@ module.exports.tests.unicode = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('peliasQuery: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

@@ -9,10 +9,10 @@ module.exports.tests = {};
  * include a synonym mapping for country code abbreviations
  * which maps between alpha2 and alpha3 variants.
 */
-module.exports.tests.synonyms = function (test, common) {
-  test('synonyms - alpha3 does not share a prefix with alpha2', function (t) {
+module.exports.tests.synonyms = (test, common) => {
+  test('synonyms - alpha3 does not share a prefix with alpha2', t => {
 
-    var suite = new Suite(common.clientOpts, common.create);
+    const suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='MEX'
@@ -132,9 +132,9 @@ module.exports.tests.synonyms = function (test, common) {
     suite.run(t.end);
   });
 
-  test('synonyms - alpha3 shares a prefix with alpha2', function (t) {
+  test('synonyms - alpha3 shares a prefix with alpha2', t => {
 
-    var suite = new Suite(common.clientOpts, common.create);
+    const suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='NZL'
@@ -254,9 +254,9 @@ module.exports.tests.synonyms = function (test, common) {
     suite.run(t.end);
   });
 
-  test('synonyms - additional synonyms do not increase field length', function (t) {
+  test('synonyms - additional synonyms do not increase field length', t => {
 
-    var suite = new Suite(common.clientOpts, common.create);
+    const suite = new Suite(common.clientOpts, common.create);
     suite.action(done => setTimeout(done, 500)); // wait for es to bring some shards up
 
     // index document 1 with country_a='NZL'
@@ -329,7 +329,7 @@ module.exports.all = (tape, common) => {
     return tape('multi token synonyms: ' + name, testFunction);
   }
 
-  for (var testCase in module.exports.tests) {
+  for (const testCase in module.exports.tests) {
     module.exports.tests[testCase](test, common);
   }
 };

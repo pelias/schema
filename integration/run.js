@@ -14,15 +14,11 @@ const common = {
     schema: schema,
     create: { }
   },
-  summaryMap: (res) => {
-    return res.hits.hits.map(h => {
-      return {
-        _id: h._id,
-        _score: h._score,
-        name: h._source.name
-      };
-    });
-  },
+  summaryMap: res => res.hits.hits.map(h => ({
+    _id: h._id,
+    _score: h._score,
+    name: h._source.name
+  })),
   summary: (res) => {
     common.summaryMap( res )
           .forEach( console.dir );
@@ -50,7 +46,7 @@ const common = {
       }
     });
     // sort all the arrays so that order is irrelevant
-    for (var attr in positions){
+    for (const attr in positions){
       positions[attr] = positions[attr].sort();
     }
     return positions;
@@ -82,7 +78,7 @@ const common = {
 };
 
 function removeIndexTokensFromExpectedTokens(index, expected){
-  for (var pos in index) {
+  for (const pos in index) {
     if (!_.isArray(expected[pos])) { continue; }
     expected[pos] = expected[pos].filter(token => !index[pos].includes(token));
     if (_.isEmpty(expected[pos])) { delete expected[pos]; }
@@ -91,7 +87,7 @@ function removeIndexTokensFromExpectedTokens(index, expected){
   return expected;
 }
 
-var tests = [
+const tests = [
   require('./validate.js'),
   require('./dynamic_templates.js'),
   require('./analyzer_peliasIndexOneEdgeGram.js'),
@@ -112,6 +108,6 @@ var tests = [
   require('./admin_abbreviations.js')
 ];
 
-tests.map(function(t) {
+tests.map(t => {
   t.all(tape, common);
 });

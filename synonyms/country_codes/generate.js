@@ -4,8 +4,8 @@ const path = require('path');
 const iso3166 = require('iso3166-1');
 const filename = path.join(__dirname, 'iso3166.txt');
 const comparer = (a, b) => {
-  var aa = a.replace(/^#/, '')
-  var bb = b.replace(/^#/, '')
+  const aa = a.replace(/^#/, '');
+  const bb = b.replace(/^#/, '');
   if (aa < bb){ return -1; }
   if (aa > bb){ return 1; }
   return 0;
@@ -15,7 +15,7 @@ const nonstandard = {
 }
 const mapper = (row) => {
   const columns = [row.alpha3, row.alpha2];
-  var prefix = '';
+  let prefix = '';
 
   // comment-out synonyms where alpha2 is a prefix of alpha3
   // if (row.alpha3.startsWith(row.alpha2)){
@@ -23,7 +23,7 @@ const mapper = (row) => {
   // }
 
   // add informal synonyms
-  var ns = _.get(nonstandard, columns[0])
+  const ns = _.get(nonstandard, columns[0]);
   if (ns){
     if (prefix === ''){
       // set as 3rd synonym

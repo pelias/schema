@@ -5,14 +5,14 @@ const config = require('pelias-config').generate();
 
 module.exports.tests = {};
 
-module.exports.tests.index_and_retrieve = function(test, common){
-  test( 'index and retrieve', function(t){
+module.exports.tests.index_and_retrieve = (test, common) => {
+  test( 'index and retrieve', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a bbox
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -23,13 +23,13 @@ module.exports.tests.index_and_retrieve = function(test, common){
     });
 
     // retrieve document by id
-    suite.assert( function( done ) {
+    suite.assert( done => {
       suite.client.get(
         {
           index: suite.props.index,
           id: '1'
         },
-        function (err, res) {
+        (err, res) => {
           t.equal(err, undefined);
           t.deepEqual(res._source.bounding_box, '{"min_lat":-47.75,"max_lat":-33.9,"min_lon":163.82,"max_lon":179.42}');
           done();
@@ -41,13 +41,13 @@ module.exports.tests.index_and_retrieve = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('bounding box: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

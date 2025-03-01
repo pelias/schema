@@ -19,7 +19,7 @@ function drop() {
 
 // check all hosts to see if any is not localhost
 function warnIfNotLocal() {
-  if (config.esclient.hosts.some((env) => { return env.host !== 'localhost'; })) {
+  if (config.esclient.hosts.some(env => env.host !== 'localhost')) {
     console.log(colors.red(`WARNING: DROPPING SCHEMA NOT ON LOCALHOST: ${config.esclient.hosts[0].host}`));
   }
 }
@@ -38,5 +38,5 @@ function fail() {
 }
 
 function isForced() {
-  return process.argv.length > 2 && ['--force-yes', '-f'].indexOf(process.argv[2]) > -1;
+  return process.argv.length > 2 && ['--force-yes', '-f'].includes(process.argv[2]);
 }

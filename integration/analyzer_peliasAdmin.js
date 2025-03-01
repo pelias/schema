@@ -1,17 +1,15 @@
 // validate analyzer is behaving as expected
 
-var tape = require('tape'),
-    Suite = require('../test/elastictest/Suite'),
-    punctuation = require('../punctuation');
+const tape = require('tape'), Suite = require('../test/elastictest/Suite'), punctuation = require('../punctuation');
 
 module.exports.tests = {};
 
-module.exports.tests.analyze = function(test, common){
-  test( 'analyze', function(t){
+module.exports.tests.analyze = (test, common) => {
+  test( 'analyze', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'asciifolding', 'é', ['e']);
@@ -30,12 +28,12 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'country', 'Trinidad and Tobago', [
       'trinidad', 'and', 'tobago'
@@ -68,12 +66,12 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-module.exports.tests.synonyms = function(test, common){
-  test( 'synonyms', function(t){
+module.exports.tests.synonyms = (test, common) => {
+  test( 'synonyms', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'place', 'Saint-Louis-du-Ha! Ha!', [
       '0:saint', '0:st', '1:louis', '2:du', '3:ha', '4:ha'
@@ -95,12 +93,12 @@ module.exports.tests.synonyms = function(test, common){
   });
 };
 
-module.exports.tests.tokenizer = function(test, common){
-  test( 'tokenizer', function(t){
+module.exports.tests.tokenizer = (test, common) => {
+  test( 'tokenizer', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     const expected = ['0:trinidad', '1:tobago'];
 
@@ -123,22 +121,22 @@ module.exports.tests.tokenizer = function(test, common){
 };
 
 // @see: https://github.com/pelias/api/issues/600
-module.exports.tests.unicode = function(test, common){
-  test( 'normalization', function(t){
+module.exports.tests.unicode = (test, common) => {
+  test( 'normalization', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasAdmin' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
-    var latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
-    var latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
-    var combining_acute_accent = String.fromCodePoint(0x0301);
-    var latin_large_letter_e = String.fromCodePoint(0x0045);
-    var latin_small_letter_e = String.fromCodePoint(0x0065);
+    const latin_large_letter_e_with_acute = String.fromCodePoint(0x00C9);
+    const latin_small_letter_e_with_acute = String.fromCodePoint(0x00E9);
+    const combining_acute_accent = String.fromCodePoint(0x0301);
+    const latin_large_letter_e = String.fromCodePoint(0x0045);
+    const latin_small_letter_e = String.fromCodePoint(0x0065);
 
     // Chambéry (both forms appear the same)
-    var composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
-    var decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
+    let composed = "Chamb" + latin_small_letter_e_with_acute + "ry";
+    let decomposed = "Chamb" + combining_acute_accent + latin_small_letter_e + "ry";
 
     assertAnalysis( 'composed', composed, ['chambery'] );
     assertAnalysis( 'decomposed', decomposed, ['chambery'] );
@@ -154,13 +152,13 @@ module.exports.tests.unicode = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('peliasAdmin: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

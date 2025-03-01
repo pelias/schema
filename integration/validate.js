@@ -5,10 +5,10 @@ const Suite = require('../test/elastictest/Suite');
 
 module.exports.tests = {};
 
-module.exports.tests.validate = function(test, common){
+module.exports.tests.validate = (test, common) => {
   test( 'schema', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
+    const suite = new Suite( common.clientOpts, common.create );
 
     suite.assert( done => {
       suite.client.info({}, ( err, res, status ) => {
@@ -21,13 +21,13 @@ module.exports.tests.validate = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('validate: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

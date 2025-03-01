@@ -14,8 +14,8 @@ const forEachDeep = (obj, cb) =>
 
 module.exports.tests = {};
 
-module.exports.tests.compile = function(test, common) {
-  test('valid schema file', function(t) {
+module.exports.tests.compile = (test, common) => {
+  test('valid schema file', t => {
     t.equal(typeof schema, 'object', 'schema generated');
     t.equal(Object.keys(schema).length>0, true, 'schema has body');
     t.end();
@@ -25,8 +25,8 @@ module.exports.tests.compile = function(test, common) {
 // admin indices are explicitly specified in order to specify a custom
 // dynamic_template and to avoid 'type not found' errors when deploying
 // the api codebase against an index without admin data
-module.exports.tests.indices = function(test, common) {
-  test('explicitly specify some admin indices and their analyzer', function(t) {
+module.exports.tests.indices = (test, common) => {
+  test('explicitly specify some admin indices and their analyzer', t => {
     t.equal(typeof schema.mappings, 'object', 'mappings present');
     t.equal(schema.mappings.dynamic_templates[0].nameGram.mapping.analyzer, 'peliasIndexOneEdgeGram');
     t.end();
@@ -34,10 +34,10 @@ module.exports.tests.indices = function(test, common) {
 };
 
 // some 'admin' types allow single edgeNGrams and so have a different dynamic_template
-module.exports.tests.dynamic_templates = function(test, common) {
-  test('dynamic_templates: nameGram', function(t) {
+module.exports.tests.dynamic_templates = (test, common) => {
+  test('dynamic_templates: nameGram', t => {
     t.equal(typeof schema.mappings.dynamic_templates[0].nameGram, 'object', 'nameGram template specified');
-    var template = schema.mappings.dynamic_templates[0].nameGram;
+    const template = schema.mappings.dynamic_templates[0].nameGram;
     t.equal(template.path_match, 'name.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -48,9 +48,9 @@ module.exports.tests.dynamic_templates = function(test, common) {
     });
     t.end();
   });
-  test('dynamic_templates: phrase', function (t) {
+  test('dynamic_templates: phrase', t => {
     t.equal(typeof schema.mappings.dynamic_templates[1].phrase, 'object', 'phrase template specified');
-    var template = schema.mappings.dynamic_templates[1].phrase;
+    const template = schema.mappings.dynamic_templates[1].phrase;
     t.equal(template.path_match, 'phrase.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -61,9 +61,9 @@ module.exports.tests.dynamic_templates = function(test, common) {
     });
     t.end();
   });
-  test('dynamic_templates: addendum', function (t) {
+  test('dynamic_templates: addendum', t => {
     t.equal(typeof schema.mappings.dynamic_templates[2].addendum, 'object', 'addendum template specified');
-    var template = schema.mappings.dynamic_templates[2].addendum;
+    const template = schema.mappings.dynamic_templates[2].addendum;
     t.equal(template.path_match, 'addendum.*');
     t.equal(template.match_mapping_type, 'string');
     t.deepEqual(template.mapping, {
@@ -76,8 +76,8 @@ module.exports.tests.dynamic_templates = function(test, common) {
 };
 
 // ensure both "analyzer" and "search_analyzer" are set for stringy fields
-module.exports.tests.analyzers = function (test, common) {
-  test('analyzers: ensure "analyzer" and "search_analyzer" are set', function (t) {
+module.exports.tests.analyzers = (test, common) => {
+  test('analyzers: ensure "analyzer" and "search_analyzer" are set', t => {
 
     const stringyTypes = ['string', 'text'];
     const stringyFields = [];
@@ -112,11 +112,11 @@ function overridePeliasConfig(value, cb) {
 
 // current schema (compiled) - requires schema to be copied and settings to
 // be regenerated from a fixture in order to pass in CI environments.
-module.exports.tests.current_schema = function(test, common) {
-  test('current schema vs. fixture', function(t) {
+module.exports.tests.current_schema = (test, common) => {
+  test('current schema vs. fixture', t => {
 
     // copy schema
-    var schemaCopy = JSON.parse( JSON.stringify( schema ) );
+    const schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
     overridePeliasConfig(path.resolve( __dirname + '/fixtures/config.json' ), () => {
@@ -135,10 +135,10 @@ module.exports.tests.current_schema = function(test, common) {
     t.end();
   });
 
-  test('current schema vs. fixture with ICU tokenizer', function(t) {
+  test('current schema vs. fixture with ICU tokenizer', t => {
 
     // copy schema
-    var schemaCopy = JSON.parse( JSON.stringify( schema ) );
+    const schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
     overridePeliasConfig(path.resolve( __dirname + '/fixtures/config-icu-tokenizer.json' ), () => {
@@ -158,13 +158,13 @@ module.exports.tests.current_schema = function(test, common) {
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('compile: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

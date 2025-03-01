@@ -1,17 +1,15 @@
 // validate analyzer is behaving as expected
 
-var tape = require('tape'),
-    Suite = require('../test/elastictest/Suite'),
-    punctuation = require('../punctuation');
+const tape = require('tape'), Suite = require('../test/elastictest/Suite'), punctuation = require('../punctuation');
 
 module.exports.tests = {};
 
-module.exports.tests.analyze = function(test, common){
-  test( 'analyze', function(t){
+module.exports.tests.analyze = (test, common) => {
+  test( 'analyze', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasZip' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasZip' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'lowercase', 'F', ['f']);
     assertAnalysis( 'trim', ' f ', ['f'] );
@@ -21,12 +19,12 @@ module.exports.tests.analyze = function(test, common){
   });
 };
 
-module.exports.tests.functional = function(test, common){
-  test( 'functional', function(t){
+module.exports.tests.functional = (test, common) => {
+  test( 'functional', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    var assertAnalysis = common.analyze.bind( null, suite, t, 'peliasZip' );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    const assertAnalysis = common.analyze.bind( null, suite, t, 'peliasZip' );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     assertAnalysis( 'usa zip', '10010', [ '10010' ]);
     assertAnalysis( 'usa zip', 10010, [ '10010' ]);
@@ -40,13 +38,13 @@ module.exports.tests.functional = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('peliasZip: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

@@ -6,7 +6,7 @@ const multiplier = require('./partial/multiplier');
 const keyword = require('./partial/keyword');
 const keyword_with_doc_values = require('./partial/keyword_with_doc_values');
 
-var schema = {
+const schema = {
   properties: {
 
     // data partitioning

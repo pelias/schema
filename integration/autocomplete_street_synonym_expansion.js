@@ -12,14 +12,14 @@ const getTotalHits = require('./_hits_total_helper');
 module.exports.tests = {};
 
 // index the name as 'center' and then retrieve with partially complete token 'cent'
-module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
-  test( 'index and retrieve expanded form', function(t){
+module.exports.tests.index_and_retrieve_expanded_form = (test, common) => {
+  test( 'index and retrieve expanded form', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -28,7 +28,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -37,7 +37,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
             'query': 'cent'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -45,7 +45,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -54,7 +54,7 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
             'query': 'center'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -66,14 +66,14 @@ module.exports.tests.index_and_retrieve_expanded_form = function(test, common){
 };
 
 // index the name as 'ctr' and then retrieve with 'ctr'
-module.exports.tests.index_and_retrieve_contracted_form = function(test, common){
-  test( 'index and retrieve contracted form', function(t){
+module.exports.tests.index_and_retrieve_contracted_form = (test, common) => {
+  test( 'index and retrieve contracted form', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -82,7 +82,7 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -91,7 +91,7 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
             'query': 'ctr'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -103,14 +103,14 @@ module.exports.tests.index_and_retrieve_contracted_form = function(test, common)
 };
 
 // index the name as 'ctr' and then retrieve with partially complete token 'cent'
-module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
-  test( 'index and retrieve mixed form 1', function(t){
+module.exports.tests.index_and_retrieve_mixed_form_1 = (test, common) => {
+  test( 'index and retrieve mixed form 1', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -119,7 +119,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -128,7 +128,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
             'query': 'cent'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -136,7 +136,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -145,7 +145,7 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
             'query': 'center'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -157,14 +157,14 @@ module.exports.tests.index_and_retrieve_mixed_form_1 = function(test, common){
 };
 
 // index the name as 'center' and then retrieve with 'ctr'
-module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
-  test( 'index and retrieve mixed form 2', function(t){
+module.exports.tests.index_and_retrieve_mixed_form_2 = (test, common) => {
+  test( 'index and retrieve mixed form 2', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index a document with a name which contains a synonym (center)
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1',
@@ -173,7 +173,7 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
     });
 
     // search using 'peliasQuery'
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { match: {
@@ -182,7 +182,7 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
             'query': 'ctr'
           }
         }}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( err, undefined );
         t.equal( getTotalHits(res.hits), 1, 'document found' );
         done();
@@ -193,13 +193,13 @@ module.exports.tests.index_and_retrieve_mixed_form_2 = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('autocomplete street synonym expansion: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

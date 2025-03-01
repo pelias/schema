@@ -5,16 +5,16 @@ const path = require('path'),
 
 module.exports.tests = {};
 
-module.exports.tests.interface = function(test, common) {
-  test('valid interface', function(t) {
+module.exports.tests.interface = (test, common) => {
+  test('valid interface', t => {
     t.equal(typeof settings, 'function', 'settings is a function');
     t.end();
   });
 };
 
-module.exports.tests.configValidation = function(test, common) {
-  test('configValidation throwing error should rethrow', function(t) {
-    t.throws(function() {
+module.exports.tests.configValidation = (test, common) => {
+  test('configValidation throwing error should rethrow', t => {
+    t.throws(() => {
       const proxyquire = require('proxyquire').noCallThru();
       proxyquire('../settings', {
         './configValidation': {
@@ -31,9 +31,9 @@ module.exports.tests.configValidation = function(test, common) {
   });
 };
 
-module.exports.tests.compile = function(test, common) {
-  test('valid settings file', function(t) {
-    var s = settings();
+module.exports.tests.compile = (test, common) => {
+  test('valid settings file', t => {
+    const s = settings();
     t.equal(typeof s, 'object', 'settings generated');
     t.equal(Object.keys(s).length>0, true, 'settings has body');
     t.end();
@@ -41,9 +41,9 @@ module.exports.tests.compile = function(test, common) {
 };
 
 // analysis should always be set
-module.exports.tests.analysis = function(test, common) {
-  test('has analysis settings', function(t) {
-    var s = settings();
+module.exports.tests.analysis = (test, common) => {
+  test('has analysis settings', t => {
+    const s = settings();
     t.equal(typeof s.analysis, 'object', 'analysis specified');
     t.end();
   });
@@ -65,19 +65,19 @@ function mayBeAmpersandReplacer() {
 
 // -- analyzers --
 
-module.exports.tests.peliasAdminAnalyzer = function(test, common) {
-  test('has pelias admin analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasAdminAnalyzer = (test, common) => {
+  test('has pelias admin analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasAdmin, 'object', 'there is a pelias admin analyzer');
-    var analyzer = s.analysis.analyzer.peliasAdmin;
+    const analyzer = s.analysis.analyzer.peliasAdmin;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasAdmin token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasAdmin;
+  test('peliasAdmin token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasAdmin;
     t.deepEqual(analyzer.filter, [...mayBeAmpersandReplacer(),
       "lowercase",
       "trim",
@@ -93,19 +93,19 @@ module.exports.tests.peliasAdminAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
-  test('has peliasIndexOneEdgeGram analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasIndexOneEdgeGramAnalyzer = (test, common) => {
+  test('has peliasIndexOneEdgeGram analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasIndexOneEdgeGram, 'object', 'there is a peliasIndexOneEdgeGram analyzer');
-    var analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
+    const analyzer = s.analysis.analyzer.peliasIndexOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), "punctuation","nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasIndexOneEdgeGram token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
+  test('peliasIndexOneEdgeGram token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasIndexOneEdgeGram;
     t.deepEqual( analyzer.filter, [
       ...mayBeAmpersandReplacer(),
       "lowercase",
@@ -125,19 +125,19 @@ module.exports.tests.peliasIndexOneEdgeGramAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasQueryAnalyzer = function (test, common) {
-  test('has peliasQuery analyzer', function (t) {
-    var s = settings();
+module.exports.tests.peliasQueryAnalyzer = (test, common) => {
+  test('has peliasQuery analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasQuery, 'object', 'there is a peliasQuery analyzer');
-    var analyzer = s.analysis.analyzer.peliasQuery;
+    const analyzer = s.analysis.analyzer.peliasQuery;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasQuery token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasQuery;
+  test('peliasQuery token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasQuery;
     t.deepEqual(analyzer.filter, [
       ...mayBeAmpersandReplacer(),
       'lowercase',
@@ -151,19 +151,19 @@ module.exports.tests.peliasQueryAnalyzer = function (test, common) {
   });
 };
 
-module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
-  test('has peliasPhrase analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasPhraseAnalyzer = (test, common) => {
+  test('has peliasPhrase analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasPhrase, 'object', 'there is a peliasPhrase analyzer');
-    var analyzer = s.analysis.analyzer.peliasPhrase;
+    const analyzer = s.analysis.analyzer.peliasPhrase;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), "punctuation", "nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasPhrase token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasPhrase;
+  test('peliasPhrase token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasPhrase;
     t.deepEqual( analyzer.filter, [
       ...mayBeAmpersandReplacer(),
       "lowercase",
@@ -183,19 +183,19 @@ module.exports.tests.peliasPhraseAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasZipAnalyzer = function(test, common) {
-  test('has peliasZip analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasZipAnalyzer = (test, common) => {
+  test('has peliasZip analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasZip, 'object', 'there is a peliasZip analyzer');
-    var analyzer = s.analysis.analyzer.peliasZip;
+    const analyzer = s.analysis.analyzer.peliasZip;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ['alphanumeric', 'nfkc_normalizer'], 'alphanumeric filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasZip token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasZip;
+  test('peliasZip token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasZip;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "trim",
@@ -207,19 +207,19 @@ module.exports.tests.peliasZipAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasUnitAnalyzer = function(test, common) {
-  test('has peliasUnit analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasUnitAnalyzer = (test, common) => {
+  test('has peliasUnit analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasUnit, 'object', 'there is a peliasUnit analyzer');
-    var analyzer = s.analysis.analyzer.peliasUnit;
+    const analyzer = s.analysis.analyzer.peliasUnit;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ['alphanumeric', 'nfkc_normalizer'], 'alphanumeric filter specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasUnit token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasUnit;
+  test('peliasUnit token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasUnit;
     t.deepEqual( analyzer.filter, [
       "lowercase",
       "trim",
@@ -231,11 +231,11 @@ module.exports.tests.peliasUnitAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
-  test('has peliasHousenumber analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasHousenumberAnalyzer = (test, common) => {
+  test('has peliasHousenumber analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasHousenumber, 'object', 'there is a peliasHousenumber analyzer');
-    var analyzer = s.analysis.analyzer.peliasHousenumber;
+    const analyzer = s.analysis.analyzer.peliasHousenumber;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, ["numeric"], 'numeric filter specified');
@@ -244,19 +244,19 @@ module.exports.tests.peliasHousenumberAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasStreetAnalyzer = function(test, common) {
-  test('has peliasStreet analyzer', function(t) {
-    var s = settings();
+module.exports.tests.peliasStreetAnalyzer = (test, common) => {
+  test('has peliasStreet analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasStreet, 'object', 'there is a peliasStreet analyzer');
-    var analyzer = s.analysis.analyzer.peliasStreet;
+    const analyzer = s.analysis.analyzer.peliasStreet;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasStreet token filters', function(t) {
-    var analyzer = settings().analysis.analyzer.peliasStreet;
+  test('peliasStreet token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasStreet;
     t.deepEqual( analyzer.filter, [...mayBeAmpersandReplacer(),
       "lowercase",
       "trim",
@@ -274,19 +274,19 @@ module.exports.tests.peliasStreetAnalyzer = function(test, common) {
   });
 };
 
-module.exports.tests.peliasIndexCountryAbbreviation = function (test, common) {
-  test('has peliasIndexCountryAbbreviation analyzer', function (t) {
-    var s = settings();
+module.exports.tests.peliasIndexCountryAbbreviation = (test, common) => {
+  test('has peliasIndexCountryAbbreviation analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasIndexCountryAbbreviation, 'object', 'there is a peliasIndexCountryAbbreviation analyzer');
-    var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviation;
+    const analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviation;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), 'punctuation', 'nfkc_normalizer'], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasIndexCountryAbbreviation token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviation;
+  test('peliasIndexCountryAbbreviation token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviation;
     t.deepEqual(analyzer.filter, [...mayBeAmpersandReplacer(),
       "lowercase",
       "trim",
@@ -300,19 +300,19 @@ module.exports.tests.peliasIndexCountryAbbreviation = function (test, common) {
   });
 };
 
-module.exports.tests.peliasIndexCountryAbbreviationOneEdgeGramAnalyzer = function (test, common) {
-  test('has peliasIndexCountryAbbreviationOneEdgeGram analyzer', function (t) {
-    var s = settings();
+module.exports.tests.peliasIndexCountryAbbreviationOneEdgeGramAnalyzer = (test, common) => {
+  test('has peliasIndexCountryAbbreviationOneEdgeGram analyzer', t => {
+    const s = settings();
     t.equal(typeof s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram, 'object', 'there is a peliasIndexCountryAbbreviationOneEdgeGram analyzer');
-    var analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
+    const analyzer = s.analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
     t.equal(analyzer.type, 'custom', 'custom analyzer');
     t.equal(typeof analyzer.tokenizer, 'string', 'tokenizer specified');
     t.deepEqual(analyzer.char_filter, [...mayBeAmpersandMapper(), "punctuation", "nfkc_normalizer"], 'character filters specified');
     t.true(Array.isArray(analyzer.filter), 'filters specified');
     t.end();
   });
-  test('peliasIndexCountryAbbreviationOneEdgeGram token filters', function (t) {
-    var analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
+  test('peliasIndexCountryAbbreviationOneEdgeGram token filters', t => {
+    const analyzer = settings().analysis.analyzer.peliasIndexCountryAbbreviationOneEdgeGram;
     t.deepEqual(analyzer.filter, [
       ...mayBeAmpersandReplacer(),
       "lowercase",
@@ -332,11 +332,11 @@ module.exports.tests.peliasIndexCountryAbbreviationOneEdgeGramAnalyzer = functio
 
 // this multiplexer filter provides all the synonyms used by the peliasAdmin analyzer
 // note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.adminSynonymsMultiplexerFilter = function (test, common) {
-  test('has admin_synonyms_multiplexer filter', function (t) {
-    var s = settings();
+module.exports.tests.adminSynonymsMultiplexerFilter = (test, common) => {
+  test('has admin_synonyms_multiplexer filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.admin_synonyms_multiplexer, 'object', 'there is a admin_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.admin_synonyms_multiplexer;
+    const filter = s.analysis.filter.admin_synonyms_multiplexer;
     t.equal(filter.type, 'multiplexer');
     t.deepEqual(filter.filters, [
       'synonyms/custom_admin',
@@ -348,11 +348,11 @@ module.exports.tests.adminSynonymsMultiplexerFilter = function (test, common) {
 };
 
 // this multiplexer filter provides all the synonyms for country codes.
-module.exports.tests.countryAbbreviationSynonymsMultiplexerFilter = function (test, common) {
-  test('has country_abbreviation_synonyms_multiplexer filter', function (t) {
-    var s = settings();
+module.exports.tests.countryAbbreviationSynonymsMultiplexerFilter = (test, common) => {
+  test('has country_abbreviation_synonyms_multiplexer filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.country_abbreviation_synonyms_multiplexer, 'object', 'there is a country_abbreviation_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.country_abbreviation_synonyms_multiplexer;
+    const filter = s.analysis.filter.country_abbreviation_synonyms_multiplexer;
     t.equal(filter.type, 'multiplexer');
     t.deepEqual(filter.filters, [
       'synonyms/country_codes'
@@ -363,11 +363,11 @@ module.exports.tests.countryAbbreviationSynonymsMultiplexerFilter = function (te
 
 // this multiplexer filter provides all the synonyms used by the peliasPhrase and peliasIndexOneEdgeGram analyzers
 // note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
-  test('has name_synonyms_multiplexer filter', function (t) {
-    var s = settings();
+module.exports.tests.nameSynonymsMultiplexerFilter = (test, common) => {
+  test('has name_synonyms_multiplexer filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.name_synonyms_multiplexer, 'object', 'there is a name_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.name_synonyms_multiplexer;
+    const filter = s.analysis.filter.name_synonyms_multiplexer;
     t.equal(filter.type, 'multiplexer');
     t.deepEqual(filter.filters, [
       'synonyms/custom_name',
@@ -386,11 +386,11 @@ module.exports.tests.nameSynonymsMultiplexerFilter = function (test, common) {
 
 // this multiplexer filter provides all the synonyms used by the peliasStreet analyzer
 // note: the multiplexer ensures than we do not virally generate synonyms of synonyms.
-module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
-  test('has street_synonyms_multiplexer filter', function (t) {
-    var s = settings();
+module.exports.tests.streetSynonymsMultiplexerFilter = (test, common) => {
+  test('has street_synonyms_multiplexer filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.street_synonyms_multiplexer, 'object', 'there is a street_synonyms_multiplexer filter');
-    var filter = s.analysis.filter.street_synonyms_multiplexer;
+    const filter = s.analysis.filter.street_synonyms_multiplexer;
     t.equal(filter.type, 'multiplexer');
     t.deepEqual(filter.filters, [
       'synonyms/custom_street',
@@ -404,17 +404,17 @@ module.exports.tests.streetSynonymsMultiplexerFilter = function (test, common) {
 };
 
 // cycle through all analyzers and ensure the corrsponding token filters are globally defined
-module.exports.tests.allTokenFiltersPresent = function(test, common) {
-  var ES_INBUILT_FILTERS = [
+module.exports.tests.allTokenFiltersPresent = (test, common) => {
+  const ES_INBUILT_FILTERS = [
     'lowercase', 'icu_folding', 'trim', 'word_delimiter', 'unique', 'flatten_graph'
   ];
-  test('all token filters present', function(t) {
-    var s = settings();
-    for( var analyzerName in s.analysis.analyzer ){
-      var analyzer = s.analysis.analyzer[analyzerName];
+  test('all token filters present', t => {
+    const s = settings();
+    for( const analyzerName in s.analysis.analyzer ){
+      const analyzer = s.analysis.analyzer[analyzerName];
       if( Array.isArray( analyzer.filter ) ){
-        analyzer.filter.forEach( function( tokenFilterName ){
-          var filterExists = (
+        analyzer.filter.forEach( tokenFilterName => {
+          const filterExists = (
             s.analysis.filter.hasOwnProperty( tokenFilterName ) ||
             ES_INBUILT_FILTERS.includes( tokenFilterName )
           );
@@ -427,16 +427,16 @@ module.exports.tests.allTokenFiltersPresent = function(test, common) {
 };
 
 // cycle through all analyzers and ensure the mandatory token filters are defined on each
-module.exports.tests.mandatoryTokenFiltersPresent = function (test, common) {
-  var MANDATORY_FILTERS = [
+module.exports.tests.mandatoryTokenFiltersPresent = (test, common) => {
+  const MANDATORY_FILTERS = [
     'lowercase', 'icu_folding', 'trim', 'unique_only_same_position', 'notnull'
   ];
-  test('mandatory filters present', function (t) {
-    var s = settings();
-    for (var analyzerName in s.analysis.analyzer) {
-      var analyzer = s.analysis.analyzer[analyzerName];
+  test('mandatory filters present', t => {
+    const s = settings();
+    for (const analyzerName in s.analysis.analyzer) {
+      const analyzer = s.analysis.analyzer[analyzerName];
       if (Array.isArray(analyzer.filter)) {
-        MANDATORY_FILTERS.forEach(function (filterName) {
+        MANDATORY_FILTERS.forEach(filterName => {
           t.true(
             analyzer.filter.includes(filterName),
             `mandatory token filter ${filterName} not defined on ${analyzerName}`
@@ -449,16 +449,16 @@ module.exports.tests.mandatoryTokenFiltersPresent = function (test, common) {
 };
 
 // cycle through all analyzers and ensure the corrsponding character filters are defined
-module.exports.tests.allCharacterFiltersPresent = function(test, common) {
-  var ES_INBUILT_FILTERS = [];
-  test('all character filters present', function(t) {
-    var s = settings();
-    for( var analyzerName in s.analysis.analyzer ){
-      var analyzer = s.analysis.analyzer[analyzerName];
+module.exports.tests.allCharacterFiltersPresent = (test, common) => {
+  const ES_INBUILT_FILTERS = [];
+  test('all character filters present', t => {
+    const s = settings();
+    for( const analyzerName in s.analysis.analyzer ){
+      const analyzer = s.analysis.analyzer[analyzerName];
       if( Array.isArray( analyzer.char_filter ) ){
-        analyzer.char_filter.forEach( function( charFilterName ){
-          var filterExists = s.analysis.char_filter.hasOwnProperty( charFilterName );
-          if( !filterExists && -1 < ES_INBUILT_FILTERS.indexOf( charFilterName ) ){
+        analyzer.char_filter.forEach( charFilterName => {
+          let filterExists = s.analysis.char_filter.hasOwnProperty( charFilterName );
+          if( !filterExists && ES_INBUILT_FILTERS.includes(charFilterName) ){
             filterExists = true;
           }
           t.true( filterExists, 'missing character filter: ' + charFilterName );
@@ -473,11 +473,11 @@ module.exports.tests.allCharacterFiltersPresent = function(test, common) {
 
 // note: pattern/replace should not have surrounding whitespace
 // we convert and->& rather than &->and to save memory/disk
-module.exports.tests.punctuationFilter = function(test, common) {
-  test('has punctuation filter', function(t) {
-    var s = settings();
+module.exports.tests.punctuationFilter = (test, common) => {
+  test('has punctuation filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/punctuation'], 'object', 'there is a punctuation filter');
-    var filter = s.analysis.filter['synonyms/punctuation'];
+    const filter = s.analysis.filter['synonyms/punctuation'];
     t.equal(filter.type, 'synonym');
     t.deepEqual(filter.synonyms, [
       "&,and",
@@ -489,11 +489,11 @@ module.exports.tests.punctuationFilter = function(test, common) {
 
 // this filter simply removes empty tokens which can occur when other
 // filters do weird things, so just to be sure, we explicitly get rid of them
-module.exports.tests.notnullFilter = function(test, common) {
-  test('has notnull filter', function(t) {
-    var s = settings();
+module.exports.tests.notnullFilter = (test, common) => {
+  test('has notnull filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.notnull, 'object', 'there is a notnull filter');
-    var filter = s.analysis.filter.notnull;
+    const filter = s.analysis.filter.notnull;
     t.equal(filter.type, 'length');
     t.equal(filter.min, 1);
     t.end();
@@ -501,11 +501,11 @@ module.exports.tests.notnullFilter = function(test, common) {
 };
 
 // this filter creates edgeNGrams with the minimum size of 1
-module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
-  test('has peliasIndexOneEdgeGram filter', function(t) {
-    var s = settings();
+module.exports.tests.peliasOneEdgeGramFilter = (test, common) => {
+  test('has peliasIndexOneEdgeGram filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.peliasOneEdgeGramFilter, 'object', 'there is a peliasIndexOneEdgeGram filter');
-    var filter = s.analysis.filter.peliasOneEdgeGramFilter;
+    const filter = s.analysis.filter.peliasOneEdgeGramFilter;
     t.equal(filter.type, 'edge_ngram');
     t.equal(filter.min_gram, 1);
     t.equal(filter.max_gram, 24);
@@ -515,11 +515,11 @@ module.exports.tests.peliasOneEdgeGramFilter = function(test, common) {
 
 // this filter provides synonyms for street suffixes
 // eg. road=>rd
-module.exports.tests.streetSynonymFilter = function(test, common) {
-  test('has synonyms/streets filter', function(t) {
-    var s = settings();
+module.exports.tests.streetSynonymFilter = (test, common) => {
+  test('has synonyms/streets filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/streets'], 'object', 'there is a synonyms/streets filter');
-    var filter = s.analysis.filter['synonyms/streets'];
+    const filter = s.analysis.filter['synonyms/streets'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 809);
@@ -529,11 +529,11 @@ module.exports.tests.streetSynonymFilter = function(test, common) {
 
 // this filter stems common directional terms
 // eg. north=>n and south=>s
-module.exports.tests.directionalSynonymFilter = function(test, common) {
-  test('has directionals filter', function(t) {
-    var s = settings();
+module.exports.tests.directionalSynonymFilter = (test, common) => {
+  test('has directionals filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/directionals'], 'object', 'there is a synonyms/directionals filter');
-    var filter = s.analysis.filter['synonyms/directionals'];
+    const filter = s.analysis.filter['synonyms/directionals'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 69);
@@ -543,11 +543,11 @@ module.exports.tests.directionalSynonymFilter = function(test, common) {
 
 // this filter provides common synonyms for personal titles
 // eg. doctor=>dr
-module.exports.tests.personalTitleSynonymFilter = function (test, common) {
-  test('has personal_titles filter', function (t) {
-    var s = settings();
+module.exports.tests.personalTitleSynonymFilter = (test, common) => {
+  test('has personal_titles filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/personal_titles'], 'object', 'there is a synonyms/personal_titles filter');
-    var filter = s.analysis.filter['synonyms/personal_titles'];
+    const filter = s.analysis.filter['synonyms/personal_titles'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 191);
@@ -557,11 +557,11 @@ module.exports.tests.personalTitleSynonymFilter = function (test, common) {
 
 // this filter provides common synonyms for place names
 // eg. park=>pk
-module.exports.tests.placeNameSynonymFilter = function (test, common) {
-  test('has place_names filter', function (t) {
-    var s = settings();
+module.exports.tests.placeNameSynonymFilter = (test, common) => {
+  test('has place_names filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/place_names'], 'object', 'there is a synonyms/place_names filter');
-    var filter = s.analysis.filter['synonyms/place_names'];
+    const filter = s.analysis.filter['synonyms/place_names'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 314);
@@ -571,11 +571,11 @@ module.exports.tests.placeNameSynonymFilter = function (test, common) {
 
 // this filter removes number ordinals
 // eg. 26th => 26, 1st => 1
-module.exports.tests.removeOrdinalsFilter = function(test, common) {
-  test('has remove_ordinals filter', function(t) {
-    var s = settings();
+module.exports.tests.removeOrdinalsFilter = (test, common) => {
+  test('has remove_ordinals filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter.remove_ordinals, 'object', 'there is an remove_ordinals filter');
-    var filter = s.analysis.filter.remove_ordinals;
+    const filter = s.analysis.filter.remove_ordinals;
     t.equal(filter.type, 'pattern_replace');
     t.equal(filter.pattern, '(?i)((^| )((1)st?|(2)nd?|(3)rd?|([4-9])th?)|(([0-9]*)(1[0-9])th?)|(([0-9]*[02-9])((1)st?|(2)nd?|(3)rd?|([04-9])th?))($| ))');
     t.equal(filter.replacement, '$2$4$5$6$7$9$10$12$14$15$16$17$18');
@@ -587,11 +587,11 @@ module.exports.tests.removeOrdinalsFilter = function(test, common) {
 
 // we use a custom punctuation filter in order to allow the ampersand
 // character which would otherwise be stripped by the standard tokenizer
-module.exports.tests.punctuationCharFilter = function(test, common) {
-  test('has punctuation char_filter', function(t) {
-    var s = settings();
+module.exports.tests.punctuationCharFilter = (test, common) => {
+  test('has punctuation char_filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.char_filter.punctuation, 'object', 'there is a punctuation char_filter');
-    var char_filter = s.analysis.char_filter.punctuation;
+    const char_filter = s.analysis.char_filter.punctuation;
     t.equal(char_filter.type, 'mapping');
     t.true(Array.isArray(char_filter.mappings));
     t.equal(char_filter.mappings.length, 59);
@@ -600,11 +600,11 @@ module.exports.tests.punctuationCharFilter = function(test, common) {
 };
 
 // remove non alphanumeric characters
-module.exports.tests.alphanumericCharFilter = function(test, common) {
-  test('has alphanumeric char_filter', function(t) {
-    var s = settings();
+module.exports.tests.alphanumericCharFilter = (test, common) => {
+  test('has alphanumeric char_filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.char_filter.alphanumeric, 'object', 'there is a alphanumeric char_filter');
-    var char_filter = s.analysis.char_filter.alphanumeric;
+    const char_filter = s.analysis.char_filter.alphanumeric;
     t.equal(char_filter.type, 'pattern_replace');
     t.equal(char_filter.pattern, '[^a-zA-Z0-9]');
     t.equal(char_filter.replacement, '');
@@ -613,11 +613,11 @@ module.exports.tests.alphanumericCharFilter = function(test, common) {
 };
 
 // replace non-numeric chars with a space
-module.exports.tests.numericCharFilter = function(test, common) {
-  test('has numeric char_filter', function(t) {
-    var s = settings();
+module.exports.tests.numericCharFilter = (test, common) => {
+  test('has numeric char_filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.char_filter.numeric, 'object', 'there is a numeric char_filter');
-    var char_filter = s.analysis.char_filter.numeric;
+    const char_filter = s.analysis.char_filter.numeric;
     t.equal(char_filter.type, 'pattern_replace');
     t.equal(char_filter.pattern, '[^0-9]');
     t.equal(char_filter.replacement, ' ');
@@ -627,11 +627,11 @@ module.exports.tests.numericCharFilter = function(test, common) {
 
 // this filter provides british/american english synonyms
 // eg. center<=>centre
-module.exports.tests.britishAmericanEnglishSynonymFilter = function (test, common) {
-  test('has british_american_english filter', function (t) {
-    var s = settings();
+module.exports.tests.britishAmericanEnglishSynonymFilter = (test, common) => {
+  test('has british_american_english filter', t => {
+    const s = settings();
     t.equal(typeof s.analysis.filter['synonyms/british_american_english'], 'object', 'there is a synonyms/british_american_english filter');
-    var filter = s.analysis.filter['synonyms/british_american_english'];
+    const filter = s.analysis.filter['synonyms/british_american_english'];
     t.equal(filter.type, 'synonym');
     t.true(Array.isArray(filter.synonyms));
     t.equal(filter.synonyms.length, 255);
@@ -642,9 +642,9 @@ module.exports.tests.britishAmericanEnglishSynonymFilter = function (test, commo
 // -- etc --
 
 // index should always be set
-module.exports.tests.index = function(test, common) {
-  test('has index settings', function(t) {
-    var s = settings();
+module.exports.tests.index = (test, common) => {
+  test('has index settings', t => {
+    const s = settings();
     t.equal(typeof s.index, 'object', 'index specified');
     t.equal(s.index.number_of_replicas, "0", 'replicas will increase index time');
     t.equal(s.index.number_of_shards, "5", 'sharding value should use the elasticsearch default');
@@ -653,12 +653,12 @@ module.exports.tests.index = function(test, common) {
 };
 
 // allow overrides from pelias/config
-module.exports.tests.overrides = function(test, common) {
-  test('override defaults', function(t) {
+module.exports.tests.overrides = (test, common) => {
+  test('override defaults', t => {
 
     process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
 
-    var s = settings();
+    let s = settings();
     t.equal(s.index['number_of_replicas'], '0', 'unchanged');
 
     // set the PELIAS_CONFIG env var
@@ -671,11 +671,11 @@ module.exports.tests.overrides = function(test, common) {
     // unset the PELIAS_CONFIG env var
     delete process.env['PELIAS_CONFIG'];
   });
-  test('override similarity', function (t) {
+  test('override similarity', t => {
 
     process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
 
-    var s = settings();
+    let s = settings();
     t.equal(s.index.similarity.peliasDefaultSimilarity.k1, 1.2, 'unchanged');
 
     // set the PELIAS_CONFIG env var
@@ -691,13 +691,13 @@ module.exports.tests.overrides = function(test, common) {
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('settings: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };

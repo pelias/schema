@@ -6,35 +6,35 @@ const getTotalHits = require('./_hits_total_helper');
 
 module.exports.tests = {};
 
-module.exports.tests.source_filter = function(test, common){
-  test( 'source filter', function(t){
+module.exports.tests.source_filter = (test, common) => {
+  test( 'source filter', t => {
 
-    var suite = new Suite( common.clientOpts, common.create );
-    suite.action( function( done ){ setTimeout( done, 500 ); }); // wait for es to bring some shards up
+    const suite = new Suite( common.clientOpts, common.create );
+    suite.action( done => { setTimeout( done, 500 ); }); // wait for es to bring some shards up
 
     // index some docs
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '1', body: { source: 'osm', layer: 'node', source_id: 'dataset/1' }
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index, 
         id: '2', body: { source: 'osm', layer: 'address', source_id: 'dataset/2' }
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index, 
         id: '3', body: { source: 'geonames', layer: 'address', source_id: 'dataset/1' }
       }, done );
     });
 
-    suite.action( function( done ){
+    suite.action( done => {
       suite.client.index({
         index: suite.props.index,
         id: '4', body: { source: 'foo bar baz' }
@@ -42,7 +42,7 @@ module.exports.tests.source_filter = function(test, common){
     });
 
     // find all 'osm' sources
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -50,14 +50,14 @@ module.exports.tests.source_filter = function(test, common){
             source: 'osm'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
 
     // find all 'address' layers
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -65,14 +65,14 @@ module.exports.tests.source_filter = function(test, common){
             layer: 'address'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
 
     // find all 'shop' source_ids
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -80,28 +80,28 @@ module.exports.tests.source_filter = function(test, common){
             source_id: 'dataset/1'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 2 );
         done();
       });
     });
 
     // find all 'shop' source_ids from 'osm' source
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: { bool: { must: [
           { term: { source: 'osm' } },
           { term: { source_id: 'dataset/1' } }
         ]}}}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 1 );
         done();
       });
     });
 
     // case sensitive
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -109,14 +109,14 @@ module.exports.tests.source_filter = function(test, common){
             source: 'OSM'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 0 );
         done();
       });
     });
 
     // keyword analysis - no partial matching
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -124,14 +124,14 @@ module.exports.tests.source_filter = function(test, common){
             source: 'foo'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 0 );
         done();
       });
     });
 
     // keyword analysis - allows spaces
-    suite.assert( function( done ){
+    suite.assert( done => {
       suite.client.search({
         index: suite.props.index,
         body: { query: {
@@ -139,7 +139,7 @@ module.exports.tests.source_filter = function(test, common){
             source: 'foo bar baz'
           }
         }}
-      }, function( err, res ){
+      }, (err, res) => {
         t.equal( getTotalHits(res.hits), 1 );
         done();
       });
@@ -149,13 +149,13 @@ module.exports.tests.source_filter = function(test, common){
   });
 };
 
-module.exports.all = function (tape, common) {
+module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
     return tape('field filtering: ' + name, testFunction);
   }
 
-  for( var testCase in module.exports.tests ){
+  for( const testCase in module.exports.tests ){
     module.exports.tests[testCase](test, common);
   }
 };
