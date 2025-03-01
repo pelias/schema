@@ -13,7 +13,7 @@ function Suite (clientOpts, props) {
   })
   this.props = props || {}
   if (!_.has(this, 'props.index')) {
-    this.props.index = 'testindex-' + randomstring.generate(7).toLowerCase()
+    this.props.index = `testindex-${randomstring.generate(7).toLowerCase()}`
   }
 }
 

@@ -418,7 +418,7 @@ module.exports.tests.allTokenFiltersPresent = (test, common) => {
             s.analysis.filter.hasOwnProperty( tokenFilterName ) ||
             ES_INBUILT_FILTERS.includes( tokenFilterName )
           );
-          t.true( filterExists, 'token filter exists: ' + tokenFilterName );
+          t.true( filterExists, `token filter exists: ${tokenFilterName}` );
         });
       }
     }
@@ -461,7 +461,7 @@ module.exports.tests.allCharacterFiltersPresent = (test, common) => {
           if( !filterExists && ES_INBUILT_FILTERS.includes(charFilterName) ){
             filterExists = true;
           }
-          t.true( filterExists, 'missing character filter: ' + charFilterName );
+          t.true( filterExists, `missing character filter: ${charFilterName}` );
         });
       }
     }
@@ -656,13 +656,13 @@ module.exports.tests.index = (test, common) => {
 module.exports.tests.overrides = (test, common) => {
   test('override defaults', t => {
 
-    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
+    process.env['PELIAS_CONFIG'] = path.resolve(`${__dirname}/fixtures/empty.json`);
 
     let s = settings();
     t.equal(s.index['number_of_replicas'], '0', 'unchanged');
 
     // set the PELIAS_CONFIG env var
-    process.env['PELIAS_CONFIG'] = path.resolve( __dirname + '/fixtures/config.json' );
+    process.env['PELIAS_CONFIG'] = path.resolve( `${__dirname}/fixtures/config.json` );
 
     s = settings();
     t.equal(s.index['number_of_replicas'], '999', 'changed');
@@ -673,13 +673,13 @@ module.exports.tests.overrides = (test, common) => {
   });
   test('override similarity', t => {
 
-    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/empty.json');
+    process.env['PELIAS_CONFIG'] = path.resolve(`${__dirname}/fixtures/empty.json`);
 
     let s = settings();
     t.equal(s.index.similarity.peliasDefaultSimilarity.k1, 1.2, 'unchanged');
 
     // set the PELIAS_CONFIG env var
-    process.env['PELIAS_CONFIG'] = path.resolve(__dirname + '/fixtures/similarity.json');
+    process.env['PELIAS_CONFIG'] = path.resolve(`${__dirname}/fixtures/similarity.json`);
 
     s = settings();
     t.equal(s.index.similarity.peliasDefaultSimilarity.k1, 0, 'changed');
@@ -694,7 +694,7 @@ module.exports.tests.overrides = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('settings: ' + name, testFunction);
+    return tape(`settings: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

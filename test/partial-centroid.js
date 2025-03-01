@@ -22,7 +22,7 @@ module.exports.tests.type = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('centroid: ' + name, testFunction);
+    return tape(`centroid: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

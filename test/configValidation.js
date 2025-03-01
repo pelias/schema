@@ -89,7 +89,7 @@ module.exports.tests.interface = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('configValidation: ' + name, testFunction);
+    return tape(`configValidation: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

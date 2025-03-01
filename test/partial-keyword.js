@@ -36,7 +36,7 @@ module.exports.tests.analysis = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('keyword: ' + name, testFunction);
+    return tape(`keyword: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

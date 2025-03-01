@@ -76,7 +76,7 @@ Foo  Bar, Foo
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('synonyms parser: ' + name, testFunction);
+    return tape(`synonyms parser: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

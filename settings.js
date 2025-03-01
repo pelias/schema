@@ -243,7 +243,7 @@ function generate(){
       "char_filter": {
         "punctuation" : {
           "type" : "mapping",
-          "mappings" : punctuation.blacklist.map(c => c + '=>')
+          "mappings" : punctuation.blacklist.map(c => `${c}=>`)
         },
         "alphanumeric" : {
           "type" : "pattern_replace",

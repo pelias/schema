@@ -119,7 +119,7 @@ module.exports.tests.current_schema = (test, common) => {
     const schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
-    overridePeliasConfig(path.resolve( __dirname + '/fixtures/config.json' ), () => {
+    overridePeliasConfig(path.resolve( `${__dirname}/fixtures/config.json` ), () => {
       schemaCopy.settings = require('../settings')();
     });
 
@@ -141,7 +141,7 @@ module.exports.tests.current_schema = (test, common) => {
     const schemaCopy = JSON.parse( JSON.stringify( schema ) );
 
     // use the pelias config fixture instead of the local config
-    overridePeliasConfig(path.resolve( __dirname + '/fixtures/config-icu-tokenizer.json' ), () => {
+    overridePeliasConfig(path.resolve( `${__dirname}/fixtures/config-icu-tokenizer.json` ), () => {
       schemaCopy.settings = require('../settings')();
     });
 
@@ -161,7 +161,7 @@ module.exports.tests.current_schema = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('compile: ' + name, testFunction);
+    return tape(`compile: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

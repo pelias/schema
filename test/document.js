@@ -145,12 +145,12 @@ module.exports.tests.parent_analysis = (test, common) => {
       let expectedNgramSearchAnalyzer = 'peliasAdmin';
 
       // id field
-      t.equal(prop[field+'_id'].type, 'keyword', `${field}_id type is keyword`);
-      t.equal(prop[field+'_id'].index, undefined, `${field}_id index left at default`);
+      t.equal(prop[`${field}_id`].type, 'keyword', `${field}_id type is keyword`);
+      t.equal(prop[`${field}_id`].index, undefined, `${field}_id index left at default`);
 
       // source field
-      t.equal(prop[field + '_source'].type, 'keyword', `${field}_source type is keyword`);
-      t.equal(prop[field + '_source'].index, undefined, `${field}_source index left at default`);
+      t.equal(prop[`${field}_source`].type, 'keyword', `${field}_source type is keyword`);
+      t.equal(prop[`${field}_source`].index, undefined, `${field}_source index left at default`);
 
       // fulltext field eg. parent.region
       t.equal(prop[field].type, 'text', `${field} is set to text type`);
@@ -172,14 +172,14 @@ module.exports.tests.parent_analysis = (test, common) => {
       }
 
       // abbreviaton
-      t.equal(prop[field + '_a'].type, 'text', `${field}_a type is text`);
-      t.equal(prop[field + '_a'].analyzer, expectedFullTextIndexAnalyzer, `${field}_a analyzer`);
-      t.equal(prop[field + '_a'].search_analyzer, expectedFullTextSearchAnalyzer, `${field}_a analyzer`);
+      t.equal(prop[`${field}_a`].type, 'text', `${field}_a type is text`);
+      t.equal(prop[`${field}_a`].analyzer, expectedFullTextIndexAnalyzer, `${field}_a analyzer`);
+      t.equal(prop[`${field}_a`].search_analyzer, expectedFullTextSearchAnalyzer, `${field}_a analyzer`);
 
       // abbreviaton ngram subfield
-      t.equal(prop[field + '_a'].fields.ngram.type, 'text', `${field}_a.ngram type is full text`);
-      t.equal(prop[field + '_a'].fields.ngram.analyzer, expectedNgramIndexAnalyzer, `${field}_a.ngram analyzer`);
-      t.equal(prop[field + '_a'].fields.ngram.search_analyzer, expectedNgramSearchAnalyzer, `${field}_a.ngram analyzer`);
+      t.equal(prop[`${field}_a`].fields.ngram.type, 'text', `${field}_a.ngram type is full text`);
+      t.equal(prop[`${field}_a`].fields.ngram.analyzer, expectedNgramIndexAnalyzer, `${field}_a.ngram analyzer`);
+      t.equal(prop[`${field}_a`].fields.ngram.search_analyzer, expectedNgramSearchAnalyzer, `${field}_a.ngram analyzer`);
 
       t.end();
     });
@@ -255,7 +255,7 @@ module.exports.tests._source = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('document: ' + name, testFunction);
+    return tape(`document: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){

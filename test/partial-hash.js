@@ -30,7 +30,7 @@ module.exports.tests.dynamic = (test, common) => {
 module.exports.all = (tape, common) => {
 
   function test(name, testFunction) {
-    return tape('hash: ' + name, testFunction);
+    return tape(`hash: ${name}`, testFunction);
   }
 
   for( const testCase in module.exports.tests ){
