@@ -8,8 +8,7 @@
         }
       }
     },
-    "schema": {
+    "featureFlags": {
         "icuTokenizer": true
     }
 }
-  
