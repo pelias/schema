@@ -85,7 +85,7 @@ module.exports.tests.analyzers = (test, common) => {
     forEachDeep(schema, (value, key) => {
       if (!_.isPlainObject(value)) { return; }
       if (!stringyTypes.includes(_.get(value, 'type', ''))) { return; }
-      stringyFields.push({ key: key, value: value });
+      stringyFields.push({ key, value });
     });
 
     stringyFields.forEach(field => {

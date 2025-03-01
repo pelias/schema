@@ -83,14 +83,14 @@ const property = (prop, field) => {
       // more than one dynamic template matches
       } else if (matches.length > 1) {
         error({
-          field: field,
+          field,
           message: 'multiple dynamic_templates matched'
         })
 
       // no properties object or dynamic template matched
       } else {
         error({
-          field: field,
+          field,
           message: 'missing object properties'
         })
       }
@@ -98,7 +98,7 @@ const property = (prop, field) => {
   } else {
     // scalar property definition
     print({
-      field: field,
+      field,
       type: prop.type,
       analyzer: prop.analyzer || defaultAnalyzerFor(prop),
       search_analyzer: prop.search_analyzer || prop.analyzer || defaultAnalyzerFor(prop),
