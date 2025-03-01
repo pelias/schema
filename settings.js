@@ -293,7 +293,7 @@ function generate(){
   });
 
   // Experimental ICU tokenizer
-  if (config.schema.icuTokenizer) {
+  if (config.featureFlags.icuTokenizer) {
     settings = settingsICU(settings);
   }
 

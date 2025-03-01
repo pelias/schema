@@ -68,7 +68,7 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 
      // complicated tokenization for some Asian languages
-    if (config.schema.icuTokenizer) {
+    if (config.featureFlags.icuTokenizer) {
       assertAnalysis('thai_address1', 'ซอยเพชรบุรี๑', ['ซอย', 'เพชรบุรี1'] );
       assertAnalysis('thai_address2', 'ซอยเพชรบุรี๑foo', ['ซอย', 'เพชรบุรี1', 'foo'] );
       assertAnalysis('thai_address3', 'บ้านเลขที่๑๒๓ถนนสุขุมวิทแขวงคลองตันเหนือเขตวัฒนา กรุงเทพมหานคร๑๐๑๑๐', ["บาน", "เลข", "ที123ถนน", "สุขุมวิท", "แขวง", "คลองตัน", "เหนือ", "เขต", "วัฒนา", "กรุงเทพมหานคร10110"]);
