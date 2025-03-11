@@ -5,7 +5,7 @@ const client = new es.Client(config.esclient);
 async function stats() {
     try {
         const response = await client.search({
-            index: config.api.indexName,
+            index: config.schema.indexName,
             body: {
                 aggs: {
                     sources: {
@@ -29,7 +29,7 @@ async function stats() {
             request_cache: true,
             maxRetries: 1,
         });
-        console.log("Results for index \""+config.api.indexName+"\":")
+        console.log("Results for index \""+config.schema.indexName+"\":")
         console.log(JSON.stringify(response, null, 2));
         process.exit(0);
     }
