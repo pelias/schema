@@ -78,6 +78,15 @@ Print a list of which plugins are installed and how to install any that are miss
 node scripts/check_plugins.js
 ```
 
+#### check indexed documents
+
+Display a summary of doc counts per source/layer. By default the stats for the importing index is used. Only use `--api` if your requesting index differs from your importing index
+
+```bash
+node scripts/check_stats.js
+node scripts/check_stats.js --api
+```
+
 ## Configuration
 
 ### Settings from `pelias.json`
