@@ -1,11 +1,13 @@
 const config = require('pelias-config').generate();
 const es = require('elasticsearch');
 const client = new es.Client(config.esclient);
+const targetIndex = getTargetIndex();
 
-async function stats() {
+
+async function stats(targetIndex) {
     try {
         const response = await client.search({
-            index: config.schema.indexName,
+            index: targetIndex,
             body: {
                 aggs: {
                     sources: {
@@ -29,7 +31,7 @@ async function stats() {
             request_cache: true,
             maxRetries: 1,
         });
-        console.log("Results for index \""+config.schema.indexName+"\":")
+        console.log("Results for index \"" + targetIndex + "\":")
         console.log(JSON.stringify(response, null, 2));
         process.exit(0);
     }
@@ -37,5 +39,12 @@ async function stats() {
         console.error(err);
         process.exit(!!err);
     }
+};
+
+function getTargetIndex() {
+    if (process.argv.length > 2 && ['--api', '-a'].indexOf(process.argv[2]) > -1) {
+        return config.api.indexName; //If none is set the value from pelias/config/config/defaults.json will be used ('pelias')
+    }
+    return config.schema.indexName;
 }
-stats();
+stats(targetIndex);
