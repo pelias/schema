@@ -2960,8 +2960,7 @@
         "index": false
       },
       "source_id": {
-        "type": "keyword",
-        "doc_values": false
+        "type": "keyword"
       },
       "category": {
         "type": "keyword",
