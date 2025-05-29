@@ -1,5 +1,5 @@
 # base image
-FROM pelias/baseimage
+FROM pelias/baseimage:ubuntu-24-noble
 
 # change working dir
 ENV WORKDIR /code/pelias/schema
