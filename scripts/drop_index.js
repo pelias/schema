@@ -13,7 +13,7 @@ function drop() {
   const req = { index: config.schema.indexName };
   client.indices.delete(req, (err, res) => {
     console.log('\n[delete mapping]', '\t', config.schema.indexName, err || '\t', res);
-    process.exit(!!err);
+    process.exit(err ? 1 : 0);
   });
 }
 
