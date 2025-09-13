@@ -2,14 +2,16 @@ const Joi = require('@hapi/joi');
 
 // Schema Configuration
 // schema.indexName: populated by defaults if not overridden
-// schema.icuTokenizer: boolean, optional, defaults to false
 // esclient: object, validation performed by elasticsearch module
+// featureFlags.icuTokenizer: boolean, optional, defaults to false
 const schema = Joi.object().required().keys({
   schema: Joi.object().required().keys({
-    indexName: Joi.string().required(),
-    icuTokenizer: Joi.boolean().optional()
+    indexName: Joi.string().required()
   }),
-  esclient: Joi.object().required()
+  esclient: Joi.object().required(),
+  featureFlags: Joi.object().optional().keys({
+    icuTokenizer: Joi.boolean().optional()
+  }).unknown(true)
 }).unknown(true);
 
 module.exports = {
