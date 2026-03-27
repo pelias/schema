@@ -24,7 +24,7 @@ module.exports.tests.analyze = function(test, common){
     assertAnalysis('thai_digits', '๐๑๒๓๔๕๖๗ ๘๙', ['01234567', '89']); // leading zero remains
     assertAnalysis('thai_digits', '๑๒๓๔๕๖๗๐ ๘๙', ['12345670', '89']);
     assertAnalysis('digit_glued_to_word', 'john doe42', ['john', 'doe42']);
-    if (config.schema.icuTokenizer) {
+    if (config.featureFlags?.icuTokenizer) {
       assertAnalysis('thai_tonemarks', 'ก่ก้ก๊ก๋ข่ข้ข๊ข๋ค่ค้ค๊ค๋ฆ่ฆ้ฆ๊ฆ๋', ['กก', 'กก', 'ขขขขคคคคฆฆฆฆ']);
       assertAnalysis('chinese_address', '北京市朝阳区东三环中路1号国际大厦A座1001室', ['北京市', '朝阳', '区', '东', '三', '环', '中路', '1', '号', '国际', '大厦', 'a', '座', '1001', '室']);  
     } else {
@@ -68,7 +68,7 @@ module.exports.tests.functional = function(test, common){
     assertAnalysis( 'address', '101 mapzen place', [ '101', 'mapzen', 'place' ]);
 
      // complicated tokenization for some Asian languages
-    if (config.schema.icuTokenizer) {
+    if (config.featureFlags?.icuTokenizer) {
       assertAnalysis('thai_address1', 'ซอยเพชรบุรี๑', ['ซอย', 'เพชรบุรี1'] );
       assertAnalysis('thai_address2', 'ซอยเพชรบุรี๑foo', ['ซอย', 'เพชรบุรี1', 'foo'] );
       assertAnalysis('thai_address3', 'บ้านเลขที่๑๒๓ถนนสุขุมวิทแขวงคลองตันเหนือเขตวัฒนา กรุงเทพมหานคร๑๐๑๑๐', ["บาน", "เลข", "ที123ถนน", "สุขุมวิท", "แขวง", "คลองตัน", "เหนือ", "เขต", "วัฒนา", "กรุงเทพมหานคร10110"]);
