@@ -1,0 +1,14 @@
+cao tốc, ct
+cầu vượt, cv
+cầu đi bộ, cdb
+hầm chui, hc
+phường, ph, p, f
+phố, ph, p
+quận, q
+thành phố, tp
+thị trấn, tt
+thị xã, tx
+vòng xoay, vx
+xa lộ, xl
+đường số, ds
+đại lộ, dl
