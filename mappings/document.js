@@ -166,7 +166,7 @@ var schema = {
     bounding_box: require('./partial/boundingbox'),
 
     // meta info
-    source_id: keyword,
+    source_id: keyword_with_doc_values,
     category: keyword,
     population: multiplier,
     popularity: multiplier,
