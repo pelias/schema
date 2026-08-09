@@ -12,5 +12,8 @@ RUN npm install
 # add code from local checkout to image
 ADD . ${WORKDIR}
 
+# run tests
+RUN npm test
+
 # run as pelias user
 USER pelias

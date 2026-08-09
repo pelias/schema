@@ -1,5 +1,9 @@
 const _ = require('lodash');
-const schema = require('../mappings/document');
+const peliasConfig = require('pelias-config');
+const config = peliasConfig.generate()
+require('../configValidation').validate(config);
+
+const schema = require('../mappings/document')(config);
 
 module.exports.tests = {};
 
@@ -242,12 +246,31 @@ module.exports.tests.dynamic_disabled = function(test, common) {
   });
 };
 
-// shape field should be exluded from _source because it's massive
-module.exports.tests._source = function(test, common) {
-  test('_source', function(t) {
+// shape field should be exluded from _source by default because it's massive
+module.exports.tests._source_excludes = function(test, common) {
+  test('_source shape excludes', function(t) {
     t.ok(Array.isArray(schema._source.excludes), 'exclusions specified');
     t.equal(schema._source.excludes[0], 'shape', 'exclude shape');
     t.equal(schema._source.excludes[1], 'phrase', 'exclude phrase');
+    t.end();
+  });
+};
+
+// shape field should be included in _source when explicitly configured
+module.exports.tests._source_excludes_override = function(test, common) {
+  test('_source excludes override', function(t) {
+    var tmp_config = {
+      elasticsearch: {
+        mappings: {
+          _source: {
+            excludes: ['phrase']
+          }
+        }
+      }
+    };
+    var tmp_schema = require('../mappings/document')(tmp_config);
+    t.ok(Array.isArray(tmp_schema._source.excludes), 'exclusions specified');
+    t.equal(tmp_schema._source.excludes[0], 'phrase', 'exclude phrase');
     t.end();
   });
 };
