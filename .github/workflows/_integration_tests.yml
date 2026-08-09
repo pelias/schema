@@ -23,7 +23,7 @@ jobs:
     - name: Run integration tests
       run: |
         if [ "${{ matrix.icuTokenizer }}" = "true" ]; then
-          jq -n '{ schema: { icuTokenizer: true } }' > $(pwd)/config-icu.json
+          jq -n '{ featureFlags: { icuTokenizer: true } }' > $(pwd)/config-icu.json
           export PELIAS_CONFIG=$(pwd)/config-icu.json
         fi
         npm install

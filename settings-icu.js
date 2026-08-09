@@ -4,7 +4,7 @@ const _ = require('lodash');
  * This module contains modifications to the Pelias schema to adopt the elastic ICU tokenizer.
  * This tokenizer improves word-splitting of non-latin alphabets (particularly Asian languages).
  * 
- * It can be enabled by setting `config.schema.icuTokenizer` in your `pelias.json` config.
+ * It can be enabled by setting `config.featureFlags.icuTokenizer` in your `pelias.json` config.
  * Note: this must be set *before* you create your elasticsearch index or it will have no effect.
  * 
  * This feature is considered beta, we encourage testing & feedback from the community in order 
