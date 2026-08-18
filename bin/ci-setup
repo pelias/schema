@@ -1,8 +1,11 @@
 #!/bin/bash
-set -e
+set -eo pipefail
+
+# the integration tests require a running elasticsearch server
+ES_VERSION="${ES_VERSION:-7.6.1}"
 
 # create elasticsearch directory
-mkdir /tmp/elasticsearch
+mkdir -p /tmp/elasticsearch
 
 # download and install elasticsearch with ICU plugin
 FILENAME="elasticsearch-${ES_VERSION}-linux-x86_64.tar.gz"
@@ -25,7 +28,7 @@ wget -O - "https://artifacts.elastic.co/downloads/elasticsearch/${FILENAME}" \
 
 # wait for server to boot up
 # logs show that on travis-ci it can take ~17s to boot an ES6 server
-source "${BASH_SOURCE%/*}/elastic_wait.sh"
+source "${BASH_SOURCE%/*}/../scripts/elastic_wait.sh"
 (elastic_wait)
 
 # set the correct esclient.apiVersion in pelias.json
