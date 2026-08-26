@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# run the unit and integration tests against both icuTokenizer settings
+set -euo pipefail
+
+BASE_CONFIG="${PELIAS_CONFIG:-${HOME}/pelias.json}"
+WORKDIR="$(mktemp -d)"
+trap 'rm -rf "${WORKDIR}"' EXIT
+
+# write a copy of the config with the icuTokenizer setting overridden
+write_config() {
+  local base='{}'
+  if [[ -f "${BASE_CONFIG}" ]]; then base="$(cat "${BASE_CONFIG}")"; fi
+  jq -n --argjson base "${base}" --argjson icu "$1" \
+    '$base * { schema: { icuTokenizer: $icu } }' > "${WORKDIR}/pelias.json"
+}
+
+for ICU_TOKENIZER in false true; do
+  echo "--- icuTokenizer: ${ICU_TOKENIZER} ---"
+  write_config "${ICU_TOKENIZER}"
+  export PELIAS_CONFIG="${WORKDIR}/pelias.json"
+
+  npm run test
+
+  # the index is recreated per variant to assert the schema is valid for both
+  node scripts/drop_index --force-yes &> /dev/null || true
+  npm run create_index
+  npm run integration
+done

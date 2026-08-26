@@ -8,6 +8,7 @@
   "main": "schema.js",
   "scripts": {
     "test": "./bin/test",
+    "ci": "./bin/ci",
     "integration": "./bin/integration",
     "create_index": "./bin/create_index",
     "drop_index": "node scripts/drop_index",
