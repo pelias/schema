@@ -6,21 +6,21 @@ const mappingPath = (field) => _.flatMap(field.split('.'), (part) => ['propertie
 /**
  * apply field configuration from `schema` section of pelias config to a mapping
  *
- * unstoredFields: fields that are indexed but omitted from _source
- * excludedFields: fields removed from the mapping entirely
+ * sourceExcludedFields: fields that are indexed but omitted from _source
+ * unmappedFields: fields removed from the mapping entirely
  */
 function configureFields(mapping, schemaConfig) {
-  const unstored = _.get(schemaConfig, 'unstoredFields', []);
-  const excluded = _.get(schemaConfig, 'excludedFields', []);
+  const sourceExcluded = _.get(schemaConfig, 'sourceExcludedFields', []);
+  const unmapped = _.get(schemaConfig, 'unmappedFields', []);
 
   const configured = _.cloneDeep(mapping);
 
-  if (!_.isEmpty(unstored)) {
+  if (!_.isEmpty(sourceExcluded)) {
     const excludes = _.get(configured, '_source.excludes', []);
-    _.set(configured, '_source.excludes', _.union(excludes, unstored));
+    _.set(configured, '_source.excludes', _.union(excludes, sourceExcluded));
   }
 
-  excluded.forEach((field) => _.unset(configured, mappingPath(field)));
+  unmapped.forEach((field) => _.unset(configured, mappingPath(field)));
 
   return configured;
 }

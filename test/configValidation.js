@@ -84,12 +84,12 @@ module.exports.tests.interface = function(test, common) {
 
   });
 
-  test('config with array of strings for unstoredFields and excludedFields should not throw error', function(t) {
+  test('config with array of strings for sourceExcludedFields and unmappedFields should not throw error', function(t) {
     var config = {
       schema: {
         indexName: 'example_index',
-        unstoredFields: ['addendum', 'parent.county_a'],
-        excludedFields: ['popularity']
+        sourceExcludedFields: ['addendum', 'parent.county_a'],
+        unmappedFields: ['popularity']
       },
       esclient: {}
     };
@@ -101,8 +101,8 @@ module.exports.tests.interface = function(test, common) {
     t.end();
   });
 
-  test('config with non-array unstoredFields or excludedFields should throw error', function(t) {
-    ['unstoredFields', 'excludedFields'].forEach((key) => {
+  test('config with non-array sourceExcludedFields or unmappedFields should throw error', function(t) {
+    ['sourceExcludedFields', 'unmappedFields'].forEach((key) => {
       [null, 17, 'addendum', {}, true, [17]].forEach((value) => {
         var config = {
           schema: {
