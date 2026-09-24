@@ -84,6 +84,43 @@ module.exports.tests.interface = function(test, common) {
 
   });
 
+  test('config with array of strings for unstoredFields and excludedFields should not throw error', function(t) {
+    var config = {
+      schema: {
+        indexName: 'example_index',
+        unstoredFields: ['addendum', 'parent.county_a'],
+        excludedFields: ['popularity']
+      },
+      esclient: {}
+    };
+
+    t.doesNotThrow(function() {
+      configValidation.validate(config);
+    }, 'no error should have been thrown');
+
+    t.end();
+  });
+
+  test('config with non-array unstoredFields or excludedFields should throw error', function(t) {
+    ['unstoredFields', 'excludedFields'].forEach((key) => {
+      [null, 17, 'addendum', {}, true, [17]].forEach((value) => {
+        var config = {
+          schema: {
+            indexName: 'example_index',
+            [key]: value
+          },
+          esclient: {}
+        };
+
+        t.throws(function() {
+          configValidation.validate(config);
+        }, new RegExp(`"schema.${key}(\\[0\\])?" must be`), `${key} must be an array of strings`);
+      });
+    });
+
+    t.end();
+  });
+
 };
 
 module.exports.all = function (tape, common) {

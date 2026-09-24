@@ -11,6 +11,7 @@ var common = {
 var tests = [
   require('./compile.js'),
   require('./document.js'),
+  require('./configureFields.js'),
   require('./partial-centroid.js'),
   require('./partial-admin.js'),
   require('./partial-keyword.js'),
