@@ -76,16 +76,19 @@ Suite.prototype.run = function (cb) {
           if (err) { throw new Error(err) }
           self.refresh(err => {
             if (err) { throw new Error(err) }
-            self.optimize(async.series(self.asserts, err => {
+            self.optimize(err => {
               if (err) { throw new Error(err) }
-              self.delete(err => {
+              async.series(self.asserts, err => {
                 if (err) { throw new Error(err) }
-                self.client.close()
-                if (_.isFunction(cb)) {
-                  cb()
-                }
+                self.delete(err => {
+                  if (err) { throw new Error(err) }
+                  self.client.close()
+                  if (_.isFunction(cb)) {
+                    cb()
+                  }
+                })
               })
-            }))
+            })
           })
         })
       })
