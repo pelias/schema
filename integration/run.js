@@ -5,11 +5,7 @@ const config = require('pelias-config').generate();
 const schema = require('../schema');
 
 const common = {
-  clientOpts: {
-    host: 'localhost:9200',
-    keepAlive: true,
-    apiVersion: config.esclient.apiVersion
-  },
+  clientOpts: _.defaults({ keepAlive: true }, _.cloneDeep(config.esclient)),
   create: {
     schema: schema,
     create: { }
