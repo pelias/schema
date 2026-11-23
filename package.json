@@ -39,7 +39,6 @@
     "semver": "^7.1.1"
   },
   "devDependencies": {
-    "async": "^3.2.5",
     "difflet": "^1.0.1",
     "iso3166-1": "^0.5.1",
     "proxyquire": "^2.0.0",
