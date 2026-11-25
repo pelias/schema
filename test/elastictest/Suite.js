@@ -1,16 +1,15 @@
 const _ = require('lodash')
 const randomstring = require('randomstring')
 const elasticsearch = require('elasticsearch')
-const async = require('async')
 
 function Suite (clientOpts, props) {
   this.actions = []
   this.asserts = []
   this.client = null
-  this.clientOpts = !!clientOpts && (clone(clientOpts) || {
+  this.clientOpts = clientOpts ? clone(clientOpts) : {
     host: 'localhost:9200',
     keepAlive: true
-  })
+  }
   this.props = props || {}
   if (!_.has(this, 'props.index')) {
     this.props.index = 'testindex-' + randomstring.generate(7).toLowerCase()
@@ -25,71 +24,63 @@ Suite.prototype.assert = function (assert) {
   this.asserts.push(assert)
 }
 
-Suite.prototype.start = function (cb) {
+Suite.prototype.start = function () {
   this.client = new elasticsearch.Client(this.clientOpts)
-  cb()
 }
 
-Suite.prototype.create = function (cb) {
+Suite.prototype.create = function () {
   const cmd = _.merge(this.props.create, { index: this.props.index })
   if (_.has(this, 'props.schema')) {
     cmd.body = this.props.schema
   }
-  this.client.indices.create(cmd, cb)
+  return this.client.indices.create(cmd)
 }
 
-Suite.prototype.delete = function (cb) {
+Suite.prototype.delete = function () {
   const cmd = _.merge(this.props.delete, { index: this.props.index })
-  this.client.indices.delete(cmd, cb)
+  return this.client.indices.delete(cmd)
 }
 
-Suite.prototype.refresh = function (cb) {
+Suite.prototype.refresh = function () {
   const cmd = _.merge(this.props.refresh, { index: this.props.index })
-  this.client.indices.refresh(cmd, cb)
+  return this.client.indices.refresh(cmd)
 }
 
-// note: optimize was replaced in version ES@2.0, forcemerge used for later versions:
-// https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-forcemerge.html
-Suite.prototype.optimize = function (cb) {
-  try {
-    this.client.indices.forcemerge({ index: this.props.index }, cb)
-  } catch (e) {
-    const cmd = { index: this.props.index, waitForMerge: true, force: true }
-    this.client.indices.optimize(cmd, cb)
-  }
+Suite.prototype.optimize = function () {
+  return this.client.indices.forcemerge({ index: this.props.index })
 }
 
-Suite.prototype.waitForStatus = function (status, cb) {
-  const cmd = { waitForStatus: status || 'yellow' }
-  this.client.cluster.health(cmd, cb)
+Suite.prototype.waitForStatus = function (status) {
+  return this.client.cluster.health({ waitForStatus: status || 'yellow' })
 }
 
 Suite.prototype.run = function (cb) {
-  const self = this
-  self.start(err => {
-    if (err) { throw new Error(err) }
-    self.waitForStatus('yellow', err => {
-      if (err) { throw new Error(err) }
-      self.create(err => {
-        if (err) { throw new Error(err) }
-        async.series(self.actions, err => {
-          if (err) { throw new Error(err) }
-          self.refresh(err => {
-            if (err) { throw new Error(err) }
-            self.optimize(async.series(self.asserts, err => {
-              if (err) { throw new Error(err) }
-              self.delete(err => {
-                if (err) { throw new Error(err) }
-                self.client.close()
-                if (_.isFunction(cb)) {
-                  cb()
-                }
-              })
-            }))
-          })
-        })
-      })
-    })
+  const promise = this._run()
+  if (!_.isFunction(cb)) { return promise }
+  promise.then(() => cb(), cb)
+}
+
+Suite.prototype._run = async function () {
+  this.start()
+  try {
+    await this.waitForStatus('yellow')
+    await this.create()
+    for (const action of this.actions) { await step(action) }
+    await this.refresh()
+    await this.optimize()
+    for (const assert of this.asserts) { await step(assert) }
+    await this.delete()
+  } finally {
+    this.client.close()
+  }
+}
+
+// convert a callback style function to a promise, promise style functions
+// (those which declare no arguments) are called directly.
+function step (fn) {
+  if (fn.length === 0) { return Promise.resolve(fn()) }
+  return new Promise((resolve, reject) => {
+    fn(err => err ? reject(err) : resolve())
   })
 }
 
