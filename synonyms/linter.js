@@ -12,7 +12,7 @@ const REPLACEMENT_REGEX = /=>/
  * common mistakes with synonyms.
  *
  * Warnings:
- *  - Puntuation: Synonyms should not contain characters in the punctuation blacklist
+ *  - Punctuation: Synonyms should not contain characters in the punctuation blacklist
  *  - Letter Casing: Synonyms should be lowercase
  *  - Sanity Checks: At least one synonym should exist, duplicates should be removed
  *  - Multi Word: Multi-word synonyms can generate unexpected token positions
