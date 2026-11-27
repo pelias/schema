@@ -1,0 +1,2 @@
+train station => railway station
+ferry station, ferry wharf => ferry terminal
